@@ -1,7 +1,8 @@
 // src/components/contact/Contact.js
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
+import { useIconPhase } from "../../hooks/useIconPhase";
 
 import contactIcon from "../../assets/icons/contact/contact.webp";
 import contactGlow from "../../assets/icons/contact/contact_glow.webp";
@@ -24,76 +25,9 @@ export default function Contact() {
     const [touched, setTouched] = useState({ name: false, email: false, message: false });
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
     const [titleHovered, setTitleHovered] = useState(false);
-
-    const [iconPhase, setIconPhase] = useState("hidden");
-    const iconRef = useRef(null);
-    const pulseTimer = useRef(null);
+    const { iconRef, iconPhase } = useIconPhase('ct-icon--pulse');
 
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
-
-    useEffect(() => {
-        const el = iconRef.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && iconPhase === "hidden") {
-                    setIconPhase("nodes");
-                }
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "nodes") return;
-        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
-        return () => clearTimeout(t1);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "forming") return;
-        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
-        return () => clearTimeout(t2);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const t3 = setTimeout(() => {
-            iconRef.current?.classList.add("ct-icon--pulse");
-            setTimeout(() => {
-                iconRef.current?.classList.remove("ct-icon--pulse");
-            }, 1600);
-        }, 600);
-
-        return () => clearTimeout(t3);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const schedule = () => {
-            const delay = 6000 + Math.random() * 2000;
-            pulseTimer.current = setTimeout(() => {
-                iconRef.current?.classList.add("ct-icon--pulse");
-                setTimeout(() => {
-                    iconRef.current?.classList.remove("ct-icon--pulse");
-                }, 1600);
-                schedule();
-            }, delay);
-        };
-
-        const initial = setTimeout(schedule, 3000);
-
-        return () => {
-            clearTimeout(initial);
-            clearTimeout(pulseTimer.current);
-        };
-    }, [iconPhase]);
 
     const emailOk = (v) =>
         /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).toLowerCase());

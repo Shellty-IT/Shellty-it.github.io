@@ -20,11 +20,12 @@
   },
   "scripts": {
     "start": "cross-env NODE_NO_WARNINGS=1 react-scripts start",
-    "build": "react-scripts build",
-    "build:gh": "set \"PUBLIC_URL=.\" && react-scripts build && copy /Y \"build\\index.html\" \"build\\404.html\"",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
+    "build:gh": "cross-env GENERATE_SOURCEMAP=false PUBLIC_URL=. react-scripts build && copy /Y \"build\\index.html\" \"build\\404.html\"",
     "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d build",
-    "build:netlify": "npm run build"
+    "build:netlify": "npm run build",
+    "analyze": "source-map-explorer \"build/static/js/*.js\""
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +48,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "gh-pages": "^6.3.0",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "source-map-explorer": "^2.5.3"
   }
 }

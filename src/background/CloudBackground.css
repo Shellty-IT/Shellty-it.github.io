@@ -36,8 +36,9 @@
     background:
             radial-gradient(ellipse 40% 40% at 30% 35%, rgba(12,192,255,0.35) 0%, transparent 70%),
             radial-gradient(ellipse 35% 45% at 70% 65%, rgba(0,98,176,0.25) 0%, transparent 70%);
-    animation: nebulaFloat 70s ease-in-out infinite alternate;
+    /* will-change ustawiane tylko gdy animacja faktycznie działa */
     will-change: transform;
+    animation: nebulaFloat 70s ease-in-out infinite alternate;
 }
 
 .cloud-bg-wrapper::after {
@@ -51,23 +52,33 @@
     opacity: 0.015;
     background:
             radial-gradient(ellipse 45% 35% at 65% 40%, rgba(12,192,255,0.3) 0%, transparent 70%);
-    animation: nebulaFloat2 55s ease-in-out infinite alternate;
     will-change: transform;
+    animation: nebulaFloat2 55s ease-in-out infinite alternate;
 }
 
-/* Medium quality - stop animations */
+/* Medium quality — wyłącz animacje i zwolnij warstwę GPU */
 .cloud-bg-wrapper[data-quality="medium"]::before,
 .cloud-bg-wrapper[data-quality="medium"]::after {
     animation: none;
+    will-change: auto;
     opacity: 0.015;
 }
 
-/* Low/minimal - całkiem usuń */
+/* Low/minimal — usuń pseudo-elementy całkowicie */
 .cloud-bg-wrapper[data-quality="low"]::before,
 .cloud-bg-wrapper[data-quality="low"]::after,
 .cloud-bg-wrapper[data-quality="minimal"]::before,
 .cloud-bg-wrapper[data-quality="minimal"]::after {
     display: none;
+}
+
+/* Dostępność: użytkownicy z prefers-reduced-motion dostają statyczne tło */
+@media (prefers-reduced-motion: reduce) {
+    .cloud-bg-wrapper::before,
+    .cloud-bg-wrapper::after {
+        animation: none !important;
+        will-change: auto;
+    }
 }
 
 @keyframes nebulaFloat {

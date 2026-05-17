@@ -745,7 +745,18 @@ const CloudBackground = () => {
         if (!canvas) return;
         const engine = new CloudEngine(canvas);
         engine.resize(window.innerWidth, window.innerHeight);
-        engine.start();
+
+        // Użytkownicy z prefers-reduced-motion: reduce dostają jeden statyczny frame
+        // zamiast ciągłej pętli animacji — respektuje ustawienia dostępności OS.
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReduced) {
+            const t0 = performance.now() / 1000;
+            engine._update(t0, 0);
+            engine._draw(t0);
+        } else {
+            engine.start();
+        }
 
         let resizeTimer;
         const onResize = () => {
@@ -755,13 +766,17 @@ const CloudBackground = () => {
             );
         };
 
-        let scrollTimer;
+        // requestAnimationFrame zamiast setTimeout(fn, 16):
+        // gwarantuje dokładnie jedno odczytanie scrollY na klatkę,
+        // synchronizując z cyklem compositing przeglądarki.
+        let scrollRaf = null;
         const onScroll = () => {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
+            if (scrollRaf !== null) return;
+            scrollRaf = requestAnimationFrame(() => {
+                scrollRaf = null;
                 const max = document.documentElement.scrollHeight - window.innerHeight;
                 engine.setScroll(max > 0 ? window.scrollY / max : 0);
-            }, 16);
+            });
         };
 
         let lastMouseTime = 0;
@@ -776,6 +791,7 @@ const CloudBackground = () => {
         };
 
         const onVisibility = () => {
+            if (prefersReduced) return;
             document.hidden ? engine.stop() : engine.start();
         };
 
@@ -787,7 +803,7 @@ const CloudBackground = () => {
 
         return () => {
             clearTimeout(resizeTimer);
-            clearTimeout(scrollTimer);
+            if (scrollRaf !== null) cancelAnimationFrame(scrollRaf);
             window.removeEventListener('resize', onResize);
             window.removeEventListener('scroll', onScroll);
             window.removeEventListener('mousemove', onMouse);

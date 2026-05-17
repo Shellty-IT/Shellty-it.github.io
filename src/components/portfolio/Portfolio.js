@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
+import React, { useMemo, useState, useCallback, memo } from 'react';
 import './styles/Portfolio.css';
 import './styles/PortfolioIcon.css';
 import './styles/ProjectCard.css';
@@ -27,6 +27,7 @@ import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
 import { createPortal } from 'react-dom';
+import { useIconPhase } from '../../hooks/useIconPhase';
 
 const ICON_NODES = [
     { id: 0, x: "15%", y: "15%" },
@@ -40,12 +41,12 @@ const ICON_NODES = [
     { id: 8, x: "50%", y: "50%" },
 ];
 
-const ProjectImage = ({ src, alt }) => {
+// Memoizowane — nie rerenderuje się gdy rodzic zmienia stan (np. titleHovered, videoModal)
+const ProjectImage = memo(({ src, alt }) => {
     const [phase, setPhase] = useState('loading');
 
     const handleLoad = useCallback(() => {
         setPhase('decoding');
-
         setTimeout(() => {
             setPhase('done');
         }, 700);
@@ -71,9 +72,10 @@ const ProjectImage = ({ src, alt }) => {
             <div className="project-img-glitch" aria-hidden="true" />
         </div>
     );
-};
+});
 
-const CopyButton = ({ text, label }) => {
+// Memoizowany — stan copied jest lokalny, nie wpływa na rodzeństwo
+const CopyButton = memo(({ text, label }) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = useCallback(async () => {
@@ -103,9 +105,10 @@ const CopyButton = ({ text, label }) => {
             {copied ? <FaCheck /> : <FaCopy />}
         </button>
     );
-};
+});
 
-const TestAccountBox = ({ account, t }) => {
+// Memoizowany — rerenderuje się tylko gdy zmienia się account lub język
+const TestAccountBox = memo(({ account, t }) => {
     if (!account?.fields?.length) return null;
 
     return (
@@ -137,7 +140,7 @@ const TestAccountBox = ({ account, t }) => {
             </div>
         </div>
     );
-};
+});
 
 const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
     useEffect(() => {
@@ -188,79 +191,32 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
     );
 };
 
+/**
+ * Renderuje linie opisu projektu z zachowaniem podziałów \n.
+ * Memoizowany i wyciągnięty do osobnego komponentu — split() wykonywany
+ * raz przy zmianie description, nie przy każdym rerenderze karty.
+ */
+const ProjectDescription = memo(({ description }) => {
+    const lines = useMemo(() => description.split('\n'), [description]);
+    return (
+        <p className="project-description" itemProp="description">
+            {lines.map((line, i) => (
+                <React.Fragment key={i}>
+                    {line}
+                    {i < lines.length - 1 && <br />}
+                </React.Fragment>
+            ))}
+        </p>
+    );
+});
+
 const Portfolio = () => {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const [titleHovered, setTitleHovered] = useState(false);
     const [videoModal, setVideoModal] = useState({ open: false, url: '', title: '' });
 
-    const [iconPhase, setIconPhase] = useState("hidden");
-    const iconRef = useRef(null);
-    const pulseTimer = useRef(null);
-
-    useEffect(() => {
-        const el = iconRef.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && iconPhase === "hidden") {
-                    setIconPhase("nodes");
-                }
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "nodes") return;
-        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
-        return () => clearTimeout(t1);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "forming") return;
-        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
-        return () => clearTimeout(t2);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const t3 = setTimeout(() => {
-            iconRef.current?.classList.add("pf-icon--pulse");
-            setTimeout(() => {
-                iconRef.current?.classList.remove("pf-icon--pulse");
-            }, 1600);
-        }, 600);
-
-        return () => clearTimeout(t3);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const schedule = () => {
-            const delay = 6000 + Math.random() * 2000;
-            pulseTimer.current = setTimeout(() => {
-                iconRef.current?.classList.add("pf-icon--pulse");
-                setTimeout(() => {
-                    iconRef.current?.classList.remove("pf-icon--pulse");
-                }, 1600);
-                schedule();
-            }, delay);
-        };
-
-        const initial = setTimeout(schedule, 3000);
-
-        return () => {
-            clearTimeout(initial);
-            clearTimeout(pulseTimer.current);
-        };
-    }, [iconPhase]);
+    const { iconRef, iconPhase } = useIconPhase('pf-icon--pulse');
 
     const openVideo = useCallback((url, title) => {
         setVideoModal({ open: true, url, title });
@@ -540,14 +496,7 @@ const Portfolio = () => {
                                     </div>
                                 </header>
 
-                                <p className="project-description" itemProp="description">
-                                    {project.description.split('\n').map((line, i) => (
-                                        <React.Fragment key={i}>
-                                            {line}
-                                            {i < project.description.split('\n').length - 1 && <br />}
-                                        </React.Fragment>
-                                    ))}
-                                </p>
+                                <ProjectDescription description={project.description} />
 
                                 {project.highlights && Array.isArray(project.highlights) && project.highlights.length > 0 && (
                                     <div className="project-highlights">

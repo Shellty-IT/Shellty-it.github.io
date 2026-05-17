@@ -4,10 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Informuje przeglądarkę o ciemnym motywie jeszcze przed załadowaniem CSS -->
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Czcionki -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- DNS prefetch dla zewnętrznych usług używanych na stronie -->
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+    <link rel="dns-prefetch" href="https://vimeo.com">
+    <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <title>Shellty | Technologiczny fundament Twojego biznesu</title>
 

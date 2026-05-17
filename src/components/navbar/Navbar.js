@@ -69,10 +69,31 @@ const Navbar = () => {
 
     const handleMouseLeave = () => setPillToActive();
 
+    /**
+     * Zmiana języka z leniwym ładowaniem zasobów.
+     * Jeśli paczka dla żądanego języka nie jest jeszcze w i18next,
+     * dynamicznie importujemy JSON (webpack chunk) i dopiero potem
+     * wywołujemy changeLanguage. Dzięki temu do main bundle trafia
+     * tylko język wykryty przy starcie.
+     */
     const handleLangChange = (newLang) => {
-        if (i18n.language !== newLang) {
+        if (i18n.language === newLang) return;
+
+        if (i18n.hasResourceBundle(newLang, 'translation')) {
             void i18n.changeLanguage(newLang);
+            return;
         }
+
+        import(`../../locales/${newLang}/translation.json`).then((mod) => {
+            i18n.addResourceBundle(
+                newLang,
+                'translation',
+                mod.default ?? mod,
+                /* deepMerge */ true,
+                /* overwrite  */ true
+            );
+            void i18n.changeLanguage(newLang);
+        });
     };
 
     const toggleMenu = () => {

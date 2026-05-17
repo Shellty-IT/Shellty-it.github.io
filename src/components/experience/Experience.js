@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import "./Experience.css";
 import {
     FaBuilding,
@@ -12,6 +12,7 @@ import {
     FaCogs,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useIconPhase } from "../../hooks/useIconPhase";
 
 import experienceIcon from "../../assets/icons/experience/experience.webp";
 import experienceGlow from "../../assets/icons/experience/experience_glow.webp";
@@ -52,77 +53,9 @@ const NODE_POINTS = [
 ];
 
 const Experience = () => {
-    const { t: rawT } = useTranslation();
+    const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
-    const [iconPhase, setIconPhase] = useState("hidden");
-    const iconRef = useRef(null);
-    const pulseTimer = useRef(null);
-
-    const t = rawT;
-
-    useEffect(() => {
-        const el = iconRef.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && iconPhase === "hidden") {
-                    setIconPhase("nodes");
-                }
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "nodes") return;
-        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
-        return () => clearTimeout(t1);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "forming") return;
-        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
-        return () => clearTimeout(t2);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const t3 = setTimeout(() => {
-            iconRef.current?.classList.add("exp-icon--pulse");
-            setTimeout(() => {
-                iconRef.current?.classList.remove("exp-icon--pulse");
-            }, 1600);
-        }, 600);
-
-        return () => clearTimeout(t3);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const schedule = () => {
-            const delay = 6000 + Math.random() * 2000;
-            pulseTimer.current = setTimeout(() => {
-                iconRef.current?.classList.add("exp-icon--pulse");
-                setTimeout(() => {
-                    iconRef.current?.classList.remove("exp-icon--pulse");
-                }, 1600);
-                schedule();
-            }, delay);
-        };
-
-        const initial = setTimeout(schedule, 3000);
-
-        return () => {
-            clearTimeout(initial);
-            clearTimeout(pulseTimer.current);
-        };
-    }, [iconPhase]);
+    const { iconRef, iconPhase } = useIconPhase('exp-icon--pulse');
 
     return (
         <section id="experience" className="exp">

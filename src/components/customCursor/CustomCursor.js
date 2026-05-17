@@ -5,26 +5,25 @@ const TRAIL_COUNT = 5;
 const INTERACTIVE = 'a, button, input, textarea, select, [role="button"], label, [data-cursor]';
 const POINTER_QUERY = '(hover: hover) and (pointer: fine)';
 
-const getTrailStyle = (i) => {
+/**
+ * Style trailsów wyliczone raz jako stała poza komponentem.
+ * Poprzednio getTrailStyle(i) był wywoływany przy każdym renderze,
+ * tworząc nowe obiekty — teraz są niezmiennymi referencjami.
+ */
+const TRAIL_STYLES = Array.from({ length: TRAIL_COUNT }, (_, i) => {
     const progress = i / (TRAIL_COUNT - 1);
     const size = 7 - progress * 5;
     const alpha = 0.5 - progress * 0.45;
 
-    const style = {
+    return {
         width: size,
         height: size,
         marginLeft: -size / 2,
         marginTop: -size / 2,
         background: `rgba(0, 229, 255, ${alpha})`,
+        boxShadow: i === 0 ? `0 0 4px 2px rgba(0,229,255,${(alpha * 0.35).toFixed(3)})` : 'none',
     };
-
-    // Tylko pierwszy trail ma glow
-    if (i === 0) {
-        style.boxShadow = `0 0 4px 2px rgba(0,229,255,${alpha * 0.35})`;
-    }
-
-    return style;
-};
+});
 
 const safeClosest = (target, selector) => {
     if (!target || typeof target.closest !== 'function' || target === document || target === window) return null;
@@ -195,24 +194,14 @@ const CustomCursor = () => {
 
     return (
         <div className="cursor-container">
-            {Array.from({ length: TRAIL_COUNT }).map((_, i) => {
-                const s = getTrailStyle(i);
-                return (
-                    <div
-                        key={i}
-                        ref={el => (trailRefs.current[i] = el)}
-                        className="cursor-trail-dot"
-                        style={{
-                            width: s.width,
-                            height: s.height,
-                            marginLeft: s.marginLeft,
-                            marginTop: s.marginTop,
-                            background: s.background,
-                            boxShadow: s.boxShadow || 'none',
-                        }}
-                    />
-                );
-            })}
+            {TRAIL_STYLES.map((s, i) => (
+                <div
+                    key={i}
+                    ref={el => (trailRefs.current[i] = el)}
+                    className="cursor-trail-dot"
+                    style={s}
+                />
+            ))}
             <div ref={ringRef} className="cursor-ring" />
             <div ref={dotRef} className="cursor-dot" />
         </div>

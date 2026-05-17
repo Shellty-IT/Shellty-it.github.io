@@ -1,6 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './GlowIcon.css';
 
+/**
+ * Singleton IntersectionObserver zamiast osobnej instancji per komponent.
+ * Jeden observer śledzi wszystkie GlowIcon na stronie — zmniejsza liczbę
+ * aktywnych obserwatorów z N (liczba ikon) do 1.
+ */
+let sharedObserver = null;
+const observerCallbacks = new WeakMap();
+
+function getSharedObserver() {
+    if (!sharedObserver) {
+        sharedObserver = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        const cb = observerCallbacks.get(entry.target);
+                        if (cb) {
+                            cb();
+                            sharedObserver.unobserve(entry.target);
+                            observerCallbacks.delete(entry.target);
+                        }
+                    }
+                }
+            },
+            { rootMargin: '200px' }
+        );
+    }
+    return sharedObserver;
+}
+
 const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = '' }) => {
     const style = size ? { width: size, height: size } : undefined;
     const [glowReady, setGlowReady] = useState(false);
@@ -9,20 +38,22 @@ const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = 
     useEffect(() => {
         if (!srcGlow || !containerRef.current) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    const img = new Image();
-                    img.src = srcGlow;
-                    img.onload = () => setGlowReady(true);
-                    observer.disconnect();
-                }
-            },
-            { rootMargin: '200px' }
-        );
+        const el = containerRef.current;
+        const observer = getSharedObserver();
 
-        observer.observe(containerRef.current);
-        return () => observer.disconnect();
+        const onVisible = () => {
+            const img = new Image();
+            img.src = srcGlow;
+            img.onload = () => setGlowReady(true);
+        };
+
+        observerCallbacks.set(el, onVisible);
+        observer.observe(el);
+
+        return () => {
+            observer.unobserve(el);
+            observerCallbacks.delete(el);
+        };
     }, [srcGlow]);
 
     return (

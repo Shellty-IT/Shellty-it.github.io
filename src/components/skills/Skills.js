@@ -1,5 +1,5 @@
 // src/components/skills/Skills.js
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import React, { useMemo, useState } from "react";
 import "./Skills.css";
 import {
     FaWindows,
@@ -41,6 +41,7 @@ import {
 import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { FaMobileAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useIconPhase } from "../../hooks/useIconPhase";
 
 import skillsIcon from "../../assets/icons/skills/skills.webp";
 import skillsGlow from "../../assets/icons/skills/skills_glow.webp";
@@ -91,74 +92,7 @@ const Skills = () => {
     const { t, i18n } = useTranslation();
     const isEN = i18n.language?.startsWith("en");
     const [titleHovered, setTitleHovered] = useState(false);
-
-    const [iconPhase, setIconPhase] = useState("hidden");
-    const iconRef = useRef(null);
-    const pulseTimer = useRef(null);
-
-    useEffect(() => {
-        const el = iconRef.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && iconPhase === "hidden") {
-                    setIconPhase("nodes");
-                }
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "nodes") return;
-        const t1 = setTimeout(() => setIconPhase("forming"), 1000);
-        return () => clearTimeout(t1);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "forming") return;
-        const t2 = setTimeout(() => setIconPhase("visible"), 1200);
-        return () => clearTimeout(t2);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const t3 = setTimeout(() => {
-            iconRef.current?.classList.add("sk-icon-wrap--pulse");
-            setTimeout(() => {
-                iconRef.current?.classList.remove("sk-icon-wrap--pulse");
-            }, 1600);
-        }, 600);
-
-        return () => clearTimeout(t3);
-    }, [iconPhase]);
-
-    useEffect(() => {
-        if (iconPhase !== "visible") return;
-
-        const schedule = () => {
-            const delay = 6000 + Math.random() * 2000;
-            pulseTimer.current = setTimeout(() => {
-                iconRef.current?.classList.add("sk-icon-wrap--pulse");
-                setTimeout(() => {
-                    iconRef.current?.classList.remove("sk-icon-wrap--pulse");
-                }, 1600);
-                schedule();
-            }, delay);
-        };
-
-        const initial = setTimeout(schedule, 3000);
-
-        return () => {
-            clearTimeout(initial);
-            clearTimeout(pulseTimer.current);
-        };
-    }, [iconPhase]);
+    const { iconRef, iconPhase } = useIconPhase('sk-icon-wrap--pulse');
 
     const LEVELS = useMemo(() => (
         isEN

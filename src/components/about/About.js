@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { HashLink } from "react-router-hash-link";
 import "./About.css";
 import {
@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { useTranslation, Trans } from "react-i18next";
 import GlowIcon from "../glowIcon/GlowIcon";
+import { useIconPhase } from "../../hooks/useIconPhase";
 
 import aboutIcon from "../../assets/icons/about/about.webp";
 import aboutGlow from "../../assets/icons/about/about_glow.webp";
@@ -205,74 +206,7 @@ const About = () => {
         : null;
 
     const [titleHovered, setTitleHovered] = useState(false);
-
-    const [dnaPhase, setDnaPhase] = useState("hidden");
-    const dnaRef = useRef(null);
-    const pulseTimer = useRef(null);
-
-    useEffect(() => {
-        const el = dnaRef.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && dnaPhase === "hidden") {
-                    setDnaPhase("stars");
-                }
-            },
-            { threshold: 0.25 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [dnaPhase]);
-
-    useEffect(() => {
-        if (dnaPhase !== "stars") return;
-        const t1 = setTimeout(() => setDnaPhase("forming"), 900);
-        return () => clearTimeout(t1);
-    }, [dnaPhase]);
-
-    useEffect(() => {
-        if (dnaPhase !== "forming") return;
-        const t2 = setTimeout(() => setDnaPhase("visible"), 1200);
-        return () => clearTimeout(t2);
-    }, [dnaPhase]);
-
-    useEffect(() => {
-        if (dnaPhase !== "visible") return;
-
-        const t3 = setTimeout(() => {
-            dnaRef.current?.classList.add("dna--pulse");
-            setTimeout(() => {
-                dnaRef.current?.classList.remove("dna--pulse");
-            }, 1600);
-        }, 600);
-
-        return () => clearTimeout(t3);
-    }, [dnaPhase]);
-
-    useEffect(() => {
-        if (dnaPhase !== "visible") return;
-
-        const schedule = () => {
-            const delay = 6000 + Math.random() * 2000;
-            pulseTimer.current = setTimeout(() => {
-                dnaRef.current?.classList.add("dna--pulse");
-                setTimeout(() => {
-                    dnaRef.current?.classList.remove("dna--pulse");
-                }, 1600);
-                schedule();
-            }, delay);
-        };
-
-        const initial = setTimeout(schedule, 3000);
-
-        return () => {
-            clearTimeout(initial);
-            clearTimeout(pulseTimer.current);
-        };
-    }, [dnaPhase]);
+    const { iconRef, iconPhase } = useIconPhase('dna--pulse');
 
     return (
         <section id="about" className="about">
@@ -282,8 +216,8 @@ const About = () => {
             <div className="about__container">
                 <header className="about__header animate-fade-in">
                     <div
-                        ref={dnaRef}
-                        className={`dna dna--${dnaPhase}`}
+                        ref={iconRef}
+                        className={`dna dna--${iconPhase}`}
                     >
                         <div className="dna__stars" aria-hidden="true">
                             {DNA_STARS.map((s) => (
