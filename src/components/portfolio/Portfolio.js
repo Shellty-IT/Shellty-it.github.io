@@ -275,7 +275,7 @@ const Portfolio = () => {
             id: "ksefMaster",
             image: currentLanguage === 'en' ? ksefThumbnailAng : ksefThumbnail,
             demoLink: 'https://ksef-master.netlify.app/',
-            githubLink: 'https://github.com/Shellty-IT/KSeF-Master_backend',
+            githubLink: 'https://github.com/Shellty-IT/KSeF_Master',
             title: t('portfolio.projects.ksefMaster.title'),
             subtitle: t('portfolio.projects.ksefMaster.subtitle'),
             description: t('portfolio.projects.ksefMaster.description'),
