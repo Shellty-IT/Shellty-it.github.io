@@ -24,6 +24,7 @@ import kanbanThumbnail from '../../assets/thumbnails/kanban.webp';
 import kanbanThumbnailAng from '../../assets/thumbnails/kanban_ang.webp';
 import shelltyCmsThumbnail from '../../assets/thumbnails/shellty_cms.webp';
 import shelltyCmsThumbnailAng from '../../assets/thumbnails/shellty_cms_en.webp';
+import budmaxThumbnail from '../../assets/thumbnails/wordpress_theme.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -243,6 +244,20 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.shelltyCMS.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.shelltyCMS.tech', { returnObjects: true }),
             role: t('portfolio.projects.shelltyCMS.role', { defaultValue: 'Developer' }),
+            year: '2026',
+        },
+        {
+            id: "budmaxTheme",
+            image: budmaxThumbnail,
+            demoLink: 'https://dev-customer-test.pantheonsite.io/',
+            githubLink: null,
+            title: t('portfolio.projects.budmaxTheme.title'),
+            subtitle: t('portfolio.projects.budmaxTheme.subtitle'),
+            description: t('portfolio.projects.budmaxTheme.description'),
+            highlightsTitle: t('portfolio.projects.budmaxTheme.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.budmaxTheme.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.budmaxTheme.tech', { returnObjects: true }),
+            role: t('portfolio.projects.budmaxTheme.role', { defaultValue: 'Developer' }),
             year: '2026',
         },
         {

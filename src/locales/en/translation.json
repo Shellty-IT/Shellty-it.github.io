@@ -53,7 +53,7 @@
       "support": "<strong>Support & Understand:</strong> Thanks to experience in IT Support and Administration, I understand the user perspective and operational challenges. I know how crucial stability and security are in day-to-day work."
     },
     "growthTitle": "Growth & Vision",
-    "growth": "In parallel, I’m developing my competencies by delivering my own projects. While professionally I focus on your needs, privately I’m passionate about the development and practical use of AI agents in automation — which always translates into a better understanding of modern architectures.",
+    "growth": "In parallel, I’m developing my competencies by delivering my own projects. While professionally I focus on your needs, privately I’m passionate about the development and practical use of AI agents in automation - which always translates into a better understanding of modern architectures.",
     "goalTitle": "Goal: Long-term Collaboration",
     "goal": "I’m not looking for \"just another gig\". I’m actively seeking a Partner or Employer with whom I can build a relationship for years. I care about a place where I can bring real value from day one and continuously grow my competencies through ambitious, joint projects.",
     "ctaExperience": "See experience",
@@ -323,7 +323,7 @@
         "title": "Shellty CMS – Universal CMS for Corporate Websites",
         "subtitle": "Shellty CMS is a proprietary, scalable content management system designed as a modern alternative to WordPress for B2B projects.",
         "description": "It was created for rapid deployment of professional corporate websites while maintaining full control over architecture, security, and performance.\n\nThe system allows cloning a ready-made, tested architecture for subsequent clients, reducing project delivery time from several weeks to a few days.",
-        "highlightsTitle": "What makes this project stand out?",
+        "highlightsTitle": "What makes the project stand out:",
         "highlights": [
           "Lightweight architecture based on Next.js and Payload CMS.",
           "Intuitive admin panel with role-based access control (admin / editor).",
@@ -432,6 +432,20 @@
         "subtitle": "Simple One Page website (student project).",
         "description": "A very simple, static one-page website prepared during studies as part of one of the tasks. It presents selected, interesting animal species in short sections with basic information and trivia. I treat it as a modest supplementary material showing consistency in documenting progress. I am aware that this is not a project representative of my current skills and I will soon replace it with newer, original projects.",
         "tech": ["HTML", "CSS", "JavaScript"]
+      },
+      "budmaxTheme": {
+        "title": "BudMax Theme",
+        "subtitle": "Custom WordPress theme designed for the BudMax construction company. Minimalist design, performance, and full content control via ACF.",
+        "description": "The project was created as a complete marketing solution - from PHP architecture through CSS/JS animations to AJAX forms with anti-spam protection. The theme does not use the block editor, which guarantees speed and code predictability.",
+        "highlightsTitle": "Key features of the project:",
+        "highlights": [
+          "Custom i18n system (PL/EN) based on cookies and query params - without WooCommerce Multilingual or WPML.",
+          "Speed Dial FAB with contact modal, honeypot, and rate-limiting.",
+          "Focal point (image cropping) controlled from the ACF panel via object-position.",
+          "SEO: hreflang, canonical, Open Graph - generated dynamically.",
+          "Deployment to Pantheon via Git with cache busting via filemtime()."
+        ],
+        "tech": ["WordPress", "PHP", "ACF", "CSS", "JavaScript", "Pantheon", "AJAX", "i18n"]
       }
     }
   },

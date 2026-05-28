@@ -219,7 +219,7 @@
         "title": "Shellty CMS - System CMS dla Stron Firmowych",
         "subtitle": "Shellty CMS to autorski, skalowalny system zarządzania treścią zaprojektowany jako nowoczesna alternatywa dla WordPressa w projektach B2B.",
         "description": "Powstał z myślą o szybkim wdrażaniu profesjonalnych stron firmowych przy zachowaniu pełnej kontroli nad architekturą, bezpieczeństwem i wydajnością.\n\nSystem umożliwia klonowanie gotowej, przetestowanej architektury dla kolejnych klientów, co skraca czas realizacji projektu z kilku tygodni do paru dni.",
-        "highlightsTitle": "Co wyróżnia projekt?",
+        "highlightsTitle": "Co wyróżnia projekt:",
         "highlights": [
           "Lekka architektura oparta na Next.js i Payload CMS.",
           "Intuicyjny panel administracyjny z kontrolą ról (admin / editor).",
@@ -328,6 +328,20 @@
         "subtitle": "Prosta strona typu One Page (projekt studencki).",
         "description": "Bardzo prosta, statyczna strona one-page przygotowana w trakcie studiów jako realizacja jednego z zadań. Prezentuje wybrane, interesujące gatunki zwierząt w krótkich sekcjach z podstawowymi informacjami i ciekawostkami. Traktuję ją jako skromny materiał uzupełniający, pokazujący konsekwencję w dokumentowaniu postępów. Mam świadomość, że nie jest to projekt reprezentatywny dla obecnych umiejętności i wkrótce zastąpię go nowszymi, autorskimi realizacjami.",
         "tech": ["HTML", "CSS", "JavaScript"]
+      },
+      "budmaxTheme": {
+        "title": "BudMax Theme",
+        "subtitle": "Autorski motyw WordPress zaprojektowany dla firmy budowlanej BudMax. Minimalistyczny design, wydajność i pełna kontrola treści przez ACF.",
+        "description": "Projekt powstał jako kompletne rozwiązanie marketingowe - od architektury PHP przez animacje CSS/JS po formularze AJAX z ochroną antyspamową. Motyw nie korzysta z block editora, co gwarantuje szybkość i przewidywalność kodu.",
+        "highlightsTitle": "Kluczowe cechy projektu:",
+        "highlights": [
+          "Własny system i18n (PL/EN) oparty na cookie i query param - bez WooCommerce Multilingual czy WPML.",
+          "Speed Dial FAB z modalem kontaktowym, honeypot i rate-limitingiem.",
+          "Focal point (kadrowanie zdjęć) sterowane z panelu ACF przez object-position.",
+          "SEO: hreflang, canonical, Open Graph - generowane dynamicznie.",
+          "Deploy na Pantheon przez Git z cache bustingiem przez filemtime()."
+        ],
+        "tech": ["WordPress", "PHP", "ACF", "CSS", "JavaScript", "Pantheon", "AJAX", "i18n"]
       }
     }
   },
@@ -458,9 +472,9 @@
       "fillAll": "Uzupełnij poprawnie zaznaczone pola."
     },
     "status": {
-      "ok": "Dziękuję — wiadomość wysłana!",
+      "ok": "Dziękuję - wiadomość wysłana!",
       "sendError": "Błąd wysyłki.",
-      "network": "Błąd sieci — spróbuj ponownie."
+      "network": "Błąd sieci - spróbuj ponownie."
     },
     "or": "Lub napisz bezpośrednio na:"
   }
