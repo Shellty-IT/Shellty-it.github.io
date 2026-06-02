@@ -482,7 +482,7 @@ const Portfolio = () => {
                             i18nKey="portfolio.subtitleHtml"
                             components={{
                                 link: <a href="https://github.com/shellty-it" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />,
-                                pulseLink: <a href="https://shellty-pulse.duckdns.org" target="_blank" rel="noopener noreferrer" className="warning-glow" />,
+                                pulseLink: <a href="https://shellty-pulse.duckdns.org" target="_blank" rel="noopener noreferrer" className="warning-glow" aria-label="Shellty Pulse" />,
                                 warning: <span className="warning-glow" />
                             }}
                         />
