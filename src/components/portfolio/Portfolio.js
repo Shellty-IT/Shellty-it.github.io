@@ -234,7 +234,7 @@ const Portfolio = () => {
         {
             id: "smartQuoteAI",
             image: smartquoteThumbnail,
-            demoLink: 'https://smartquote-ai.netlify.app',
+            demoLink: 'https://smart-quote-ai.vercel.app',
             githubLink: 'https://github.com/Shellty-IT/SmartQuote',
             title: t('portfolio.projects.smartQuoteAI.title'),
             subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
