@@ -76,7 +76,6 @@ const Navbar = () => {
                         src={homeIcon}
                         srcGlow={homeGlow}
                         alt=""
-                        size={36}
                         className={`logo-glow-icon${logoHovered ? ' hovered' : ''}`}
                     />
                     <span className="logo-text">

@@ -107,9 +107,6 @@ const Experience = () => {
                         </h2>
                     </div>
 
-                    <p className="exp__kicker">
-                        {t("experience.kicker")}
-                    </p>
                 </header>
 
                 {/* Timeline */}

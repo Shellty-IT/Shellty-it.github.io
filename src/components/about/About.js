@@ -295,9 +295,6 @@ const About = () => {
                         <h2 className={`about__title${titleHovered ? " hovered" : ""}`}>
                             {t("about.title")}
                         </h2>
-                        <p className="about__kicker">
-                            {t("about.kicker", "O mnie")}
-                        </p>
                     </div>
 
                 </header>

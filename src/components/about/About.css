@@ -751,15 +751,15 @@
 .trait-item {
     appearance: none;
     -webkit-appearance: none;
-    padding: 10px 8px;
-    border: 1px solid rgba(255, 255, 255, .08);
-    border-radius: 10px;
-    background: rgba(12, 192, 255, .03);
+    padding: 6px 4px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
     font-family: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0px;                /* jak oryginał */
+    gap: 0px;
     cursor: pointer;
     color: #64748b;
     transition: all .2s;
@@ -768,8 +768,8 @@
 
 .trait-item:hover,
 .trait-item--active {
-    border-color: rgba(12, 192, 255, .35);
-    background: rgba(12, 192, 255, .08);
+    border: none;
+    background: transparent;
     transform: translateY(-2px);
 }
 

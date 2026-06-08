@@ -1,41 +1,43 @@
 /* src/components/navbar/Navbar.css */
 
-/* ─── Wrapper: logo po lewej, lang po prawej, rail pośrodku ─── */
+/* ─── Wrapper: pełna szerokość, logo po lewej, rail pośrodku, lang po prawej ─── */
 .nav {
     position: sticky;
     top: 14px;
     z-index: 1000;
-    margin: 14px auto 0;
-    max-width: 1180px;
-    padding: 0 16px;
-    display: flex;
+    margin: 14px 0 0;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
 }
 
-/* ─── Logo ─── */
+/* ─── Logo (bez obwódki, bez tła) ─── */
 .nav__logo {
+    grid-column: 1;
+    justify-self: start;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(10, 16, 32, .65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 12px;
+    gap: 12px;
     text-decoration: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     flex-shrink: 0;
-    transition: border-color .25s ease, background .25s ease;
+    transition: filter .3s ease;
 }
 
 .nav__logo:hover {
-    border-color: rgba(12, 192, 255, .35);
+    filter: drop-shadow(0 0 10px rgba(12, 192, 255, .45));
 }
 
 .nav__logo .logo-glow-icon {
-    width: 36px;
-    height: 36px;
+    width: 70px;
+    height: 70px;
     flex-shrink: 0;
 }
 
@@ -44,30 +46,15 @@
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     letter-spacing: .04em;
-    font-size: 14px;
-    transition: filter .25s ease;
-}
-
-.nav__logo:hover .logo-text {
-    filter: drop-shadow(0 0 8px rgba(12, 192, 255, .5));
+    font-size: 16px;
 }
 
 .nav__logo .logo-text-shell { color: #fff; }
 .nav__logo .logo-text-ty   { color: #0cc0ff; }
 
-/* Pulsujący dot w logo */
-.nav__logo .logo-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #0cc0ff;
-    box-shadow: 0 0 12px #0cc0ff;
-    flex-shrink: 0;
-}
-
-/* ─── Nav rail (środek) ─── */
+/* ─── Nav rail (pośrodku) ─── */
 .nav__rail {
-    flex: 1;
+    grid-column: 2;
     display: flex;
     align-items: stretch;
     gap: 2px;
@@ -77,7 +64,6 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 12px;
-    position: relative;
 }
 
 .nav__link {
@@ -105,9 +91,7 @@
     opacity: .7;
 }
 
-.nav__link:hover {
-    color: #f1f5f9;
-}
+.nav__link:hover { color: #f1f5f9; }
 
 .nav__link.is-active {
     color: #f1f5f9;
@@ -120,7 +104,6 @@
     opacity: 1;
 }
 
-/* Aktywny podkreślnik */
 .nav__link.is-active::after {
     content: "";
     position: absolute;
@@ -134,6 +117,8 @@
 
 /* ─── Language switcher (prawa krawędź) ─── */
 .nav__lang {
+    grid-column: 3;
+    justify-self: end;
     display: inline-grid;
     grid-template-columns: 1fr 1fr;
     padding: 4px;
@@ -143,10 +128,8 @@
     -webkit-backdrop-filter: blur(16px);
     border-radius: 999px;
     position: relative;
-    flex-shrink: 0;
 }
 
-/* Przesuwający się indicator */
 .nav__lang::before {
     content: "";
     position: absolute;
@@ -179,13 +162,13 @@
     transition: color .2s ease;
 }
 
-.nav__lang button.is-active {
-    color: #fff;
-}
+.nav__lang button.is-active { color: #fff; }
 
 /* ─── Hamburger ─── */
 .nav__burger {
     display: none;
+    grid-column: 3;
+    justify-self: end;
     width: 42px;
     height: 42px;
     border-radius: 10px;
@@ -199,7 +182,6 @@
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    flex-shrink: 0;
     transition: background .2s ease, border-color .2s ease;
 }
 
@@ -218,18 +200,9 @@
     transform-origin: center;
 }
 
-.nav__burger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.nav__burger.open span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-
-.nav__burger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
+.nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ─── Menu overlay (mobile) ─── */
 .menu-overlay {
@@ -238,34 +211,36 @@
 
 /* ─── Responsive ─── */
 
-/* Średnie ekrany – chowamy numery, zmniejszamy padding */
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
     .nav__link {
         padding: 9px 10px;
         letter-spacing: .12em;
         font-size: 10.5px;
     }
-
-    .nav__link .num {
-        display: none;
-    }
+    .nav__link .num { display: none; }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1100px) {
     .nav__link {
         padding: 9px 8px;
         letter-spacing: .08em;
     }
 }
 
-/* Mobile – szuflada ─────────────────────────────────────── */
+/* Mobile — szuflada */
 @media (max-width: 920px) {
     .nav {
-        justify-content: space-between;
+        grid-template-columns: auto 1fr auto;
     }
 
-    /* Rail zamienia się w szufladę */
+    .nav__logo .logo-glow-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Rail staje się szufladą (position: fixed — poza gridem) */
     .nav__rail {
+        grid-column: 2;
         display: flex !important;
         position: fixed;
         top: 0;
@@ -305,24 +280,17 @@
         background: rgba(255, 255, 255, .03);
         border: 1px solid rgba(255, 255, 255, .06);
     }
-
-    .nav__link .num {
-        display: inline;
-    }
-
-    .nav__link:hover {
-        background: rgba(255, 255, 255, .06);
-    }
-
+    .nav__link .num { display: inline; }
+    .nav__link:hover { background: rgba(255, 255, 255, .06); }
     .nav__link.is-active {
         background: linear-gradient(135deg, rgba(0, 98, 176, .25), rgba(12, 192, 255, .10));
         border-color: rgba(12, 192, 255, .3);
         box-shadow: 0 0 20px rgba(12, 192, 255, .1);
     }
+    .nav__link.is-active::after { display: none; }
 
-    .nav__link.is-active::after {
-        display: none;
-    }
+    /* Schowaj lang, pokaż burger */
+    .nav__lang { display: none; }
 
     .nav__burger {
         display: inline-flex;
@@ -344,7 +312,6 @@
         transition: all .3s ease;
         z-index: 998;
     }
-
     .menu-overlay.open {
         opacity: 1;
         visibility: visible;
@@ -352,29 +319,13 @@
 }
 
 @media (max-width: 480px) {
-    .nav {
-        padding: 0 12px;
-        gap: 10px;
-    }
-
-    .nav__logo {
-        padding: 7px 10px;
-    }
-
+    .nav { padding: 0 14px; gap: 10px; }
     .nav__logo .logo-glow-icon {
         width: 28px;
         height: 28px;
     }
-
-    .nav__logo .logo-text {
-        font-size: 12px;
-    }
+    .nav__logo .logo-text { font-size: 13px; }
 }
 
-html, body {
-    overflow-x: hidden;
-}
-
-html {
-    scrollbar-gutter: stable;
-}
+html, body { overflow-x: hidden; }
+html { scrollbar-gutter: stable; }

@@ -4,6 +4,12 @@ import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
+import {
+    FaEnvelope,
+    FaGithub,
+    FaLinkedin,
+    FaPaperPlane,
+} from "react-icons/fa";
 
 import contactIcon from "../../assets/icons/contact/contact.webp";
 import contactGlow from "../../assets/icons/contact/contact_glow.webp";
@@ -138,14 +144,7 @@ export default function Contact() {
                             {t("contact.title")}
                         </h2>
                     </div>
-
-                    <p className="contact-subtitle">{t("contact.subtitle")}</p>
                 </header>
-
-                {/* Intro */}
-                <p className="contact-intro">
-                    {t("contact.intro")}
-                </p>
 
                 {/* Grid: formularz + sidebar */}
                 <div className="contact-grid">
@@ -212,7 +211,7 @@ export default function Contact() {
 
                             <div className="contact-send">
                                 <button type="submit" disabled={status.loading}>
-                                    <i className="fa-solid fa-paper-plane" />
+                                    <FaPaperPlane />
                                     {status.loading
                                         ? t("contact.buttons.sending")
                                         : t("contact.buttons.send")}
@@ -244,9 +243,10 @@ export default function Contact() {
                         )}
                     </div>
 
-                    {/* Sidebar - kanały kontaktu */}
+                    {/* Sidebar — kanały kontaktu */}
                     <aside className="contact-side">
 
+                        {/* Email — klikalny link */}
                         <a
                             href="mailto:shellty@zohomail.eu"
                             className="ct-channel"
@@ -254,47 +254,29 @@ export default function Contact() {
                             <span className="corner tl" />
                             <span className="corner br" />
                             <span className="ct-channel__icon">
-                            <i className="fa-solid fa-envelope" />
-                        </span>
+                                <FaEnvelope />
+                            </span>
                             <div className="ct-channel__body">
                                 <h4>{t("contact.or")}</h4>
                                 <span className="ct-channel__value">shellty@zohomail.eu</span>
                             </div>
                         </a>
 
-                        <a
-                            href="https://github.com/Shellty-IT"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="ct-channel"
-                        >
-                            <span className="corner tl" />
-                            <span className="corner br" />
-                            <span className="ct-channel__icon">
-                            <i className="fa-brands fa-github" />
-                        </span>
-                            <div className="ct-channel__body">
-                                <h4>GitHub</h4>
-                                <span className="ct-channel__value">github.com/Shellty-IT</span>
+                        {/* GitHub + LinkedIn — bez linków, rząd kompaktowych odznak */}
+                        <div className="ct-socials-row">
+                            <div className="ct-channel ct-channel--social">
+                                <span className="ct-channel__icon">
+                                    <FaGithub />
+                                </span>
+                                <span className="ct-channel__label">GitHub</span>
                             </div>
-                        </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/tomasz-skorupski-a078ba389"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="ct-channel"
-                        >
-                            <span className="corner tl" />
-                            <span className="corner br" />
-                            <span className="ct-channel__icon">
-                            <i className="fa-brands fa-linkedin" />
-                        </span>
-                            <div className="ct-channel__body">
-                                <h4>LinkedIn</h4>
-                                <span className="ct-channel__value">linkedin.com/in/tomasz-skorupski</span>
+                            <div className="ct-channel ct-channel--social">
+                                <span className="ct-channel__icon">
+                                    <FaLinkedin />
+                                </span>
+                                <span className="ct-channel__label">LinkedIn</span>
                             </div>
-                        </a>
+                        </div>
 
                     </aside>
                 </div>
