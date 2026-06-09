@@ -289,8 +289,15 @@
     }
     .nav__link.is-active::after { display: none; }
 
-    /* Schowaj lang, pokaż burger */
+    /* Schowaj lang (desktop), pokaż burger */
     .nav__lang { display: none; }
+
+    /* Lang switcher wewnątrz szuflady */
+    .nav__lang--drawer {
+        display: inline-grid !important;
+        justify-self: start;
+        margin-top: 12px;
+    }
 
     .nav__burger {
         display: inline-flex;

@@ -21,7 +21,7 @@
 /* ─── Header ─── */
 .exp__header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +79,7 @@
     position: relative;
     width: 200px;
     height: 200px;
-    margin-bottom: -15px;
+    margin-bottom: -20px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
@@ -486,7 +486,7 @@
     }
 
     .exp__header {
-        margin-bottom: 0;
+        margin-bottom: -10px;
     }
 }
 

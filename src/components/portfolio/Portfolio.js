@@ -245,6 +245,12 @@ const Portfolio = () => {
             role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'Developer' }),
             year: '2026',
             caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
+            testAccount: {
+                fields: [
+                    { labelKey: 'login', value: 'testowy@test.pl' },
+                    { labelKey: 'password', value: 'Testowe123!' },
+                ],
+            },
         },
         {
             id: "shelltyCMS",

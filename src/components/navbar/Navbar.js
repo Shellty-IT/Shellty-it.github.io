@@ -104,6 +104,31 @@ const Navbar = () => {
                             {t(item.labelKey)}
                         </NavLink>
                     ))}
+
+                    {/* Language switcher w szufladzie (tylko mobile) */}
+                    <div
+                        className="nav__lang nav__lang--drawer"
+                        data-lang={i18n.language}
+                        role="group"
+                        aria-label="Wybór języka"
+                    >
+                        <button
+                            type="button"
+                            className={i18n.language === 'pl' ? 'is-active' : ''}
+                            onClick={() => handleLangChange('pl')}
+                            aria-pressed={i18n.language === 'pl'}
+                        >
+                            PL
+                        </button>
+                        <button
+                            type="button"
+                            className={i18n.language === 'en' ? 'is-active' : ''}
+                            onClick={() => handleLangChange('en')}
+                            aria-pressed={i18n.language === 'en'}
+                        >
+                            EN
+                        </button>
+                    </div>
                 </div>
 
                 {/* Language switcher – prawa krawędź */}
