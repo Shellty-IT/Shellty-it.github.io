@@ -277,15 +277,15 @@
       "shelltyKanban": {
         "title": "Shellty.Kanban",
         "subtitle": "— Collaborative Project Management —",
-        "description": "Fullstack aplikacja Kanban zbudowana na ASP.NET Core 10 i React 18, wdrożona produkcyjnie na Azure. Zarządzanie tablicami, kartami i zespołem z drag & drop i powiadomieniami w czasie rzeczywistym.",
+        "description": "Fullstack aplikacja Kanban zbudowana na ASP.NET Core 10 i React 18, wdrożona produkcyjnie na Render i Netlify. Zarządzanie tablicami, kartami i zespołem z drag & drop i powiadomieniami w czasie rzeczywistym.",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
           "🔐 JWT + Refresh Token: Rotacja tokenów przy każdym użyciu, auto-refresh przez interceptor axios, rate limit 5 req/min na rejestrację i logowanie",
           "🖱️ Drag & Drop: Przeciąganie kart i kolumn przez @hello-pangea/dnd z zachowaniem kolejności pozycji w bazie",
           "🧪 105 testów: 60 xUnit (pokrycie 95-100% na cardach, kolumnach i projektach) + 45 Vitest, wszystkie przechodzą w CI",
-          "⚙️ CI/CD na Azure: GitHub Actions buduje, testuje i deployuje backend (.NET) i frontend (React/Vite) przy każdym pushu na main"
+          "⚙️ CI/CD na Render: GitHub Actions buduje, testuje i deployuje backend (.NET) i frontend (React/Vite) przy każdym pushu na main"
         ],
-        "tech": ["ASP.NET Core", ".NET 10", "React 18", "Azure", "EF Core", "xUnit", "Vitest", "GitHub Actions", "JWT"]
+        "tech": ["ASP.NET Core", ".NET 10", "React 18", "Render", "EF Core", "xUnit", "Vitest", "GitHub Actions", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
