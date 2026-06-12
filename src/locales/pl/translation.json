@@ -334,7 +334,7 @@
           "🏗️ Custom PHP Theme: Zoptymalizowany motyw bez block editora, zapewniający pełną kontrolę nad strukturą i szybkością ładowania strony",
           "🌍 Native i18n: Autorski system wielojęzyczności (PL/EN) działający bez narzutu ciężkich wtyczek typu WPML czy WooCommerce Multilingual",
           "🛠️ Advanced ACF: Zaawansowana konfiguracja pól (Focal point, SEO, Open Graph) umożliwiająca kompletną edycję wizualną z poziomu panelu admina",
-          "🚀 Pantheon DevOps: Profesjonalny workflow wdrożeniowy oparty na Git i środowisku DDEV z automatycznym cache bustingiem przez filetime()"
+          "🚀 Pantheon DevOps: Profesjonalny workflow wdrożeniowy oparty na Git z lokalnym środowiskiem DDEV i automatycznym cache bustingiem przez filetime()"
         ],
         "tech": ["WordPress", "PHP 8.2", "ACF", "Pantheon", "DDEV", "AJAX", "JavaScript", "SEO"]
       }

@@ -380,10 +380,10 @@
         "description": "A modern CMS system built on ASP.NET Core MVC architecture with emphasis on design patterns and Clean Code. Fully containerized application integrated with a cloud PostgreSQL database (Neon).",
         "highlightsTitle": "TECHNICAL FEATURES:",
         "highlights": [
-          "🗳️ Democratic Roles: Unique permission system requiring unanimous voting from all active administrators",
-          "🏗️ MVC Architecture: Clean code structure based on file-scoped namespaces, nullable reference types, and zero compiler warnings",
-          "🖼️ Image Handling: Advanced image upload module with server-side size and format validation and client-side preview",
-          "🐳 Dockerized: Full containerization ensuring stable deployment on Render using lightweight Linux x64 images"
+          "Democratic Roles: Unique permission system requiring unanimous voting from all active administrators",
+          "MVC Architecture: Clean code structure based on file-scoped namespaces, nullable reference types, and zero compiler warnings",
+          "Image Handling: Advanced image upload module with server-side size and format validation and client-side preview",
+          "Dockerized: Full containerization ensuring stable deployment on Render using lightweight Linux x64 images"
         ],
         "tech": ["C# 12", ".NET 8", "ASP.NET MVC", "PostgreSQL", "EF Core 8", "Docker", "Identity", "Bootstrap 5"],
         "role": "Developer"
@@ -417,10 +417,10 @@
         "description": "Professional platform for integration with the government e-invoicing system (KSeF). .NET 8 and React 19 architecture providing full support for FA(2) documents, XML schema validation, and PDF visualizations.",
         "highlightsTitle": "KEY SOLUTIONS:",
         "highlights": [
-          "⚙️ API v2 Integration: Full communication with the Ministry of Finance gateway, online/offline session handling, and authorization via tokens and certificates",
-          "📄 FA(2) Compliance: Generation of validatable XML documents and instant PDF visualizations with QR codes using the QuestPDF engine",
-          "🔄 Monorepo Workflow: Unified lifecycle of React 19 frontend and ASP.NET Core 8 backend in a single repository with automated CI/CD",
-          "🏗️ Enterprise Architecture: Use of EF Core 8, FluentValidation, and JWT to ensure the highest data quality and transaction security"
+          "API v2 Integration: Full communication with the Ministry of Finance gateway, online/offline session handling, and authorization via tokens and certificates",
+          "FA(2) Compliance: Generation of validatable XML documents and instant PDF visualizations with QR codes using the QuestPDF engine",
+          "Monorepo Workflow: Unified lifecycle of React 19 frontend and ASP.NET Core 8 backend in a single repository with automated CI/CD",
+          "Enterprise Architecture: Use of EF Core 8, FluentValidation, and JWT to ensure the highest data quality and transaction security"
         ],
         "tech": ["React 19", ".NET 8", "PostgreSQL", "TypeScript", "Vite 7", "QuestPDF", "Docker", "CI/CD"]
       },
