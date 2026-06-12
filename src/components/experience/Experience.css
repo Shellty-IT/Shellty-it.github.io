@@ -77,8 +77,8 @@
 /* ─── Ikona ─── */
 .exp-icon {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     margin-bottom: -20px;
     cursor: pointer;
     will-change: transform;

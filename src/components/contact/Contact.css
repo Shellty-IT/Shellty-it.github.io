@@ -76,8 +76,8 @@
 /* ─── Ikona ─── */
 .ct-icon {
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 260px;
+    height: 260px;
     margin-bottom: -80px;
     cursor: pointer;
     will-change: transform;

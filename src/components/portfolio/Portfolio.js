@@ -43,7 +43,6 @@ const ICON_NODES = [
     { id: 8, x: "50%", y: "50%" },
 ];
 
-// Memoizowane — nie rerenderuje się gdy rodzic zmienia stan (np. titleHovered, videoModal)
 const ProjectImage = memo(({ src, alt }) => {
     const [phase, setPhase] = useState('loading');
 
@@ -78,7 +77,6 @@ const ProjectImage = memo(({ src, alt }) => {
     );
 });
 
-// Memoizowany — stan copied jest lokalny, nie wpływa na rodzeństwo
 const CopyButton = memo(({ text, label }) => {
     const [copied, setCopied] = useState(false);
 
@@ -111,7 +109,6 @@ const CopyButton = memo(({ text, label }) => {
     );
 });
 
-// Memoizowany — rerenderuje się tylko gdy zmienia się account lub język
 const TestAccountBox = memo(({ account, t }) => {
     if (!account?.fields?.length) return null;
 
@@ -454,8 +451,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--base"
                             draggable="false"
-                            width="200"
-                            height="200"
+                            width="20000"
+                            height="200000"
                         />
                         <img
                             src={portfolioGlow}
@@ -463,8 +460,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--lit"
                             draggable="false"
-                            width="200"
-                            height="200"
+                            width="200000"
+                            height="200000"
                         />
                     </div>
 
