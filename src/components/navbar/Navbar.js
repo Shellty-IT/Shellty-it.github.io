@@ -31,16 +31,20 @@ const Navbar = () => {
             return;
         }
 
-        import(`../../locales/${newLang}/translation.json`).then((mod) => {
-            i18n.addResourceBundle(
-                newLang,
-                'translation',
-                mod.default ?? mod,
-                true,
-                true
-            );
-            void i18n.changeLanguage(newLang);
-        });
+        import(`../../locales/${newLang}/translation.json`)
+            .then((mod) => {
+                i18n.addResourceBundle(
+                    newLang,
+                    'translation',
+                    mod.default ?? mod,
+                    true,
+                    true
+                );
+                void i18n.changeLanguage(newLang);
+            })
+            .catch((error) => {
+                console.error('Nie udało się załadować tłumaczeń:', error);
+            });
     };
 
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);

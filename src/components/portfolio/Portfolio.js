@@ -45,11 +45,23 @@ const ICON_NODES = [
 
 const ProjectImage = memo(({ src, alt }) => {
     const [phase, setPhase] = useState('loading');
+    const decodeTimerRef = React.useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (decodeTimerRef.current) {
+                clearTimeout(decodeTimerRef.current);
+                decodeTimerRef.current = null;
+            }
+        };
+    }, []);
 
     const handleLoad = useCallback(() => {
         setPhase('decoding');
-        setTimeout(() => {
+        if (decodeTimerRef.current) clearTimeout(decodeTimerRef.current);
+        decodeTimerRef.current = setTimeout(() => {
             setPhase('done');
+            decodeTimerRef.current = null;
         }, 700);
     }, []);
 
@@ -79,6 +91,16 @@ const ProjectImage = memo(({ src, alt }) => {
 
 const CopyButton = memo(({ text, label }) => {
     const [copied, setCopied] = useState(false);
+    const copiedTimerRef = React.useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (copiedTimerRef.current) {
+                clearTimeout(copiedTimerRef.current);
+                copiedTimerRef.current = null;
+            }
+        };
+    }, []);
 
     const handleCopy = useCallback(async () => {
         try {
@@ -93,7 +115,11 @@ const CopyButton = memo(({ text, label }) => {
             document.body.removeChild(ta);
         }
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current);
+        copiedTimerRef.current = setTimeout(() => {
+            setCopied(false);
+            copiedTimerRef.current = null;
+        }, 2000);
     }, [text]);
 
     return (

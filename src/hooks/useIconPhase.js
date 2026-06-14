@@ -18,6 +18,7 @@ export function useIconPhase(pulseClass) {
     const [iconPhase, setIconPhase] = useState('hidden');
     const iconRef = useRef(null);
     const pulseTimer = useRef(null);
+    const pulseCleanupTimer = useRef(null);
 
     // Krok 1: obserwuj widoczność → uruchom sekwencję
     useEffect(() => {
@@ -57,10 +58,19 @@ export function useIconPhase(pulseClass) {
 
         const id = setTimeout(() => {
             iconRef.current?.classList.add(pulseClass);
-            setTimeout(() => iconRef.current?.classList.remove(pulseClass), 1600);
+            pulseCleanupTimer.current = setTimeout(() => {
+                iconRef.current?.classList.remove(pulseClass);
+                pulseCleanupTimer.current = null;
+            }, 1600);
         }, 600);
 
-        return () => clearTimeout(id);
+        return () => {
+            clearTimeout(id);
+            if (pulseCleanupTimer.current) {
+                clearTimeout(pulseCleanupTimer.current);
+                pulseCleanupTimer.current = null;
+            }
+        };
     }, [iconPhase, pulseClass]);
 
     // Krok 5: cykliczny puls co ~7–9 s
@@ -71,7 +81,10 @@ export function useIconPhase(pulseClass) {
             const delay = 6000 + Math.random() * 2000;
             pulseTimer.current = setTimeout(() => {
                 iconRef.current?.classList.add(pulseClass);
-                setTimeout(() => iconRef.current?.classList.remove(pulseClass), 1600);
+                pulseCleanupTimer.current = setTimeout(() => {
+                    iconRef.current?.classList.remove(pulseClass);
+                    pulseCleanupTimer.current = null;
+                }, 1600);
                 schedule();
             }, delay);
         };
@@ -81,6 +94,10 @@ export function useIconPhase(pulseClass) {
         return () => {
             clearTimeout(initial);
             clearTimeout(pulseTimer.current);
+            if (pulseCleanupTimer.current) {
+                clearTimeout(pulseCleanupTimer.current);
+                pulseCleanupTimer.current = null;
+            }
         };
     }, [iconPhase, pulseClass]);
 
