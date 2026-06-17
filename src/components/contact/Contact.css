@@ -5,6 +5,10 @@
 /* ─── Layout sekcji ─── */
 .contact-section {
     --section-padding-top: 60px;
+    --ct-icon-margin-bottom: -50px;
+    --ct-icon-margin-bottom-mobile-800: -40x;
+    --ct-icon-margin-bottom-mobile-640: -30px;
+    --ct-icon-margin-bottom-mobile-380: -25px;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
@@ -76,9 +80,9 @@
 /* ─── Ikona ─── */
 .ct-icon {
     position: relative;
-    width: 240px;
-    height: 240px;
-    margin-bottom: -50px;
+    width: 230px;
+    height: 230px;
+    margin-bottom: var(--ct-icon-margin-bottom);
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
@@ -585,6 +589,7 @@
 @media (max-width: 800px) {
     .contact-section {
         --section-padding-top: 40px;
+        --ct-icon-margin-bottom: var(--ct-icon-margin-bottom-mobile-800);
     }
 
     .ct-icon {
@@ -603,6 +608,7 @@
 @media (max-width: 640px) {
     .contact-section {
         --section-padding-top: 20px;
+        --ct-icon-margin-bottom: var(--ct-icon-margin-bottom-mobile-640);
     }
 
     .ct-icon {
@@ -632,6 +638,7 @@
 @media (max-width: 380px) {
     .contact-section {
         --section-padding-top: 10px;
+        --ct-icon-margin-bottom: var(--ct-icon-margin-bottom-mobile-380);
     }
 
     .ct-icon {

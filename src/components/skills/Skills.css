@@ -57,7 +57,7 @@
     position: relative;
     width: 250px;
     height: 250px;
-    margin-bottom: -20px;
+    margin-bottom: -15px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
@@ -477,11 +477,11 @@
 /* ─── Responsive ─── */
 @media (max-width: 720px) {
     .skills {
-        padding-top: 30px;
+        padding-top: 40px;
     }
 
     .skills__header {
-        margin-bottom: -20px;
+        margin-bottom: -30px;
     }
 
     .sk-icon-wrap {
