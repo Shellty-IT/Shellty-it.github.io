@@ -363,16 +363,18 @@
         "role": "Developer"
       },
       "shelltyKanban": {
-        "title": "Shellty.Kanban - Project Manager",
-        "subtitle": "Project Management Application.",
-        "description": "A comprehensive Kanban application for task management and team collaboration. A system built from the ground up that allows for simple and clear workflow control in any team.",
-        "highlightsTitle": "Key achievements:",
+        "title": "Shellty.Kanban",
+        "subtitle": "— Real-time Project Management —",
+        "year": "2026",
+        "description": "A fullstack Kanban application for task management and team collaboration, built from scratch with .NET 10 and React 18. It includes board and card management with drag & drop, real-time collaboration via SignalR, and a complete Web Push system that works even when the app is closed.",
+        "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
         "highlights": [
-          "Efficient Management System: A modern Kanban board built with .NET 10 and React 18.",
-          "Session Security: Advanced JWT authentication with token rotation.",
-          "Automation and Quality: Full CI/CD and high stability confirmed by 60+ test with over 95% code coverage."
+          "📡 Real-time with SignalR: live board updates, presence indicators, and \"who is editing\" status visible to all users without page refresh.",
+          "🔔 Web Push (VAPID + Service Worker): granular notification preferences per device and event type (create, update, move, delete, assign); system notifications work even when the app is closed.",
+          "🔒 JWT + Refresh Token: token rotation on every use, interceptor-based auto-refresh; secure per-device logout without disabling push notifications on other devices.",
+          "⚙️ CI/CD + Tests: GitHub Actions builds, tests, and deploys; 60+ xUnit tests with code coverage above 95%."
         ],
-        "tech": [".NET Core", "React", "Render", "PostgreSQL", "GitHub Actions", "CI/CD", "xUnit", "JWT"]
+        "tech": [".NET 10", "React 18", "SignalR", "Web Push API", "Service Worker", "PostgreSQL", "EF Core", "xUnit", "GitHub Actions", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",

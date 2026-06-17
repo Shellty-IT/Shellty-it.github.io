@@ -148,7 +148,7 @@ export default function Home() {
                             smooth
                             to="/portfolio#portfolio"
                         >
-                            <span className="btn-icon-wrap">
+                            <span className="btn-icon-wrap btn-icon-wrap--portfolio">
                                 <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
                                 <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
@@ -162,7 +162,7 @@ export default function Home() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <span className="btn-icon-wrap">
+                            <span className="btn-icon-wrap btn-icon-wrap--cv">
                                 <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
                                 <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>

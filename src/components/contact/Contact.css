@@ -76,9 +76,9 @@
 /* ─── Ikona ─── */
 .ct-icon {
     position: relative;
-    width: 260px;
-    height: 260px;
-    margin-bottom: -80px;
+    width: 240px;
+    height: 240px;
+    margin-bottom: -50px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;

@@ -2,7 +2,7 @@
     position: relative;
     width: 240px;
     height: 240px;
-    margin-bottom: -25px;
+    margin-bottom: -45px;
     cursor: pointer;
     will-change: auto;
     animation: iconFloat 3s ease-in-out infinite;

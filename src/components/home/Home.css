@@ -178,6 +178,26 @@
     flex-shrink: 0;
 }
 
+.btn-icon-wrap--portfolio {
+    width: 22px;
+    height: 22px;
+}
+
+.btn-icon-wrap--portfolio .btn-icon {
+    transform: scale(1.50);
+    transform-origin: center;
+}
+
+.btn-icon-wrap--cv {
+    width: 22px;
+    height: 22px;
+}
+
+.btn-icon-wrap--cv .btn-icon {
+    transform: scale(1.50);
+    transform-origin: center;
+}
+
 .btn-icon {
     position: absolute;
     top: 0;

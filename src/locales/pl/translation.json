@@ -276,16 +276,17 @@
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban",
-        "subtitle": "— Collaborative Project Management —",
-        "description": "Fullstack aplikacja Kanban zbudowana na ASP.NET Core 10 i React 18, wdrożona produkcyjnie na Render i Netlify. Zarządzanie tablicami, kartami i zespołem z drag & drop i powiadomieniami w czasie rzeczywistym.",
+        "subtitle": "— Real-time Project Management —",
+        "year": "2026",
+        "description": "Fullstack aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej, zbudowana od podstaw w .NET 10 i React 18. Zarządzanie tablicami i kartami z drag & drop, współpracą w czasie rzeczywistym przez SignalR oraz pełnym systemem Web Push działającym nawet gdy aplikacja jest zamknięta.",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
-          "🔐 JWT + Refresh Token: Rotacja tokenów przy każdym użyciu, auto-refresh przez interceptor axios, rate limit 5 req/min na rejestrację i logowanie",
-          "🖱️ Drag & Drop: Przeciąganie kart i kolumn przez @hello-pangea/dnd z zachowaniem kolejności pozycji w bazie",
-          "🧪 105 testów: 60 xUnit (pokrycie 95-100% na cardach, kolumnach i projektach) + 45 Vitest, wszystkie przechodzą w CI",
-          "⚙️ CI/CD na Render: GitHub Actions buduje, testuje i deployuje backend (.NET) i frontend (React/Vite) przy każdym pushu na main"
+          "📡 Real-time przez SignalR: live aktualizacje tablicy, wskaźniki obecności i „kto edytuje\" — widoczne dla wszystkich użytkowników bez odświeżania strony.",
+          "🔔 Web Push (VAPID + Service Worker): granularne preferencje powiadomień per urządzenie i typ zdarzenia (tworzenie, aktualizacja, przesunięcie, usunięcie, przypisanie); powiadomienia systemowe działają nawet gdy aplikacja jest zamknięta.",
+          "🔒 JWT + Refresh Token: rotacja tokenów przy każdym użyciu, auto-refresh przez interceptor; bezpieczny logout per urządzenie bez wyłączania powiadomień push na innych urządzeniach.",
+          "⚙️ CI/CD + Testy: GitHub Actions buduje, testuje i deployuje; 60+ testów xUnit z pokryciem kodu >95%."
         ],
-        "tech": ["ASP.NET Core", ".NET 10", "React 18", "Render", "EF Core", "xUnit", "Vitest", "GitHub Actions", "JWT"]
+        "tech": [".NET 10", "React 18", "SignalR", "Web Push API", "Service Worker", "PostgreSQL", "EF Core", "xUnit", "GitHub Actions", "JWT"]
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
