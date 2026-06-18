@@ -1,0 +1,96 @@
+{
+  "siteUrl": "https://shellty-it.github.io",
+  "image": "https://shellty-it.github.io/og-image-v2.png",
+  "routes": {
+    "/": {
+      "output": "index.html",
+      "pl": {
+        "title": "Shellty | Tworzenie stron internetowych i aplikacji webowych – Szczecin, Stargard",
+        "description": "Tworzenie stron internetowych, aplikacji webowych i outsourcing IT dla firm. Wsparcie IT, administracja systemów i pomoc informatyczna w Szczecinie i Stargardzie.",
+        "socialTitle": "Shellty | Tworzenie stron i outsourcing IT – Szczecin",
+        "socialDescription": "Profesjonalne tworzenie stron internetowych, aplikacji webowych i wsparcie IT dla firm w Szczecinie i Stargardzie Szczecińskim."
+      },
+      "en": {
+        "title": "Shellty | Website development, web applications and IT outsourcing",
+        "description": "Website development, web applications, IT outsourcing and technical support for businesses in Szczecin, Stargard and across Poland.",
+        "socialTitle": "Shellty | Web development and IT outsourcing",
+        "socialDescription": "Websites, web applications and professional IT support for businesses in Szczecin and Stargard."
+      }
+    },
+    "/about/": {
+      "output": "about/index.html",
+      "pl": {
+        "title": "Freelancer IT Szczecin i Stargard | Shellty",
+        "description": "Poznaj specjalistę Shellty: freelancer IT ze Szczecina i Stargardu z doświadczeniem w tworzeniu aplikacji, administracji systemów i wsparciu IT.",
+        "socialTitle": "Freelancer IT – Szczecin i Stargard | Shellty",
+        "socialDescription": "Doświadczenie w aplikacjach webowych, systemach, sieciach i praktycznym wsparciu informatycznym dla firm."
+      },
+      "en": {
+        "title": "IT freelancer in Szczecin and Stargard | Shellty",
+        "description": "Meet the IT specialist behind Shellty, with experience in web applications, systems administration, networks and business IT support.",
+        "socialTitle": "IT freelancer – Szczecin and Stargard | Shellty",
+        "socialDescription": "Web development, systems administration, networks and practical IT support for businesses."
+      }
+    },
+    "/experience/": {
+      "output": "experience/index.html",
+      "pl": {
+        "title": "Outsourcing i wsparcie IT dla firm – doświadczenie | Shellty",
+        "description": "Doświadczenie Shellty w outsourcingu IT, administracji systemów i sieci, rozwiązywaniu problemów oraz tworzeniu oprogramowania dla firm.",
+        "socialTitle": "Doświadczenie w outsourcingu i wsparciu IT | Shellty",
+        "socialDescription": "Administracja systemów, sieci, support IT i rozwój oprogramowania poparte praktycznym doświadczeniem."
+      },
+      "en": {
+        "title": "IT outsourcing and support experience | Shellty",
+        "description": "Shellty experience in IT outsourcing, systems and network administration, troubleshooting and software development for businesses.",
+        "socialTitle": "IT outsourcing and support experience | Shellty",
+        "socialDescription": "Systems administration, networks, business IT support and software development backed by practical experience."
+      }
+    },
+    "/skills/": {
+      "output": "skills/index.html",
+      "pl": {
+        "title": "Usługi informatyczne Szczecin i Stargard | Shellty",
+        "description": "Kompetencje Shellty: aplikacje webowe, React, JavaScript, administracja Windows i Linux, sieci, bazy danych, Docker oraz wsparcie IT dla firm.",
+        "socialTitle": "Usługi IT i kompetencje techniczne | Shellty",
+        "socialDescription": "Tworzenie aplikacji webowych, administracja systemów, sieci i kompleksowe wsparcie informatyczne dla firm."
+      },
+      "en": {
+        "title": "IT services and technical skills | Shellty",
+        "description": "Shellty skills include web applications, React, JavaScript, Windows and Linux administration, networks, databases, Docker and business IT support.",
+        "socialTitle": "IT services and technical skills | Shellty",
+        "socialDescription": "Web application development, systems administration, networks and comprehensive business IT support."
+      }
+    },
+    "/portfolio/": {
+      "output": "portfolio/index.html",
+      "pl": {
+        "title": "Portfolio stron internetowych i aplikacji webowych | Shellty",
+        "description": "Zobacz portfolio Shellty: strony internetowe, aplikacje webowe, systemy biznesowe i projekty stworzone z użyciem React, JavaScript i nowoczesnych technologii.",
+        "socialTitle": "Portfolio stron i aplikacji webowych | Shellty",
+        "socialDescription": "Przykłady stron internetowych, aplikacji webowych i rozwiązań biznesowych zrealizowanych przez Shellty."
+      },
+      "en": {
+        "title": "Website and web application portfolio | Shellty",
+        "description": "Explore Shellty projects: websites, web applications and business systems built with React, JavaScript and modern technologies.",
+        "socialTitle": "Website and web application portfolio | Shellty",
+        "socialDescription": "Examples of websites, web applications and business solutions created by Shellty."
+      }
+    },
+    "/contact/": {
+      "output": "contact/index.html",
+      "pl": {
+        "title": "Kontakt – wsparcie IT i outsourcing dla firm | Shellty",
+        "description": "Skontaktuj się z Shellty w sprawie tworzenia strony lub aplikacji webowej, outsourcingu IT, administracji systemów i wsparcia dla firmy.",
+        "socialTitle": "Kontakt – wsparcie IT dla firm | Shellty",
+        "socialDescription": "Porozmawiajmy o stronie internetowej, aplikacji webowej, outsourcingu lub bieżącym wsparciu IT dla Twojej firmy."
+      },
+      "en": {
+        "title": "Contact – business IT support and outsourcing | Shellty",
+        "description": "Contact Shellty about a website, web application, IT outsourcing, systems administration or ongoing technical support for your business.",
+        "socialTitle": "Contact – business IT support | Shellty",
+        "socialDescription": "Let’s discuss a website, web application, IT outsourcing or ongoing technical support for your business."
+      }
+    }
+  }
+}

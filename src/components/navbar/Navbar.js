@@ -16,11 +16,11 @@ const Navbar = () => {
 
     const navItems = useMemo(() => ([
         { to: '/',           labelKey: 'nav.home',       num: '01', end: true  },
-        { to: '/about',      labelKey: 'nav.about',      num: '02', end: false },
-        { to: '/experience', labelKey: 'nav.experience', num: '03', end: false },
-        { to: '/skills',     labelKey: 'nav.skills',     num: '04', end: false },
-        { to: '/portfolio',  labelKey: 'nav.portfolio',  num: '05', end: false },
-        { to: '/contact',    labelKey: 'nav.contact',    num: '06', end: false },
+        { to: '/about/',      labelKey: 'nav.about',      num: '02', end: false },
+        { to: '/experience/', labelKey: 'nav.experience', num: '03', end: false },
+        { to: '/skills/',     labelKey: 'nav.skills',     num: '04', end: false },
+        { to: '/portfolio/',  labelKey: 'nav.portfolio',  num: '05', end: false },
+        { to: '/contact/',    labelKey: 'nav.contact',    num: '06', end: false },
     ]), []);
 
     const handleLangChange = (newLang) => {
@@ -79,7 +79,7 @@ const Navbar = () => {
                     <GlowIcon
                         src={homeIcon}
                         srcGlow={homeGlow}
-                        alt=""
+                        alt={t('logo.altText')}
                         className={`logo-glow-icon${logoHovered ? ' hovered' : ''}`}
                     />
                     <span className="logo-text">

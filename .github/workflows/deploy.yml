@@ -35,9 +35,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: |
-          GENERATE_SOURCEMAP=false npx react-scripts build
-          cp build/index.html build/404.html
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,19 +1,9 @@
 User-agent: *
 Allow: /
 
-# Blokada katalogów
+# Prywatne dokumenty nie powinny trafiać do wyników wyszukiwania
 Disallow: /cv/
-Disallow: /CV/
 Disallow: /certs/
-Disallow: /Certs/
-
-# Niepotrzebne w indeksie
-Disallow: /404.html
-
-# Ograniczenie duplikatów z parametrami
-Disallow: /*?*utm_*
-Disallow: /*?*fbclid=
-Disallow: /*?*gclid=
 
 # Mapa witryny
 Sitemap: https://shellty-it.github.io/sitemap.xml

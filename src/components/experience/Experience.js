@@ -79,7 +79,7 @@ const Experience = () => {
                         </div>
                         <img
                             src={experienceIcon}
-                            alt=""
+                            alt={t("experience.images.sectionIcon")}
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--base"
                             draggable="false"
@@ -88,7 +88,7 @@ const Experience = () => {
                         />
                         <img
                             src={experienceGlow}
-                            alt=""
+                            alt={t("experience.images.sectionGlowIcon")}
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--lit"
                             draggable="false"
@@ -102,9 +102,9 @@ const Experience = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h2 className={`exp__title ${titleHovered ? "hovered" : ""}`}>
+                        <h1 className={`exp__title ${titleHovered ? "hovered" : ""}`}>
                             {t("experience.title")}
-                        </h2>
+                        </h1>
                     </div>
 
                 </header>

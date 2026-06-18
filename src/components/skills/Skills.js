@@ -162,7 +162,7 @@ const Skills = () => {
                         </div>
                         <img
                             src={skillsIcon}
-                            alt=""
+                            alt={t("skills.images.sectionIcon")}
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--base"
                             draggable="false"
@@ -171,7 +171,7 @@ const Skills = () => {
                         />
                         <img
                             src={skillsGlow}
-                            alt=""
+                            alt={t("skills.images.sectionGlowIcon")}
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--lit"
                             draggable="false"
@@ -185,9 +185,9 @@ const Skills = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h2 className={`skills__title ${titleHovered ? 'hovered' : ''}`}>
+                        <h1 className={`skills__title ${titleHovered ? 'hovered' : ''}`}>
                             {t("skills.title")}
-                        </h2>
+                        </h1>
                     </div>
                 </header>
 
@@ -195,7 +195,7 @@ const Skills = () => {
                 <section className="sk-group">
                     <div className="sk-group__head">
                         <span className="sk-group__num">01 /</span>
-                        <h3 className="sk-group__title">{t("skills.groups.core")}</h3>
+                        <h2 className="sk-group__title">{t("skills.groups.core")}</h2>
                         <span className="sk-group__rule" />
                         <span className="sk-group__count">
                             {String(CORE_SKILLS.length).padStart(2, '0')}
@@ -212,7 +212,7 @@ const Skills = () => {
                 <section className="sk-group">
                     <div className="sk-group__head">
                         <span className="sk-group__num">02 /</span>
-                        <h3 className="sk-group__title">{t("skills.groups.solid")}</h3>
+                        <h2 className="sk-group__title">{t("skills.groups.solid")}</h2>
                         <span className="sk-group__rule" />
                         <span className="sk-group__count">
                             {String(SOLID_SKILLS.length).padStart(2, '0')}
@@ -229,7 +229,7 @@ const Skills = () => {
                 <section className="sk-group">
                     <div className="sk-group__head">
                         <span className="sk-group__num">03 /</span>
-                        <h3 className="sk-group__title">{t("skills.groups.growing")}</h3>
+                        <h2 className="sk-group__title">{t("skills.groups.growing")}</h2>
                         <span className="sk-group__rule" />
                         <span className="sk-group__count">
                             {String(GROWING_SKILLS.length).padStart(2, '0')}

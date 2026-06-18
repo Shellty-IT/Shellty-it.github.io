@@ -117,7 +117,7 @@ export default function Contact() {
                         </div>
                         <img
                             src={contactIcon}
-                            alt=""
+                            alt={t("contact.images.sectionIcon")}
                             aria-hidden="true"
                             className="ct-icon__img ct-icon__img--base"
                             draggable="false"
@@ -126,7 +126,7 @@ export default function Contact() {
                         />
                         <img
                             src={contactGlow}
-                            alt=""
+                            alt={t("contact.images.sectionGlowIcon")}
                             aria-hidden="true"
                             className="ct-icon__img ct-icon__img--lit"
                             draggable="false"
@@ -140,9 +140,9 @@ export default function Contact() {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h2 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
+                        <h1 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
                             {t("contact.title")}
-                        </h2>
+                        </h1>
                     </div>
                 </header>
 
@@ -262,20 +262,32 @@ export default function Contact() {
                             </div>
                         </a>
 
-                        {/* GitHub + LinkedIn — bez linków, rząd kompaktowych odznak */}
+                        {/* GitHub + LinkedIn — działające linki */}
                         <div className="ct-socials-row">
-                            <div className="ct-channel ct-channel--social">
+                            <a
+                                href="https://github.com/Shellty-IT"
+                                className="ct-channel ct-channel--social"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub"
+                            >
                                 <span className="ct-channel__icon">
                                     <FaGithub />
                                 </span>
                                 <span className="ct-channel__label">GitHub</span>
-                            </div>
-                            <div className="ct-channel ct-channel--social">
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/tomasz-skorupski-shellty/"
+                                className="ct-channel ct-channel--social"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn"
+                            >
                                 <span className="ct-channel__icon">
                                     <FaLinkedin />
                                 </span>
                                 <span className="ct-channel__label">LinkedIn</span>
-                            </div>
+                            </a>
                         </div>
 
                     </aside>

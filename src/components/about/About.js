@@ -83,7 +83,7 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
         >
             <img
                 src={isActive ? iconGlow : icon}
-                alt=""
+                alt={t(`about.traits.${traitKey}.name`)}
                 aria-hidden="true"
                 className="trait-item__icon"
                 width="84"
@@ -142,7 +142,7 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                 <div className="trait-sheet__header">
                     <img
                         src={iconGlow}
-                        alt=""
+                        alt={t(`about.traits.${traitKey}.name`)}
                         aria-hidden="true"
                         className="trait-sheet__icon"
                         width="32"
@@ -181,7 +181,7 @@ const VideoCard = ({ vimeoId, t }) => {
                         {!thumbError && (
                             <img
                                 src={`https://vumbnail.com/${vimeoId}.jpg`}
-                                alt=""
+                                alt={t("about.video.iframeTitle")}
                                 className="about__video-thumb"
                                 loading="lazy"
                                 width="1280"
@@ -268,7 +268,7 @@ const About = () => {
                         </div>
                         <img
                             src={aboutIcon}
-                            alt=""
+                            alt={t("about.images.sectionIcon")}
                             aria-hidden="true"
                             className="dna__img dna__img--base"
                             draggable="false"
@@ -277,7 +277,7 @@ const About = () => {
                         />
                         <img
                             src={aboutGlow}
-                            alt=""
+                            alt={t("about.images.sectionGlowIcon")}
                             aria-hidden="true"
                             className="dna__img dna__img--lit"
                             draggable="false"
@@ -292,9 +292,9 @@ const About = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h2 className={`about__title${titleHovered ? " hovered" : ""}`}>
+                        <h1 className={`about__title${titleHovered ? " hovered" : ""}`}>
                             {t("about.title")}
-                        </h2>
+                        </h1>
                     </div>
 
                 </header>
@@ -322,9 +322,9 @@ const About = () => {
                             </span>
                         </p>
 
-                        <h3 className="about__subhead">
+                        <h2 className="about__subhead">
                             <strong>{t("about.approachTitle")}</strong>
-                        </h3>
+                        </h2>
                         <p>
                             <Trans i18nKey="about.approachIntro" />
                         </p>
@@ -350,16 +350,16 @@ const About = () => {
                             </li>
                         </ul>
 
-                        <h3 className="about__subhead">
+                        <h2 className="about__subhead">
                             <strong>{t("about.growthTitle")}</strong>
-                        </h3>
+                        </h2>
                         <p>
                             <Trans i18nKey="about.growth" />
                         </p>
 
-                        <h3 className="about__subhead">
+                        <h2 className="about__subhead">
                             <strong>{t("about.goalTitle")}</strong>
-                        </h3>
+                        </h2>
                         <p>
                             <Trans i18nKey="about.goal" />
                         </p>
@@ -368,13 +368,13 @@ const About = () => {
                         <div className="about__actions">
                             <HashLink
                                 smooth
-                                to="/portfolio#portfolio"
+                                to="/portfolio/#portfolio"
                                 className="btn btn--primary"
                             >
                                 <GlowIcon
                                     src={portfolioIcon}
                                     srcGlow={portfolioGlow}
-                                    alt=""
+                                    alt={t("about.images.portfolioIcon")}
                                     size={42}
                                     className="btn-glow-icon"
                                 />
@@ -383,13 +383,13 @@ const About = () => {
 
                             <HashLink
                                 smooth
-                                to="/contact#contact"
+                                to="/contact/#contact"
                                 className="btn btn--outline btn--contact"
                             >
                                 <GlowIcon
                                     src={contactIcon}
                                     srcGlow={contactGlow}
-                                    alt=""
+                                    alt={t("about.images.contactIcon")}
                                     size={42}
                                     className="btn-glow-icon btn-glow-icon--contact"
                                 />

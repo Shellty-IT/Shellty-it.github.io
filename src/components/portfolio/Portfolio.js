@@ -473,7 +473,7 @@ const Portfolio = () => {
                         </div>
                         <img
                             src={portfolioIcon}
-                            alt=""
+                            alt={t("portfolio.images.sectionIcon")}
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--base"
                             draggable="false"
@@ -482,7 +482,7 @@ const Portfolio = () => {
                         />
                         <img
                             src={portfolioGlow}
-                            alt=""
+                            alt={t("portfolio.images.sectionGlowIcon")}
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--lit"
                             draggable="false"
@@ -547,7 +547,7 @@ const Portfolio = () => {
 
                             <div className="project-content">
                                 <header className="project-header">
-                                    <h3 className="project-heading" itemProp="name">{project.title}</h3>
+                                    <h2 className="project-heading" itemProp="name">{project.title}</h2>
                                     <div className="project-meta">
                                         {project.subtitle && <span className="project-subtitle" itemProp="about">{project.subtitle}</span>}
                                         {project.year && (

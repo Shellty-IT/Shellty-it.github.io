@@ -13,25 +13,27 @@ import contactIcon from '../../assets/icons/contact/contact.webp';
 import contactGlowIcon from '../../assets/icons/contact/contact_glow.webp';
 
 const ROLES_PL = [
-    "Specjalista IT",
-    "SysAdmin",
-    "Software Developer",
-    "Software Engineer",
-    "DevOps Engineer",
-    "Freelancer",
-    "Programista",
-    "Administrator Baz Danych",
+    "Outsourcing IT dla firm",
+    "Wsparcie IT i pomoc informatyczna",
+    "Tworzenie stron internetowych",
+    "Aplikacje webowe dla biznesu",
+    "Support IT dla firm",
+    "Usługi informatyczne – Szczecin",
+    "Freelancer IT – Szczecin i Stargard",
+    "Administracja systemów i sieci",
+    "Cześć! Nazywam się Tomasz Skorupski",
 ];
 
 const ROLES_EN = [
-    "IT Specialist",
-    "SysAdmin",
-    "Software Developer",
-    "Software Engineer",
-    "DevOps Engineer",
-    "Freelancer",
-    "Programmer",
-    "Database Administrator",
+    "IT outsourcing for business",
+    "IT support and troubleshooting",
+    "Website development",
+    "Web applications for business",
+    "Business IT support",
+    "IT services – Szczecin",
+    "IT freelancer – Szczecin and Stargard",
+    "Systems and network administration",
+    "Hi! My name is Tomasz Skorupski",
 ];
 
 export default function Home() {
@@ -146,11 +148,11 @@ export default function Home() {
                         <HashLink
                             className="btn-glass btn-glass--primary"
                             smooth
-                            to="/portfolio#portfolio"
+                            to="/portfolio/#portfolio"
                         >
                             <span className="btn-icon-wrap btn-icon-wrap--portfolio">
-                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                                <img src={portfolioIcon} alt={t("home.images.portfolioIcon")} aria-hidden="true" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={portfolioGlowIcon} alt={t("home.images.portfolioGlowIcon")} aria-hidden="true" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaPortfolio")}</span>
                         </HashLink>
@@ -163,8 +165,8 @@ export default function Home() {
                             rel="noopener noreferrer"
                         >
                             <span className="btn-icon-wrap btn-icon-wrap--cv">
-                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                                <img src={cvIcon} alt={t("home.images.cvIcon")} aria-hidden="true" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={cvGlowIcon} alt={t("home.images.cvGlowIcon")} aria-hidden="true" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaCv")}</span>
                         </a>
@@ -172,11 +174,11 @@ export default function Home() {
                         <HashLink
                             className="btn-glass"
                             smooth
-                            to="/contact#contact"
+                            to="/contact/#contact"
                         >
                             <span className="btn-icon-wrap btn-icon-wrap--contact">
-                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                                <img src={contactIcon} alt={t("home.images.contactIcon")} aria-hidden="true" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={contactGlowIcon} alt={t("home.images.contactGlowIcon")} aria-hidden="true" className="btn-icon btn-icon--glow" width="22" height="22" />
                             </span>
                             <span>{t("home.ctaContact")}</span>
                         </HashLink>

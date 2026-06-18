@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
 import CloudBackground from "./background/CloudBackground";
+import SeoManager from "./seo/SeoManager";
 
 import './App.css';
 
@@ -17,6 +18,7 @@ const CustomCursor = lazy(() => import("./components/customCursor"));
 function App() {
     return (
         <Router>
+            <SeoManager />
             <CloudBackground />
 
             <Suspense fallback={null}>
