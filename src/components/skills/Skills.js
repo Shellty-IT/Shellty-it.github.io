@@ -162,7 +162,7 @@ const Skills = () => {
                         </div>
                         <img
                             src={skillsIcon}
-                            alt={t("skills.images.sectionIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--base"
                             draggable="false"
@@ -171,7 +171,7 @@ const Skills = () => {
                         />
                         <img
                             src={skillsGlow}
-                            alt={t("skills.images.sectionGlowIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="sk-icon-wrap__img sk-icon-wrap__img--lit"
                             draggable="false"

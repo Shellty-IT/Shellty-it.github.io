@@ -473,7 +473,7 @@ const Portfolio = () => {
                         </div>
                         <img
                             src={portfolioIcon}
-                            alt={t("portfolio.images.sectionIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--base"
                             draggable="false"
@@ -482,7 +482,7 @@ const Portfolio = () => {
                         />
                         <img
                             src={portfolioGlow}
-                            alt={t("portfolio.images.sectionGlowIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--lit"
                             draggable="false"

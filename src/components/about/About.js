@@ -83,7 +83,7 @@ const TraitItem = ({ traitKey, icon, iconGlow, isMobile, onMobileTap, t }) => {
         >
             <img
                 src={isActive ? iconGlow : icon}
-                alt={t(`about.traits.${traitKey}.name`)}
+                alt=""
                 aria-hidden="true"
                 className="trait-item__icon"
                 width="84"
@@ -142,7 +142,7 @@ const TraitBottomSheet = ({ traitKey, iconGlow, onClose, t }) => {
                 <div className="trait-sheet__header">
                     <img
                         src={iconGlow}
-                        alt={t(`about.traits.${traitKey}.name`)}
+                        alt=""
                         aria-hidden="true"
                         className="trait-sheet__icon"
                         width="32"
@@ -181,7 +181,7 @@ const VideoCard = ({ vimeoId, t }) => {
                         {!thumbError && (
                             <img
                                 src={`https://vumbnail.com/${vimeoId}.jpg`}
-                                alt={t("about.video.iframeTitle")}
+                                alt=""
                                 className="about__video-thumb"
                                 loading="lazy"
                                 width="1280"
@@ -268,7 +268,7 @@ const About = () => {
                         </div>
                         <img
                             src={aboutIcon}
-                            alt={t("about.images.sectionIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="dna__img dna__img--base"
                             draggable="false"
@@ -277,7 +277,7 @@ const About = () => {
                         />
                         <img
                             src={aboutGlow}
-                            alt={t("about.images.sectionGlowIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="dna__img dna__img--lit"
                             draggable="false"
@@ -374,7 +374,7 @@ const About = () => {
                                 <GlowIcon
                                     src={portfolioIcon}
                                     srcGlow={portfolioGlow}
-                                    alt={t("about.images.portfolioIcon")}
+                                    alt=""
                                     size={42}
                                     className="btn-glow-icon"
                                 />
@@ -389,7 +389,7 @@ const About = () => {
                                 <GlowIcon
                                     src={contactIcon}
                                     srcGlow={contactGlow}
-                                    alt={t("about.images.contactIcon")}
+                                    alt=""
                                     size={42}
                                     className="btn-glow-icon btn-glow-icon--contact"
                                 />

@@ -79,7 +79,7 @@ const Experience = () => {
                         </div>
                         <img
                             src={experienceIcon}
-                            alt={t("experience.images.sectionIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--base"
                             draggable="false"
@@ -88,7 +88,7 @@ const Experience = () => {
                         />
                         <img
                             src={experienceGlow}
-                            alt={t("experience.images.sectionGlowIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="exp-icon__img exp-icon__img--lit"
                             draggable="false"

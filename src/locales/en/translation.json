@@ -8,8 +8,8 @@
     "contact": "Contact"
   },
   "home": {
-    "greeting": "Website development",
-    "name": "and web applications",
+    "greeting": "Hi! My name is",
+    "name": "Tomasz Skorupski",
     "lead": "I design, implement, and maintain IT systems and infrastructure that ensure stable and secure business operations. I offer administration, network services, tailored solutions, and ongoing technical support.\nI am currently creating my own business solutions and actively seeking long-term collaboration.",
     "ctaPortfolio": "View portfolio",
     "ctaCv": "Download CV",
@@ -28,14 +28,6 @@
       "emailAria": "Email",
       "phoneAria": "Phone",
       "githubAria": "GitHub"
-    },
-    "images": {
-      "portfolioIcon": "Web application portfolio icon",
-      "portfolioGlowIcon": "Highlighted web application portfolio icon",
-      "cvIcon": "IT specialist CV document icon",
-      "cvGlowIcon": "Highlighted IT specialist CV document icon",
-      "contactIcon": "IT support contact icon",
-      "contactGlowIcon": "Highlighted IT support contact icon"
     }
   },
   "logo": {
@@ -44,12 +36,6 @@
   },
   "about": {
     "title": "Bio",
-    "images": {
-      "sectionIcon": "IT freelancer profile icon",
-      "sectionGlowIcon": "Highlighted IT freelancer profile icon",
-      "portfolioIcon": "Website and web application portfolio icon",
-      "contactIcon": "IT support contact icon"
-    },
     "p1": "Hi! I’m Tomasz Skorupski. For years, I ensured that IT systems ran smoothly by managing servers (Windows/Linux), networks, and databases. However, I realized that I wanted to do more than just fix and maintain things—I wanted to create them. Today, I use my solid technical background to build and improve digital solutions.",
     "videoInvite": "If you prefer listening over reading – feel free to watch my short video introduction",
     "videoInviteDirDesktop": " on the right.",
@@ -136,10 +122,6 @@
   },
   "experience": {
     "title": "Experience",
-    "images": {
-      "sectionIcon": "IT outsourcing and support experience icon",
-      "sectionGlowIcon": "Highlighted IT outsourcing and support experience icon"
-    },
     "jobs": {
       "streetcom": {
         "where": "Streetcom • IT Systems Administrator & Developer",
@@ -243,10 +225,6 @@
   },
   "skills": {
     "title": "Skills",
-    "images": {
-      "sectionIcon": "IT services and technical skills icon",
-      "sectionGlowIcon": "Highlighted IT services and technical skills icon"
-    },
     "groups": {
       "core": "Core competencies",
       "solid": "Solid knowledge",
@@ -299,10 +277,6 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "images": {
-      "sectionIcon": "Website and web application portfolio icon",
-      "sectionGlowIcon": "Highlighted website and web application portfolio icon"
-    },
     "subtitleHtml": "My public portfolio is currently modest, as most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/><br/><warning>Note:</warning> I use free‑tier backend services on Render. It is recommended to wake up the services using <pulseLink>Shellty Pulse</pulseLink> before using the application.",
     "actions": {
       "demo": "View",
@@ -470,10 +444,6 @@
   },
   "contact": {
     "title": "Contact form",
-    "images": {
-      "sectionIcon": "IT support contact icon",
-      "sectionGlowIcon": "Highlighted IT support contact icon"
-    },
     "subtitle": "Have a question or a collaboration idea? Fill out the form or email me directly.",
     "fields": {
       "name": "Name",

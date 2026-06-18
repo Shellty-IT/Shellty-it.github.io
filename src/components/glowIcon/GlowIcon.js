@@ -75,7 +75,7 @@ const GlowIcon = ({ src, srcGlow, alt = '', size, floating = false, className = 
             {glowReady && (
                 <img
                     src={srcGlow}
-                    alt={alt}
+                    alt=""
                     className="glow-icon-lit"
                     draggable="false"
                     aria-hidden="true"

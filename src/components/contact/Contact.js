@@ -117,7 +117,7 @@ export default function Contact() {
                         </div>
                         <img
                             src={contactIcon}
-                            alt={t("contact.images.sectionIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="ct-icon__img ct-icon__img--base"
                             draggable="false"
@@ -126,7 +126,7 @@ export default function Contact() {
                         />
                         <img
                             src={contactGlow}
-                            alt={t("contact.images.sectionGlowIcon")}
+                            alt=""
                             aria-hidden="true"
                             className="ct-icon__img ct-icon__img--lit"
                             draggable="false"

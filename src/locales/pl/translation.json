@@ -8,8 +8,8 @@
     "contact": "Kontakt"
   },
   "home": {
-    "greeting": "Tworzenie stron internetowych",
-    "name": "i aplikacji webowych",
+    "greeting": "Cześć! Nazywam\u00A0się",
+    "name": "Tomasz Skorupski",
     "lead": "Projektuję, wdrażam i utrzymuję systemy oraz infrastrukturę IT, które zapewniają firmom stabilne i bezpieczne funkcjonowanie. Oferuję administrację, obsługę sieci, tworzenie dopasowanych rozwiązań oraz bieżące wsparcie techniczne.\nAktualnie tworzę własne rozwiązania biznesowe i aktywnie poszukuję długoterminowej współpracy.",
     "ctaPortfolio": "Zobacz portfolio",
     "ctaCv": "Pobierz CV",
@@ -28,14 +28,6 @@
       "emailAria": "Email",
       "phoneAria": "Telefon",
       "githubAria": "GitHub"
-    },
-    "images": {
-      "portfolioIcon": "Ikona portfolio aplikacji webowych",
-      "portfolioGlowIcon": "Podświetlona ikona portfolio aplikacji webowych",
-      "cvIcon": "Ikona dokumentu CV specjalisty IT",
-      "cvGlowIcon": "Podświetlona ikona dokumentu CV specjalisty IT",
-      "contactIcon": "Ikona kontaktu i wsparcia IT",
-      "contactGlowIcon": "Podświetlona ikona kontaktu i wsparcia IT"
     }
   },
   "logo": {
@@ -43,13 +35,7 @@
     "altText": "Logo"
   },
   "about": {
-    "title": "Freelancer IT – Szczecin i Stargard",
-    "images": {
-      "sectionIcon": "Ikona profilu freelancera IT",
-      "sectionGlowIcon": "Podświetlona ikona profilu freelancera IT",
-      "portfolioIcon": "Ikona portfolio stron i aplikacji webowych",
-      "contactIcon": "Ikona kontaktu i wsparcia IT"
-    },
+    "title": "Bio",
     "p1": "Cześć! Tu Tomasz Skorupski. Przez lata dbałem o to, by systemy informatyczne działały bezawaryjnie – administrując serwerami (Windows/Linux), sieciami i bazami danych. Zrozumiałem jednak, że chcę nie tylko naprawiać, utrzymywać i zmieniać, ale przede wszystkim tworzyć. Dziś wykorzystuję to solidne, techniczne zaplecze do budowania i usprawniania rozwiązań.",
     "videoInvite": "Jeśli wolisz słuchać, niż czytać – zapraszam do obejrzenia mojej krótkiej prezentacji wideo",
     "videoInviteDirDesktop": " po prawej stronie.",
@@ -135,11 +121,7 @@
     }
   },
   "skills": {
-    "title": "Usługi IT i kompetencje",
-    "images": {
-      "sectionIcon": "Ikona usług IT i kompetencji technicznych",
-      "sectionGlowIcon": "Podświetlona ikona usług IT i kompetencji technicznych"
-    },
+    "title": "Umiejętności",
     "groups": {
       "core": "Kluczowe kompetencje",
       "solid": "Solidna znajomość",
@@ -191,11 +173,7 @@
     }
   },
   "portfolio": {
-    "title": "Portfolio stron i aplikacji webowych",
-    "images": {
-      "sectionIcon": "Ikona portfolio stron internetowych i aplikacji webowych",
-      "sectionGlowIcon": "Podświetlona ikona portfolio stron internetowych i aplikacji webowych"
-    },
+    "title": "Portfolio",
     "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> Korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
     "actions": {
       "demo": "Zobacz",
@@ -364,11 +342,7 @@
     }
   },
   "experience": {
-    "title": "Doświadczenie w outsourcingu i wsparciu IT",
-    "images": {
-      "sectionIcon": "Ikona doświadczenia w outsourcingu i wsparciu IT",
-      "sectionGlowIcon": "Podświetlona ikona doświadczenia w outsourcingu i wsparciu IT"
-    },
+    "title": "Doświadczenie",
     "kicker": "Stabilność • Automatyzacja • Wsparcie • Development",
     "jobs": {
       "streetcom": {
@@ -472,11 +446,7 @@
     }
   },
   "contact": {
-    "title": "Zapytaj o wsparcie IT dla firmy",
-    "images": {
-      "sectionIcon": "Ikona kontaktu w sprawie wsparcia IT",
-      "sectionGlowIcon": "Podświetlona ikona kontaktu w sprawie wsparcia IT"
-    },
+    "title": "Formularz kontaktowy",
     "subtitle": "Masz pytanie lub propozycję współpracy? Wypełnij formularz lub napisz do mnie bezpośrednio.",
     "fields": {
       "name": "Imię",

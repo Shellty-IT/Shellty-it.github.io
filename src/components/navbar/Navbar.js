@@ -79,7 +79,7 @@ const Navbar = () => {
                     <GlowIcon
                         src={homeIcon}
                         srcGlow={homeGlow}
-                        alt={t('logo.altText')}
+                        alt=""
                         className={`logo-glow-icon${logoHovered ? ' hovered' : ''}`}
                     />
                     <span className="logo-text">
