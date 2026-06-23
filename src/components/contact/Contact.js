@@ -248,7 +248,7 @@ export default function Contact() {
 
                         {/* Email — klikalny link */}
                         <a
-                            href="mailto:shellty@zohomail.eu"
+                            href="mailto:kontakt@shellty.pl"
                             className="ct-channel"
                         >
                             <span className="corner tl" />
@@ -258,7 +258,7 @@ export default function Contact() {
                             </span>
                             <div className="ct-channel__body">
                                 <h4>{t("contact.or")}</h4>
-                                <span className="ct-channel__value">shellty@zohomail.eu</span>
+                                <span className="ct-channel__value">kontakt@shellty.pl</span>
                             </div>
                         </a>
 
