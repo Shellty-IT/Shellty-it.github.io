@@ -1,10 +1,8 @@
 User-agent: *
 Allow: /
-
 # Prywatne dokumenty nie powinny trafiać do wyników wyszukiwania
 Disallow: /cv/
 Disallow: /certs/
-
 # Mapa witryny
-Sitemap: https://shellty-it.github.io/sitemap.xml
-Sitemap: https://shellty-it.github.io/sitemap.txt
+Sitemap: https://shellty.pl/sitemap.xml
+Sitemap: https://shellty.pl/sitemap.txt

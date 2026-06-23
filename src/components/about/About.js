@@ -390,7 +390,7 @@ const About = () => {
                                     src={contactIcon}
                                     srcGlow={contactGlow}
                                     alt=""
-                                    size={42}
+                                    size={36}
                                     className="btn-glow-icon btn-glow-icon--contact"
                                 />
                                 {t("about.ctaContact")}

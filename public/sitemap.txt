@@ -1,6 +1,6 @@
-https://shellty-it.github.io/
-https://shellty-it.github.io/about/
-https://shellty-it.github.io/experience/
-https://shellty-it.github.io/skills/
-https://shellty-it.github.io/portfolio/
-https://shellty-it.github.io/contact/
+https://shellty.pl/
+https://shellty.pl/about/
+https://shellty.pl/experience/
+https://shellty.pl/skills/
+https://shellty.pl/portfolio/
+https://shellty.pl/contact/
