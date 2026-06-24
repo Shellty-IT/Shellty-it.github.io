@@ -12,9 +12,9 @@ import {
 } from 'react-icons/fa6';
 import './Services.css';
 
-import servicesIcon from '../../assets/icons/services/services.png';
-import servicesRotating from '../../assets/icons/services/services_rotating.png';
-import servicesCenter from '../../assets/icons/services/services_center.png';
+import servicesIcon from '../../assets/icons/services/services.webp';
+import servicesRotating from '../../assets/icons/services/services_rotating.webp';
+import servicesCenter from '../../assets/icons/services/services_center.webp';
 
 const Services = () => {
     const { t } = useTranslation();
