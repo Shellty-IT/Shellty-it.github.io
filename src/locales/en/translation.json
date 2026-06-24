@@ -11,7 +11,7 @@
   "home": {
     "greeting": "Hi! My name is",
     "name": "Tomasz Skorupski",
-    "lead": "I design, implement, and maintain IT systems and infrastructure that ensure stable and secure business operations. I offer administration, network services, tailored solutions, and ongoing technical support.\nI am currently creating my own business solutions and actively seeking long-term collaboration.",
+    "lead": "I build websites and web applications and provide IT support and administration - combining the skills of a developer and an IT specialist to deliver solutions that are not only functional, but also stable and secure.\n\nI am looking for long-term cooperation with a single company where I can bring real value from day one and grow in a stable environment. I also take on individual projects - you can find their scope in the Services section.",
     "ctaPortfolio": "View portfolio",
     "ctaCv": "Download CV",
     "ctaContact": "Contact",
@@ -37,7 +37,7 @@
   },
   "about": {
     "title": "Bio",
-    "p1": "Hi! I’m Tomasz Skorupski. For years, I ensured that IT systems ran smoothly by managing servers (Windows/Linux), networks, and databases. However, I realized that I wanted to do more than just fix and maintain things—I wanted to create them. Today, I use my solid technical background to build and improve digital solutions.",
+    "p1": "Hi! I’m Tomasz Skorupski. For years, I ensured that IT systems ran smoothly by managing servers (Windows/Linux), networks, and databases. However, I realized that I wanted to do more than just fix and maintain things-I wanted to create them. Today, I use my solid technical background to build and improve digital solutions.",
     "videoInvite": "If you prefer listening over reading – feel free to watch my short video introduction",
     "videoInviteDirDesktop": " on the right.",
     "videoInviteDirMobile": " below.",
@@ -226,30 +226,30 @@
   },
   "services": {
     "title": "IT Services",
-    "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> — so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication — no middlemen, no agency markups.",
+    "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> - so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication - no middlemen, no agency markups.",
     "forWhomLabel": "For whom:",
     "card1": {
       "kicker": "Websites",
       "title": "Website creation for businesses and individuals",
-      "desc": "I design and build modern websites: business cards, company sites, landing pages, and portfolios. Each one is responsive, fast, and optimised for basic SEO so your clients can find you on Google. I can build on a custom CMS or WordPress — with a panel where you can update content yourself, no coding required.",
+      "desc": "I design and build modern websites: business cards, company sites, landing pages, and portfolios. Each one is responsive, fast, and optimised for basic SEO so your clients can find you on Google. I can build on a custom CMS or WordPress - with a panel where you can update content yourself, no coding required.",
       "forWhom": "small businesses, freelancers, local companies, individuals."
     },
     "card2": {
       "kicker": "Web apps & tools",
       "title": "Custom web applications and process automation",
-      "desc": "I build applications tailored to specific needs: admin panels, simple CRM systems, management tools, and apps that automate repetitive tasks. I can also integrate with external services via API — e.g. payments, e-invoicing (KSeF), or AI tools. If you're running your business in Excel spreadsheets, I can turn that into a proper application.",
+      "desc": "I build applications tailored to specific needs: admin panels, simple CRM systems, management tools, and apps that automate repetitive tasks. I can also integrate with external services via API - e.g. payments, e-invoicing (KSeF), or AI tools. If you're running your business in Excel spreadsheets, I can turn that into a proper application.",
       "forWhom": "businesses looking to streamline and automate their work."
     },
     "card3": {
       "kicker": "Smaller dev tasks",
       "title": "Programming help, fixes, and extensions",
-      "desc": "I also handle smaller programming jobs — no need to commission a full project. I'll fix and extend an existing site or app, squash bugs, write a script to automate tedious repetitive tasks, or help finish a project that got stuck. A great option when you need specific, fast technical help.",
+      "desc": "I also handle smaller programming jobs - no need to commission a full project. I'll fix and extend an existing site or app, squash bugs, write a script to automate tedious repetitive tasks, or help finish a project that got stuck. A great option when you need specific, fast technical help.",
       "forWhom": "individuals and businesses with ongoing, smaller programming needs."
     },
     "card4": {
       "kicker": "IT support & outsourcing",
       "title": "IT support and outsourcing for small businesses",
-      "desc": "I'll handle the technical side of your business so you can focus on running it. I offer server administration (Windows and Linux), network and device configuration, backups, deployments, and user support. In practice, I act as an external IT department for a small company — available remotely, without the cost of hiring a full-time IT person.",
+      "desc": "I'll handle the technical side of your business so you can focus on running it. I offer server administration (Windows and Linux), network and device configuration, backups, deployments, and user support. In practice, I act as an external IT department for a small company - available remotely, without the cost of hiring a full-time IT person.",
       "forWhom": "small businesses without their own IT department."
     },
     "howTitle": "How I work",
@@ -260,7 +260,7 @@
     "whyTitle": "Why me",
     "why1": {
       "title": "Developer and sysadmin in one",
-      "desc": "I build solutions that are not only functional, but also stable and secure — because I understand the full infrastructure they run on."
+      "desc": "I build solutions that are not only functional, but also stable and secure - because I understand the full infrastructure they run on."
     },
     "why2": {
       "title": "Direct contact",
@@ -275,7 +275,7 @@
       "desc": "I tailor the solution to your needs and budget, not the other way around."
     },
     "ctaTitle": "Got an idea or a problem to solve?",
-    "ctaSubtitle": "Write to me —",
+    "ctaSubtitle": "Write to me -",
     "ctaAccent": "the quote and first conversation are free.",
     "ctaBtn": "Write to me"
   },
@@ -359,7 +359,7 @@
     "projects": {
       "shelltyCMS": {
         "title": "Shellty CMS",
-        "subtitle": "— WordPress Alternative for B2B —",
+        "subtitle": "- WordPress Alternative for B2B -",
         "description": "Custom CMS on Next.js and Payload as a lightweight alternative to WordPress. Full control over code and content without unnecessary baggage.",
         "highlightsTitle": "KEY ACHIEVEMENTS:",
         "highlights": [
@@ -384,7 +384,7 @@
       },
       "postlio": {
         "title": "Postlio",
-        "subtitle": "— AI Social Media Autopilot —",
+        "subtitle": "- AI Social Media Autopilot -",
         "description": "A modern PWA application for comprehensive Social Media management with AI support. Enables creating, scheduling, and fully autonomous publishing of content on Facebook, Instagram, and LinkedIn.",
         "highlightsTitle": "WHAT'S WORTH KNOWING:",
         "highlights": [
@@ -397,7 +397,7 @@
       },
       "smartQuoteAI": {
         "title": "SmartQuote",
-        "subtitle": "— CRM & Sales Automation —",
+        "subtitle": "- CRM & Sales Automation -",
         "description": "CRM with AI quote generation, PDF block editor, and e-invoice integration. Production-deployed.",
         "highlightsTitle": "KEY ACHIEVEMENTS",
         "highlights": [
@@ -420,7 +420,7 @@
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban",
-        "subtitle": "— Real-time Project Management —",
+        "subtitle": "- Real-time Project Management -",
         "year": "2026",
         "description": "A fullstack Kanban application for task management and team collaboration, built from scratch with .NET 10 and React 18. It includes board and card management with drag & drop, real-time collaboration via SignalR, and a complete Web Push system that works even when the app is closed.",
         "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
@@ -434,7 +434,7 @@
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
-        "subtitle": "— Modern MVC Blog Platform —",
+        "subtitle": "- Modern MVC Blog Platform -",
         "description": "A modern CMS system built on ASP.NET Core MVC architecture with emphasis on design patterns and Clean Code. Fully containerized application integrated with a cloud PostgreSQL database (Neon).",
         "highlightsTitle": "TECHNICAL FEATURES:",
         "highlights": [
@@ -471,7 +471,7 @@
       },
       "ksefMaster": {
         "title": "KSeF Master",
-        "subtitle": "— National E-Invoicing Ecosystem —",
+        "subtitle": "- National E-Invoicing Ecosystem -",
         "description": "Professional platform for integration with the government e-invoicing system (KSeF). .NET 8 and React 19 architecture providing full support for FA(2) documents, XML schema validation, and PDF visualizations.",
         "highlightsTitle": "KEY SOLUTIONS:",
         "highlights": [

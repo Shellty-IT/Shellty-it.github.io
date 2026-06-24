@@ -11,7 +11,7 @@
   "home": {
     "greeting": "Cześć! Nazywam\u00A0się",
     "name": "Tomasz Skorupski",
-    "lead": "Projektuję, wdrażam i utrzymuję systemy oraz infrastrukturę IT, które zapewniają firmom stabilne i bezpieczne funkcjonowanie. Oferuję administrację, obsługę sieci, tworzenie dopasowanych rozwiązań oraz bieżące wsparcie techniczne.\nAktualnie tworzę własne rozwiązania biznesowe i aktywnie poszukuję długoterminowej współpracy.",
+    "lead": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT i administrację - łączę kompetencje programisty i informatyka, dzięki czemu buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne.\n\nZależy mi na długoterminowej współpracy z jedną firmą, w której będę wnosić realną wartość od pierwszego dnia i rozwijać się w stabilnym środowisku. Równolegle podejmuję się także pojedynczych zleceń - ich zakres znajdziesz w sekcji Usługi.",
     "ctaPortfolio": "Zobacz portfolio",
     "ctaCv": "Pobierz CV",
     "ctaContact": "Kontakt",
@@ -123,30 +123,30 @@
   },
   "services": {
     "title": "Usługi IT",
-    "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> — dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem — bez pośredników i agencyjnych narzutów.",
+    "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> - dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem - bez pośredników i agencyjnych narzutów.",
     "forWhomLabel": "Dla kogo:",
     "card1": {
       "kicker": "Strony internetowe",
       "title": "Tworzenie stron internetowych dla firm i osób prywatnych",
-      "desc": "Projektuję i buduję nowoczesne strony: wizytówki, strony firmowe, landing page i portfolio. Każda jest responsywna, szybka i przygotowana pod podstawową optymalizację SEO, żeby klienci mogli Cię znaleźć w Google. Mogę zbudować stronę na autorskim systemie CMS lub na WordPressie — z panelem, w którym samodzielnie zmienisz treści, bez znajomości kodu.",
+      "desc": "Projektuję i buduję nowoczesne strony: wizytówki, strony firmowe, landing page i portfolio. Każda jest responsywna, szybka i przygotowana pod podstawową optymalizację SEO, żeby klienci mogli Cię znaleźć w Google. Mogę zbudować stronę na autorskim systemie CMS lub na WordPressie - z panelem, w którym samodzielnie zmienisz treści, bez znajomości kodu.",
       "forWhom": "małe firmy, freelancerzy, lokalne biznesy, osoby prywatne."
     },
     "card2": {
       "kicker": "Aplikacje i narzędzia webowe",
       "title": "Aplikacje webowe na zamówienie i automatyzacja procesów",
-      "desc": "Tworzę aplikacje dopasowane do konkretnych potrzeb: panele administracyjne, proste systemy CRM, narzędzia do zarządzania i aplikacje automatyzujące powtarzalne zadania. Potrafię też zintegrować aplikację z zewnętrznymi usługami przez API — np. z płatnościami, e-fakturowaniem (KSeF) czy narzędziami AI. Jeśli prowadzisz firmę w arkuszach Excela, mogę zamienić to w wygodną aplikację.",
+      "desc": "Tworzę aplikacje dopasowane do konkretnych potrzeb: panele administracyjne, proste systemy CRM, narzędzia do zarządzania i aplikacje automatyzujące powtarzalne zadania. Potrafię też zintegrować aplikację z zewnętrznymi usługami przez API - np. z płatnościami, e-fakturowaniem (KSeF) czy narzędziami AI. Jeśli prowadzisz firmę w arkuszach Excela, mogę zamienić to w wygodną aplikację.",
       "forWhom": "firmy chcące usprawnić i zautomatyzować swoją pracę."
     },
     "card3": {
       "kicker": "Mniejsze zadania programistyczne",
       "title": "Pomoc programistyczna, poprawki i rozbudowa",
-      "desc": "Realizuję także mniejsze zlecenia — bez konieczności zamawiania dużego projektu. Poprawię i rozbuduję istniejącą stronę lub aplikację, naprawię błędy, napiszę skrypt automatyzujący nudne, powtarzalne czynności albo pomogę dokończyć projekt, który utknął. Dobre rozwiązanie, gdy potrzebujesz konkretnej, szybkiej pomocy technicznej.",
+      "desc": "Realizuję także mniejsze zlecenia - bez konieczności zamawiania dużego projektu. Poprawię i rozbuduję istniejącą stronę lub aplikację, naprawię błędy, napiszę skrypt automatyzujący nudne, powtarzalne czynności albo pomogę dokończyć projekt, który utknął. Dobre rozwiązanie, gdy potrzebujesz konkretnej, szybkiej pomocy technicznej.",
       "forWhom": "osoby i firmy z bieżącymi, mniejszymi potrzebami programistycznymi."
     },
     "card4": {
       "kicker": "Wsparcie i outsourcing IT",
       "title": "Wsparcie informatyczne i outsourcing IT dla małych firm",
-      "desc": "Zajmę się stroną techniczną Twojej firmy, żebyś Ty mógł zajmować się biznesem. Oferuję administrację serwerami (Windows i Linux), konfigurację sieci i urządzeń, kopie zapasowe, wdrożenia oraz wsparcie użytkowników. W praktyce działam jak zewnętrzny dział IT dla małej firmy — dostępny zdalnie, bez kosztu zatrudniania informatyka na etat.",
+      "desc": "Zajmę się stroną techniczną Twojej firmy, żebyś Ty mógł zajmować się biznesem. Oferuję administrację serwerami (Windows i Linux), konfigurację sieci i urządzeń, kopie zapasowe, wdrożenia oraz wsparcie użytkowników. W praktyce działam jak zewnętrzny dział IT dla małej firmy - dostępny zdalnie, bez kosztu zatrudniania informatyka na etat.",
       "forWhom": "małe firmy bez własnego działu IT."
     },
     "howTitle": "Jak pracuję",
@@ -157,7 +157,7 @@
     "whyTitle": "Dlaczego ja",
     "why1": {
       "title": "Programista i informatyk w jednym",
-      "desc": "Buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne — bo rozumiem całą infrastrukturę, na której działają."
+      "desc": "Buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne - bo rozumiem całą infrastrukturę, na której działają."
     },
     "why2": {
       "title": "Bezpośredni kontakt",
@@ -172,7 +172,7 @@
       "desc": "Dopasowuję rozwiązanie do Twoich potrzeb i budżetu, nie odwrotnie."
     },
     "ctaTitle": "Masz pomysł lub problem do rozwiązania?",
-    "ctaSubtitle": "Napisz —",
+    "ctaSubtitle": "Napisz -",
     "ctaAccent": "wycena i pierwsza rozmowa są bezpłatne.",
     "ctaBtn": "Napisz do mnie"
   },
@@ -256,7 +256,7 @@
     "projects": {
       "shelltyCMS": {
         "title": "Shellty CMS",
-        "subtitle": "— WordPress Alternative for B2B —",
+        "subtitle": "- WordPress Alternative for B2B -",
         "description": "Własny CMS na Next.js i Payload jako lekka alternatywa dla WordPressa. Pełna kontrola nad kodem i treścią bez zbędnego balastu.",
         "highlightsTitle": "ROZWIĄZANIA TECHNICZNE:",
         "highlights": [
@@ -270,7 +270,7 @@
       },
       "shelltyPulse": {
         "title": "Shellty Pulse",
-        "subtitle": "— Service Health Monitor & Keep-Alive —",
+        "subtitle": "- Service Health Monitor & Keep-Alive -",
         "description": "Monitor dostępności usług webowych z automatycznym keep-alive dla aplikacji na darmowych tierach. Flask + APScheduler na Oracle Cloud Always Free - działa 24/7 bez żadnych kosztów.",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
@@ -283,7 +283,7 @@
       },
       "postlio": {
         "title": "Postlio",
-        "subtitle": "— AI Social Media Autopilot —",
+        "subtitle": "- AI Social Media Autopilot -",
         "description": "Nowoczesna aplikacja PWA do kompleksowego zarządzania obecnością w Social Media przy wsparciu AI. Umożliwia tworzenie, planowanie i w pełni autonomiczną publikację treści na Facebook, Instagram i LinkedIn.",
         "highlightsTitle": "CO WARTO WIEDZIEĆ:",
         "highlights": [
@@ -296,7 +296,7 @@
       },
       "smartQuoteAI": {
         "title": "SmartQuote",
-        "subtitle": "— CRM & Sales Automation —",
+        "subtitle": "- CRM & Sales Automation -",
         "description": "CRM z AI generowaniem ofert, edytorem bloków PDF i integracją z e-fakturami. Korzystam z aplikacji do przygotowywania ofert.",
         "highlightsTitle": "CZYM SIĘ WYRÓŻNIA:",
         "highlights": [
@@ -319,7 +319,7 @@
       },
       "ksefMaster": {
         "title": "KSeF Master",
-        "subtitle": "— National E-Invoicing Ecosystem —",
+        "subtitle": "- National E-Invoicing Ecosystem -",
         "description": "Profesjonalna platforma do integracji z rządowym systemem e-faktur (KSeF). Architektura .NET 8 i React 19 zapewniająca pełną obsługę dokumentów FA(2), walidację schematów XML oraz wizualizacje PDF.",
         "highlightsTitle": "KLUCZOWE ROZWIĄZANIA:",
         "highlights": [
@@ -332,12 +332,12 @@
       },
       "shelltyKanban": {
         "title": "Shellty.Kanban",
-        "subtitle": "— Real-time Project Management —",
+        "subtitle": "- Real-time Project Management -",
         "year": "2026",
         "description": "Fullstack aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej, zbudowana od podstaw w .NET 10 i React 18. Zarządzanie tablicami i kartami z drag & drop, współpracą w czasie rzeczywistym przez SignalR oraz pełnym systemem Web Push działającym nawet gdy aplikacja jest zamknięta.",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
-          "📡 Real-time przez SignalR: live aktualizacje tablicy, wskaźniki obecności i „kto edytuje\" — widoczne dla wszystkich użytkowników bez odświeżania strony.",
+          "📡 Real-time przez SignalR: live aktualizacje tablicy, wskaźniki obecności i „kto edytuje\" - widoczne dla wszystkich użytkowników bez odświeżania strony.",
           "🔔 Web Push (VAPID + Service Worker): granularne preferencje powiadomień per urządzenie i typ zdarzenia (tworzenie, aktualizacja, przesunięcie, usunięcie, przypisanie); powiadomienia systemowe działają nawet gdy aplikacja jest zamknięta.",
           "🔒 JWT + Refresh Token: rotacja tokenów przy każdym użyciu, auto-refresh przez interceptor; bezpieczny logout per urządzenie bez wyłączania powiadomień push na innych urządzeniach.",
           "⚙️ CI/CD + Testy: GitHub Actions buduje, testuje i deployuje; 60+ testów xUnit z pokryciem kodu >95%."
@@ -346,7 +346,7 @@
       },
       "shelltyBlog": {
         "title": "Shellty Blog",
-        "subtitle": "— Modern MVC Blog Platform —",
+        "subtitle": "- Modern MVC Blog Platform -",
         "description": "Nowoczesny system CMS zbudowany w architekturze ASP.NET Core MVC z naciskiem na wzorce projektowe i Clean Code. W pełni skonteneryzowana aplikacja zintegrowana z chmurową bazą PostgreSQL (Neon).",
         "highlightsTitle": "CECHY TECHNICZNE:",
         "highlights": [
@@ -383,7 +383,7 @@
       },
       "budmaxTheme": {
         "title": "BudMax Theme",
-        "subtitle": "— Premium WordPress Construction Theme —",
+        "subtitle": "- Premium WordPress Construction Theme -",
         "year": "2026",
         "description": "Autorski motyw WordPress dla branży budowlanej, stawiający na czysty kod i wysoką wydajność. Pełna edycja treści przez ACF bez użycia ciężkich i nieprzewidywalnych page builderów.",
         "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA:",

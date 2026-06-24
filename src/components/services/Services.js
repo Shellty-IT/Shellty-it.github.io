@@ -17,6 +17,19 @@ import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
 import servicesCenter from '../../assets/icons/services/services_center.webp';
 
+// Punkty świetlne ("gwiazdki"), które poprzedzają pojawienie się grafiki
+const NODE_POINTS = [
+    { id: 0, x: '22%', y: '22%' },
+    { id: 1, x: '50%', y: '12%' },
+    { id: 2, x: '78%', y: '22%' },
+    { id: 3, x: '12%', y: '50%' },
+    { id: 4, x: '50%', y: '50%' },
+    { id: 5, x: '88%', y: '50%' },
+    { id: 6, x: '22%', y: '78%' },
+    { id: 7, x: '50%', y: '88%' },
+    { id: 8, x: '78%', y: '78%' },
+];
+
 const Services = () => {
     const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
@@ -103,6 +116,15 @@ const Services = () => {
                             className={`svc-icon-wrap svc-icon-wrap--${iconPhase}`}
                             aria-hidden="true"
                         >
+                            <div className="svc-icon-wrap__nodes" aria-hidden="true">
+                                {NODE_POINTS.map((n) => (
+                                    <span
+                                        key={n.id}
+                                        className="svc-icon-wrap__node"
+                                        style={{ left: n.x, top: n.y }}
+                                    />
+                                ))}
+                            </div>
                             <img
                                 src={servicesIcon}
                                 alt=""

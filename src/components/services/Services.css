@@ -76,12 +76,77 @@
     draggable: false;
 }
 
-/* Wygaszona grafika — widoczna domyślnie, ukryta na hover */
 .svc-icon-wrap__base {
-    opacity: 1;
-    transition: opacity 0.35s ease;
+    opacity: 0;
+    transition: opacity 0.8s ease;
     z-index: 1;
     filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.35));
+}
+
+.svc-icon-wrap__nodes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.svc-icon-wrap__node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    margin: -1.5px 0 0 -1.5px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    box-shadow: 0 0 6px rgba(12, 192, 255, 0.9);
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* ─── Fazy pojawiania się ─── */
+.svc-icon-wrap--hidden .svc-icon-wrap__base,
+.svc-icon-wrap--hidden .svc-icon-wrap__node {
+    opacity: 0;
+}
+
+.svc-icon-wrap--nodes .svc-icon-wrap__node,
+.svc-icon-wrap--forming .svc-icon-wrap__node {
+    animation: svcNodeActivate 0.6s ease-out forwards;
+}
+
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(1) { animation-delay: 0s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(2) { animation-delay: 0.07s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(3) { animation-delay: 0.14s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(4) { animation-delay: 0.21s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(5) { animation-delay: 0.28s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(6) { animation-delay: 0.35s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(7) { animation-delay: 0.42s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(8) { animation-delay: 0.49s; }
+.svc-icon-wrap--nodes .svc-icon-wrap__node:nth-child(9) { animation-delay: 0.56s; }
+
+.svc-icon-wrap--forming .svc-icon-wrap__base {
+    opacity: 0.45;
+    transition: opacity 1.2s ease;
+}
+
+.svc-icon-wrap--visible .svc-icon-wrap__node {
+    animation: svcNodeFade 0.8s ease-out forwards;
+}
+
+.svc-icon-wrap--visible .svc-icon-wrap__base {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+@keyframes svcNodeActivate {
+    0%   { opacity: 0; transform: scale(0.2); }
+    40%  { opacity: 1; transform: scale(1.4); }
+    70%  { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0.85; transform: scale(1); }
+}
+
+@keyframes svcNodeFade {
+    0%   { opacity: 0.85; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.2); }
 }
 
 /* Zębatka — ukryta domyślnie, widoczna na hover, obraca się */
@@ -93,16 +158,16 @@
     filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
 }
 
-/* Logo S — ukryte domyślnie, widoczne na hover, nieruchome */
 .svc-icon-wrap__center {
     opacity: 0;
     transition: opacity 0.35s ease;
     z-index: 3;
+    transform: translateX(0.2%) translateY(0.2%);
 }
 
-/* Hover: ukryj wygaszoną, pokaż glow-warstwy */
 .svc__header-hover-area:hover .svc-icon-wrap__base {
     opacity: 0;
+    animation: none;
 }
 
 .svc__header-hover-area:hover .svc-icon-wrap__rotating {
@@ -113,36 +178,36 @@
 
 .svc__header-hover-area:hover .svc-icon-wrap__center {
     opacity: 1;
+    animation: none;
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
-/* Puls automatyczny — ikona zaświeca raz przy wejściu i co ~7–9 s */
 .svc-icon-wrap--pulse .svc-icon-wrap__base {
-    animation: svcBaseDim 2.4s ease-in-out forwards;
+    animation: svcBaseDim 1.6s ease-in-out forwards;
 }
 
 .svc-icon-wrap--pulse .svc-icon-wrap__rotating {
     opacity: 1;
-    animation: svcGearSnap 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: svcGearSnap 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
 }
 
 .svc-icon-wrap--pulse .svc-icon-wrap__center {
-    animation: svcCenterPulse 2.4s ease-in-out forwards;
+    animation: svcCenterPulse 1.6s ease-in-out forwards;
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
 @keyframes svcBaseDim {
     0%   { opacity: 1; }
-    20%  { opacity: 0; }
-    80%  { opacity: 0; }
+    30%  { opacity: 0.35; }
+    70%  { opacity: 0.35; }
     100% { opacity: 1; }
 }
 
 @keyframes svcCenterPulse {
     0%   { opacity: 0; }
-    20%  { opacity: 1; }
-    80%  { opacity: 1; }
+    30%  { opacity: 1; }
+    70%  { opacity: 1; }
     100% { opacity: 0; }
 }
 
@@ -166,6 +231,21 @@
 
 @media (prefers-reduced-motion: reduce) {
     .svc-icon-wrap {
+        animation: none;
+    }
+    .svc-icon-wrap__node {
+        display: none;
+    }
+    .svc-icon-wrap__base,
+    .svc-icon-wrap--hidden .svc-icon-wrap__base,
+    .svc-icon-wrap--forming .svc-icon-wrap__base,
+    .svc-icon-wrap--visible .svc-icon-wrap__base {
+        opacity: 1;
+        animation: none;
+    }
+    .svc-icon-wrap--nodes .svc-icon-wrap__node,
+    .svc-icon-wrap--forming .svc-icon-wrap__node,
+    .svc-icon-wrap--visible .svc-icon-wrap__node {
         animation: none;
     }
     .svc__header-hover-area:hover .svc-icon-wrap__rotating {
