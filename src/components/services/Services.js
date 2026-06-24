@@ -1,5 +1,6 @@
 // src/components/services/Services.js
 import React, { useState } from 'react';
+import { useIconPhase } from '../../hooks/useIconPhase';
 import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from 'react-i18next';
 import {
@@ -19,6 +20,7 @@ import servicesCenter from '../../assets/icons/services/services_center.webp';
 const Services = () => {
     const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
+    const { iconRef, iconPhase } = useIconPhase('svc-icon-wrap--pulse');
 
     const cards = [
         {
@@ -96,7 +98,11 @@ const Services = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <div className="svc-icon-wrap" aria-hidden="true">
+                        <div
+                            ref={iconRef}
+                            className={`svc-icon-wrap svc-icon-wrap--${iconPhase}`}
+                            aria-hidden="true"
+                        >
                             <img
                                 src={servicesIcon}
                                 alt=""

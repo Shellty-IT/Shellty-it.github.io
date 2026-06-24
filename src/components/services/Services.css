@@ -116,6 +116,36 @@
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
+/* Puls automatyczny — ikona zaświeca raz przy wejściu i co ~7–9 s */
+.svc-icon-wrap--pulse .svc-icon-wrap__base {
+    animation: svcBaseDim 2.4s ease-in-out forwards;
+}
+
+.svc-icon-wrap--pulse .svc-icon-wrap__rotating {
+    opacity: 1;
+    animation: svcGearSnap 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
+}
+
+.svc-icon-wrap--pulse .svc-icon-wrap__center {
+    animation: svcCenterPulse 2.4s ease-in-out forwards;
+    filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
+}
+
+@keyframes svcBaseDim {
+    0%   { opacity: 1; }
+    20%  { opacity: 0; }
+    80%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes svcCenterPulse {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 @keyframes svcIconFloat {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-10px); }
@@ -141,6 +171,11 @@
     .svc__header-hover-area:hover .svc-icon-wrap__rotating {
         animation: none;
         transform: rotate(0deg);
+    }
+    .svc-icon-wrap--pulse .svc-icon-wrap__base,
+    .svc-icon-wrap--pulse .svc-icon-wrap__rotating,
+    .svc-icon-wrap--pulse .svc-icon-wrap__center {
+        animation: none;
     }
 }
 
