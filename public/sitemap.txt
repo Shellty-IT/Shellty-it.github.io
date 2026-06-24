@@ -3,4 +3,5 @@ https://shellty.pl/about/
 https://shellty.pl/experience/
 https://shellty.pl/skills/
 https://shellty.pl/portfolio/
+https://shellty.pl/services/
 https://shellty.pl/contact/

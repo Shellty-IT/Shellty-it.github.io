@@ -5,7 +5,8 @@
     "skills": "Umiejętności",
     "portfolio": "Portfolio",
     "experience": "Doświadczenie",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "services": "Usługi"
   },
   "home": {
     "greeting": "Cześć! Nazywam\u00A0się",
@@ -55,7 +56,7 @@
     "growthTitle": "Rozwój i Wizja",
     "growth": "Równolegle rozwijam swoje kompetencje, realizując własne projekty. Choć zawodowo koncentruję się na Twoich potrzebach, prywatnie pasjonuje mnie rozwój i praktyczne zastosowanie agentów AI w automatyzacji – co zawsze przekłada się na lepsze rozumienie nowoczesnych architektur.",
     "goalTitle": "Cel: Długofalowa Współpraca",
-    "goal": "Nie szukam \"kolejnego zlecenia\". Aktywnie poszukuję Partnera lub Pracodawcy, z którym zbuduję relację na lata. Zależy mi na miejscu, w którym będę mógł wnosić realną wartość od pierwszego dnia i stale rozwijać swoje kompetencje przy wspólnych, ambitnych projektach.",
+    "goal": "Nie szukam tylko \"kolejnego zlecenia\". Przede wszystkim zależy mi na długofalowej współpracy z Partnerem lub Pracodawcą, z którym zbuduję relację na lata - miejscu, gdzie będę mógł wnosić realną wartość od pierwszego dnia i rozwijać się przy ambitnych projektach. Nie wykluczam jednak zleceń, jeśli jest to dobry punkt wyjścia do czegoś więcej.",
     "ctaExperience": "Zobacz doświadczenie",
     "ctaContact": "Skontaktuj się",
     "social": {
@@ -119,6 +120,61 @@
         "desc": "Szybko adaptuję się do zmieniających się wymagań i nowych środowisk."
       }
     }
+  },
+  "services": {
+    "title": "Usługi IT",
+    "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> — dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem — bez pośredników i agencyjnych narzutów.",
+    "forWhomLabel": "Dla kogo:",
+    "card1": {
+      "kicker": "Strony internetowe",
+      "title": "Tworzenie stron internetowych dla firm i osób prywatnych",
+      "desc": "Projektuję i buduję nowoczesne strony: wizytówki, strony firmowe, landing page i portfolio. Każda jest responsywna, szybka i przygotowana pod podstawową optymalizację SEO, żeby klienci mogli Cię znaleźć w Google. Mogę zbudować stronę na autorskim systemie CMS lub na WordPressie — z panelem, w którym samodzielnie zmienisz treści, bez znajomości kodu.",
+      "forWhom": "małe firmy, freelancerzy, lokalne biznesy, osoby prywatne."
+    },
+    "card2": {
+      "kicker": "Aplikacje i narzędzia webowe",
+      "title": "Aplikacje webowe na zamówienie i automatyzacja procesów",
+      "desc": "Tworzę aplikacje dopasowane do konkretnych potrzeb: panele administracyjne, proste systemy CRM, narzędzia do zarządzania i aplikacje automatyzujące powtarzalne zadania. Potrafię też zintegrować aplikację z zewnętrznymi usługami przez API — np. z płatnościami, e-fakturowaniem (KSeF) czy narzędziami AI. Jeśli prowadzisz firmę w arkuszach Excela, mogę zamienić to w wygodną aplikację.",
+      "forWhom": "firmy chcące usprawnić i zautomatyzować swoją pracę."
+    },
+    "card3": {
+      "kicker": "Mniejsze zadania programistyczne",
+      "title": "Pomoc programistyczna, poprawki i rozbudowa",
+      "desc": "Realizuję także mniejsze zlecenia — bez konieczności zamawiania dużego projektu. Poprawię i rozbuduję istniejącą stronę lub aplikację, naprawię błędy, napiszę skrypt automatyzujący nudne, powtarzalne czynności albo pomogę dokończyć projekt, który utknął. Dobre rozwiązanie, gdy potrzebujesz konkretnej, szybkiej pomocy technicznej.",
+      "forWhom": "osoby i firmy z bieżącymi, mniejszymi potrzebami programistycznymi."
+    },
+    "card4": {
+      "kicker": "Wsparcie i outsourcing IT",
+      "title": "Wsparcie informatyczne i outsourcing IT dla małych firm",
+      "desc": "Zajmę się stroną techniczną Twojej firmy, żebyś Ty mógł zajmować się biznesem. Oferuję administrację serwerami (Windows i Linux), konfigurację sieci i urządzeń, kopie zapasowe, wdrożenia oraz wsparcie użytkowników. W praktyce działam jak zewnętrzny dział IT dla małej firmy — dostępny zdalnie, bez kosztu zatrudniania informatyka na etat.",
+      "forWhom": "małe firmy bez własnego działu IT."
+    },
+    "howTitle": "Jak pracuję",
+    "step1": { "title": "Rozmowa", "desc": "Opowiadasz, czego potrzebujesz; wspólnie ustalamy zakres. Bezpłatnie." },
+    "step2": { "title": "Wycena i plan", "desc": "Dostajesz jasną wycenę i orientacyjny termin, bez ukrytych kosztów." },
+    "step3": { "title": "Realizacja", "desc": "Buduję rozwiązanie, jesteśmy w stałym kontakcie." },
+    "step4": { "title": "Wdrożenie i wsparcie", "desc": "Uruchamiam projekt i służę pomocą również później." },
+    "whyTitle": "Dlaczego ja",
+    "why1": {
+      "title": "Programista i informatyk w jednym",
+      "desc": "Buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne — bo rozumiem całą infrastrukturę, na której działają."
+    },
+    "why2": {
+      "title": "Bezpośredni kontakt",
+      "desc": "Rozmawiasz z osobą, która wykonuje pracę, nie z pośrednikiem."
+    },
+    "why3": {
+      "title": "Działające portfolio",
+      "desc": "Moje projekty możesz zobaczyć na żywo (live demo), a nie tylko na obrazkach."
+    },
+    "why4": {
+      "title": "Indywidualne podejście",
+      "desc": "Dopasowuję rozwiązanie do Twoich potrzeb i budżetu, nie odwrotnie."
+    },
+    "ctaTitle": "Masz pomysł lub problem do rozwiązania?",
+    "ctaSubtitle": "Napisz —",
+    "ctaAccent": "wycena i pierwsza rozmowa są bezpłatne.",
+    "ctaBtn": "Napisz do mnie"
   },
   "skills": {
     "title": "Umiejętności",

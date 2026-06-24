@@ -417,7 +417,11 @@
 .about__actions .btn--outline:hover .btn-glow-icon .glow-icon-lit  { opacity: 1; }
 .about__actions .btn--outline .btn-glow-icon .glow-icon-base { opacity: 0.5; }
 .about__actions .btn--outline:hover .btn-glow-icon .glow-icon-base { opacity: 0; }
-.about__actions .btn-glow-icon--contact { transform: scale(1.25); }
+.about__actions .btn-glow-icon--portfolio { transform: scale(1.15); }
+.about__actions .btn--primary:hover .btn-glow-icon--portfolio {
+    transform: scale(1.35) translateY(-1px);
+}
+.about__actions .btn-glow-icon--contact { transform: scale(1.15); }
 .about__actions .btn--contact:hover .btn-glow-icon--contact {
     transform: scale(1.35) translateY(-1px);
 }

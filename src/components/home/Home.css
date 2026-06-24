@@ -184,7 +184,7 @@
 }
 
 .btn-icon-wrap--portfolio .btn-icon {
-    transform: scale(1.50);
+    transform: scale(1.70);
     transform-origin: center;
 }
 
@@ -226,7 +226,8 @@
 }
 
 .btn-icon-wrap--contact .btn-icon {
-    transform: scale(1.5);
+    transform: scale(1.6);
+    transform-origin: center;
 }
 
 /* ─── Meta stats ─── */

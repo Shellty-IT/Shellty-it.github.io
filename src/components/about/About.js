@@ -376,7 +376,7 @@ const About = () => {
                                     srcGlow={portfolioGlow}
                                     alt=""
                                     size={42}
-                                    className="btn-glow-icon"
+                                    className="btn-glow-icon btn-glow-icon--portfolio"
                                 />
                                 {t("nav.portfolio")}
                             </HashLink>
@@ -390,7 +390,7 @@ const About = () => {
                                     src={contactIcon}
                                     srcGlow={contactGlow}
                                     alt=""
-                                    size={36}
+                                    size={42}
                                     className="btn-glow-icon btn-glow-icon--contact"
                                 />
                                 {t("about.ctaContact")}

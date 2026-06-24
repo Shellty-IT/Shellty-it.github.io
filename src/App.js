@@ -9,6 +9,7 @@ import SeoManager from "./seo/SeoManager";
 import './App.css';
 
 const About      = lazy(() => import(/* webpackPrefetch: true */ "./components/about/About"));
+const Services    = lazy(() => import(/* webpackPrefetch: true */ "./components/services/Services"));
 const Experience  = lazy(() => import(/* webpackPrefetch: true */ "./components/experience/Experience"));
 const Skills      = lazy(() => import(/* webpackPrefetch: true */ "./components/skills/Skills"));
 const Portfolio   = lazy(() => import(/* webpackPrefetch: true */ "./components/portfolio/Portfolio"));
@@ -32,6 +33,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />
+                        <Route path="/services" element={<Services />} />
                         <Route path="/experience" element={<Experience />} />
                         <Route path="/skills" element={<Skills />} />
                         <Route path="/portfolio" element={<Portfolio />} />

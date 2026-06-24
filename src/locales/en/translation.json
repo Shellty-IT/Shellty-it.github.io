@@ -1,11 +1,12 @@
-{
+﻿{
   "nav": {
     "home": "Shellty",
     "about": "Bio",
     "skills": "Skills",
     "portfolio": "Portfolio",
     "experience": "Experience",
-    "contact": "Contact"
+    "contact": "Contact",
+    "services": "Services"
   },
   "home": {
     "greeting": "Hi! My name is",
@@ -55,7 +56,7 @@
     "growthTitle": "Growth & Vision",
     "growth": "In parallel, I’m developing my competencies by delivering my own projects. While professionally I focus on your needs, privately I’m passionate about the development and practical use of AI agents in automation - which always translates into a better understanding of modern architectures.",
     "goalTitle": "Goal: Long-term Collaboration",
-    "goal": "I’m not looking for \"just another gig\". I’m actively seeking a Partner or Employer with whom I can build a relationship for years. I care about a place where I can bring real value from day one and continuously grow my competencies through ambitious, joint projects.",
+    "goal": "I’m not just looking for \"another gig\". Above all, I’m seeking long-term collaboration with a Partner or Employer with whom I can build a relationship for years - a place where I can bring real value from day one and grow through ambitious projects. That said, I’m open to freelance work too, especially if it can be a stepping stone to something more.",
     "ctaExperience": "See experience",
     "ctaContact": "Get in touch",
     "social": {
@@ -222,6 +223,61 @@
         ]
       }
     }
+  },
+  "services": {
+    "title": "IT Services",
+    "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> — so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication — no middlemen, no agency markups.",
+    "forWhomLabel": "For whom:",
+    "card1": {
+      "kicker": "Websites",
+      "title": "Website creation for businesses and individuals",
+      "desc": "I design and build modern websites: business cards, company sites, landing pages, and portfolios. Each one is responsive, fast, and optimised for basic SEO so your clients can find you on Google. I can build on a custom CMS or WordPress — with a panel where you can update content yourself, no coding required.",
+      "forWhom": "small businesses, freelancers, local companies, individuals."
+    },
+    "card2": {
+      "kicker": "Web apps & tools",
+      "title": "Custom web applications and process automation",
+      "desc": "I build applications tailored to specific needs: admin panels, simple CRM systems, management tools, and apps that automate repetitive tasks. I can also integrate with external services via API — e.g. payments, e-invoicing (KSeF), or AI tools. If you're running your business in Excel spreadsheets, I can turn that into a proper application.",
+      "forWhom": "businesses looking to streamline and automate their work."
+    },
+    "card3": {
+      "kicker": "Smaller dev tasks",
+      "title": "Programming help, fixes, and extensions",
+      "desc": "I also handle smaller programming jobs — no need to commission a full project. I'll fix and extend an existing site or app, squash bugs, write a script to automate tedious repetitive tasks, or help finish a project that got stuck. A great option when you need specific, fast technical help.",
+      "forWhom": "individuals and businesses with ongoing, smaller programming needs."
+    },
+    "card4": {
+      "kicker": "IT support & outsourcing",
+      "title": "IT support and outsourcing for small businesses",
+      "desc": "I'll handle the technical side of your business so you can focus on running it. I offer server administration (Windows and Linux), network and device configuration, backups, deployments, and user support. In practice, I act as an external IT department for a small company — available remotely, without the cost of hiring a full-time IT person.",
+      "forWhom": "small businesses without their own IT department."
+    },
+    "howTitle": "How I work",
+    "step1": { "title": "Discovery call", "desc": "You tell me what you need; we define the scope together. Free of charge." },
+    "step2": { "title": "Quote & plan", "desc": "You receive a clear quote and estimated timeline, with no hidden costs." },
+    "step3": { "title": "Delivery", "desc": "I build the solution; we stay in constant contact." },
+    "step4": { "title": "Launch & support", "desc": "I launch the project and remain available for support afterwards." },
+    "whyTitle": "Why me",
+    "why1": {
+      "title": "Developer and sysadmin in one",
+      "desc": "I build solutions that are not only functional, but also stable and secure — because I understand the full infrastructure they run on."
+    },
+    "why2": {
+      "title": "Direct contact",
+      "desc": "You talk to the person doing the work, not a middleman."
+    },
+    "why3": {
+      "title": "Live portfolio",
+      "desc": "You can see my projects live (live demo), not just in screenshots."
+    },
+    "why4": {
+      "title": "Individual approach",
+      "desc": "I tailor the solution to your needs and budget, not the other way around."
+    },
+    "ctaTitle": "Got an idea or a problem to solve?",
+    "ctaSubtitle": "Write to me —",
+    "ctaAccent": "the quote and first conversation are free.",
+    "ctaBtn": "Write to me"
   },
   "skills": {
     "title": "Skills",
