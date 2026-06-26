@@ -1,6 +1,3 @@
-/* src/components/services/Services.css */
-
-/* ─── Layout sekcji ─── */
 .svc {
     --section-padding-top: 110px;
 
@@ -16,7 +13,6 @@
     margin: 0 auto;
 }
 
-/* ─── Header ─── */
 .svc__header {
     text-align: center;
     margin-bottom: 8px;
@@ -52,7 +48,6 @@
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.55));
 }
 
-/* ─── Ikona sekcji ─── */
 .svc-icon-wrap {
     position: relative;
     width: 228px;
@@ -61,10 +56,11 @@
     flex-shrink: 0;
     animation: svcIconFloat 3.5s ease-in-out infinite;
     will-change: transform;
+    outline: none;
 }
 
 .svc-icon-wrap__base,
-.svc-icon-wrap__rotating,
+.svc-icon-wrap__rotating-shell,
 .svc-icon-wrap__center {
     position: absolute;
     inset: 0;
@@ -73,14 +69,42 @@
     object-fit: contain;
     pointer-events: none;
     user-select: none;
-    draggable: false;
 }
 
 .svc-icon-wrap__base {
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 0.65s ease;
     z-index: 1;
     filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.35));
+}
+
+.svc-icon-wrap__rotating-shell {
+    opacity: 0;
+    z-index: 2;
+    transform-origin: center center;
+    transition: opacity 0.65s ease;
+    filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
+    will-change: opacity, transform;
+}
+
+.svc-icon-wrap__rotating {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transform-origin: center center;
+    animation: svcGearSlowSpin 9s linear infinite;
+    will-change: transform;
+}
+
+.svc-icon-wrap__center {
+    opacity: 0;
+    z-index: 3;
+    transform: translateX(0.2%) translateY(0.2%);
+    transition: opacity 0.65s ease;
 }
 
 .svc-icon-wrap__nodes {
@@ -102,7 +126,6 @@
     will-change: opacity, transform;
 }
 
-/* ─── Fazy pojawiania się ─── */
 .svc-icon-wrap--hidden .svc-icon-wrap__base,
 .svc-icon-wrap--hidden .svc-icon-wrap__node {
     opacity: 0;
@@ -137,130 +160,128 @@
     transition: opacity 0.4s ease;
 }
 
-@keyframes svcNodeActivate {
-    0%   { opacity: 0; transform: scale(0.2); }
-    40%  { opacity: 1; transform: scale(1.4); }
-    70%  { opacity: 0.7; transform: scale(0.9); }
-    100% { opacity: 0.85; transform: scale(1); }
+.svc-icon-wrap--pulse .svc-icon-wrap__base {
+    opacity: 0.2;
 }
 
-@keyframes svcNodeFade {
-    0%   { opacity: 0.85; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.2); }
+.svc-icon-wrap--pulse .svc-icon-wrap__rotating-shell {
+    opacity: 1;
 }
 
-/* Zębatka — ukryta domyślnie, widoczna na hover, obraca się */
-.svc-icon-wrap__rotating {
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 2;
-    transform-origin: center center;
-    filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
-}
-
-.svc-icon-wrap__center {
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 3;
-    transform: translateX(0.2%) translateY(0.2%);
+.svc-icon-wrap--pulse .svc-icon-wrap__center {
+    opacity: 1;
+    filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
 .svc__header-hover-area:hover .svc-icon-wrap__base {
     opacity: 0;
-    animation: none;
 }
 
-.svc__header-hover-area:hover .svc-icon-wrap__rotating {
+.svc__header-hover-area:hover .svc-icon-wrap__rotating-shell {
     opacity: 1;
-    animation: svcGearSnap 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
-               svcGearSpin 8s linear 2.4s infinite;
 }
 
 .svc__header-hover-area:hover .svc-icon-wrap__center {
     opacity: 1;
-    animation: none;
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
-.svc-icon-wrap--pulse .svc-icon-wrap__base {
-    animation: svcBaseDim 1.6s ease-in-out forwards;
+.svc-icon-wrap--kick .svc-icon-wrap__base {
+    opacity: 0;
 }
 
-.svc-icon-wrap--pulse .svc-icon-wrap__rotating {
+.svc-icon-wrap--kick .svc-icon-wrap__rotating-shell {
     opacity: 1;
-    animation: svcGearSnap 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    filter: drop-shadow(0 0 18px rgba(12, 192, 255, 0.7));
+    animation: svcGearHandKick 1.6s linear 1;
 }
 
-.svc-icon-wrap--pulse .svc-icon-wrap__center {
-    animation: svcCenterPulse 1.6s ease-in-out forwards;
+.svc-icon-wrap--kick .svc-icon-wrap__center {
+    opacity: 1;
     filter: drop-shadow(0 0 14px rgba(12, 192, 255, 0.5));
 }
 
-@keyframes svcBaseDim {
-    0%   { opacity: 1; }
-    30%  { opacity: 0.35; }
-    70%  { opacity: 0.35; }
-    100% { opacity: 1; }
+@keyframes svcNodeActivate {
+    0% { opacity: 0; transform: scale(0.2); }
+    40% { opacity: 1; transform: scale(1.4); }
+    70% { opacity: 0.7; transform: scale(0.9); }
+    100% { opacity: 0.85; transform: scale(1); }
 }
 
-@keyframes svcCenterPulse {
-    0%   { opacity: 0; }
-    30%  { opacity: 1; }
-    70%  { opacity: 1; }
-    100% { opacity: 0; }
+@keyframes svcNodeFade {
+    0% { opacity: 0.85; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.2); }
 }
 
 @keyframes svcIconFloat {
     0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-10px); }
+    50% { transform: translateY(-10px); }
 }
 
-@keyframes svcGearSnap {
-    0%   { transform: rotate(0deg); }
-    70%  { transform: rotate(330deg); }
-    88%  { transform: rotate(365deg); }
-    94%  { transform: rotate(357deg); }
-    100% { transform: rotate(360deg); }
+@keyframes svcGearSlowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-@keyframes svcGearSpin {
-    from { transform: rotate(360deg); }
-    to   { transform: rotate(720deg); }
+@keyframes svcGearHandKick {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    18% {
+        transform: rotate(115deg);
+    }
+
+    42% {
+        transform: rotate(235deg);
+    }
+
+    68% {
+        transform: rotate(320deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .svc-icon-wrap {
         animation: none;
     }
+
     .svc-icon-wrap__node {
         display: none;
     }
+
     .svc-icon-wrap__base,
+    .svc-icon-wrap__rotating-shell,
+    .svc-icon-wrap__rotating,
+    .svc-icon-wrap__center,
     .svc-icon-wrap--hidden .svc-icon-wrap__base,
     .svc-icon-wrap--forming .svc-icon-wrap__base,
     .svc-icon-wrap--visible .svc-icon-wrap__base {
-        opacity: 1;
         animation: none;
+        transition: none;
     }
+
+    .svc-icon-wrap__base,
+    .svc-icon-wrap--visible .svc-icon-wrap__base {
+        opacity: 1;
+    }
+
+    .svc-icon-wrap__rotating-shell,
+    .svc-icon-wrap__center {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+
     .svc-icon-wrap--nodes .svc-icon-wrap__node,
     .svc-icon-wrap--forming .svc-icon-wrap__node,
     .svc-icon-wrap--visible .svc-icon-wrap__node {
         animation: none;
     }
-    .svc__header-hover-area:hover .svc-icon-wrap__rotating {
-        animation: none;
-        transform: rotate(0deg);
-    }
-    .svc-icon-wrap--pulse .svc-icon-wrap__base,
-    .svc-icon-wrap--pulse .svc-icon-wrap__rotating,
-    .svc-icon-wrap--pulse .svc-icon-wrap__center {
-        animation: none;
-    }
 }
 
-
-/* ─── Intro ─── */
 .svc-intro {
     text-align: center;
     max-width: 780px;
@@ -275,7 +296,6 @@
     font-weight: 600;
 }
 
-/* ─── Grid kart usług ─── */
 .svc-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -283,7 +303,6 @@
     margin-bottom: 56px;
 }
 
-/* ─── Karta usługi ─── */
 .svc-card {
     position: relative;
     padding: 24px 22px 20px;
@@ -299,7 +318,6 @@
     transform: translateY(-3px);
 }
 
-/* Corner brackets */
 .svc-card .corner {
     position: absolute;
     width: 12px;
@@ -311,14 +329,18 @@
 }
 
 .svc-card .corner.tl {
-    top: 10px; left: 10px;
-    border-right: none; border-bottom: none;
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
     transform: translate(-4px, -4px);
 }
 
 .svc-card .corner.br {
-    bottom: 10px; right: 10px;
-    border-left: none; border-top: none;
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
     transform: translate(4px, 4px);
 }
 
@@ -327,7 +349,6 @@
     transform: translate(0, 0);
 }
 
-/* Lewa krawędź akcentowa */
 .svc-card::before {
     content: "";
     position: absolute;
@@ -412,7 +433,6 @@
     font-weight: 600;
 }
 
-/* ─── Block head (Jak pracuję / Dlaczego ja) ─── */
 .svc-block-head {
     display: flex;
     align-items: center;
@@ -442,7 +462,6 @@
     background: linear-gradient(90deg, rgba(12, 192, 255, 0.25), transparent);
 }
 
-/* ─── Kroki (Jak pracuję) ─── */
 .svc-steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -490,7 +509,6 @@
     margin: 0;
 }
 
-/* ─── Dlaczego ja ─── */
 .svc-why-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -541,7 +559,6 @@
     margin: 0;
 }
 
-/* ─── CTA ─── */
 .svc-cta {
     display: flex;
     align-items: center;
@@ -572,7 +589,6 @@
     font-weight: 600;
 }
 
-/* ─── Przycisk (wzorowany na istniejącym .btn) ─── */
 .svc .btn {
     display: inline-flex;
     align-items: center;
@@ -613,7 +629,6 @@
     scroll-margin-top: 80px;
 }
 
-/* ─── Responsive ─── */
 @media (max-width: 900px) {
     .svc-steps {
         grid-template-columns: repeat(2, 1fr);
