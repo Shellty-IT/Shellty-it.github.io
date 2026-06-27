@@ -640,6 +640,12 @@
         --section-padding-top: 40px;
     }
 
+    .svc-icon-wrap {
+        width: 140px;
+        height: 140px;
+        margin-bottom: -16px;
+    }
+
     .svc-grid {
         grid-template-columns: 1fr;
     }
