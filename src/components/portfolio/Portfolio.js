@@ -10,7 +10,7 @@ import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay, FaTimes } 
 import { useTranslation, Trans } from 'react-i18next';
 
 import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
-import ksefThumbnail from '../../assets/thumbnails/ksef-master.webp';
+import ksefThumbnail from '../../assets/thumbnails/ksef_master.webp';
 import ksefThumbnailAng from '../../assets/thumbnails/ksef_master_ang.webp';
 import smartquoteThumbnail from '../../assets/thumbnails/smartquote.webp';
 import postlioThumbnail from '../../assets/thumbnails/postlio.webp';
