@@ -394,6 +394,20 @@
           "🚀 Pantheon DevOps: Profesjonalny workflow wdrożeniowy oparty na Git z lokalnym środowiskiem DDEV i automatycznym cache bustingiem przez filetime()"
         ],
         "tech": ["WordPress", "PHP 8.2", "ACF", "Pantheon", "DDEV", "AJAX", "JavaScript", "SEO"]
+      },
+      "tomiForno": {
+        "title": "Tomi Forno",
+        "subtitle": "- Pizzeria Neapolitańska · Full-Stack -",
+        "year": "2026",
+        "description": "Wielostronicowa aplikacja webowa dla pizzerii neapolitańskiej zbudowana jako projekt portfolio. Zawiera interaktywne menu, galerię, system rezerwacji oraz kreator własnej pizzy. W kreatorze działa agent AI, który podpowiada jakie składniki do siebie pasują i które warto ze sobą łączyć.",
+        "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
+        "highlights": [
+          "🍕 Kreator Pizzy: Interaktywny kompozytor warstw (sos/ser/dodatki) z podglądem graficznym i dynamiczną ceną hybrydową (ciasto + składniki flat)",
+          "🤖 AI Agent: Sugestie składników według dopasowania smakowego — agent podpowiada które składniki warto ze sobą łączyć",
+          "🌍 i18n PL/EN: next-intl z routingiem [locale], pełna dwujęzyczność z przełącznikiem języka w mobilnej nawigacji",
+          "📱 Mobile Nav: Pizza-koło jako sygnatura UX — hamburger otwiera pełnoekranową nakładkę z interaktywnym navigatorem"
+        ],
+        "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Strapi 5", "next-intl"]
       }
     }
   },

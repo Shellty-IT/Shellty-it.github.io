@@ -495,6 +495,20 @@
           "Deployment to Pantheon via Git with cache busting via filemtime()."
         ],
         "tech": ["WordPress", "PHP", "ACF", "CSS", "JavaScript", "Pantheon", "AJAX", "i18n"]
+      },
+      "tomiForno": {
+        "title": "Tomi Forno",
+        "subtitle": "- Neapolitan Pizzeria · Full-Stack -",
+        "year": "2026",
+        "description": "A multi-page full-stack pizzeria website built as a portfolio project. Features an interactive menu, gallery, reservation system, and a custom pizza builder. The builder includes an AI agent that suggests ingredient combinations, recommending which toppings pair well together.",
+        "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
+        "highlights": [
+          "🍕 Pizza Builder: Interactive layer-by-layer composer (sauce/cheese/toppings) with live visual preview and hybrid pricing (dough + flat toppings)",
+          "🤖 AI Agent: Ingredient pairing suggestions based on flavour compatibility — the agent recommends which toppings work well together",
+          "🌍 i18n PL/EN: next-intl with [locale] routing, full bilingual support with language switcher in mobile navigation",
+          "📱 Mobile Nav: Pizza wheel as UX signature — hamburger opens a full-screen overlay with interactive navigator"
+        ],
+        "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Strapi 5", "next-intl"]
       }
     }
   },
