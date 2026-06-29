@@ -222,7 +222,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
 
 /**
  * Renderuje linie opisu projektu z zachowaniem podziałów \n.
- * Memoizowany i wyciągnięty do osobnego komponentu — split() wykonywany
+ * Memoizowany i wyciągnięty do osobnego komponentu - split() wykonywany
  * raz przy zmianie description, nie przy każdym rerenderze karty.
  */
 const ProjectDescription = memo(({ description }) => {
@@ -259,7 +259,7 @@ const Portfolio = () => {
         {
             id: "tomiForno",
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
-            demoLink: null,
+            demoLink: 'https://tomi-forno.vercel.app',
             githubLink: null,
             title: t('portfolio.projects.tomiForno.title'),
             subtitle: t('portfolio.projects.tomiForno.subtitle'),
@@ -552,7 +552,7 @@ const Portfolio = () => {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="overlay-cta"
-                                                aria-label={`${t('portfolio.actions.demo')} — ${project.title}`}
+                                                aria-label={`${t('portfolio.actions.demo')} - ${project.title}`}
                                             >
                                                 <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
                                             </a>

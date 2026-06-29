@@ -403,9 +403,9 @@
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
           "🍕 Kreator Pizzy: Interaktywny kompozytor warstw (sos/ser/dodatki) z podglądem graficznym i dynamiczną ceną hybrydową (ciasto + składniki flat)",
-          "🤖 AI Agent: Sugestie składników według dopasowania smakowego — agent podpowiada które składniki warto ze sobą łączyć",
+          "🤖 AI Agent: Sugestie składników według dopasowania smakowego - agent podpowiada które składniki warto ze sobą łączyć",
           "🌍 i18n PL/EN: next-intl z routingiem [locale], pełna dwujęzyczność z przełącznikiem języka w mobilnej nawigacji",
-          "📱 Mobile Nav: Pizza-koło jako sygnatura UX — hamburger otwiera pełnoekranową nakładkę z interaktywnym navigatorem"
+          "📱 Mobile Nav: Pizza-koło jako sygnatura UX - hamburger otwiera pełnoekranową nakładkę z interaktywnym navigatorem"
         ],
         "tech": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Strapi 5", "next-intl"]
       }
