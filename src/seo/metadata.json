@@ -1,6 +1,6 @@
 {
   "siteUrl": "https://shellty-it.github.io",
-  "image": "https://shellty-it.github.io/og-image-v2.png",
+  "image": "https://shellty-it.github.io/og-image.png",
   "routes": {
     "/": {
       "output": "index.html",
