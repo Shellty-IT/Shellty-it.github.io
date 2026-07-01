@@ -294,7 +294,7 @@ const Portfolio = () => {
         {
             id: "shelltyCMS",
             image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
-            demoLink: 'https://shellty-cms.vercel.app/',
+            demoLink: 'https://cms.shellty.pl/',
             githubLink: null,
             title: t('portfolio.projects.shelltyCMS.title'),
             subtitle: t('portfolio.projects.shelltyCMS.subtitle'),
