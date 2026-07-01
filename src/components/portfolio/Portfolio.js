@@ -259,7 +259,7 @@ const Portfolio = () => {
         {
             id: "tomiForno",
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
-            demoLink: 'https://tomi-forno.vercel.app',
+            demoLink: 'https://tomi-forno.shellty.pl',
             githubLink: null,
             title: t('portfolio.projects.tomiForno.title'),
             subtitle: t('portfolio.projects.tomiForno.subtitle'),
@@ -273,7 +273,7 @@ const Portfolio = () => {
         {
             id: "smartQuoteAI",
             image: smartquoteThumbnail,
-            demoLink: 'https://smart-quote-ai.vercel.app',
+            demoLink: 'https://smart-quote.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/SmartQuote',
             title: t('portfolio.projects.smartQuoteAI.title'),
             subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
@@ -322,7 +322,7 @@ const Portfolio = () => {
         {
             id: "shelltyKanban",
             image: currentLanguage === 'en' ? kanbanThumbnailAng : kanbanThumbnail,
-            demoLink: 'https://shellty-kanban.vercel.app/',
+            demoLink: 'https://kanban.shellty.pl/',
             githubLink: 'https://github.com/Shellty-IT/NerdsApp_KanbanApp',
             title: t('portfolio.projects.shelltyKanban.title'),
             subtitle: t('portfolio.projects.shelltyKanban.subtitle'),
@@ -343,7 +343,7 @@ const Portfolio = () => {
         {
             id: "shelltyPulse",
             image: shelltyPulseThumbnail,
-            demoLink: 'https://shellty-pulse.duckdns.org',
+            demoLink: 'https://pulse.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
             title: t('portfolio.projects.shelltyPulse.title'),
             subtitle: t('portfolio.projects.shelltyPulse.subtitle'),
@@ -358,7 +358,7 @@ const Portfolio = () => {
         {
             id: "ksefMaster",
             image: currentLanguage === 'en' ? ksefThumbnailAng : ksefThumbnail,
-            demoLink: 'https://ksef-master.netlify.app/',
+            demoLink: 'https://ksef-master.shellty.pl/',
             githubLink: 'https://github.com/Shellty-IT/KSeF_Master',
             title: t('portfolio.projects.ksefMaster.title'),
             subtitle: t('portfolio.projects.ksefMaster.subtitle'),
@@ -380,7 +380,7 @@ const Portfolio = () => {
         {
             id: "shelltyBlog",
             image: shelltyBlogThumbnail,
-            demoLink: 'https://shellty-blog.onrender.com',
+            demoLink: 'https://blog.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
             videoLink: 'https://vimeo.com/1175749805',
             title: t('portfolio.projects.shelltyBlog.title'),
@@ -402,7 +402,7 @@ const Portfolio = () => {
         {
             id: "postlio",
             image: currentLanguage === 'en' ? postlioThumbnailAng : postlioThumbnail,
-            demoLink: 'https://postlio.netlify.app/',
+            demoLink: 'https://postlio.shellty.pl/',
             githubLink: null,
             title: t('portfolio.projects.postlio.title'),
             subtitle: t('portfolio.projects.postlio.subtitle'),
