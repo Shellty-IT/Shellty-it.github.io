@@ -230,7 +230,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Moje publiczne portfolio jest obecnie skromne, ponieważ większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> Korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
+    "subtitleHtml": "Większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> W niektórych aplikacjach korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
