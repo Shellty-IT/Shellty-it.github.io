@@ -32,6 +32,21 @@
         "socialDescription": "Web development, systems administration, networks and practical IT support for businesses."
       }
     },
+    "/services/": {
+      "output": "services/index.html",
+      "pl": {
+        "title": "Usługi IT, strony internetowe i aplikacje webowe | Shellty",
+        "description": "Usługi Shellty: tworzenie stron internetowych, aplikacje webowe na zamówienie, automatyzacja procesów, wsparcie IT i outsourcing dla małych firm.",
+        "socialTitle": "Usługi IT, strony i aplikacje webowe | Shellty",
+        "socialDescription": "Strony internetowe, aplikacje webowe, automatyzacja, poprawki programistyczne oraz bieżące wsparcie IT dla firm."
+      },
+      "en": {
+        "title": "IT services, websites and web applications | Shellty",
+        "description": "Shellty services include website development, custom web applications, process automation, programming support and IT outsourcing for small businesses.",
+        "socialTitle": "IT services, websites and web applications | Shellty",
+        "socialDescription": "Websites, web applications, automation, programming fixes and ongoing IT support for businesses."
+      }
+    },
     "/experience/": {
       "output": "experience/index.html",
       "pl": {
