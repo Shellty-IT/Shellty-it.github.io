@@ -282,7 +282,7 @@
         "tech": ["Python", "Flask", "Docker", "Ansible", "APScheduler", "GitHub Actions", "Oracle Cloud", "Gunicorn"]
       },
       "postlio": {
-        "title": "Postlio",
+        "title": "Postlio (w trakcie tworzenia)",
         "subtitle": "- AI Social Media Autopilot -",
         "description": "Nowoczesna aplikacja PWA do kompleksowego zarządzania obecnością w Social Media przy wsparciu AI. Umożliwia tworzenie, planowanie i w pełni autonomiczną publikację treści na Facebook, Instagram i LinkedIn.",
         "highlightsTitle": "CO WARTO WIEDZIEĆ:",
