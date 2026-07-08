@@ -26,6 +26,8 @@ import shelltyCmsThumbnailAng from '../../assets/thumbnails/shellty_cms_en.webp'
 import budmaxThumbnail from '../../assets/thumbnails/wordpress_theme.webp';
 import tomiFornoPl from '../../assets/thumbnails/tomi_forno_pl.webp';
 import tomiFornoEn from '../../assets/thumbnails/tomi_forno_ang.webp';
+import promptCoachThumbnail from '../../assets/thumbnails/coach.webp';
+import promptCoachThumbnailAng from '../../assets/thumbnails/coach_ang.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -268,6 +270,20 @@ const Portfolio = () => {
             highlights: t('portfolio.projects.tomiForno.highlights', { returnObjects: true, defaultValue: [] }),
             technologies: t('portfolio.projects.tomiForno.tech', { returnObjects: true }),
             role: t('portfolio.projects.tomiForno.role', { defaultValue: 'Developer' }),
+            year: '2026',
+        },
+        {
+            id: "shelltyPromptCoach",
+            image: currentLanguage === 'en' ? promptCoachThumbnailAng : promptCoachThumbnail,
+            demoLink: 'https://prompt-coach.shellty.pl/',
+            githubLink: null,
+            title: t('portfolio.projects.shelltyPromptCoach.title'),
+            subtitle: t('portfolio.projects.shelltyPromptCoach.subtitle'),
+            description: t('portfolio.projects.shelltyPromptCoach.description'),
+            highlightsTitle: t('portfolio.projects.shelltyPromptCoach.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyPromptCoach.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.shelltyPromptCoach.tech', { returnObjects: true }),
+            role: t('portfolio.projects.shelltyPromptCoach.role', { defaultValue: 'Developer' }),
             year: '2026',
         },
         {

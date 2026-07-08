@@ -371,6 +371,20 @@
         ],
         "tech": ["Next.js 16", "Payload 3", "TypeScript", "MongoDB Atlas", "Cloudinary", "Tailwind CSS", "Vercel", "Framer Motion"]
       },
+      "shelltyPromptCoach": {
+        "title": "Prompt Coach",
+        "subtitle": "- AI Prompt Engineering Coach -",
+        "description": "An educational tool for practicing prompt engineering in real workflows. It helps users write better instructions for AI models, reviews prompt quality, and guides iterative improvement instead of simply returning a finished answer without context.",
+        "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
+        "highlights": [
+          "🤖 AI Coach: Prompt review and targeted guidance around goal, context, constraints, and expected response format",
+          "🧭 Training mode: Step-by-step work on prompt structure, so the app teaches the process instead of only generating output",
+          "🔎 Vector database: Semantic search and matching of prompt examples to the user's context",
+          "🌍 PL/EN: Bilingual interface with separate visual assets matched to each portfolio language version",
+          "⚡ Portfolio-ready UX: Lightweight, responsive interface prepared for fast scenario testing and AI capability demos"
+        ],
+        "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "AI SDK", "Gemini AI", "Vector DB", "Vercel"]
+      },
       "shelltyPulse": {
         "title": "Shellty Pulse - Service Health Monitor & Keep-Alive",
         "subtitle": "Service Health Monitor & Keep-Alive.",
