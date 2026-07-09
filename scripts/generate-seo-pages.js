@@ -64,6 +64,17 @@ const renderFallbackContent = (routePath, route) => {
     ].join("");
 };
 
+const fallbackVisibilityStyles = [
+    "<style>",
+    "  .seo-fallback { display: none !important; }",
+    "</style>",
+    "<noscript>",
+    "  <style>",
+    "    .seo-fallback { display: block !important; }",
+    "  </style>",
+    "</noscript>"
+].join("");
+
 const renderPage = (template, routePath, route) => {
     const content = route.pl;
     const canonical = `${metadata.siteUrl}${routePath}`;
@@ -100,6 +111,12 @@ const renderPage = (template, routePath, route) => {
         /<div\s+id="root"><\/div>/i,
         `<div id="root">${renderFallbackContent(routePath, route)}</div>`,
         "root fallback"
+    );
+    html = replaceRequired(
+        html,
+        /<\/head>/i,
+        `${fallbackVisibilityStyles}</head>`,
+        "fallback visibility styles"
     );
 
     if ((html.match(/<title>/gi) || []).length !== 1) {
