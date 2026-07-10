@@ -489,7 +489,7 @@ const About = () => {
                             <div className="about__certs-block">
                                 <h4>{t("about.facts.certsTitle")}</h4>
                                 <ul className="certs-list">
-                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
                                         <li key={n}>
                                             <a
                                                 href={t(`about.facts.cert${n}Url`)}
