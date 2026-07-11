@@ -64,6 +64,34 @@ const renderFallbackContent = (routePath, route) => {
     ].join("");
 };
 
+const renderBreadcrumb = (routePath, canonical, route) => {
+    if (routePath === "/") {
+        return "";
+    }
+
+    const name = stripBrand(route.pl.socialTitle || route.pl.title);
+    const data = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Strona główna",
+                "item": `${metadata.siteUrl}/`
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": name,
+                "item": canonical
+            }
+        ]
+    };
+
+    return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+};
+
 const fallbackVisibilityStyles = [
     "<style>",
     "  .seo-fallback { display: none !important; }",
@@ -118,6 +146,16 @@ const renderPage = (template, routePath, route) => {
         `${fallbackVisibilityStyles}</head>`,
         "fallback visibility styles"
     );
+
+    const breadcrumb = renderBreadcrumb(routePath, canonical, route);
+    if (breadcrumb) {
+        html = replaceRequired(
+            html,
+            /<\/head>/i,
+            `${breadcrumb}</head>`,
+            "breadcrumb structured data"
+        );
+    }
 
     if ((html.match(/<title>/gi) || []).length !== 1) {
         throw new Error(`Nieprawidłowa liczba title dla ${routePath}`);
