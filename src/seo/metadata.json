@@ -5,7 +5,7 @@
     "/": {
       "output": "index.html",
       "pl": {
-        "title": "Shellty | Tworzenie stron internetowych i aplikacji webowych – Szczecin, Stargard",
+        "title": "Shellty – Usługi IT, strony i aplikacje | Szczecin",
         "description": "Tworzenie stron internetowych, aplikacji webowych i outsourcing IT dla firm. Wsparcie IT, administracja systemów i pomoc informatyczna w Szczecinie i Stargardzie.",
         "socialTitle": "Shellty | Tworzenie stron i outsourcing IT – Szczecin",
         "socialDescription": "Profesjonalne tworzenie stron internetowych, aplikacji webowych i wsparcie IT dla firm w Szczecinie i Stargardzie Szczecińskim."
@@ -20,15 +20,15 @@
     "/about/": {
       "output": "about/index.html",
       "pl": {
-        "title": "Freelancer IT Szczecin i Stargard | Shellty",
-        "description": "Poznaj specjalistę Shellty: freelancer IT ze Szczecina i Stargardu z doświadczeniem w tworzeniu aplikacji, administracji systemów i wsparciu IT.",
-        "socialTitle": "Freelancer IT – Szczecin i Stargard | Shellty",
+        "title": "Specjalista IT Szczecin i Stargard | Shellty",
+        "description": "Poznaj specjalistę Shellty ze Szczecina i Stargardu z doświadczeniem w tworzeniu aplikacji, administracji systemów i wsparciu IT.",
+        "socialTitle": "Specjalista IT – Szczecin i Stargard | Shellty",
         "socialDescription": "Doświadczenie w aplikacjach webowych, systemach, sieciach i praktycznym wsparciu informatycznym dla firm."
       },
       "en": {
-        "title": "IT freelancer in Szczecin and Stargard | Shellty",
+        "title": "IT specialist in Szczecin and Stargard | Shellty",
         "description": "Meet the IT specialist behind Shellty, with experience in web applications, systems administration, networks and business IT support.",
-        "socialTitle": "IT freelancer – Szczecin and Stargard | Shellty",
+        "socialTitle": "IT specialist – Szczecin and Stargard | Shellty",
         "socialDescription": "Web development, systems administration, networks and practical IT support for businesses."
       }
     },
