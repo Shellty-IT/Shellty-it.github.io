@@ -285,6 +285,12 @@ const Portfolio = () => {
             technologies: t('portfolio.projects.shelltyPromptCoach.tech', { returnObjects: true }),
             role: t('portfolio.projects.shelltyPromptCoach.role', { defaultValue: 'Developer' }),
             year: '2026',
+            testAccount: {
+                fields: [
+                    { labelKey: 'login', value: 'test@test.pl' },
+                    { labelKey: 'password', value: 'testowe123' },
+                ],
+            },
         },
         {
             id: "smartQuoteAI",
