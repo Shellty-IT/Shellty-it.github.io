@@ -6,7 +6,9 @@ import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
 import {
     FaEnvelope,
+    FaFacebookF,
     FaGithub,
+    FaInstagram,
     FaLinkedin,
     FaPaperPlane,
 } from "react-icons/fa";
@@ -287,6 +289,33 @@ export default function Contact() {
                                     <FaLinkedin />
                                 </span>
                                 <span className="ct-channel__label">LinkedIn</span>
+                            </a>
+                        </div>
+
+                        <div className="ct-socials-row">
+                            <a
+                                href="https://www.instagram.com/shellty_it/"
+                                className="ct-channel ct-channel--social"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                            >
+                                <span className="ct-channel__icon">
+                                    <FaInstagram />
+                                </span>
+                                <span className="ct-channel__label">Instagram</span>
+                            </a>
+                            <a
+                                href="https://www.facebook.com/profile.php?id=61591840655522"
+                                className="ct-channel ct-channel--social"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Facebook"
+                            >
+                                <span className="ct-channel__icon">
+                                    <FaFacebookF />
+                                </span>
+                                <span className="ct-channel__label">Facebook</span>
                             </a>
                         </div>
 

@@ -385,7 +385,7 @@
           "🔎 Hybrid knowledge base (RAG): Semantic search (embeddings) combined with full-text search via Reciprocal Rank Fusion, filtered by source reliability",
           "🌍 PL/EN: Bilingual interface"
         ],
-        "tech": ["Next.js", "React", "TypeScript", "FastAPI", "PostgreSQL", "pgvector", "Tailwind CSS", "Gemini AI", "Vercel"]
+        "tech": ["Next.js", "React", "Typenpm run startScript", "FastAPI", "PostgreSQL", "pgvector", "Tailwind CSS", "Gemini AI", "Vercel"]
       },
       "shelltyPulse": {
         "title": "Shellty Pulse - Service Health Monitor & Keep-Alive",
