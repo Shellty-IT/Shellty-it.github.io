@@ -273,16 +273,16 @@
       "shelltyPromptCoach": {
         "title": "Prompt Coach",
         "subtitle": "- AI Prompt Engineering Coach -",
-        "description": "Aplikacja edukacyjno-narzędziowa do ćwiczenia prompt engineeringu w praktyce. Pomaga pisać lepsze polecenia dla modeli AI, analizuje ich jakość i prowadzi użytkownika przez iteracyjne ulepszanie promptu zamiast podawać gotową odpowiedź bez kontekstu.",
+        "description": "Aplikacja edukacyjno-narzędziowa do prompt engineeringu, która nie tylko doradza, ale samodzielnie generuje gotowe prompty na podstawie celu użytkownika. Każdy prompt powstaje w oparciu o bazę wiedzy (RAG) z cytowanymi źródłami i jest oceniany wg mierzalnych kryteriów jakości - istniejący prompt można też przeanalizować albo przekształcić w jednym z pięciu trybów (lekki, profesjonalny, agentowy, programistyczny, badawczy).",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [
-          "🤖 AI Coach: Ocena promptu i wskazówki prowadzące użytkownika do doprecyzowania celu, kontekstu, ograniczeń oraz oczekiwanego formatu odpowiedzi",
-          "🧭 Tryb treningowy: Praca krok po kroku nad strukturą promptu, dzięki czemu aplikacja uczy procesu, a nie tylko generuje wynik",
-          "🔎 Wektorowa baza danych: Semantyczne wyszukiwanie i dopasowywanie przykładów promptów do kontekstu użytkownika",
-          "🌍 PL/EN: Dwujęzyczny interfejs i osobne materiały wizualne dopasowane do wersji językowej portfolio",
-          "⚡ Portfolio-ready UX: Lekki, responsywny interfejs przygotowany do szybkiego testowania scenariuszy i prezentacji możliwości AI"
+          "🧠 Generator promptów: Buduje kompletny prompt od podstaw na bazie celu użytkownika - strumieniowo, z oceną jakości i cytowanymi źródłami wiedzy",
+          "🔍 Analiza promptu: Skanuje istniejący prompt, wskazuje mocne/słabe strony i luki, generuje celowaną, lepszą wersję",
+          "✨ Tryb Ulepsz: Przekształca szkic promptu w jednym z 5 trybów - lekki, profesjonalny, agentowy, programistyczny, badawczy",
+          "🔎 Hybrydowa baza wiedzy (RAG): Wyszukiwanie semantyczne (embeddingi) połączone z pełnotekstowym przez Reciprocal Rank Fusion, z filtrowaniem po wiarygodności źródeł",
+          "🌍 PL/EN: Dwujęzyczny interfejs"
         ],
-        "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "AI SDK", "Gemini AI", "Vector DB", "Vercel"]
+        "tech": ["Next.js", "React", "TypeScript", "FastAPI", "PostgreSQL", "pgvector", "Tailwind CSS", "Gemini AI", "Vercel"]
       },
       "shelltyPulse": {
         "title": "Shellty Pulse",
