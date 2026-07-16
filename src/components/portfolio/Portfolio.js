@@ -28,6 +28,8 @@ import tomiFornoPl from '../../assets/thumbnails/tomi_forno_pl.webp';
 import tomiFornoEn from '../../assets/thumbnails/tomi_forno_ang.webp';
 import promptCoachThumbnail from '../../assets/thumbnails/coach.webp';
 import promptCoachThumbnailAng from '../../assets/thumbnails/coach_ang.webp';
+import lingoThumbnail from '../../assets/thumbnails/lingo.webp';
+import lingoThumbnailAng from '../../assets/thumbnails/lingo_ang.webp';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
@@ -258,6 +260,20 @@ const Portfolio = () => {
     }, []);
 
     const projects = useMemo(() => ([
+        {
+            id: "shelltyLingo",
+            image: currentLanguage === 'en' ? lingoThumbnailAng : lingoThumbnail,
+            githubLink: 'https://github.com/Shellty-IT/Shellty-Lingo',
+            title: t('portfolio.projects.shelltyLingo.title'),
+            status: true,
+            subtitle: t('portfolio.projects.shelltyLingo.subtitle'),
+            description: t('portfolio.projects.shelltyLingo.description'),
+            highlightsTitle: t('portfolio.projects.shelltyLingo.highlightsTitle', { defaultValue: '' }),
+            highlights: t('portfolio.projects.shelltyLingo.highlights', { returnObjects: true, defaultValue: [] }),
+            technologies: t('portfolio.projects.shelltyLingo.tech', { returnObjects: true }),
+            role: t('portfolio.projects.shelltyLingo.role', { defaultValue: 'Developer' }),
+            year: '2026',
+        },
         {
             id: "tomiForno",
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
@@ -585,7 +601,22 @@ const Portfolio = () => {
 
                             <div className="project-content">
                                 <header className="project-header">
-                                    <h2 className="project-heading" itemProp="name">{project.title}</h2>
+                                    <h2 className="project-heading" itemProp="name">
+                                        {project.title}
+                                        {project.status && (
+                                            <span className="project-status">
+                                                {t('portfolio.projects.shelltyLingo.statusPrefix')}
+                                                <a
+                                                    href="https://expo.dev/accounts/shellty-it/projects/shellty-lingo/builds/41a7f948-b5c4-4bc9-bc6f-7f745f18a9d5"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {t('portfolio.projects.shelltyLingo.betaLink')}
+                                                </a>
+                                                {t('portfolio.projects.shelltyLingo.statusSuffix')}
+                                            </span>
+                                        )}
+                                    </h2>
                                     <div className="project-meta">
                                         {project.subtitle && <span className="project-subtitle" itemProp="about">{project.subtitle}</span>}
                                         {project.year && (

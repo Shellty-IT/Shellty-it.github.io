@@ -256,6 +256,23 @@
       }
     },
     "projects": {
+      "shelltyLingo": {
+        "title": "Shellty Lingo",
+        "subtitle": "- Mobilna platforma do nauki języków -",
+        "description": "Projektowana od podstaw aplikacja mobilna do świadomej nauki języków. Łączy krótkie, dopasowane lekcje, inteligentne powtórki i rozmowy AI, aby prowadzić użytkownika od pierwszych słów do swobodniejszej komunikacji po angielsku lub tajsku.",
+        "statusPrefix": " (w trakcie tworzenia – dostępna ",
+        "betaLink": "wersja beta",
+        "statusSuffix": ")",
+        "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
+        "highlights": [
+          "📚 Nauka dopasowana do kursu: niezależny postęp, poziom, historia błędów i plan nauki dla każdego wybranego języka.",
+          "🔁 Spaced repetition: system powtórek i osobista lista trudnych słów, które pomagają utrwalać materiał we właściwym momencie.",
+          "🤖 Rozmowy AI z kontrolą jakości: scenariusze dopasowane do poziomu oraz tryby korekty, limity i moderacja obsługiwane po stronie API.",
+          "🇹🇭 Angielski i tajski: kursy wspierane przez słownik kontekstowy, TTS, transliterację oraz materiały o tonach i kontekście kulturowym.",
+          "🛠️ Ekosystem produktu: aplikacja Expo, API NestJS i panel administracyjny Next.js do zarządzania wersjonowanymi treściami edukacyjnymi."
+        ],
+        "tech": ["React Native", "Expo", "TypeScript", "NestJS", "PostgreSQL", "Prisma", "Next.js", "TanStack Query", "Zustand", "i18next"]
+      },
       "shelltyCMS": {
         "title": "Shellty CMS",
         "subtitle": "- WordPress Alternative for B2B -",

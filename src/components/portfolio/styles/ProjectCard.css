@@ -135,6 +135,21 @@
     color: #f1f5f9;
 }
 
+.project-status {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.project-status a {
+    color: #0cc0ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.project-status a:hover {
+    color: #7dd3fc;
+}
+
 .project-meta {
     display: flex;
     flex-direction: column;
