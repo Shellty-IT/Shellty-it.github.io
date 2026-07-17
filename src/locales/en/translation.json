@@ -431,9 +431,10 @@
       "smartQuoteAI": {
         "title": "SmartQuote",
         "subtitle": "- CRM & Sales Automation -",
-        "description": "CRM with AI quote generation, PDF block editor, and e-invoice integration. Production-deployed.",
+        "description": "A complete sales CRM for preparing quotes: it combines client management, a PDF block editor, sales workflow automation, and e-invoice integration. The application uses professional, ready-made document templates that AI automatically fills with content tailored to the client and scope of work.",
         "highlightsTitle": "KEY ACHIEVEMENTS",
         "highlights": [
+          "📋  Professional quote templates\nAI automatically fills a ready-made document structure with content tailored to the client and scope of work",
           "🤖  AI (Gemini 2.5 Flash)\nContent generation for quotes, profitability analysis, post-mortem",
           "📄  Dual PDF Engine\nPDFKit (classic) + Puppeteer/Vercel (proposal)",
           "✍️  E-signature with Audit\nCanvas + SHA-256 hash, token-based public pages",

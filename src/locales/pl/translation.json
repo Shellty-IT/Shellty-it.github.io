@@ -330,9 +330,10 @@
       "smartQuoteAI": {
         "title": "SmartQuote",
         "subtitle": "- CRM & Sales Automation -",
-        "description": "CRM z AI generowaniem ofert, edytorem bloków PDF i integracją z e-fakturami. Korzystam z aplikacji do przygotowywania ofert.",
+        "description": "Kompletny CRM sprzedażowy do przygotowywania ofert: łączy zarządzanie klientami, edytor bloków PDF, automatyzację procesu ofertowego oraz integrację z e-fakturami. Aplikacja wykorzystuje profesjonalne, gotowe szablony dokumentów, które AI automatycznie wypełnia dopasowaną do klienta i zakresu usługi treścią.",
         "highlightsTitle": "CZYM SIĘ WYRÓŻNIA:",
         "highlights": [
+          "📋  Profesjonalne szablony ofert\nAI automatycznie uzupełnia gotową strukturę dokumentu treścią dopasowaną do klienta i zakresu usługi",
           "🤖  AI (Gemini 2.5 Flash)\nGenerowanie treści ofert, analiza rentowności, post-mortem",
           "📄  Dual PDF Engine\nPDFKit (klasyczny) + Puppeteer/Vercel (propozycja)",
           "✍️  E-podpis z audytem\nCanvas + SHA-256 hash, publiczne strony token-based",
