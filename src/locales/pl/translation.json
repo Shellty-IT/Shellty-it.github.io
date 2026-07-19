@@ -37,14 +37,14 @@
   },
   "about": {
     "title": "Bio",
-    "p1": "Cześć! Tu Tomasz Skorupski. Przez lata dbałem o to, by systemy informatyczne działały bezawaryjnie – administrując serwerami (Windows/Linux), sieciami i bazami danych. Zrozumiałem jednak, że chcę nie tylko naprawiać, utrzymywać i zmieniać, ale przede wszystkim tworzyć. Dziś wykorzystuję to solidne, techniczne zaplecze do budowania i usprawniania rozwiązań.",
-    "videoInvite": "Jeśli wolisz słuchać, niż czytać – zapraszam do obejrzenia mojej krótkiej prezentacji wideo",
+    "p1": "Cześć! Tu Tomasz Skorupski. Przez lata dbałem o to, by systemy informatyczne działały bezawaryjnie - administrując serwerami (Windows/Linux), sieciami i bazami danych. Zrozumiałem jednak, że chcę nie tylko naprawiać, utrzymywać i zmieniać, ale przede wszystkim tworzyć. Dziś wykorzystuję to solidne, techniczne zaplecze do budowania i usprawniania rozwiązań.",
+    "videoInvite": "Jeśli wolisz słuchać, niż czytać - zapraszam do obejrzenia mojej krótkiej prezentacji wideo",
     "videoInviteDirDesktop": " po prawej stronie.",
     "videoInviteDirMobile": " poniżej.",
     "video": {
       "vimeoId": "1166225581",
       "playAria": "Odtwórz prezentację wideo",
-      "iframeTitle": "Prezentacja wideo – Tomasz Skorupski"
+      "iframeTitle": "Prezentacja wideo - Tomasz Skorupski"
     },
     "approachTitle": "Moje Podejście: Praktyczna Wszechstronność",
     "approachIntro": "Nie jestem tylko programistą, ani tylko administratorem. Jestem wszechstronnym specjalistą, który widzi szerszy obraz. Moja hybrydowa wiedza gwarantuje, że projektowane przeze mnie rozwiązania są nie tylko innowacyjne, ale i infrastrukturalnie stabilne.",
@@ -54,7 +54,7 @@
       "support": "<strong>Wspieram i Rozumiem:</strong> Dzięki doświadczeniu w IT Support i Administracji, rozumiem perspektywę użytkownika i problemy operacyjne. Wiem, jak ważna jest stabilność i bezpieczeństwo w codziennej pracy."
     },
     "growthTitle": "Rozwój i Wizja",
-    "growth": "Równolegle rozwijam swoje kompetencje, realizując własne projekty. Choć zawodowo koncentruję się na Twoich potrzebach, prywatnie pasjonuje mnie rozwój i praktyczne zastosowanie agentów AI w automatyzacji – co zawsze przekłada się na lepsze rozumienie nowoczesnych architektur.",
+    "growth": "Równolegle rozwijam swoje kompetencje, realizując własne projekty. Choć zawodowo koncentruję się na Twoich potrzebach, prywatnie pasjonuje mnie rozwój i praktyczne zastosowanie agentów AI w automatyzacji - co zawsze przekłada się na lepsze rozumienie nowoczesnych architektur.",
     "goalTitle": "Cel: Długofalowa Współpraca",
     "goal": "Nie szukam tylko \"kolejnego zlecenia\". Przede wszystkim zależy mi na długofalowej współpracy z Partnerem lub Pracodawcą, z którym zbuduję relację na lata - miejscu, gdzie będę mógł wnosić realną wartość od pierwszego dnia i rozwijać się przy ambitnych projektach. Nie wykluczam jednak zleceń, jeśli jest to dobry punkt wyjścia do czegoś więcej.",
     "ctaExperience": "Zobacz doświadczenie",
@@ -232,7 +232,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "Większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo – wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> W niektórych aplikacjach korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
+    "subtitleHtml": "Większość moich dotychczasowych projektów powstała dla pracodawców i pozostaje objęta ograniczeniami w udostępnianiu. Jednocześnie tworzę serię własnych projektów demo - wkrótce pojawią się tu nowe pozycje. <br/><br/><warning>Uwaga:</warning> W niektórych aplikacjach korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
     "actions": {
       "demo": "Zobacz",
       "code": "Kod",
@@ -260,7 +260,7 @@
         "title": "Shellty Lingo",
         "subtitle": "- Mobilna platforma do nauki języków -",
         "description": "Projektowana od podstaw aplikacja mobilna do świadomej nauki języków. Łączy krótkie, dopasowane lekcje, inteligentne powtórki i rozmowy AI, aby prowadzić użytkownika od pierwszych słów do swobodniejszej komunikacji po angielsku lub tajsku.",
-        "statusPrefix": " (w trakcie tworzenia – dostępna ",
+        "statusPrefix": " (w trakcie tworzenia - dostępna ",
         "betaLink": "wersja beta",
         "statusSuffix": ")",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
@@ -607,7 +607,7 @@
       "p": "Twoje dane przechowuję przez czas niezbędny do obsługi Twojego zapytania. Po zakończeniu korespondencji dane nie są dalej przetwarzane w żadnym innym celu."
     },
     "s5": {
-      "title": "5. Odbiorcy danych – Formspree",
+      "title": "5. Odbiorcy danych - Formspree",
       "p1": "Do obsługi formularza kontaktowego korzystam z usługi Formspree (Formspree, Inc.), która pełni rolę podmiotu przetwarzającego dane w moim imieniu. Oznacza to, że wiadomości przesłane przez formularz są przekazywane za pośrednictwem serwerów Formspree.",
       "p2": "Formspree jest firmą z siedzibą w Stanach Zjednoczonych, co oznacza, że Twoje dane mogą być przekazywane poza Europejski Obszar Gospodarczy (EOG). Formspree zapewnia odpowiedni poziom ochrony danych zgodnie z obowiązującymi przepisami.",
       "linkLabel": "Więcej informacji znajdziesz w polityce prywatności Formspree:",
@@ -615,18 +615,18 @@
     },
     "s6": {
       "title": "6. Pliki cookies i narzędzia analityczne",
-      "ga": "Strona korzysta z usługi Google Analytics (Google LLC), która wykorzystuje pliki cookies do analizy ruchu na stronie. Dane zbierane przez Google Analytics są anonimowe i nie pozwalają na bezpośrednią identyfikację użytkownika. Google LLC ma siedzibę w USA – więcej informacji:"
+      "ga": "Strona korzysta z usługi Google Analytics (Google LLC), która wykorzystuje pliki cookies do analizy ruchu na stronie. Dane zbierane przez Google Analytics są anonimowe i nie pozwalają na bezpośrednią identyfikację użytkownika. Google LLC ma siedzibę w USA - więcej informacji:"
     },
     "s7": {
       "title": "7. Twoje prawa",
       "intro": "W związku z przetwarzaniem Twoich danych osobowych przysługują Ci następujące prawa:",
       "rights": [
-        "Prawo dostępu – możesz zapytać, jakie dane na Twój temat posiadam.",
-        "Prawo do sprostowania – możesz poprosić o poprawienie nieprawidłowych danych.",
-        "Prawo do usunięcia – możesz poprosić o usunięcie swoich danych (prawo do bycia zapomnianym).",
-        "Prawo do ograniczenia przetwarzania – możesz poprosić o wstrzymanie przetwarzania Twoich danych.",
-        "Prawo do sprzeciwu – możesz wnieść sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu.",
-        "Prawo do skargi – jeśli uważasz, że przetwarzam Twoje dane niezgodnie z prawem, możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl."
+        "Prawo dostępu - możesz zapytać, jakie dane na Twój temat posiadam.",
+        "Prawo do sprostowania - możesz poprosić o poprawienie nieprawidłowych danych.",
+        "Prawo do usunięcia - możesz poprosić o usunięcie swoich danych (prawo do bycia zapomnianym).",
+        "Prawo do ograniczenia przetwarzania - możesz poprosić o wstrzymanie przetwarzania Twoich danych.",
+        "Prawo do sprzeciwu - możesz wnieść sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu.",
+        "Prawo do skargi - jeśli uważasz, że przetwarzam Twoje dane niezgodnie z prawem, możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl."
       ],
       "contact": "Aby skorzystać z powyższych praw, skontaktuj się ze mną pod adresem:"
     }

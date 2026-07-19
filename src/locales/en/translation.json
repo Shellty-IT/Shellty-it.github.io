@@ -38,13 +38,13 @@
   "about": {
     "title": "Bio",
     "p1": "Hi! I’m Tomasz Skorupski. For years, I ensured that IT systems ran smoothly by managing servers (Windows/Linux), networks, and databases. However, I realized that I wanted to do more than just fix and maintain things-I wanted to create them. Today, I use my solid technical background to build and improve digital solutions.",
-    "videoInvite": "If you prefer listening over reading – feel free to watch my short video introduction",
+    "videoInvite": "If you prefer listening over reading - feel free to watch my short video introduction",
     "videoInviteDirDesktop": " on the right.",
     "videoInviteDirMobile": " below.",
     "video": {
       "vimeoId": "1166222682",
       "playAria": "Play video introduction",
-      "iframeTitle": "Video introduction – Tomasz Skorupski"
+      "iframeTitle": "Video introduction - Tomasz Skorupski"
     },
     "approachTitle": "My Approach: Practical Versatility",
     "approachIntro": "I’m not just a developer, nor just an administrator. I am a versatile specialist who sees the bigger picture. My hybrid expertise ensures that the solutions I design are not only innovative but also infrastructurally robust.",
@@ -363,7 +363,7 @@
         "title": "Shellty Lingo",
         "subtitle": "- Mobile Language Learning Platform -",
         "description": "A mobile language-learning app being built from the ground up for intentional, lasting progress. It combines focused lessons, intelligent review and AI conversations to guide learners from their first words to more confident communication in English or Thai.",
-        "statusPrefix": " (under development – ",
+        "statusPrefix": " (under development - ",
         "betaLink": "beta version available",
         "statusSuffix": ")",
         "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
@@ -604,7 +604,7 @@
       "p": "Your data is stored for the time necessary to handle your inquiry. After the correspondence is concluded, the data is not processed for any other purpose."
     },
     "s5": {
-      "title": "5. Data recipients – Formspree",
+      "title": "5. Data recipients - Formspree",
       "p1": "To handle the contact form, I use the Formspree service (Formspree, Inc.), which acts as a data processor on my behalf. This means that messages submitted through the form are transmitted via Formspree servers.",
       "p2": "Formspree is a company based in the United States, which means your data may be transferred outside the European Economic Area (EEA). Formspree ensures an adequate level of data protection in accordance with applicable regulations.",
       "linkLabel": "More information can be found in Formspree's privacy policy:",
@@ -612,18 +612,18 @@
     },
     "s6": {
       "title": "6. Cookies and analytics tools",
-      "ga": "This website uses Google Analytics (Google LLC), which uses cookies to analyze website traffic. Data collected by Google Analytics is anonymous and does not allow direct identification of the user. Google LLC is based in the USA – more information:"
+      "ga": "This website uses Google Analytics (Google LLC), which uses cookies to analyze website traffic. Data collected by Google Analytics is anonymous and does not allow direct identification of the user. Google LLC is based in the USA - more information:"
     },
     "s7": {
       "title": "7. Your rights",
       "intro": "In connection with the processing of your personal data, you have the following rights:",
       "rights": [
-        "Right of access – you may ask what data I hold about you.",
-        "Right to rectification – you may request correction of inaccurate data.",
-        "Right to erasure – you may request deletion of your data (right to be forgotten).",
-        "Right to restriction of processing – you may request that processing of your data be suspended.",
-        "Right to object – you may object to processing based on legitimate interest.",
-        "Right to lodge a complaint – if you believe I am processing your data unlawfully, you may lodge a complaint with the relevant supervisory authority in your country."
+        "Right of access - you may ask what data I hold about you.",
+        "Right to rectification - you may request correction of inaccurate data.",
+        "Right to erasure - you may request deletion of your data (right to be forgotten).",
+        "Right to restriction of processing - you may request that processing of your data be suspended.",
+        "Right to object - you may object to processing based on legitimate interest.",
+        "Right to lodge a complaint - if you believe I am processing your data unlawfully, you may lodge a complaint with the relevant supervisory authority in your country."
       ],
       "contact": "To exercise the above rights, please contact me at:"
     }
