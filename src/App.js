@@ -14,6 +14,7 @@ const Experience  = lazy(() => import(/* webpackPrefetch: true */ "./components/
 const Skills      = lazy(() => import(/* webpackPrefetch: true */ "./components/skills/Skills"));
 const Portfolio   = lazy(() => import(/* webpackPrefetch: true */ "./components/portfolio/Portfolio"));
 const Contact     = lazy(() => import(/* webpackPrefetch: true */ "./components/contact/Contact"));
+const NotFound    = lazy(() => import("./components/notFound/NotFound"));
 const CustomCursor = lazy(() => import("./components/customCursor"));
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/skills" element={<Skills />} />
                         <Route path="/portfolio" element={<Portfolio />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Suspense>
             </main>

@@ -18,9 +18,14 @@
     "stats": {
       "years": { "num": "7+", "label": "lat w IT" },
       "projects": { "num": "10+", "label": "projekty własne" },
-      "english": { "num": "B2", "label": "angielski" }
+      "hybrid": { "num": "2 w 1", "label": "programista + informatyk" }
     },
     "caption": "Technologiczny partner Twojego biznesu",
+    "servicesTeaser": {
+      "kicker": "Usługi IT",
+      "title": "Tworzę strony i aplikacje na zamówienie",
+      "sub": "Wycena i pierwsza rozmowa są bezpłatne - zobacz, co mogę dla Ciebie zrobić."
+    },
     "scroll": {
       "aria": "Przewiń do sekcji About",
       "label": "Przewiń"
@@ -127,6 +132,13 @@
     "title": "Usługi IT",
     "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> - dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem - bez pośredników i agencyjnych narzutów.",
     "forWhomLabel": "Dla kogo:",
+    "showreel": {
+      "kicker": "Prezentacja • 90 s",
+      "title": "Zobacz, jak wygląda współpraca ze mną",
+      "sub": "Krótka prezentacja moich usług - kliknij, aby odtworzyć.",
+      "playAria": "Odtwórz prezentację wideo o usługach",
+      "iframeTitle": "Prezentacja usług - Shellty"
+    },
     "card1": {
       "kicker": "Strony internetowe",
       "title": "Tworzenie stron internetowych dla firm i osób prywatnych",
@@ -172,6 +184,24 @@
     "why4": {
       "title": "Indywidualne podejście",
       "desc": "Dopasowuję rozwiązanie do Twoich potrzeb i budżetu, nie odwrotnie."
+    },
+    "reviews": {
+      "title": "Opinie klientów",
+      "ratingAria": "Ocena: {{rating}} na 5 gwiazdek",
+      "items": [
+        {
+          "rating": 5,
+          "text": "Bardzo profesjonalne podejście, szybka realizacja i pełna komunikacja na każdym etapie. Polecam współpracę z tym specjalistą - solidny, terminowy i skuteczny.",
+          "author": "Jan",
+          "source": "Google"
+        },
+        {
+          "rating": 5,
+          "text": "Zdecydowanie polecam usługi tego wykonawcy! Współpraca przebiegła super sprawnie, a strona działa i wygląda dokładnie tak, jak chcieliśmy. Kontakt był bezproblemowy, a wszystkie poprawki robione od ręki.",
+          "author": "Malwina",
+          "source": "Oferteo.pl"
+        }
+      ]
     },
     "ctaTitle": "Masz pomysł lub problem do rozwiązania?",
     "ctaSubtitle": "Napisz -",
@@ -237,6 +267,21 @@
       "demo": "Zobacz",
       "code": "Kod",
       "videoPresentation": "Prezentacja wideo"
+    },
+    "filters": {
+      "aria": "Filtruj projekty według kategorii",
+      "all": "Wszystkie",
+      "web": "Aplikacje webowe",
+      "ai": "AI",
+      "mobile": "Mobile / PWA",
+      "wordpress": "WordPress",
+      "tools": "DevOps i narzędzia"
+    },
+    "featuredBadge": "Wyróżnione",
+    "videoBadge": "Wideo",
+    "videoModal": {
+      "closeAria": "Zamknij okno wideo",
+      "loading": "Ładowanie wideo..."
     },
     "testAccount": {
       "title": "Konto testowe",
@@ -576,11 +621,39 @@
       "sendError": "Błąd wysyłki.",
       "network": "Błąd sieci - spróbuj ponownie."
     },
+    "starters": {
+      "aria": "Gotowe tematy wiadomości",
+      "label": "Nie wiesz, od czego zacząć?",
+      "items": [
+        {
+          "label": "Potrzebuję strony internetowej",
+          "template": "Cześć! Potrzebuję strony internetowej dla (opisz swoją firmę lub projekt). Zależy mi na (np. wizytówka, sklep, portfolio). Proszę o kontakt i wstępną wycenę."
+        },
+        {
+          "label": "Chcę wycenić aplikację",
+          "template": "Cześć! Chcę wycenić aplikację webową, która ma (opisz w kilku słowach, co aplikacja ma robić). Proszę o kontakt."
+        },
+        {
+          "label": "Szukam wsparcia IT",
+          "template": "Cześć! Szukam wsparcia IT dla mojej firmy w zakresie (np. administracja serwerami, sieci, kopie zapasowe). Proszę o kontakt."
+        },
+        {
+          "label": "Mam pytanie o współpracę",
+          "template": "Cześć! Mam pytanie dotyczące współpracy: "
+        }
+      ]
+    },
     "or": "Lub napisz bezpośrednio na:",
     "privacyNote": {
       "text": "Wysyłając wiadomość, akceptujesz przetwarzanie podanych danych zgodnie z",
       "link": "Polityką Prywatności"
     }
+  },
+  "notFound": {
+    "command": "cd /szukana-strona",
+    "code": "ERROR 404: path not found",
+    "desc": "Strona, której szukasz, nie istnieje lub została przeniesiona. Sprawdź adres albo wróć na stronę główną.",
+    "cta": "Wróć na stronę główną"
   },
   "privacyPolicy": {
     "title": "Polityka Prywatności",

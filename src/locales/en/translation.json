@@ -18,9 +18,14 @@
     "stats": {
       "years": { "num": "7+", "label": "years in IT" },
       "projects": { "num": "10+", "label": "side projects" },
-      "english": { "num": "B2", "label": "English" }
+      "hybrid": { "num": "2-in-1", "label": "developer + IT admin" }
     },
     "caption": "The technological foundation of your business",
+    "servicesTeaser": {
+      "kicker": "IT Services",
+      "title": "I build websites and apps on demand",
+      "sub": "The quote and first consultation are free - see what I can do for you."
+    },
     "scroll": {
       "aria": "Scroll to About section",
       "label": "Scroll"
@@ -230,6 +235,13 @@
     "title": "IT Services",
     "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> - so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication - no middlemen, no agency markups.",
     "forWhomLabel": "For whom:",
+    "showreel": {
+      "kicker": "Presentation • 90 s",
+      "title": "See what working with me looks like",
+      "sub": "A short presentation of my services - click to play.",
+      "playAria": "Play the video presentation about services",
+      "iframeTitle": "Services presentation - Shellty"
+    },
     "card1": {
       "kicker": "Websites",
       "title": "Website creation for businesses and individuals",
@@ -275,6 +287,24 @@
     "why4": {
       "title": "Individual approach",
       "desc": "I tailor the solution to your needs and budget, not the other way around."
+    },
+    "reviews": {
+      "title": "Client reviews",
+      "ratingAria": "Rating: {{rating}} out of 5 stars",
+      "items": [
+        {
+          "rating": 5,
+          "text": "A very professional approach, fast delivery and full communication at every stage. I recommend working with this specialist - reliable, punctual and effective.",
+          "author": "Jan",
+          "source": "Google"
+        },
+        {
+          "rating": 5,
+          "text": "I definitely recommend this contractor's services! The cooperation went really smoothly, and the website works and looks exactly as we wanted. Contact was hassle-free and all fixes were made right away.",
+          "author": "Malwina",
+          "source": "Oferteo.pl"
+        }
+      ]
     },
     "ctaTitle": "Got an idea or a problem to solve?",
     "ctaSubtitle": "Write to me -",
@@ -340,6 +370,21 @@
       "demo": "View",
       "code": "Code",
       "videoPresentation": "Video presentation"
+    },
+    "filters": {
+      "aria": "Filter projects by category",
+      "all": "All",
+      "web": "Web apps",
+      "ai": "AI",
+      "mobile": "Mobile / PWA",
+      "wordpress": "WordPress",
+      "tools": "DevOps & tools"
+    },
+    "featuredBadge": "Featured",
+    "videoBadge": "Video",
+    "videoModal": {
+      "closeAria": "Close video window",
+      "loading": "Loading video..."
     },
     "testAccount": {
       "title": "Test account",
@@ -573,11 +618,39 @@
       "sendError": "Sending error.",
       "network": "Network error - please try again."
     },
+    "starters": {
+      "aria": "Ready-made message topics",
+      "label": "Not sure where to start?",
+      "items": [
+        {
+          "label": "I need a website",
+          "template": "Hi! I need a website for (describe your company or project). I care about (e.g. business card site, shop, portfolio). Please contact me with an initial quote."
+        },
+        {
+          "label": "I want a quote for an app",
+          "template": "Hi! I would like a quote for a web application that should (describe in a few words what the app should do). Please contact me."
+        },
+        {
+          "label": "I am looking for IT support",
+          "template": "Hi! I am looking for IT support for my company in the area of (e.g. server administration, networking, backups). Please contact me."
+        },
+        {
+          "label": "I have a question about working together",
+          "template": "Hi! I have a question about working together: "
+        }
+      ]
+    },
     "or": "Or write directly to:",
     "privacyNote": {
       "text": "By sending a message, you agree to the processing of your data in accordance with the",
       "link": "Privacy Policy"
     }
+  },
+  "notFound": {
+    "command": "cd /requested-page",
+    "code": "ERROR 404: path not found",
+    "desc": "The page you are looking for does not exist or has been moved. Check the address or go back to the homepage.",
+    "cta": "Back to homepage"
   },
   "privacyPolicy": {
     "title": "Privacy Policy",

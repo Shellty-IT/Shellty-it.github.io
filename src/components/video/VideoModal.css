@@ -58,12 +58,84 @@
     animation: videoModalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ─── Stan ładowania (do czasu załadowania iframe) ─── */
+.video-modal-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 18, 28, 0.95);
+    overflow: hidden;
+}
+
+.video-modal-loading__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(12, 192, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(12, 192, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.video-modal-loading__scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(12, 192, 255, 0.6),
+            rgba(12, 192, 255, 1),
+            rgba(12, 192, 255, 0.6),
+            transparent
+    );
+    box-shadow: 0 0 8px rgba(12, 192, 255, 0.8), 0 0 20px rgba(12, 192, 255, 0.4);
+    animation: videoModalScan 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.video-modal-loading__label {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: rgba(12, 192, 255, 0.5);
+    text-transform: uppercase;
+    animation: videoModalLabelBlink 1.1s step-end infinite;
+}
+
 .video-modal-content iframe {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: none;
+    z-index: 2;
+}
+
+@keyframes videoModalScan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes videoModalLabelBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+@keyframes videoModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes videoModalScaleIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 @media (max-width: 480px) {
@@ -85,5 +157,14 @@
     .video-modal-overlay,
     .video-modal-content {
         animation: none !important;
+    }
+
+    .video-modal-loading__scanline {
+        animation: none !important;
+    }
+
+    .video-modal-loading__label {
+        animation: none !important;
+        opacity: 0.4;
     }
 }

@@ -30,6 +30,7 @@ const ICON_NODES = [
 export default function Contact() {
     const { t } = useTranslation();
     const formRef = useRef(null);
+    const messageRef = useRef(null);
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [touched, setTouched] = useState({ name: false, email: false, message: false });
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
@@ -97,6 +98,19 @@ export default function Contact() {
 
     const fieldClass = (key) =>
         touched[key] && errors[key] ? "field has-error" : "field";
+
+    const starters = t("contact.starters.items", { returnObjects: true, defaultValue: [] });
+
+    const applyStarter = (template) => {
+        setForm((prev) => ({ ...prev, message: template }));
+        setTimeout(() => {
+            const el = messageRef.current;
+            if (el) {
+                el.focus();
+                el.setSelectionRange(el.value.length, el.value.length);
+            }
+        }, 0);
+    };
 
     return (
         <>
@@ -192,9 +206,34 @@ export default function Contact() {
                                 )}
                             </label>
 
+                            {Array.isArray(starters) && starters.length > 0 && (
+                                <div
+                                    className="msg-starters"
+                                    role="group"
+                                    aria-label={t("contact.starters.aria")}
+                                >
+                                    <span className="msg-starters__label">
+                                        {t("contact.starters.label")}
+                                    </span>
+                                    <div className="msg-starters__chips">
+                                        {starters.map((s, i) => (
+                                            <button
+                                                key={i}
+                                                type="button"
+                                                className="msg-starter"
+                                                onClick={() => applyStarter(s.template)}
+                                            >
+                                                {s.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             <label className={fieldClass("message")}>
                                 <span className="field-label">{t("contact.fields.message")}</span>
                                 <textarea
+                                    ref={messageRef}
                                     name="message"
                                     rows="6"
                                     value={form.message}

@@ -20,6 +20,11 @@ code {
     font-family: 'JetBrains Mono', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+:focus-visible {
+    outline: 2px solid rgba(12, 192, 255, 0.7);
+    outline-offset: 2px;
+}
+
 ::selection {
     background: rgba(12, 192, 255, 0.25);
     color: #f1f5f9;

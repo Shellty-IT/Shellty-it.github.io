@@ -10,8 +10,11 @@ import {
     FaHeadset,
     FaUserGroup,
     FaPaperPlane,
+    FaStar,
+    FaQuoteLeft,
 } from 'react-icons/fa6';
 import './Services.css';
+import VideoModal from '../video/VideoModal';
 
 import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
@@ -29,9 +32,54 @@ const NODE_POINTS = [
     { id: 8, x: '78%', y: '78%' },
 ];
 
+const SERVICES_VIMEO_ID = '1211675729';
+const SERVICES_VIMEO_URL = `https://vimeo.com/${SERVICES_VIMEO_ID}`;
+
+const ServicesShowreel = ({ t, onPlay }) => {
+    const [thumbError, setThumbError] = useState(false);
+
+    return (
+        <button
+            type="button"
+            className="svc-showreel"
+            onClick={onPlay}
+            aria-label={t('services.showreel.playAria')}
+        >
+            <span className="svc-showreel__thumb">
+                {!thumbError && (
+                    <img
+                        src={`https://vumbnail.com/${SERVICES_VIMEO_ID}.jpg`}
+                        alt=""
+                        loading="lazy"
+                        width="640"
+                        height="360"
+                        onError={() => setThumbError(true)}
+                    />
+                )}
+                <span className="svc-showreel__play-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </span>
+            </span>
+            <span className="svc-showreel__text">
+                <span className="svc-showreel__kicker">{t('services.showreel.kicker')}</span>
+                <span className="svc-showreel__title">{t('services.showreel.title')}</span>
+                <span className="svc-showreel__sub">{t('services.showreel.sub')}</span>
+            </span>
+            <span className="svc-showreel__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M13.2 5.2 12 6.4l4.6 4.6H4v2h12.6L12 17.6l1.2 1.2 6.8-6.8z" />
+                </svg>
+            </span>
+        </button>
+    );
+};
+
 const Services = () => {
     const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
+    const [videoOpen, setVideoOpen] = useState(false);
     const [iconKicked, setIconKicked] = useState(false);
     const iconKickTimeoutRef = useRef(null);
     const iconKickRafRef = useRef(null);
@@ -153,6 +201,8 @@ const Services = () => {
         },
     ];
 
+    const reviews = t('services.reviews.items', { returnObjects: true, defaultValue: [] });
+
     return (
         <section id="services" className="svc">
             <div className="svc__container">
@@ -217,6 +267,8 @@ const Services = () => {
                     </div>
                 </header>
 
+                <ServicesShowreel t={t} onPlay={() => setVideoOpen(true)} />
+
                 <p className="svc-intro" dangerouslySetInnerHTML={{ __html: t('services.intro') }} />
 
                 <div className="svc-grid">
@@ -240,7 +292,7 @@ const Services = () => {
                 </div>
 
                 <div className="svc-block-head">
-                    <span className="num">01 /</span>
+                    <span className="num">01</span>
                     <h3>{t('services.howTitle')}</h3>
                     <span className="rule" />
                 </div>
@@ -256,7 +308,7 @@ const Services = () => {
                 </div>
 
                 <div className="svc-block-head">
-                    <span className="num">02 /</span>
+                    <span className="num">02</span>
                     <h3>{t('services.whyTitle')}</h3>
                     <span className="rule" />
                 </div>
@@ -273,6 +325,40 @@ const Services = () => {
                     ))}
                 </div>
 
+                {Array.isArray(reviews) && reviews.length > 0 && (
+                    <>
+                        <div className="svc-block-head">
+                            <span className="num">03</span>
+                            <h3>{t('services.reviews.title')}</h3>
+                            <span className="rule" />
+                        </div>
+
+                        <div className="svc-reviews">
+                            {reviews.map((review, i) => (
+                                <figure key={i} className="svc-review">
+                                    <FaQuoteLeft className="svc-review__quote" aria-hidden="true" />
+                                    <div
+                                        className="svc-review__stars"
+                                        role="img"
+                                        aria-label={t('services.reviews.ratingAria', { rating: review.rating || 5 })}
+                                    >
+                                        {Array.from({ length: review.rating || 5 }).map((_, s) => (
+                                            <FaStar key={s} aria-hidden="true" />
+                                        ))}
+                                    </div>
+                                    <blockquote className="svc-review__text">
+                                        {review.text}
+                                    </blockquote>
+                                    <figcaption className="svc-review__meta">
+                                        <span className="svc-review__author">{review.author}</span>
+                                        <span className="svc-review__source">{review.source}</span>
+                                    </figcaption>
+                                </figure>
+                            ))}
+                        </div>
+                    </>
+                )}
+
                 <div className="svc-cta">
                     <div className="svc-cta__text">
                         <h3>{t('services.ctaTitle')}</h3>
@@ -284,6 +370,14 @@ const Services = () => {
                     </HashLink>
                 </div>
             </div>
+
+            <VideoModal
+                isOpen={videoOpen}
+                onClose={() => setVideoOpen(false)}
+                videoUrl={SERVICES_VIMEO_URL}
+                title={t('services.showreel.iframeTitle')}
+                t={t}
+            />
         </section>
     );
 };

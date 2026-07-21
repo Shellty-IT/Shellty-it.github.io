@@ -285,7 +285,7 @@
 .svc-intro {
     text-align: center;
     max-width: 780px;
-    margin: 28px auto 40px;
+    margin: 0 auto 40px;
     font-size: 15.5px;
     line-height: 1.75;
     color: #cbd5e1;
@@ -294,6 +294,162 @@
 .svc-intro b {
     color: #f1f5f9;
     font-weight: 600;
+}
+
+/* ─── Showreel (kompaktowy kafel filmu, otwiera modal) ─── */
+.svc-showreel {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 620px;
+    margin: 28px auto 32px;
+    padding: 14px 18px 14px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(12, 192, 255, 0.18);
+    background: linear-gradient(135deg, rgba(12, 192, 255, 0.05), rgba(0, 98, 176, 0.03)), rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    text-align: left;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .3s ease;
+}
+
+.svc-showreel:hover {
+    transform: translateY(-2px);
+    border-color: rgba(12, 192, 255, 0.45);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3), 0 0 20px rgba(12, 192, 255, 0.15);
+}
+
+.svc-showreel__thumb {
+    position: relative;
+    flex-shrink: 0;
+    width: 132px;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #05070d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.svc-showreel__thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity .3s ease, transform .5s ease;
+}
+
+.svc-showreel:hover .svc-showreel__thumb img {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.svc-showreel__play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #0cc0ff;
+    color: #051120;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 0 0 rgba(12, 192, 255, .5);
+    animation: svcShowreelPulse 2.4s ease-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.svc-showreel__play-icon svg {
+    margin-left: 3px;
+}
+
+.svc-showreel:hover .svc-showreel__play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.svc-showreel__text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.svc-showreel__kicker {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #0cc0ff;
+    font-weight: 600;
+}
+
+.svc-showreel__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.35;
+}
+
+.svc-showreel__sub {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.svc-showreel__arrow {
+    display: inline-flex;
+    margin-left: auto;
+    flex-shrink: 0;
+    color: #0cc0ff;
+    transition: transform .25s ease;
+}
+
+.svc-showreel:hover .svc-showreel__arrow {
+    transform: translateX(4px);
+}
+
+@keyframes svcShowreelPulse {
+    0%  { box-shadow: 0 0 0 0 rgba(12, 192, 255, .5); }
+    70% { box-shadow: 0 0 0 12px rgba(12, 192, 255, 0); }
+    100%{ box-shadow: 0 0 0 0 rgba(12, 192, 255, 0); }
+}
+
+.svc-showreel:focus-visible {
+    outline: 2px solid rgba(12, 192, 255, 0.7);
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .svc-showreel {
+        gap: 14px;
+        padding: 12px;
+    }
+
+    .svc-showreel__thumb {
+        width: 104px;
+    }
+
+    .svc-showreel__sub {
+        display: none;
+    }
+
+    .svc-showreel__arrow {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .svc-showreel,
+    .svc-showreel__thumb img,
+    .svc-showreel__play-icon,
+    .svc-showreel__arrow {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
 .svc-grid {
@@ -437,29 +593,35 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 22px;
+    margin: 12px 0 26px;
 }
 
 .svc-block-head .num {
     font-family: 'Orbitron', sans-serif;
     font-size: 11px;
-    letter-spacing: .2em;
-    color: rgba(12, 192, 255, 0.55);
+    letter-spacing: .18em;
+    color: #0cc0ff;
     white-space: nowrap;
+    padding: 5px 12px;
+    border: 1px solid rgba(12, 192, 255, 0.3);
+    border-radius: 999px;
+    background: rgba(12, 192, 255, 0.06);
 }
 
 .svc-block-head h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #f1f5f9;
     margin: 0;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: .04em;
 }
 
 .svc-block-head .rule {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(12, 192, 255, 0.25), transparent);
+    background: linear-gradient(90deg, rgba(12, 192, 255, 0.35), transparent);
 }
 
 .svc-steps {
@@ -557,6 +719,89 @@
     line-height: 1.6;
     color: #94a3b8;
     margin: 0;
+}
+
+/* ─── Opinie klientów ─── */
+.svc-reviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 48px;
+}
+
+.svc-review {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 20px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 12px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.svc-review:hover {
+    border-color: rgba(12, 192, 255, 0.22);
+    background: rgba(12, 192, 255, 0.035);
+}
+
+.svc-review__quote {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+    color: rgba(12, 192, 255, 0.18);
+}
+
+.svc-review__stars {
+    display: flex;
+    gap: 3px;
+    color: #0cc0ff;
+    font-size: 12px;
+    filter: drop-shadow(0 0 6px rgba(12, 192, 255, 0.35));
+}
+
+.svc-review__text {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.svc-review__meta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.svc-review__author {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.svc-review__source {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(12, 192, 255, 0.3);
+    color: rgba(12, 192, 255, 0.8);
+    background: rgba(7, 11, 20, 0.5);
+}
+
+@media (max-width: 900px) {
+    .svc-reviews {
+        grid-template-columns: 1fr;
+    }
 }
 
 .svc-cta {

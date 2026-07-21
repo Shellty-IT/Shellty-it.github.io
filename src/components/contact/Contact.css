@@ -295,6 +295,55 @@
     font-size: 13px;
 }
 
+/* ─── Startery konwersacji ─── */
+.msg-starters {
+    margin-bottom: 10px;
+}
+
+.msg-starters__label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #0cc0ff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.msg-starters__label::before {
+    content: "›";
+    color: #0cc0ff;
+    font-size: 13px;
+}
+
+.msg-starters__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.msg-starter {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.035);
+    color: #94a3b8;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease, background .2s ease, box-shadow .3s ease;
+}
+
+.msg-starter:hover {
+    color: #f1f5f9;
+    border-color: rgba(12, 192, 255, 0.4);
+    background: rgba(12, 192, 255, 0.06);
+    box-shadow: 0 0 12px rgba(12, 192, 255, 0.15);
+}
+
 .contact-form input,
 .contact-form textarea {
     width: 100%;

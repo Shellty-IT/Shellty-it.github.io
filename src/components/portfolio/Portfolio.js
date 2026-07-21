@@ -5,9 +5,9 @@ import './styles/ProjectCard.css';
 import './styles/ProjectImage.css';
 import './styles/Skeleton.css';
 import './styles/TestAccount.css';
-import './styles/VideoModal.css';
-import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
+import VideoModal from '../video/VideoModal';
 
 import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
 import ksefThumbnail from '../../assets/thumbnails/ksef_master.webp';
@@ -34,7 +34,6 @@ import lingoThumbnailAng from '../../assets/thumbnails/lingo_ang.webp';
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
-import { createPortal } from 'react-dom';
 import { useIconPhase } from '../../hooks/useIconPhase';
 
 const ICON_NODES = [
@@ -175,55 +174,6 @@ const TestAccountBox = memo(({ account, t }) => {
     );
 });
 
-const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [isOpen]);
-
-    useEffect(() => {
-        if (!isOpen) return;
-        const handleKey = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
-        window.addEventListener('keydown', handleKey);
-        return () => window.removeEventListener('keydown', handleKey);
-    }, [isOpen, onClose]);
-
-    if (!isOpen) return null;
-
-    const embedUrl = videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/') + '?autoplay=1&title=0&byline=0&portrait=0';
-
-    return createPortal(
-        <div className="video-modal-overlay" onClick={onClose}>
-            <button
-                className="video-modal-close"
-                onClick={(e) => { e.stopPropagation(); onClose(); }}
-                aria-label="Close"
-                type="button"
-            >
-                <FaTimes />
-            </button>
-            <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
-                <iframe
-                    src={embedUrl}
-                    title={title}
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                />
-            </div>
-        </div>,
-        document.body
-    );
-};
-
 /**
  * Renderuje linie opisu projektu z zachowaniem podziałów \n.
  * Memoizowany i wyciągnięty do osobnego komponentu - split() wykonywany
@@ -248,6 +198,7 @@ const Portfolio = () => {
     const currentLanguage = i18n.language;
     const [titleHovered, setTitleHovered] = useState(false);
     const [videoModal, setVideoModal] = useState({ open: false, url: '', title: '' });
+    const [activeFilter, setActiveFilter] = useState('all');
 
     const { iconRef, iconPhase } = useIconPhase('pf-icon--pulse');
 
@@ -262,6 +213,7 @@ const Portfolio = () => {
     const projects = useMemo(() => ([
         {
             id: "shelltyLingo",
+            categories: ['mobile', 'ai'],
             image: currentLanguage === 'en' ? lingoThumbnailAng : lingoThumbnail,
             githubLink: 'https://github.com/Shellty-IT/Shellty-Lingo',
             title: t('portfolio.projects.shelltyLingo.title'),
@@ -276,6 +228,8 @@ const Portfolio = () => {
         },
         {
             id: "tomiForno",
+            categories: ['web', 'ai'],
+            featured: true,
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
             demoLink: 'https://tomi-forno.shellty.pl',
             githubLink: null,
@@ -291,6 +245,8 @@ const Portfolio = () => {
         },
         {
             id: "shelltyPromptCoach",
+            categories: ['web', 'ai'],
+            featured: true,
             image: currentLanguage === 'en' ? promptCoachThumbnailAng : promptCoachThumbnail,
             demoLink: 'https://prompt-coach.shellty.pl/',
             githubLink: null,
@@ -312,6 +268,8 @@ const Portfolio = () => {
         },
         {
             id: "smartQuoteAI",
+            categories: ['web', 'ai', 'mobile'],
+            featured: true,
             image: smartquoteThumbnail,
             demoLink: 'https://smart-quote.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/SmartQuote',
@@ -334,6 +292,7 @@ const Portfolio = () => {
         },
         {
             id: "shelltyCMS",
+            categories: ['web'],
             image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
             demoLink: 'https://cms.shellty.pl/',
             githubLink: null,
@@ -349,6 +308,7 @@ const Portfolio = () => {
         },
         {
             id: "budmaxTheme",
+            categories: ['wordpress'],
             image: budmaxThumbnail,
             demoLink: 'https://dev-customer-test.pantheonsite.io/',
             githubLink: null,
@@ -364,6 +324,7 @@ const Portfolio = () => {
         },
         {
             id: "shelltyKanban",
+            categories: ['web'],
             image: currentLanguage === 'en' ? kanbanThumbnailAng : kanbanThumbnail,
             demoLink: 'https://kanban.shellty.pl/',
             githubLink: 'https://github.com/Shellty-IT/NerdsApp_KanbanApp',
@@ -385,6 +346,7 @@ const Portfolio = () => {
         },
         {
             id: "shelltyPulse",
+            categories: ['tools'],
             image: shelltyPulseThumbnail,
             demoLink: 'https://pulse.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
@@ -400,6 +362,7 @@ const Portfolio = () => {
         },
         {
             id: "ksefMaster",
+            categories: ['web', 'tools'],
             image: currentLanguage === 'en' ? ksefThumbnailAng : ksefThumbnail,
             demoLink: 'https://ksef-master.shellty.pl/',
             githubLink: 'https://github.com/Shellty-IT/KSeF_Master',
@@ -422,6 +385,7 @@ const Portfolio = () => {
         },
         {
             id: "shelltyBlog",
+            categories: ['web'],
             image: shelltyBlogThumbnail,
             demoLink: 'https://blog.shellty.pl',
             githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
@@ -444,6 +408,7 @@ const Portfolio = () => {
         },
         {
             id: "postlio",
+            categories: ['web', 'ai', 'mobile'],
             image: currentLanguage === 'en' ? postlioThumbnailAng : postlioThumbnail,
             demoLink: 'https://postlio.shellty.pl/',
             githubLink: null,
@@ -465,6 +430,7 @@ const Portfolio = () => {
         },
         {
             id: "mobiSalon",
+            categories: ['web'],
             image: mobisalonThumbnail,
             demoLink: 'https://mobisalon.netlify.app/',
             githubLink: 'https://github.com/Shellty-IT/mobi-grooming',
@@ -480,6 +446,7 @@ const Portfolio = () => {
         },
         {
             id: "pwaCookbook",
+            categories: ['mobile'],
             image: cookbookThumbnail,
             demoLink: 'https://mobilnaksiazkakucharska.netlify.app',
             githubLink: 'https://github.com/shellty-it/Mobilna-ksiazka-kucharska',
@@ -499,6 +466,7 @@ const Portfolio = () => {
         },
         {
             id: "animalsOnePage",
+            categories: ['web'],
             image: animalsThumbnail,
             demoLink: 'https://zwierzeta.netlify.app/#fourty-page',
             githubLink: 'https://github.com/shellty-it/Strona-typu-One-Page',
@@ -511,6 +479,21 @@ const Portfolio = () => {
             caseStudyLink: t('portfolio.projects.animalsOnePage.case', { defaultValue: '' }) || null,
         }
     ]), [t, currentLanguage]);
+
+    const filters = [
+        { key: 'all', label: t('portfolio.filters.all') },
+        { key: 'web', label: t('portfolio.filters.web') },
+        { key: 'ai', label: t('portfolio.filters.ai') },
+        { key: 'mobile', label: t('portfolio.filters.mobile') },
+        { key: 'wordpress', label: t('portfolio.filters.wordpress') },
+        { key: 'tools', label: t('portfolio.filters.tools') },
+    ];
+
+    const filteredProjects = useMemo(() => (
+        activeFilter === 'all'
+            ? projects
+            : projects.filter((p) => p.categories?.includes(activeFilter))
+    ), [projects, activeFilter]);
 
     return (
         <div className="portfolio-container" id="portfolio">
@@ -536,8 +519,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--base"
                             draggable="false"
-                            width="20000"
-                            height="200000"
+                            width="200"
+                            height="200"
                         />
                         <img
                             src={portfolioGlow}
@@ -545,8 +528,8 @@ const Portfolio = () => {
                             aria-hidden="true"
                             className="pf-icon__img pf-icon__img--lit"
                             draggable="false"
-                            width="200000"
-                            height="200000"
+                            width="200"
+                            height="200"
                         />
                     </div>
 
@@ -569,13 +552,31 @@ const Portfolio = () => {
                             }}
                         />
                     </p>
+
+                    <div
+                        className="portfolio-filters"
+                        role="group"
+                        aria-label={t('portfolio.filters.aria')}
+                    >
+                        {filters.map((f) => (
+                            <button
+                                key={f.key}
+                                type="button"
+                                className={`portfolio-filter${activeFilter === f.key ? ' is-active' : ''}`}
+                                onClick={() => setActiveFilter(f.key)}
+                                aria-pressed={activeFilter === f.key}
+                            >
+                                {f.label}
+                            </button>
+                        ))}
+                    </div>
                 </header>
 
                 <section className="projects-grid" aria-live="polite">
-                    {projects.map((project, index) => (
+                    {filteredProjects.map((project, index) => (
                         <article
                             key={project.id}
-                            className={`project-card animate-slide-up delay-${(index % 4) + 1}`}
+                            className={`project-card animate-slide-up delay-${(index % 4) + 1}${project.featured ? ' project-card--featured' : ''}`}
                             itemScope
                             itemType="https://schema.org/CreativeWork"
                         >
@@ -588,6 +589,16 @@ const Portfolio = () => {
                                         src={project.image}
                                         alt={project.title}
                                     />
+                                    {project.featured && (
+                                        <span className="pf-cover-badge pf-cover-badge--featured">
+                                            {t('portfolio.featuredBadge')}
+                                        </span>
+                                    )}
+                                    {project.videoLink && (
+                                        <span className="pf-cover-badge pf-cover-badge--video" aria-hidden="true">
+                                            <FaPlay /> {t('portfolio.videoBadge')}
+                                        </span>
+                                    )}
                                     <div className="image-overlay">
                                         {project.demoLink && (
                                             <a
@@ -599,6 +610,16 @@ const Portfolio = () => {
                                             >
                                                 <FaExternalLinkAlt /> {t('portfolio.actions.demo')}
                                             </a>
+                                        )}
+                                        {project.videoLink && (
+                                            <button
+                                                type="button"
+                                                className="overlay-cta overlay-cta--video"
+                                                onClick={() => openVideo(project.videoLink, project.title)}
+                                                aria-label={`${t('portfolio.actions.videoPresentation')} - ${project.title}`}
+                                            >
+                                                <FaPlay /> {t('portfolio.actions.videoPresentation')}
+                                            </button>
                                         )}
                                     </div>
                                 </div>
@@ -691,6 +712,7 @@ const Portfolio = () => {
                 onClose={closeVideo}
                 videoUrl={videoModal.url}
                 title={videoModal.title}
+                t={t}
             />
         </div>
     );
