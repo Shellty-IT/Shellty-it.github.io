@@ -100,9 +100,9 @@
 
 .hero__cta {
     display: grid;
-    grid-template-columns: 1.45fr 1.18fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
-    margin: 24px 0 12px;
+    margin: 12px 0;
 }
 
 .hero__cta .btn-glass {
@@ -182,16 +182,6 @@
 
 .btn-icon-wrap--portfolio .btn-icon {
     transform: scale(2.05);
-    transform-origin: center;
-}
-
-.btn-icon-wrap--cv {
-    width: 22px;
-    height: 22px;
-}
-
-.btn-icon-wrap--cv .btn-icon {
-    transform: scale(1.35);
     transform-origin: center;
 }
 

@@ -5,8 +5,6 @@ import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from "react-i18next";
 import LogoSVG from "../../assets/logo/logo_vertical";
 
-import cvIcon from '../../assets/icons/cv/cv.webp';
-import cvGlowIcon from '../../assets/icons/cv/cv_glow.webp';
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlowIcon from '../../assets/icons/portfolio/portfolio_glow.webp';
 import contactIcon from '../../assets/icons/contact/contact.webp';
@@ -86,40 +84,6 @@ export default function Home() {
         return () => clearInterval(interval);
     }, []);
 
-    const CV_FILE_PL = 'CV_PL_public.pdf';
-    const CV_FILE_EN = 'CV_ANG_public.pdf';
-    const CV_FILE = isEN ? CV_FILE_EN : CV_FILE_PL;
-
-    const GITHUB_CV_RAW = `https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/cv/${CV_FILE}`;
-    const GITHUB_CV_CDN = `https://cdn.jsdelivr.net/gh/Shellty-IT/Shellty-IT.github.io@main/public/cv/${CV_FILE}`;
-
-    const downloadCV = async (e) => {
-        e.preventDefault();
-        const tryDownload = async (url) => {
-            const res = await fetch(url, { mode: 'cors', cache: 'no-store' });
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const blob = await res.blob();
-            const objUrl = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = objUrl;
-            a.download = CV_FILE;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(objUrl);
-        };
-
-        try {
-            await tryDownload(GITHUB_CV_RAW);
-        } catch (_) {
-            try {
-                await tryDownload(GITHUB_CV_CDN);
-            } catch {
-                window.open(GITHUB_CV_RAW, '_blank', 'noopener,noreferrer');
-            }
-        }
-    };
-
     return (
         <section id="home" className="home">
             <div className="aurora" aria-hidden="true" />
@@ -144,47 +108,6 @@ export default function Home() {
                         {t("home.lead")}
                     </p>
 
-                    {/* CTA */}
-                    <div className="hero__cta">
-                        <HashLink
-                            className="btn-glass btn-glass--primary"
-                            smooth
-                            to="/portfolio/#portfolio"
-                        >
-                            <span className="btn-icon-wrap btn-icon-wrap--portfolio">
-                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
-                            </span>
-                            <span>{t("home.ctaPortfolio")}</span>
-                        </HashLink>
-
-                        <a
-                            className="btn-glass"
-                            href={GITHUB_CV_RAW}
-                            onClick={downloadCV}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <span className="btn-icon-wrap btn-icon-wrap--cv">
-                                <img src={cvIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={cvGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
-                            </span>
-                            <span>{t("home.ctaCv")}</span>
-                        </a>
-
-                        <HashLink
-                            className="btn-glass"
-                            smooth
-                            to="/contact/#contact"
-                        >
-                            <span className="btn-icon-wrap btn-icon-wrap--contact">
-                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
-                            </span>
-                            <span>{t("home.ctaContact")}</span>
-                        </HashLink>
-                    </div>
-
                     {/* Meta stats */}
                     <div className="hero__meta">
                         <div className="stat">
@@ -199,6 +122,33 @@ export default function Home() {
                             <div className="stat__num">{t("home.stats.hybrid.num")}</div>
                             <div className="stat__label">{t("home.stats.hybrid.label")}</div>
                         </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="hero__cta">
+                        <HashLink
+                            className="btn-glass btn-glass--primary"
+                            smooth
+                            to="/portfolio/#portfolio"
+                        >
+                            <span className="btn-icon-wrap btn-icon-wrap--portfolio">
+                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                            </span>
+                            <span>{t("home.ctaPortfolio")}</span>
+                        </HashLink>
+
+                        <HashLink
+                            className="btn-glass"
+                            smooth
+                            to="/contact/#contact"
+                        >
+                            <span className="btn-icon-wrap btn-icon-wrap--contact">
+                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
+                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                            </span>
+                            <span>{t("home.ctaContact")}</span>
+                        </HashLink>
                     </div>
 
                     {/* Zajawka usług */}
