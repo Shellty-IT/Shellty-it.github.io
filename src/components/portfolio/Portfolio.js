@@ -233,7 +233,7 @@ const Portfolio = () => {
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
             demoLink: 'https://tomi-forno.shellty.pl',
             githubLink: null,
-            videoLink: 'https://vimeo.com/1211655709',
+            videoLink: 'https://vimeo.com/1212534874',
             title: t('portfolio.projects.tomiForno.title'),
             subtitle: t('portfolio.projects.tomiForno.subtitle'),
             description: t('portfolio.projects.tomiForno.description'),
