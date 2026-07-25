@@ -12,8 +12,12 @@
     "greeting": "Hi! My name is",
     "name": "Tomasz Skorupski",
     "lead": "I build websites and web applications and provide IT support and administration. I combine the skills of a developer and an IT specialist, which allows me to deliver solutions that are not only functional, but also stable and secure.\n\nI am open to long-term cooperation with a company where I can bring real value from day one and grow in a stable environment. I also take on individual projects for businesses and individuals - you can find their scope in the Services section.",
-    "ctaPortfolio": "View portfolio",
-    "ctaContact": "Contact",
+    "cta": {
+      "portfolioKicker": "Portfolio",
+      "portfolioTitle": "View projects",
+      "contactKicker": "Contact",
+      "contactTitle": "Write to me"
+    },
     "stats": {
       "years": { "num": "7+", "label": "years in IT" },
       "projects": { "num": "10+", "label": "side projects" },

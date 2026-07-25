@@ -5,10 +5,10 @@ import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from "react-i18next";
 import LogoSVG from "../../assets/logo/logo_vertical";
 
-import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
-import portfolioGlowIcon from '../../assets/icons/portfolio/portfolio_glow.webp';
-import contactIcon from '../../assets/icons/contact/contact.webp';
-import contactGlowIcon from '../../assets/icons/contact/contact_glow.webp';
+import portfolioIcon from '../../assets/icons/portfolio/portfolio_cta.webp';
+import portfolioGlowIcon from '../../assets/icons/portfolio/portfolio_cta_glow.webp';
+import contactIcon from '../../assets/icons/contact/contact_cta.webp';
+import contactGlowIcon from '../../assets/icons/contact/contact_cta_glow.webp';
 import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
 import servicesCenter from '../../assets/icons/services/services_center.webp';
@@ -127,27 +127,38 @@ export default function Home() {
                     {/* CTA */}
                     <div className="hero__cta">
                         <HashLink
-                            className="btn-glass btn-glass--primary"
+                            className="btn-cta btn-cta--primary"
                             smooth
                             to="/portfolio/#portfolio"
                         >
-                            <span className="btn-icon-wrap btn-icon-wrap--portfolio">
-                                <img src={portfolioIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={portfolioGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                            <span className="btn-cta__icon" aria-hidden="true">
+                                <img src={portfolioIcon} alt="" className="btn-cta__icon-base" width="38" height="38" />
+                                <img src={portfolioGlowIcon} alt="" className="btn-cta__icon-lit" width="38" height="38" />
                             </span>
-                            <span>{t("home.ctaPortfolio")}</span>
+                            <span className="btn-cta__text">
+                                <span className="btn-cta__kicker">{t("home.cta.portfolioKicker")}</span>
+                                <span className="btn-cta__title">{t("home.cta.portfolioTitle")}</span>
+                            </span>
+                            <span className="btn-cta__arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M13.2 5.2 12 6.4l4.6 4.6H4v2h12.6L12 17.6l1.2 1.2 6.8-6.8z" />
+                                </svg>
+                            </span>
                         </HashLink>
 
                         <HashLink
-                            className="btn-glass"
+                            className="btn-cta btn-cta--ghost"
                             smooth
                             to="/contact/#contact"
                         >
-                            <span className="btn-icon-wrap btn-icon-wrap--contact">
-                                <img src={contactIcon} alt="" className="btn-icon btn-icon--default" width="22" height="22" />
-                                <img src={contactGlowIcon} alt="" className="btn-icon btn-icon--glow" width="22" height="22" />
+                            <span className="btn-cta__icon" aria-hidden="true">
+                                <img src={contactIcon} alt="" className="btn-cta__icon-base" width="38" height="38" />
+                                <img src={contactGlowIcon} alt="" className="btn-cta__icon-lit" width="38" height="38" />
                             </span>
-                            <span>{t("home.ctaContact")}</span>
+                            <span className="btn-cta__text">
+                                <span className="btn-cta__kicker">{t("home.cta.contactKicker")}</span>
+                                <span className="btn-cta__title">{t("home.cta.contactTitle")}</span>
+                            </span>
                         </HashLink>
                     </div>
 
