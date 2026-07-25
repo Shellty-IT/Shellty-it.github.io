@@ -67,6 +67,12 @@
     "goal": "I’m not just looking for \"another gig\". Above all, I’m seeking long-term collaboration with a Partner or Employer with whom I can build a relationship for years - a place where I can bring real value from day one and grow through ambitious projects. That said, I’m open to freelance work too, especially if it can be a stepping stone to something more.",
     "ctaExperience": "See experience",
     "ctaContact": "Get in touch",
+    "cta": {
+      "portfolioKicker": "Portfolio",
+      "portfolioTitle": "View projects",
+      "contactKicker": "Contact",
+      "contactTitle": "Get in touch"
+    },
     "social": {
       "emailAria": "E-mail",
       "githubAria": "GitHub",

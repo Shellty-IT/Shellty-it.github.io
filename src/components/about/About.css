@@ -346,84 +346,10 @@
 
 /* ─── Przyciski akcji ─── */
 .about__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
     margin-top: 22px;
-}
-
-.about__actions .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, .12);
-    background: rgba(255, 255, 255, .035);
-    color: #f1f5f9;
-    font-weight: 600;
-    font-size: 13.5px;
-    letter-spacing: .02em;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform .2s ease, border-color .2s ease,
-    background .2s ease, box-shadow .3s ease;
-}
-
-.about__actions .btn:hover {
-    transform: translateY(-2px);
-    background: rgba(12, 192, 255, .07);
-    border-color: rgba(12, 192, 255, .5);
-    box-shadow: 0 0 16px rgba(12, 192, 255, .25);
-}
-
-.about__actions .btn--primary {
-    background: linear-gradient(135deg, #0cc0ff, #0062b0);
-    border: none;
-    padding: 11px 17px;
-    color: #051120;
-}
-
-.about__actions .btn--primary:hover {
-    background: linear-gradient(135deg, #0cc0ff, #0062b0);
-    color: #051120;
-    border: none;
-    padding: 11px 17px;
-    box-shadow: 0 8px 28px rgba(12, 192, 255, .4);
-}
-
-.about__actions .btn--outline {
-    background: rgba(255, 255, 255, .035);
-    color: #f1f5f9;
-    border: 1px solid rgba(255, 255, 255, .12);
-}
-
-.about__actions .btn:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(12, 192, 255, .3);
-}
-
-/* Ikony glow w przyciskach */
-.about__actions .btn-glow-icon { transition: transform 0.2s ease; }
-
-/* Portfolio button icons */
-.about__actions .btn--primary .btn-glow-icon .glow-icon-lit  { opacity: 0; }
-.about__actions .btn--primary:hover .btn-glow-icon .glow-icon-lit  { opacity: 1; }
-.about__actions .btn--primary .btn-glow-icon .glow-icon-base { opacity: 1; }
-.about__actions .btn--primary:hover .btn-glow-icon .glow-icon-base { opacity: 0; }
-
-/* Outline button icons (Contact/etc) */
-.about__actions .btn--outline .btn-glow-icon .glow-icon-lit  { opacity: 0; }
-.about__actions .btn--outline:hover .btn-glow-icon .glow-icon-lit  { opacity: 1; }
-.about__actions .btn--outline .btn-glow-icon .glow-icon-base { opacity: 0.5; }
-.about__actions .btn--outline:hover .btn-glow-icon .glow-icon-base { opacity: 0; }
-.about__actions .btn-glow-icon--portfolio { transform: scale(1.15); }
-.about__actions .btn--primary:hover .btn-glow-icon--portfolio {
-    transform: scale(1.35) translateY(-1px);
-}
-.about__actions .btn-glow-icon--contact { transform: scale(1.15); }
-.about__actions .btn--contact:hover .btn-glow-icon--contact {
-    transform: scale(1.35) translateY(-1px);
 }
 
 /* ─── Social ikonki ─── */
@@ -970,7 +896,6 @@
         max-width: 100%;
     }
 
-    .about__actions  { justify-content: center; }
     .about__social   { justify-content: center; }
 
     .about__video-dir--desktop { display: none; }
@@ -980,6 +905,8 @@
 @media (max-width: 720px) {
     .about { padding-top: 40px; }
     .about__header { margin-bottom: 0.1rem; }
+
+    .about__actions { grid-template-columns: 1fr; }
 
     .dna {
         width: 140px;

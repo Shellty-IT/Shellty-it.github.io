@@ -1,0 +1,217 @@
+/* ─── Wspólne CTA (hero + bio) ─── */
+.btn-cta {
+    --icon-scale: 1;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px 10px 12px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    /* overflow celowo NIE jest hidden — dzięki temu ikona (patrz --icon-scale)
+       może wizualnie wystawać poza swoje miejsce w layoucie bez przycinania.
+       Tło i błysk mają WŁASNĄ, przyciętą warstwę: .btn-cta__bg poniżej. */
+    transition: transform .2s ease, background .25s ease, border-color .25s ease, box-shadow .3s ease;
+}
+
+.btn-cta:hover {
+    transform: translateY(-2px);
+}
+
+.btn-cta:active {
+    transform: translateY(0) scale(.985);
+}
+
+.btn-cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(12, 192, 255, .3);
+}
+
+/* Warstwa tła — przycięta do kształtu przycisku, żyje pod ikoną/tekstem */
+.btn-cta__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.btn-cta__icon,
+.btn-cta__text,
+.btn-cta__arrow {
+    position: relative;
+    z-index: 1;
+}
+
+/*
+ * ─── ROZMIAR IKONY ───
+ * JEDEN parametr do zmiany rozmiaru: --icon-scale, zadeklarowany na .btn-cta
+ * (domyślnie 1 = 38px). Przykład: .btn-cta--primary { --icon-scale: 1.4; }
+ * Zmiana tej zmiennej NIE rusza szerokości przycisku, odstępów ani tekstu —
+ * .btn-cta__icon ma stały footprint 38px w layoucie, a obrazki są tylko
+ * wizualnie skalowane transformem (nie zajmuje to dodatkowego miejsca).
+ */
+.btn-cta__icon {
+    position: relative;
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    transition: transform .25s ease, filter .3s ease;
+}
+
+.btn-cta__icon img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transform: scale(var(--icon-scale));
+    transition: opacity .3s ease, transform .25s ease;
+}
+
+.btn-cta__icon-lit {
+    opacity: 0;
+}
+
+.btn-cta:hover .btn-cta__icon {
+    transform: scale(1.06);
+}
+
+.btn-cta:hover .btn-cta__icon-base {
+    opacity: 0;
+}
+
+.btn-cta:hover .btn-cta__icon-lit {
+    opacity: 1;
+}
+
+.btn-cta__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    min-width: 0;
+}
+
+.btn-cta__kicker {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+.btn-cta__title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.btn-cta__arrow {
+    display: inline-flex;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform .25s ease;
+}
+
+.btn-cta:hover .btn-cta__arrow {
+    transform: translateX(4px);
+}
+
+/* Primary: gradient + ciemna ikona (jak ciemny tekst na gradiencie) */
+.btn-cta--primary .btn-cta__bg {
+    background: linear-gradient(90deg, #0cc0ff, #0062b0);
+    background-origin: border-box;
+}
+
+.btn-cta--primary {
+    color: #04121f;
+    box-shadow: 0 6px 22px rgba(12, 192, 255, .28);
+}
+
+.btn-cta--primary:hover {
+    box-shadow: 0 10px 30px rgba(12, 192, 255, .45);
+}
+
+.btn-cta--primary .btn-cta__kicker {
+    color: rgba(4, 18, 31, .72);
+}
+
+.btn-cta--primary .btn-cta__title {
+    color: #04121f;
+}
+
+.btn-cta--primary:hover .btn-cta__icon {
+    filter: drop-shadow(0 0 10px rgba(4, 18, 31, .45));
+}
+
+.btn-cta--primary .btn-cta__bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transition: left .5s ease;
+    pointer-events: none;
+}
+
+.btn-cta--primary:hover .btn-cta__bg::after {
+    left: 120%;
+}
+
+/* Ghost: szkło + wygaszona ikona, rozświetla się na hover */
+.btn-cta--ghost .btn-cta__bg {
+    background: rgba(255, 255, 255, .04);
+}
+
+.btn-cta--ghost {
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.btn-cta--ghost:hover {
+    border-color: rgba(12, 192, 255, .5);
+    box-shadow: 0 0 22px rgba(12, 192, 255, .2);
+}
+
+.btn-cta--ghost:hover .btn-cta__bg {
+    background: rgba(12, 192, 255, .07);
+}
+
+.btn-cta--ghost .btn-cta__kicker {
+    color: #0cc0ff;
+}
+
+.btn-cta--ghost .btn-cta__title {
+    color: #f1f5f9;
+}
+
+.btn-cta--ghost:hover .btn-cta__icon {
+    filter: drop-shadow(0 0 12px rgba(12, 192, 255, .55));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-cta,
+    .btn-cta__icon,
+    .btn-cta__icon img,
+    .btn-cta__arrow,
+    .btn-cta__bg::after {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .btn-cta:hover,
+    .btn-cta:hover .btn-cta__icon,
+    .btn-cta:hover .btn-cta__arrow {
+        transform: none;
+    }
+}

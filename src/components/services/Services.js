@@ -9,7 +9,6 @@ import {
     FaScrewdriverWrench,
     FaHeadset,
     FaUserGroup,
-    FaPaperPlane,
     FaStar,
     FaQuoteLeft,
 } from 'react-icons/fa6';
@@ -19,6 +18,8 @@ import VideoModal from '../video/VideoModal';
 import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
 import servicesCenter from '../../assets/icons/services/services_center.webp';
+import contactIcon from '../../assets/icons/contact/contact_cta.webp';
+import contactGlow from '../../assets/icons/contact/contact_cta_glow.webp';
 
 const NODE_POINTS = [
     { id: 0, x: '22%', y: '22%' },
@@ -365,7 +366,10 @@ const Services = () => {
                         <p>{t('services.ctaSubtitle')} <span className="accent">{t('services.ctaAccent')}</span></p>
                     </div>
                     <HashLink smooth to="/contact/#contact" className="btn btn--primary">
-                        <FaPaperPlane />
+                        <span className="btn-icon" aria-hidden="true">
+                            <img src={contactIcon} alt="" className="btn-icon__base" width="30" height="30" />
+                            <img src={contactGlow} alt="" className="btn-icon__lit" width="30" height="30" />
+                        </span>
                         {t('services.ctaBtn')}
                     </HashLink>
                 </div>

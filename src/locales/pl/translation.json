@@ -67,6 +67,12 @@
     "goal": "Nie szukam tylko \"kolejnego zlecenia\". Przede wszystkim zależy mi na długofalowej współpracy z Partnerem lub Pracodawcą, z którym zbuduję relację na lata - miejscu, gdzie będę mógł wnosić realną wartość od pierwszego dnia i rozwijać się przy ambitnych projektach. Nie wykluczam jednak zleceń, jeśli jest to dobry punkt wyjścia do czegoś więcej.",
     "ctaExperience": "Zobacz doświadczenie",
     "ctaContact": "Skontaktuj się",
+    "cta": {
+      "portfolioKicker": "Portfolio",
+      "portfolioTitle": "Zobacz projekty",
+      "contactKicker": "Kontakt",
+      "contactTitle": "Skontaktuj się"
+    },
     "social": {
       "emailAria": "E-mail",
       "githubAria": "GitHub",

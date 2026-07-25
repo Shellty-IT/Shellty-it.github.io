@@ -1,6 +1,5 @@
 // src/components/about/About.js
 import React, { useState, useEffect, useCallback } from "react";
-import { HashLink } from "react-router-hash-link";
 import "./About.css";
 import {
     FaMapMarkerAlt,
@@ -12,15 +11,15 @@ import {
     FaGraduationCap,
 } from "react-icons/fa";
 import { useTranslation, Trans } from "react-i18next";
-import GlowIcon from "../glowIcon/GlowIcon";
+import CtaButton from "../ctaButton/CtaButton";
 import { useIconPhase } from "../../hooks/useIconPhase";
 
 import aboutIcon from "../../assets/icons/about/about.webp";
 import aboutGlow from "../../assets/icons/about/about_glow.webp";
-import portfolioIcon from "../../assets/icons/portfolio/portfolio.webp";
-import portfolioGlow from "../../assets/icons/portfolio/portfolio_glow.webp";
-import contactIcon from "../../assets/icons/contact/contact.webp";
-import contactGlow from "../../assets/icons/contact/contact_glow.webp";
+import portfolioIcon from "../../assets/icons/portfolio/portfolio_cta.webp";
+import portfolioGlow from "../../assets/icons/portfolio/portfolio_cta_glow.webp";
+import contactIcon from "../../assets/icons/contact/contact_cta.webp";
+import contactGlow from "../../assets/icons/contact/contact_cta_glow.webp";
 
 import responsibilityIcon from "../../assets/icons/responsibility/responsibility.webp";
 import responsibilityGlow from "../../assets/icons/responsibility/responsibility_glow.webp";
@@ -366,35 +365,23 @@ const About = () => {
 
                         {/* Przyciski */}
                         <div className="about__actions">
-                            <HashLink
-                                smooth
+                            <CtaButton
                                 to="/portfolio/#portfolio"
-                                className="btn btn--primary"
-                            >
-                                <GlowIcon
-                                    src={portfolioIcon}
-                                    srcGlow={portfolioGlow}
-                                    alt=""
-                                    size={42}
-                                    className="btn-glow-icon btn-glow-icon--portfolio"
-                                />
-                                {t("nav.portfolio")}
-                            </HashLink>
+                                variant="primary"
+                                icon={portfolioIcon}
+                                iconGlow={portfolioGlow}
+                                kicker={t("about.cta.portfolioKicker")}
+                                title={t("about.cta.portfolioTitle")}
+                                arrow
+                            />
 
-                            <HashLink
-                                smooth
+                            <CtaButton
                                 to="/contact/#contact"
-                                className="btn btn--outline btn--contact"
-                            >
-                                <GlowIcon
-                                    src={contactIcon}
-                                    srcGlow={contactGlow}
-                                    alt=""
-                                    size={42}
-                                    className="btn-glow-icon btn-glow-icon--contact"
-                                />
-                                {t("about.ctaContact")}
-                            </HashLink>
+                                icon={contactIcon}
+                                iconGlow={contactGlow}
+                                kicker={t("about.cta.contactKicker")}
+                                title={t("about.cta.contactTitle")}
+                            />
                         </div>
 
                         {/* Social */}

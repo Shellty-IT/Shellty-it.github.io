@@ -870,6 +870,45 @@
     box-shadow: 0 8px 28px rgba(12, 192, 255, 0.3);
 }
 
+/*
+ * ─── ROZMIAR IKONY ───
+ * JEDEN parametr do zmiany: --icon-scale (domyślnie 1.4 = wizualnie 42px).
+ * .svc .btn-icon ma stały footprint 30px w layoucie (przycisk się nie rusza),
+ * obrazki są tylko wizualnie skalowane transformem.
+ */
+.svc .btn-icon {
+    --icon-scale: 1.4;
+    position: relative;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.svc .btn-icon img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transform: scale(var(--icon-scale));
+    transition: opacity 0.3s ease;
+}
+
+.svc .btn-icon__lit {
+    opacity: 0;
+}
+
+.svc .btn:hover .btn-icon__base {
+    opacity: 0;
+}
+
+.svc .btn:hover .btn-icon__lit {
+    opacity: 1;
+}
+
 #services {
     scroll-margin-top: 80px;
 }
