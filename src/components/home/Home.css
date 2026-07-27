@@ -569,6 +569,18 @@
         grid-template-columns: 1fr;
     }
 
+    .hero__meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .stat__num {
+        white-space: nowrap;
+    }
+
     .home__inner {
         gap: 0;
     }
