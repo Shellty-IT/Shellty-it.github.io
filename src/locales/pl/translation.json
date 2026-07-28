@@ -151,7 +151,7 @@
     "card1": {
       "kicker": "Strony internetowe",
       "title": "Tworzenie stron internetowych dla firm i osób prywatnych",
-      "desc": "Projektuję i buduję nowoczesne strony: wizytówki, strony firmowe, landing page i portfolio. Każda jest responsywna, szybka i przygotowana pod podstawową optymalizację SEO, żeby klienci mogli Cię znaleźć w Google. Mogę zbudować stronę na autorskim systemie CMS lub na WordPressie - z panelem, w którym samodzielnie zmienisz treści, bez znajomości kodu.",
+      "desc": "Projektuję i buduję nowoczesne strony: wizytówki, strony firmowe, landing page i portfolio. Każda jest responsywna, szybka i przygotowana pod podstawową optymalizację SEO, żeby klienci mogli Cię znaleźć w Google. Mogę zbudować stronę na systemie CMS - z panelem, w którym samodzielnie zmienisz treści, bez znajomości kodu.",
       "forWhom": "małe firmy, freelancerzy, lokalne biznesy, osoby prywatne."
     },
     "card2": {
@@ -330,7 +330,7 @@
       "shelltyCMS": {
         "title": "Shellty CMS",
         "subtitle": "- WordPress Alternative for B2B -",
-        "description": "Własny CMS na Next.js i Payload jako lekka alternatywa dla WordPressa. Pełna kontrola nad kodem i treścią bez zbędnego balastu.",
+        "description": "Next.js i Payload jako lekka alternatywa dla WordPressa. Pełna kontrola nad kodem i treścią bez zbędnego balastu.",
         "highlightsTitle": "ROZWIĄZANIA TECHNICZNE:",
         "highlights": [
           "🔄 Clone & Deploy: 12 gotowych kolekcji, wymiana treści w CMS zamiast pisania kodu od zera",
@@ -477,7 +477,7 @@
         "highlightsTitle": "KLUCZOWE OSIĄGNIĘCIA:",
         "highlights": [
           "🏗️ Custom PHP Theme: Zoptymalizowany motyw bez block editora, zapewniający pełną kontrolę nad strukturą i szybkością ładowania strony",
-          "🌍 Native i18n: Autorski system wielojęzyczności (PL/EN) działający bez narzutu ciężkich wtyczek typu WPML czy WooCommerce Multilingual",
+          "🌍 Native i18n: System wielojęzyczności (PL/EN) działający bez narzutu ciężkich wtyczek typu WPML czy WooCommerce Multilingual",
           "🛠️ Advanced ACF: Zaawansowana konfiguracja pól (Focal point, SEO, Open Graph) umożliwiająca kompletną edycję wizualną z poziomu panelu admina",
           "🚀 Pantheon DevOps: Profesjonalny workflow wdrożeniowy oparty na Git z lokalnym środowiskiem DDEV i automatycznym cache bustingiem przez filetime()"
         ],

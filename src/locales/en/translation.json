@@ -433,7 +433,7 @@
       "shelltyCMS": {
         "title": "Shellty CMS",
         "subtitle": "- WordPress Alternative for B2B -",
-        "description": "Custom CMS on Next.js and Payload as a lightweight alternative to WordPress. Full control over code and content without unnecessary baggage.",
+        "description": "Next.js and Payload CMS as a lightweight alternative to WordPress. Full control over code and content without unnecessary baggage.",
         "highlightsTitle": "KEY ACHIEVEMENTS:",
         "highlights": [
           "🔄 Clone & Deploy: 12 ready-made collections, replace content in CMS instead of writing code from scratch",
