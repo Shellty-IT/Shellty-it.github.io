@@ -46,14 +46,7 @@
     z-index: 1;
 }
 
-/*
- * ─── ROZMIAR IKONY ───
- * JEDEN parametr do zmiany rozmiaru: --icon-scale, zadeklarowany na .btn-cta
- * (domyślnie 1 = 38px). Przykład: .btn-cta--primary { --icon-scale: 1.4; }
- * Zmiana tej zmiennej NIE rusza szerokości przycisku, odstępów ani tekstu —
- * .btn-cta__icon ma stały footprint 38px w layoucie, a obrazki są tylko
- * wizualnie skalowane transformem (nie zajmuje to dodatkowego miejsca).
- */
+
 .btn-cta__icon {
     position: relative;
     display: inline-flex;

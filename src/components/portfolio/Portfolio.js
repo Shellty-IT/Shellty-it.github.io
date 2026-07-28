@@ -296,7 +296,7 @@ const Portfolio = () => {
             image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
             demoLink: 'https://cms.shellty.pl/',
             githubLink: null,
-            videoLink: 'https://vimeo.com/1210625251?share=copy&fl=sv&fe=ci',
+            videoLink: 'https://vimeo.com/1213704067',
             title: t('portfolio.projects.shelltyCMS.title'),
             subtitle: t('portfolio.projects.shelltyCMS.subtitle'),
             description: t('portfolio.projects.shelltyCMS.description'),
