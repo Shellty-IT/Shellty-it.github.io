@@ -26,38 +26,6 @@ const CONFIG = {
     starCountStatic: 25,
     ambientParticleCount: 6,
 
-    // Konstelacje pod kursorem — gwiazdy w zasięgu myszy łączą się cienkimi liniami.
-    // Świadomie rzadsze i subtelniejsze niż na whois.domaintools.com.
-    constellation: {
-        radius: 220,            // zasięg kursora, w którym gwiazdy się „budzą"
-        proxPlateau: 0.55,      // do tej części zasięgu gwiazda świeci pełną siłą,
-                                // dalej liniowo gaśnie — bez tego pary z jednym
-                                // dalszym końcem wychodziły prawie niewidoczne
-        linkDist: 130,          // maks. odległość między gwiazdami, by je połączyć
-        maxLinksPerStar: 3,
-        maxLinks: 10,           // globalny limit linii
-        opacity: 0.8,           // szczytowa nieprzezroczystość linii
-        lineWidth: 1,
-        glowBlur: 3.5,          // canvasowy shadowBlur — daje liniom miękką, rozmytą
-                                // krawędź zamiast surowego antyaliasingu 1px kreski;
-                                // niezależne od DPR canvasu, więc krawędź jest gładka
-                                // nawet przy obniżonej rozdzielczości backing store
-        starHighlight: 0.5,     // dodatkowy błysk na połączonych gwiazdach
-        fadeSpeed: 3.5,         // tempo fade in/out całego efektu (jednostki/s)
-
-        // Maska czytelności — linie omijają tekst
-        textPadding: 10,        // margines wokół rects tekstu
-        maskRefreshMs: 200,     // jak często odświeżać geometrię tekstu z DOM
-
-        // Kuleczki płynące po liniach
-        pulseRate: 1.8,         // oczekiwana liczba nowych kuleczek na sekundę
-        maxPulses: 5,
-        pulseSpeedRange: [0.55, 0.95],  // postęp linii na sekundę
-        pulseOpacity: 0.9,
-        pulseSizeRange: [2.5, 4],
-        pulseDecay: 4,          // tempo gaśnięcia kuleczki, gdy jej linia zniknie
-    },
-
     autoscaleChance: 0.0003,
     autoscaleFadeDuration: 2.5,
     maxDPR: 0.5,
@@ -116,152 +84,6 @@ function createSprite(size, stops) {
     return c;
 }
 
-const TEXT_SELECTOR =
-    'h1,h2,h3,h4,h5,h6,p,li,a,button,label,span,td,th,blockquote,figcaption';
-
-// Prostokąty tekstu widocznego w kadrze — konstelacje ich nie przecinają.
-// IntersectionObserver trzyma mały zbiór elementów w viewporcie, więc czytamy
-// geometrię kilkudziesięciu elementów zamiast wszystkich na stronie.
-class TextMask {
-    constructor() {
-        this.rects = [];
-        this._pool = [];
-        this._visible = new Set();
-        this._observed = new Set();
-        this._io = null;
-        this._mo = null;
-        this._rescan = 0;
-        this._version = 0;
-        this._lastKey = '';
-    }
-
-    attach() {
-        if (typeof IntersectionObserver === 'undefined' || !document.body) return;
-        this._io = new IntersectionObserver((entries) => {
-            for (const e of entries) {
-                if (e.isIntersecting) this._visible.add(e.target);
-                else this._visible.delete(e.target);
-            }
-            this._version++;
-        }, { rootMargin: '150px' });
-        this._scan();
-
-        // Zmiana trasy w SPA podmienia treść — trzeba przeobserwować od nowa
-        if (typeof MutationObserver !== 'undefined') {
-            this._mo = new MutationObserver(() => {
-                clearTimeout(this._rescan);
-                this._rescan = setTimeout(() => this._scan(), 400);
-            });
-            this._mo.observe(document.body, { childList: true, subtree: true });
-        }
-    }
-
-    // Bierzemy tylko elementy z własnymi węzłami tekstowymi — inaczej kontener
-    // opakowujący całą kartę zasłoniłby pół ekranu, a chodzi o same litery
-    _scan() {
-        if (!this._io) return;
-        const next = new Set();
-        for (const el of document.querySelectorAll(TEXT_SELECTOR)) {
-            for (let n = el.firstChild; n; n = n.nextSibling) {
-                if (n.nodeType === 3 && n.nodeValue.trim()) { next.add(el); break; }
-            }
-        }
-        for (const el of this._observed) {
-            if (next.has(el)) continue;
-            this._io.unobserve(el);
-            this._visible.delete(el);
-        }
-        for (const el of next) {
-            if (!this._observed.has(el)) this._io.observe(el);
-        }
-        this._observed = next;
-        this._version++;
-    }
-
-    // Odczyt wymusza layout, więc pomijamy go, gdy nic się nie mogło przesunąć —
-    // przy samym ruchu myszy (bez scrolla) maska nie kosztuje nic
-    read(pad, w, h) {
-        if (!this._io) return;
-        const key = `${window.scrollY}|${w}|${h}|${this._version}`;
-        if (key === this._lastKey) return;
-        this._lastKey = key;
-
-        const out = this.rects;
-        out.length = 0;
-        let i = 0;
-        for (const el of this._visible) {
-            const r = el.getBoundingClientRect();
-            if (r.width <= 0 || r.height <= 0) continue;
-            if (r.bottom < 0 || r.top > h || r.right < 0 || r.left > w) continue;
-            const o = this._pool[i] || (this._pool[i] = { l: 0, t: 0, r: 0, b: 0 });
-            i++;
-            o.l = r.left - pad; o.t = r.top - pad;
-            o.r = r.right + pad; o.b = r.bottom + pad;
-            out.push(o);
-        }
-    }
-
-    dispose() {
-        clearTimeout(this._rescan);
-        if (this._io) this._io.disconnect();
-        if (this._mo) this._mo.disconnect();
-        this._io = null; this._mo = null;
-        this._visible.clear();
-        this._observed.clear();
-        this.rects = [];
-        this._pool = [];
-    }
-}
-
-// Czy odcinek przecina prostokąt (Liang-Barsky). Bez alokacji — leci co klatkę
-// dla każdej kandydującej linii konstelacji.
-function segHitsRect(x1, y1, x2, y2, rl, rt, rr, rb) {
-    if (x1 >= rl && x1 <= rr && y1 >= rt && y1 <= rb) return true;
-    if (x2 >= rl && x2 <= rr && y2 >= rt && y2 <= rb) return true;
-    const dx = x2 - x1, dy = y2 - y1;
-    let t0 = 0, t1 = 1;
-    if (dx === 0) {
-        if (x1 < rl || x1 > rr) return false;
-    } else {
-        let a = (rl - x1) / dx, b = (rr - x1) / dx;
-        if (a > b) { const s = a; a = b; b = s; }
-        if (a > t0) t0 = a;
-        if (b < t1) t1 = b;
-        if (t0 > t1) return false;
-    }
-    if (dy === 0) {
-        if (y1 < rt || y1 > rb) return false;
-    } else {
-        let a = (rt - y1) / dy, b = (rb - y1) / dy;
-        if (a > b) { const s = a; a = b; b = s; }
-        if (a > t0) t0 = a;
-        if (b < t1) t1 = b;
-        if (t0 > t1) return false;
-    }
-    return true;
-}
-
-// Kuleczka płynąca po linii konstelacji. Trzyma referencje do gwiazd, a nie
-// do linii — linie są przeliczane co klatkę, gwiazdy stoją w miejscu.
-class LinkPulse {
-    constructor() {
-        this.a = null; this.b = null;
-        this.progress = 0; this.speed = 0; this.size = 0;
-        this.w = 0; this.alive = false;
-    }
-    init(link) {
-        const cfg = CONFIG.constellation;
-        this.a = link.a; this.b = link.b;
-        this.progress = 0;
-        this.speed = cfg.pulseSpeedRange[0]
-            + Math.random() * (cfg.pulseSpeedRange[1] - cfg.pulseSpeedRange[0]);
-        this.size = cfg.pulseSizeRange[0]
-            + Math.random() * (cfg.pulseSizeRange[1] - cfg.pulseSizeRange[0]);
-        this.w = link.w;
-        this.alive = true;
-    }
-}
-
 class ComputeNode {
     constructor(x, y, type, layerIndex, scrollThreshold) {
         this.baseX = x; this.baseY = y;
@@ -316,7 +138,6 @@ class StaticStar {
         this.y = Math.random() * h;
         this.size = 0.4 + Math.random() * 1.0;
         this.brightness = 0.2 + Math.random() * 0.4;
-        this.prox = 0; this.linkCount = 0; this.hlTag = -1;
     }
 }
 
@@ -328,7 +149,6 @@ class Star {
         this.brightness = 0.25 + Math.random() * 0.5;
         this.pulsePhase = Math.random() * 6.283;
         this.pulseSpeed = 0.3 + Math.random() * 0.8;
-        this.prox = 0; this.linkCount = 0; this.hlTag = -1;
     }
 }
 
@@ -446,27 +266,8 @@ class CloudEngine {
         this.scrollProgress = 0;
         this.mouse = { x: 0, y: 0, sx: 0, sy: 0 };
         this.mouseActive = false;
-        this.mouseInside = false;
         this._mSX = 0;
         this._mSY = 0;
-
-        // Konstelacje pod kursorem
-        this.constellationEnabled = true;
-        this.constellationStrength = 0;
-        this.linkStars = [];
-        this.links = [];
-        this._nearStars = [];
-        this._linkPool = [];
-        for (let i = 0; i < 128; i++) this._linkPool.push({ a: null, b: null, w: 0 });
-        this._linkCands = [];
-        this._hlTag = 0;
-        this.textMask = new TextMask();
-        this._maskRects = [];       // podzbiór maski w zasięgu kursora
-        this._maskRefreshed = 0;
-        this.linkPulses = [];
-        this._linkPulsePool = [];
-        for (let i = 0; i < CONFIG.constellation.maxPulses; i++)
-            this._linkPulsePool.push(new LinkPulse());
         this.isRunning = false;
         this.frameId = null;
         this.lastTime = 0;
@@ -597,15 +398,6 @@ class CloudEngine {
         this.ambientParticles = [];
         for (let i = 0; i < CONFIG.ambientParticleCount; i++)
             this.ambientParticles.push(new AmbientParticle(w, h));
-
-        // Pula gwiazd, które mogą tworzyć konstelacje — te same punkty,
-        // które i tak są już widoczne w tle.
-        this.linkStars = this.stars.concat(this.staticStars);
-        this.links.length = 0;
-        // kuleczki trzymają referencje do gwiazd, które właśnie przestały istnieć
-        for (const p of this._linkPulsePool) p.alive = false;
-        this.linkPulses.length = 0;
-        this._maskRefreshed = 0;
 
         const spawn = (count, type, layers, thr) => {
             for (let i = 0; i < count; i++) {
@@ -745,10 +537,9 @@ class CloudEngine {
 
         for (const p of this.ambientParticles) p.update(dt);
 
-        this._mSX = (this.mouse.sx + 1) * 0.5 * this.width;
-        this._mSY = (-this.mouse.sy + 1) * 0.5 * this.height;
-
         if (this.mouseActive) {
+            this._mSX = (this.mouse.sx + 1) * 0.5 * this.width;
+            this._mSY = (-this.mouse.sy + 1) * 0.5 * this.height;
             const r = CONFIG.mouseInteractRadius, rSq = r * r, f = CONFIG.mouseRepelForce;
             for (const node of this.nodes) {
                 const dx = node.x - this._mSX, dy = node.y - this._mSY;
@@ -771,8 +562,6 @@ class CloudEngine {
                 node.mouseProximity = 0;
             }
         }
-
-        this._updateConstellation(dt, time * 1000);
 
         for (const c of this.connections) {
             if (!c.nodeA.alive || !c.nodeB.alive) continue;
@@ -814,200 +603,6 @@ class CloudEngine {
         }
     }
 
-    // Wyznacza linie między gwiazdami w zasięgu kursora.
-    // Waga linii spada płynnie do zera na granicach zasięgu i długości,
-    // więc połączenia pojawiają się i znikają bez przeskoków — bez stanu per-linia.
-    _updateConstellation(dt, now) {
-        const cfg = CONFIG.constellation;
-        const wants = this.constellationEnabled && this.mouseActive
-            && this.mouseInside && this.quality.starsVisible;
-        this.constellationStrength +=
-            ((wants ? 1 : 0) - this.constellationStrength) * Math.min(dt * cfg.fadeSpeed, 1);
-
-        this.links.length = 0;
-        if (this.constellationStrength < 0.01 || this.linkStars.length < 2) {
-            this._updateLinkPulses(dt);
-            return;
-        }
-
-        // Geometrię tekstu czytamy tylko gdy efekt jest widoczny i najwyżej
-        // kilka razy na sekundę — poza tym maska nic nie kosztuje
-        if (now - this._maskRefreshed >= cfg.maskRefreshMs) {
-            this._maskRefreshed = now;
-            this.textMask.read(cfg.textPadding, this.width, this.height);
-        }
-        const R = cfg.radius;
-        const mask = this._maskRects;
-        mask.length = 0;
-        const bl = this._mSX - R, br = this._mSX + R;
-        const bt = this._mSY - R, bb = this._mSY + R;
-        for (const r of this.textMask.rects) {
-            if (r.r < bl || r.l > br || r.b < bt || r.t > bb) continue;
-            mask.push(r);
-        }
-
-        const near = this._nearStars;
-        near.length = 0;
-        const rSq = R * R;
-        const falloff = 1 - cfg.proxPlateau;
-        outer:
-        for (const s of this.linkStars) {
-            const dx = s.x - this._mSX, dy = s.y - this._mSY;
-            const dSq = dx * dx + dy * dy;
-            if (dSq >= rSq) continue;
-            for (const r of mask) {
-                if (s.x >= r.l && s.x <= r.r && s.y >= r.t && s.y <= r.b) continue outer;
-            }
-            s.prox = Math.min((1 - Math.sqrt(dSq) / R) / falloff, 1);
-            s.linkCount = 0;
-            near.push(s);
-        }
-        if (near.length < 2) {
-            this._updateLinkPulses(dt);
-            return;
-        }
-
-        const cands = this._linkCands;
-        cands.length = 0;
-        const LD = cfg.linkDist, ldSq = LD * LD;
-        let poolIdx = 0;
-        for (let i = 0; i < near.length && poolIdx < this._linkPool.length; i++) {
-            const a = near[i];
-            for (let j = i + 1; j < near.length && poolIdx < this._linkPool.length; j++) {
-                const b = near[j];
-                const dx = a.x - b.x, dy = a.y - b.y;
-                const dSq = dx * dx + dy * dy;
-                if (dSq >= ldSq) continue;
-                // linia biegnąca przez tekst odpada, nawet gdy oba końce są poza nim
-                let blocked = false;
-                for (const r of mask) {
-                    if (segHitsRect(a.x, a.y, b.x, b.y, r.l, r.t, r.r, r.b)) {
-                        blocked = true;
-                        break;
-                    }
-                }
-                if (blocked) continue;
-                const lenF = 1 - Math.sqrt(dSq) / LD;
-                const c = this._linkPool[poolIdx++];
-                c.a = a; c.b = b;
-                // min() zamiast iloczynu proximity: linia gaśnie dopiero, gdy dalszy
-                // z dwóch końców wychodzi poza zasięg, więc nie robi się zbyt blada
-                c.w = Math.min(a.prox, b.prox) * (0.75 + 0.25 * lenF);
-                cands.push(c);
-            }
-        }
-
-        // Najsilniejsze linie pierwsze — limit odcina najsłabsze,
-        // czyli te i tak ledwo widoczne, więc nie widać „skakania"
-        cands.sort((p, q) => q.w - p.w);
-        for (const c of cands) {
-            if (this.links.length >= cfg.maxLinks) break;
-            if (c.a.linkCount >= cfg.maxLinksPerStar) continue;
-            if (c.b.linkCount >= cfg.maxLinksPerStar) continue;
-            c.a.linkCount++;
-            c.b.linkCount++;
-            this.links.push(c);
-        }
-
-        this._updateLinkPulses(dt);
-    }
-
-    _updateLinkPulses(dt) {
-        const cfg = CONFIG.constellation;
-
-        // Kuleczka żyje własnym życiem, ale przygasa, gdy jej linia przestaje
-        // istnieć — dzięki temu nigdy nie wisi w powietrzu bez połączenia
-        for (const p of this.linkPulses) {
-            p.progress += p.speed * dt;
-            if (p.progress > 1) { p.alive = false; continue; }
-            let w = 0;
-            for (const l of this.links) {
-                if ((l.a === p.a && l.b === p.b) || (l.a === p.b && l.b === p.a)) {
-                    w = l.w;
-                    break;
-                }
-            }
-            if (w > 0) p.w = w;
-            else {
-                p.w -= dt * cfg.pulseDecay * 0.25;
-                if (p.w <= 0) p.alive = false;
-            }
-        }
-        let w = 0;
-        for (let i = 0; i < this.linkPulses.length; i++)
-            if (this.linkPulses[i].alive) this.linkPulses[w++] = this.linkPulses[i];
-        this.linkPulses.length = w;
-
-        if (!this.links.length || this.linkPulses.length >= cfg.maxPulses) return;
-        if (Math.random() >= cfg.pulseRate * dt) return;
-
-        const link = this.links[Math.floor(Math.random() * this.links.length)];
-        for (const p of this.linkPulses) {
-            if ((p.a === link.a && p.b === link.b) || (p.a === link.b && p.b === link.a)) return;
-        }
-        for (const p of this._linkPulsePool) {
-            if (p.alive) continue;
-            p.init(link);
-            this.linkPulses.push(p);
-            return;
-        }
-    }
-
-    _drawConstellation(ctx, scrollBoost) {
-        if (this.constellationStrength < 0.01) return;
-        const cfg = CONFIG.constellation;
-        const str = this.constellationStrength * scrollBoost;
-
-        // Kuleczki rysujemy nawet bez aktywnych linii — dogasają po swoim torze
-        for (const p of this.linkPulses) {
-            const t = p.progress;
-            const x = p.a.x + (p.b.x - p.a.x) * t;
-            const y = p.a.y + (p.b.y - p.a.y) * t;
-            const ends = Math.min(t * 5, 1) * Math.min((1 - t) * 5, 1);
-            ctx.globalAlpha = cfg.pulseOpacity * p.w * ends * str;
-            const s = p.size * 3;
-            ctx.drawImage(this.pulseSprite, (x - s * 0.5) | 0, (y - s * 0.5) | 0, s | 0, s | 0);
-        }
-
-        if (!this.links.length) { ctx.globalAlpha = 1; return; }
-
-        // shadowBlur daje krawędzi miękki, rozlany antyaliasing zamiast surowej
-        // 1px kreski — trzeba go potem zdjąć, inaczej rozmyje kolejne drawImage()
-        // (aurę myszy, sprite'y węzłów) rysowane dalej w _draw()
-        ctx.lineCap = 'round';
-        ctx.shadowColor = 'rgba(12,192,255,1)';
-        ctx.shadowBlur = cfg.glowBlur;
-        ctx.strokeStyle = 'rgba(12,192,255,1)';
-        ctx.lineWidth = cfg.lineWidth;
-        for (const l of this.links) {
-            ctx.globalAlpha = cfg.opacity * l.w * str;
-            ctx.beginPath();
-            ctx.moveTo(l.a.x, l.a.y);
-            ctx.lineTo(l.b.x, l.b.y);
-            ctx.stroke();
-        }
-
-        // Delikatny błysk na końcach linii; tag chroni przed dwukrotnym
-        // rysowaniem gwiazdy należącej do dwóch połączeń
-        const tag = ++this._hlTag;
-        ctx.fillStyle = 'rgba(190,232,255,1)';
-        const dot = (s) => {
-            if (s.hlTag === tag) return;
-            s.hlTag = tag;
-            ctx.globalAlpha = cfg.starHighlight * s.prox * str;
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size * 1.4, 0, 6.283);
-            ctx.fill();
-        };
-        for (const l of this.links) { dot(l.a); dot(l.b); }
-
-        ctx.shadowBlur = 0;
-        ctx.shadowColor = 'transparent';
-        ctx.lineCap = 'butt'; // domyślny — inaczej połączenia węzłów rysowane
-                              // niżej w _draw() dziedziczyłyby zaokrąglone końce
-        ctx.globalAlpha = 1;
-    }
-
     _draw(time) {
         const ctx = this.ctx;
         const q = this.quality;
@@ -1022,10 +617,6 @@ class CloudEngine {
             ctx.globalAlpha = scrollBoost * 1.15;  // ✨ trochę jaśniej
             ctx.drawImage(this.starCanvas, 0, 0);
         }
-
-        // Konstelacje rysowane na głównym canvasie, nie w cache'owanej warstwie
-        // gwiazd — muszą nadążać za kursorem w każdej klatce
-        this._drawConstellation(ctx, scrollBoost);
 
         if (this.mouseActive) {
             const as = CONFIG.mouseAuraRadius * 2;
@@ -1132,10 +723,6 @@ class CloudEngine {
         this.mouse.x = x;
         this.mouse.y = y;
         this.mouseActive = true;
-        this.mouseInside = true;
-    }
-    setMouseInside(v) {
-        this.mouseInside = v;
     }
     dispose() {
         this.stop();
@@ -1147,13 +734,6 @@ class CloudEngine {
         this.stars = [];
         this.staticStars = [];
         this.ambientParticles = [];
-        this.linkStars = [];
-        this.links = [];
-        this._nearStars = [];
-        this._linkCands = [];
-        this.linkPulses = [];
-        this._maskRects = [];
-        this.textMask.dispose();
     }
 }
 
@@ -1169,14 +749,6 @@ const CloudBackground = () => {
         // Użytkownicy z prefers-reduced-motion: reduce dostają jeden statyczny frame
         // zamiast ciągłej pętli animacji — respektuje ustawienia dostępności OS.
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Konstelacje tylko tam, gdzie istnieje realny hover — na dotyku
-        // syntetyczny mousemove przy tapnięciu dawałby przypadkowe błyski
-        engine.constellationEnabled =
-            !prefersReduced && window.matchMedia('(hover: hover)').matches;
-
-        // Na dotyku i przy reduced-motion nie zakładamy obserwatorów w ogóle
-        if (engine.constellationEnabled) engine.textMask.attach();
 
         if (prefersReduced) {
             const t0 = performance.now() / 1000;
@@ -1210,7 +782,7 @@ const CloudBackground = () => {
         let lastMouseTime = 0;
         const onMouse = (e) => {
             const now = performance.now();
-            if (now - lastMouseTime < 25) return;
+            if (now - lastMouseTime < 50) return;
             lastMouseTime = now;
             engine.setMouse(
                 (e.clientX / window.innerWidth) * 2 - 1,
@@ -1218,22 +790,14 @@ const CloudBackground = () => {
             );
         };
 
-        // relatedTarget === null oznacza wyjście kursora poza okno,
-        // a nie zwykłe przejście między elementami strony
-        const onMouseOut = (e) => {
-            if (!e.relatedTarget) engine.setMouseInside(false);
-        };
-
         const onVisibility = () => {
             if (prefersReduced) return;
             document.hidden ? engine.stop() : engine.start();
-            if (document.hidden) engine.setMouseInside(false);
         };
 
         window.addEventListener('resize', onResize);
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('mousemove', onMouse, { passive: true });
-        document.addEventListener('mouseout', onMouseOut, { passive: true });
         document.addEventListener('visibilitychange', onVisibility);
         onScroll();
 
@@ -1243,7 +807,6 @@ const CloudBackground = () => {
             window.removeEventListener('resize', onResize);
             window.removeEventListener('scroll', onScroll);
             window.removeEventListener('mousemove', onMouse);
-            document.removeEventListener('mouseout', onMouseOut);
             document.removeEventListener('visibilitychange', onVisibility);
             engine.dispose();
         };
