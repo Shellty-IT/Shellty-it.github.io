@@ -81,14 +81,16 @@ const SOLID_SKILLS = [
     { name: "Next.js",                 Icon: SiNextdotjs },
     { name: "Python",                  Icon: SiPython },
     { name: "PHP",                     Icon: SiPhp },
+    { name: "Firebase",                Icon: SiFirebase },
+    { name: "Angular",                 Icon: SiAngular },
 ];
 
 // ─── Konfiguracja: Tier 3 – growing ──────────────────────────────────────────
 const GROWING_SKILLS = [
     { name: "Ansible (IaC)",              Icon: SiAnsible },
     { name: "Chmura",                     Icon: FaCloud, suffixIcons: [FaAmazon, TbBrandAzure, SiGooglecloud] },
-    { name: "Firebase",                   Icon: SiFirebase },
-    { name: "Angular",                    Icon: SiAngular },
+    { name: "CI/CD (GH Actions)",         Icon: SiGithubactions },
+    { name: "Next.js",                    Icon: SiNextdotjs },
     { name: "Tailwind CSS",               Icon: SiTailwindcss },
 ];
 
