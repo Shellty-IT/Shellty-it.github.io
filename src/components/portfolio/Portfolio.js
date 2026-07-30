@@ -228,7 +228,7 @@ const Portfolio = () => {
         },
         {
             id: "tomiForno",
-            categories: ['web', 'ai'],
+            categories: ['web', 'ai', 'wordpress'],
             featured: true,
             image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
             demoLink: 'https://tomi-forno.shellty.pl',
@@ -292,7 +292,7 @@ const Portfolio = () => {
         },
         {
             id: "shelltyCMS",
-            categories: ['web'],
+            categories: ['web', 'wordpress'],
             image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
             demoLink: 'https://cms.shellty.pl/',
             githubLink: null,

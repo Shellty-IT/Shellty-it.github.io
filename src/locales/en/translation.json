@@ -374,7 +374,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitleHtml": "As most of my past projects were developed for employers and remain subject to sharing restrictions. At the same time, I am creating a series of my own demo projects - new items will appear here soon. <br/><br/><warning>Note:</warning> I use free‑tier backend services on Render in some projects. It is recommended to wake up the services using <pulseLink>Shellty Pulse</pulseLink> before using the application.",
+    "subtitleHtml": "The projects below are entirely my own work - my ideas, visions, and solutions, built from the ground up to my own concept. I have completed considerably more projects for employers, but I don't showcase them here - this is my personal site, and those projects were, to a large extent, the clients' own vision and ideas, implemented according to their briefs and requirements. For that reason, I don't consider it appropriate to present them here as my own authorial work. <br/><br/><warning>Note:</warning> I use free‑tier backend services on Render in some projects. It is recommended to wake up the services using <pulseLink>Shellty Pulse</pulseLink> before using the application.",
     "actions": {
       "demo": "View",
       "code": "Code",
@@ -386,7 +386,7 @@
       "web": "Web apps",
       "ai": "AI",
       "mobile": "Mobile / PWA",
-      "wordpress": "WordPress",
+      "wordpress": "CMS",
       "tools": "DevOps & tools"
     },
     "featuredBadge": "Featured",
