@@ -14,6 +14,33 @@
             #070b14;
 }
 
+.cloud-bg-grid-mask {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 42%, #000 0%, rgba(0, 0, 0, .45) 55%, transparent 82%);
+    mask-image: radial-gradient(ellipse 62% 58% at 50% 42%, #000 0%, rgba(0, 0, 0, .45) 55%, transparent 82%);
+}
+
+.cloud-bg-grid {
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    right: -120px;
+    bottom: -120px;
+    background-image:
+            linear-gradient(rgba(12, 192, 255, .05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(12, 192, 255, .05) 1px, transparent 1px);
+    background-size: 104px 104px;
+    will-change: transform;
+    animation: cloudGridDrift 80s linear infinite;
+}
+
+@keyframes cloudGridDrift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(104px, 104px, 0); }
+}
+
 .cloud-bg-canvas {
     position: absolute;
     top: 0;
@@ -21,7 +48,11 @@
     width: 100%;
     height: 100%;
     display: block;
-    z-index: 1;
+    z-index: 2;
+}
+
+body.is-node-drag * {
+    user-select: none;
 }
 
 .cloud-bg-wrapper::before {
@@ -56,26 +87,11 @@
     animation: nebulaFloat2 55s ease-in-out infinite alternate;
 }
 
-/* Medium quality — wyłącz animacje i zwolnij warstwę GPU */
-.cloud-bg-wrapper[data-quality="medium"]::before,
-.cloud-bg-wrapper[data-quality="medium"]::after {
-    animation: none;
-    will-change: auto;
-    opacity: 0.015;
-}
-
-/* Low/minimal — usuń pseudo-elementy całkowicie */
-.cloud-bg-wrapper[data-quality="low"]::before,
-.cloud-bg-wrapper[data-quality="low"]::after,
-.cloud-bg-wrapper[data-quality="minimal"]::before,
-.cloud-bg-wrapper[data-quality="minimal"]::after {
-    display: none;
-}
-
 /* Dostępność: użytkownicy z prefers-reduced-motion dostają statyczne tło */
 @media (prefers-reduced-motion: reduce) {
     .cloud-bg-wrapper::before,
-    .cloud-bg-wrapper::after {
+    .cloud-bg-wrapper::after,
+    .cloud-bg-grid {
         animation: none !important;
         will-change: auto;
     }
