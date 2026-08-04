@@ -46,7 +46,7 @@
     position: relative;
     width: 260px;
     height: 260px;
-    margin-bottom: -15px;
+    margin-bottom: -5px;
     cursor: pointer;
     will-change: transform;
     animation: iconFloat 4.5s ease-in-out infinite;
