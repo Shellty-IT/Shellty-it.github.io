@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { useTranslation, Trans } from "react-i18next";
 import CtaButton from "../ctaButton/CtaButton";
+import SectionTitle from "../sectionTitle/SectionTitle";
 import { useIconPhase } from "../../hooks/useIconPhase";
 
 import aboutIcon from "../../assets/icons/about/about.webp";
@@ -291,9 +292,12 @@ const About = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h1 className={`about__title${titleHovered ? " hovered" : ""}`}>
-                            {t("about.title")}
-                        </h1>
+                        <SectionTitle
+                            num="02"
+                            title={t("about.title")}
+                            sub={t("about.sub")}
+                            hovered={titleHovered}
+                        />
                     </div>
 
                 </header>

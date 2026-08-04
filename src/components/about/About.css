@@ -181,45 +181,9 @@
     transition: opacity 0.5s ease;
 }
 
-/* ─── Tytuł sekcji ─── */
-.about__title {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: clamp(22px, 2.9vw, 34px);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    background: linear-gradient(135deg, #0cc0ff, #0062b0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin: 8px 0 0;
-    transition: filter .3s ease;
-}
-
-.about__title.hovered,
-.about__header-hover-area:hover .about__title {
-    filter: drop-shadow(0 0 14px rgba(12, 192, 255, .55));
-}
-
-/* Sub-linia pod tytułem */
-.about__kicker {
-    margin-top: 10px;
-    color: #94a3b8;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.about__kicker::before,
-.about__kicker::after {
-    content: "";
-    width: 48px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent);
+/* Tytuł sekcji: patrz components/sectionTitle/SectionTitle.css */
+.about__header-hover-area .sec-head {
+    margin-top: 8px;
 }
 
 /* ─── Grid treści ─── */

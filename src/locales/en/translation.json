@@ -44,6 +44,7 @@
     "altText": "Logo"
   },
   "about": {
+    "sub": "Who I am and how I work",
     "title": "Bio",
     "p1": "Hi! I’m Tomasz Skorupski. For years, I ensured that IT systems ran smoothly by managing servers (Windows/Linux), networks, and databases. However, I realized that I wanted to do more than just fix and maintain things-I wanted to create them. Today, I use my solid technical background to build and improve digital solutions.",
     "videoInvite": "If you prefer listening over reading - feel free to watch my short video introduction",
@@ -138,6 +139,7 @@
     }
   },
   "experience": {
+    "sub": "Career path",
     "title": "Experience",
     "jobs": {
       "streetcom": {
@@ -241,6 +243,7 @@
     }
   },
   "services": {
+    "sub": "What I can do for you",
     "title": "IT Services",
     "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> - so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication - no middlemen, no agency markups.",
     "forWhomLabel": "For whom:",
@@ -321,6 +324,7 @@
     "ctaBtn": "Write to me"
   },
   "skills": {
+    "sub": "Technologies and tools",
     "title": "Skills",
     "groups": {
       "core": "Core competencies",
@@ -373,6 +377,7 @@
     }
   },
   "portfolio": {
+    "sub": "Selected personal projects",
     "title": "Portfolio",
     "subtitleHtml": "The projects below are entirely my own work - my ideas, visions, and solutions, built from the ground up to my own concept. I have completed considerably more projects for employers, but I don't showcase them here - this is my personal site, and those projects were, to a large extent, the clients' own vision and ideas, implemented according to their briefs and requirements. For that reason, I don't consider it appropriate to present them here as my own authorial work. <br/><br/><warning>Note:</warning> I use free‑tier backend services on Render in some projects. It is recommended to wake up the services using <pulseLink>Shellty Pulse</pulseLink> before using the application.",
     "actions": {
@@ -601,6 +606,7 @@
     }
   },
   "contact": {
+    "sub": "I usually reply the same day",
     "title": "Contact form",
     "subtitle": "Have a question or a collaboration idea? Fill out the form or email me directly.",
     "fields": {

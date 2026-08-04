@@ -1,0 +1,224 @@
+/* src/components/sectionTitle/SectionTitle.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ───────────────────────────────────────────────
+   Nagłówek sekcji – lockup HUD
+   ─────────────────────────────────────────────── */
+.sec-head {
+    --sec-accent:      #0cc0ff;
+    --sec-line:        rgba(12, 192, 255, .45);
+    --sec-line-strong: rgba(12, 192, 255, .75);
+    --sec-ease:        cubic-bezier(.22, .61, .36, 1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1.1vw, 12px);
+    text-align: center;
+    /* 100% (a nie fit-content): pozwala rodzicowi shrink-to-fit dopasować się
+       do najszerszego wiersza lockupu, a podtytułowi zawijać się na wąskich
+       ekranach zamiast rozpychać sekcję. */
+    width: 100%;
+}
+
+/* ─── Wiersz 1: ──── 02 ──── ─────────────────── */
+.sec-head__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sec-head__tick {
+    display: block;
+    width: clamp(26px, 4vw, 44px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sec-line-strong));
+    transform: scaleX(1);
+    transform-origin: right center;
+}
+
+.sec-head__tick:last-child {
+    background: linear-gradient(90deg, var(--sec-line-strong), transparent);
+    transform-origin: left center;
+}
+
+.sec-head__num {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: .28em;
+    /* kompensacja światła po ostatnim znaku – tekst zostaje w osi */
+    margin-right: -.28em;
+    color: var(--sec-accent);
+    opacity: .85;
+    text-shadow: 0 0 10px rgba(12, 192, 255, .45);
+    transition: opacity .35s ease, text-shadow .35s ease;
+}
+
+/* ─── Wiersz 2: ⟦ TYTUŁ ⟧ ────────────────────── */
+.sec-head__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(10px, 1.5vw, 18px);
+    margin: 0;
+    line-height: 1.08;
+}
+
+.sec-head__text {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(24px, 3.4vw, 40px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-right: -.12em;
+    background: linear-gradient(180deg,
+        #eaf9ff 0%,
+        #c4ecff 32%,
+        #5cc9ff 64%,
+        #17a0e6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 16px rgba(12, 192, 255, .30));
+    transition: filter .35s ease;
+}
+
+/* Ramki HUD po bokach tytułu */
+.sec-head__frame {
+    display: block;
+    flex: none;
+    width: clamp(9px, 1.1vw, 13px);
+    /* stretch: ramki obejmują cały blok tytułu, także gdy zawinie się
+       na dwie linie (np. "Formularz kontaktowy" na wąskim ekranie) */
+    align-self: stretch;
+    min-height: clamp(22px, 2.6vw, 34px);
+    border-top: 1px solid var(--sec-line);
+    border-bottom: 1px solid var(--sec-line);
+    transition: border-color .35s ease, filter .35s ease;
+}
+
+.sec-head__frame--l { border-left: 1px solid var(--sec-line); }
+.sec-head__frame--r { border-right: 1px solid var(--sec-line); }
+
+/* ─── Wiersz 3: podtytuł ────────────────────── */
+.sec-head__sub {
+    margin: 0;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-size: clamp(10px, 1.05vw, 12px);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: .2em;
+    margin-right: -.2em;
+    text-transform: uppercase;
+    color: #8398ae;
+    /* Bez max-width w procentach: w kontenerze shrink-to-fit procent nie liczy
+       się do rozmiaru wewnętrznego i podtytuł zawijałby się bez potrzeby. */
+    text-wrap: balance;
+}
+
+/* ─── Hover (dziedziczony z obszaru nagłówka sekcji) ─── */
+.sec-head--hovered .sec-head__text {
+    filter: drop-shadow(0 0 26px rgba(12, 192, 255, .60));
+}
+
+.sec-head--hovered .sec-head__frame {
+    border-color: var(--sec-line-strong);
+    filter: drop-shadow(0 0 6px rgba(12, 192, 255, .55));
+}
+
+.sec-head--hovered .sec-head__num {
+    opacity: 1;
+    text-shadow: 0 0 16px rgba(12, 192, 255, .7);
+}
+
+/* ───────────────────────────────────────────────
+   Animacja wejścia
+   Stan spoczynkowy (--armed) ustawiany jest z JS,
+   więc bez JS nagłówek jest od razu widoczny.
+   ─────────────────────────────────────────────── */
+.sec-head--armed .sec-head__meta,
+.sec-head--armed .sec-head__title,
+.sec-head--armed .sec-head__sub {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.sec-head--armed .sec-head__title {
+    filter: blur(7px);
+}
+
+.sec-head--armed .sec-head__tick { transform: scaleX(0); }
+.sec-head--armed .sec-head__frame { opacity: 0; }
+
+.sec-head--armed .sec-head__meta,
+.sec-head--armed .sec-head__title,
+.sec-head--armed .sec-head__sub {
+    transition:
+        opacity .75s ease,
+        transform .75s var(--sec-ease),
+        filter .75s var(--sec-ease);
+}
+
+.sec-head--armed .sec-head__tick {
+    transition: transform .7s var(--sec-ease) .12s;
+}
+
+.sec-head--armed .sec-head__frame {
+    transition: opacity .6s ease .34s, border-color .35s ease, filter .35s ease;
+}
+
+.sec-head--armed .sec-head__title { transition-delay: .10s; }
+.sec-head--armed .sec-head__sub   { transition-delay: .30s; }
+
+/* Stan docelowy */
+.sec-head--armed.sec-head--in .sec-head__meta,
+.sec-head--armed.sec-head--in .sec-head__title,
+.sec-head--armed.sec-head--in .sec-head__sub {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sec-head--armed.sec-head--in .sec-head__title { filter: blur(0); }
+.sec-head--armed.sec-head--in .sec-head__tick  { transform: scaleX(1); }
+.sec-head--armed.sec-head--in .sec-head__frame { opacity: 1; }
+
+/* ─── Mobile ─────────────────────────────────── */
+@media (max-width: 640px) {
+    .sec-head {
+        gap: 8px;
+    }
+
+    .sec-head__sub {
+        letter-spacing: .16em;
+        margin-right: -.16em;
+    }
+}
+
+@media (max-width: 380px) {
+    .sec-head__frame {
+        width: 7px;
+    }
+
+    .sec-head__text {
+        letter-spacing: .09em;
+        margin-right: -.09em;
+    }
+}
+
+/* ─── Dostępność ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .sec-head--armed .sec-head__meta,
+    .sec-head--armed .sec-head__title,
+    .sec-head--armed .sec-head__sub {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+
+    .sec-head--armed .sec-head__tick  { transform: scaleX(1); transition: none; }
+    .sec-head--armed .sec-head__frame { opacity: 1; transition: none; }
+}

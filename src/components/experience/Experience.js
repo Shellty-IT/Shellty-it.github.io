@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionTitle from "../sectionTitle/SectionTitle";
 
 import experienceIcon from "../../assets/icons/experience/experience.webp";
 import experienceGlow from "../../assets/icons/experience/experience_glow.webp";
@@ -102,9 +103,12 @@ const Experience = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h1 className={`exp__title ${titleHovered ? "hovered" : ""}`}>
-                            {t("experience.title")}
-                        </h1>
+                        <SectionTitle
+                            num="04"
+                            title={t("experience.title")}
+                            sub={t("experience.sub")}
+                            hovered={titleHovered}
+                        />
                     </div>
 
                 </header>

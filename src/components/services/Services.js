@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fa6';
 import './Services.css';
 import VideoModal from '../video/VideoModal';
+import SectionTitle from '../sectionTitle/SectionTitle';
 
 import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
@@ -262,9 +263,13 @@ const Services = () => {
                             />
                         </div>
 
-                        <h2 className={`svc__title${titleHovered ? ' hovered' : ''}`}>
-                            {t('services.title')}
-                        </h2>
+                        <SectionTitle
+                            as="h2"
+                            num="03"
+                            title={t('services.title')}
+                            sub={t('services.sub')}
+                            hovered={titleHovered}
+                        />
                     </div>
                 </header>
 

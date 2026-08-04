@@ -44,6 +44,7 @@
     "altText": "Logo"
   },
   "about": {
+    "sub": "Kim jestem i jak pracuję",
     "title": "Bio",
     "p1": "Cześć! Tu Tomasz Skorupski. Przez lata dbałem o to, by systemy informatyczne działały bezawaryjnie - administrując serwerami (Windows/Linux), sieciami i bazami danych. Zrozumiałem jednak, że chcę nie tylko naprawiać, utrzymywać i zmieniać, ale przede wszystkim tworzyć. Dziś wykorzystuję to solidne, techniczne zaplecze do budowania i usprawniania rozwiązań.",
     "videoInvite": "Jeśli wolisz słuchać, niż czytać - zapraszam do obejrzenia mojej krótkiej prezentacji wideo",
@@ -138,6 +139,7 @@
     }
   },
   "services": {
+    "sub": "Co mogę dla Ciebie zrobić",
     "title": "Usługi IT",
     "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> - dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem - bez pośredników i agencyjnych narzutów.",
     "forWhomLabel": "Dla kogo:",
@@ -218,6 +220,7 @@
     "ctaBtn": "Napisz do mnie"
   },
   "skills": {
+    "sub": "Technologie i narzędzia",
     "title": "Umiejętności",
     "groups": {
       "core": "Kluczowe kompetencje",
@@ -270,6 +273,7 @@
     }
   },
   "portfolio": {
+    "sub": "Wybrane projekty autorskie",
     "title": "Portfolio",
     "subtitleHtml": "Poniższe projekty są w całości moim autorskim dziełem - moimi pomysłami, wizjami i rozwiązaniami, zrealizowanymi od podstaw według własnej koncepcji. Dotychczas wykonałem znacznie więcej projektów dla pracodawców, jednak nie prezentuję ich w tym miejscu - to moja strona osobista, a tamte projekty w dużej mierze były wizją i pomysłem klientów, realizowaną według ich założeń i wytycznych. Z tego względu nie uważam za zasadne prezentowanie ich w tym miejscu jako mojego autorskiego dorobku. <br/><br/><warning>Uwaga:</warning> W niektórych aplikacjach korzystam z darmowych usług backendowych Render. Przed użyciem zalecane jest wybudzenie serwisów za pomocą <pulseLink>Shellty Pulse</pulseLink>.",
     "actions": {
@@ -500,6 +504,7 @@
     }
   },
   "experience": {
+    "sub": "Ścieżka zawodowa",
     "title": "Doświadczenie",
     "kicker": "Stabilność • Automatyzacja • Wsparcie • Development",
     "jobs": {
@@ -604,6 +609,7 @@
     }
   },
   "contact": {
+    "sub": "Odpowiadam zwykle tego samego dnia",
     "title": "Formularz kontaktowy",
     "subtitle": "Masz pytanie lub propozycję współpracy? Wypełnij formularz lub napisz do mnie bezpośrednio.",
     "fields": {

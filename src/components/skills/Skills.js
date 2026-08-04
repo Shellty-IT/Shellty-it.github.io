@@ -37,6 +37,7 @@ import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionTitle from "../sectionTitle/SectionTitle";
 
 import skillsIcon from "../../assets/icons/skills/skills.webp";
 import skillsGlow from "../../assets/icons/skills/skills_glow.webp";
@@ -187,9 +188,12 @@ const Skills = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h1 className={`skills__title ${titleHovered ? 'hovered' : ''}`}>
-                            {t("skills.title")}
-                        </h1>
+                        <SectionTitle
+                            num="05"
+                            title={t("skills.title")}
+                            sub={t("skills.sub")}
+                            hovered={titleHovered}
+                        />
                     </div>
                 </header>
 

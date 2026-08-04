@@ -36,28 +36,14 @@
     width: fit-content;
 }
 
-.portfolio-title {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: clamp(22px, 2.9vw, 34px);
-    line-height: 1.2;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    background: linear-gradient(135deg, #0cc0ff, #0062b0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin: 8px 0 0;
-    transition: filter 0.35s ease;
-}
-
-.portfolio-title.hovered {
-    filter: drop-shadow(0 0 12px rgba(12, 192, 255, 0.6));
+/* Tytuł sekcji: patrz components/sectionTitle/SectionTitle.css */
+.portfolio-header-hover-area .sec-head {
+    margin-top: 8px;
 }
 
 .portfolio-subtitle {
     max-width: 780px;
-    margin: 8px auto 0;
+    margin: 14px auto 0;
     text-align: center;
     font-size: 14px;
     color: #94a3b8;

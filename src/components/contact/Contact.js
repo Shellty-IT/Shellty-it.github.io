@@ -4,6 +4,7 @@ import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionTitle from "../sectionTitle/SectionTitle";
 import {
     FaEnvelope,
     FaFacebookF,
@@ -156,9 +157,12 @@ export default function Contact() {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h1 className={`contact-title ${titleHovered ? 'hovered' : ''}`}>
-                            {t("contact.title")}
-                        </h1>
+                        <SectionTitle
+                            num="07"
+                            title={t("contact.title")}
+                            sub={t("contact.sub")}
+                            hovered={titleHovered}
+                        />
                     </div>
                 </header>
 

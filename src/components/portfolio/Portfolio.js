@@ -35,6 +35,7 @@ import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
 import { useIconPhase } from '../../hooks/useIconPhase';
+import SectionTitle from '../sectionTitle/SectionTitle';
 
 const ICON_NODES = [
     { id: 0, x: "15%", y: "15%" },
@@ -538,9 +539,12 @@ const Portfolio = () => {
                         onMouseEnter={() => setTitleHovered(true)}
                         onMouseLeave={() => setTitleHovered(false)}
                     >
-                        <h1 className={`portfolio-title ${titleHovered ? 'hovered' : ''}`}>
-                            {t('portfolio.title')}
-                        </h1>
+                        <SectionTitle
+                            num="06"
+                            title={t('portfolio.title')}
+                            sub={t('portfolio.sub')}
+                            hovered={titleHovered}
+                        />
                     </div>
                     <p className="portfolio-subtitle">
                         <Trans
