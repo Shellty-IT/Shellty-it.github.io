@@ -637,7 +637,7 @@ const Portfolio = () => {
                                             <span className="project-status">
                                                 {t('portfolio.projects.shelltyLingo.statusPrefix')}
                                                 <a
-                                                    href="https://expo.dev/artifacts/eas/ZKzUuQ7XyeIsZTZ0TnvZo3nSAZrl1oHay1ln2-lyoUE.apk"
+                                                    href="https://expo.dev/artifacts/eas/AJvsDKVlBiwwuIABYkwsOhYdjoIkYYWz6V94Fpsq55M.apk"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
