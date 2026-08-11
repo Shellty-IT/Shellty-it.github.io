@@ -92,15 +92,7 @@ const SectionTitle = ({
             </span>
 
             <Tag className="sec-head__title">
-                <span
-                    className="sec-head__frame sec-head__frame--l"
-                    aria-hidden="true"
-                />
                 <span className="sec-head__text">{title}</span>
-                <span
-                    className="sec-head__frame sec-head__frame--r"
-                    aria-hidden="true"
-                />
             </Tag>
 
             {sub && <p className="sec-head__sub">{sub}</p>}

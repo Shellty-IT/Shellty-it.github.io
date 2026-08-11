@@ -62,7 +62,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(10px, 1.5vw, 18px);
     margin: 0;
     line-height: 1.08;
 }
@@ -87,22 +86,6 @@
 }
 
 /* Ramki HUD po bokach tytułu */
-.sec-head__frame {
-    display: block;
-    flex: none;
-    width: clamp(9px, 1.1vw, 13px);
-    /* stretch: ramki obejmują cały blok tytułu, także gdy zawinie się
-       na dwie linie (np. "Formularz kontaktowy" na wąskim ekranie) */
-    align-self: stretch;
-    min-height: clamp(22px, 2.6vw, 34px);
-    border-top: 1px solid var(--sec-line);
-    border-bottom: 1px solid var(--sec-line);
-    transition: border-color .35s ease, filter .35s ease;
-}
-
-.sec-head__frame--l { border-left: 1px solid var(--sec-line); }
-.sec-head__frame--r { border-right: 1px solid var(--sec-line); }
-
 /* ─── Wiersz 3: podtytuł ────────────────────── */
 .sec-head__sub {
     margin: 0;
@@ -122,11 +105,6 @@
 /* ─── Hover (dziedziczony z obszaru nagłówka sekcji) ─── */
 .sec-head--hovered .sec-head__text {
     filter: drop-shadow(0 0 26px rgba(12, 192, 255, .60));
-}
-
-.sec-head--hovered .sec-head__frame {
-    border-color: var(--sec-line-strong);
-    filter: drop-shadow(0 0 6px rgba(12, 192, 255, .55));
 }
 
 .sec-head--hovered .sec-head__num {
@@ -151,7 +129,6 @@
 }
 
 .sec-head--armed .sec-head__tick { transform: scaleX(0); }
-.sec-head--armed .sec-head__frame { opacity: 0; }
 
 .sec-head--armed .sec-head__meta,
 .sec-head--armed .sec-head__title,
@@ -164,10 +141,6 @@
 
 .sec-head--armed .sec-head__tick {
     transition: transform .7s var(--sec-ease) .12s;
-}
-
-.sec-head--armed .sec-head__frame {
-    transition: opacity .6s ease .34s, border-color .35s ease, filter .35s ease;
 }
 
 .sec-head--armed .sec-head__title { transition-delay: .10s; }
@@ -183,7 +156,6 @@
 
 .sec-head--armed.sec-head--in .sec-head__title { filter: blur(0); }
 .sec-head--armed.sec-head--in .sec-head__tick  { transform: scaleX(1); }
-.sec-head--armed.sec-head--in .sec-head__frame { opacity: 1; }
 
 /* ─── Mobile ─────────────────────────────────── */
 @media (max-width: 640px) {
@@ -198,10 +170,6 @@
 }
 
 @media (max-width: 380px) {
-    .sec-head__frame {
-        width: 7px;
-    }
-
     .sec-head__text {
         letter-spacing: .09em;
         margin-right: -.09em;
@@ -220,5 +188,4 @@
     }
 
     .sec-head--armed .sec-head__tick  { transform: scaleX(1); transition: none; }
-    .sec-head--armed .sec-head__frame { opacity: 1; transition: none; }
 }
