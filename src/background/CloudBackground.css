@@ -7,7 +7,7 @@
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
-    /* Odcina tę warstwę od reszty drzewa — zmiany w canvasie nigdy nie
+    /* Odcina tę warstwę od reszty drzewa - zmiany w canvasie nigdy nie
        wymuszają relayoutu/repaintu treści strony. */
     contain: strict;
     background:

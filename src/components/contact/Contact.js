@@ -288,10 +288,10 @@ export default function Contact() {
                         )}
                     </div>
 
-                    {/* Sidebar — kanały kontaktu */}
+                    {/* Sidebar - kanały kontaktu */}
                     <aside className="contact-side">
 
-                        {/* Email — klikalny link */}
+                        {/* Email - klikalny link */}
                         <a
                             href="mailto:kontakt@shellty.pl"
                             className="ct-channel"
@@ -307,7 +307,7 @@ export default function Contact() {
                             </div>
                         </a>
 
-                        {/* GitHub + LinkedIn — działające linki */}
+                        {/* GitHub + LinkedIn - działające linki */}
                         <div className="ct-socials-row">
                             <a
                                 href="https://github.com/Shellty-IT"

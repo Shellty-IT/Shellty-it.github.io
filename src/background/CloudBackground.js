@@ -29,10 +29,10 @@ const TIER_A = [0.032, 0.068, 0.12];
 const NB = [1, 0, -1, 1, 0, 1, 1, 1];
 const R_MAX = 5.6, R_MIN = 1.25;
 
-/* Zasięg wpływu kursora (px²) — porównujemy kwadraty odległości, bez sqrt. */
+/* Zasięg wpływu kursora (px²) - porównujemy kwadraty odległości, bez sqrt. */
 const NEAR_D2 = 22000;
 
-/* Fuzja/rozpad to proces wolnozmienny — liczony co N klatek z sumarycznym dt,
+/* Fuzja/rozpad to proces wolnozmienny - liczony co N klatek z sumarycznym dt,
    dzięki czemu prawdopodobieństwa pozostają poprawne w czasie. */
 const FUSE_EVERY = 4;
 
@@ -69,7 +69,7 @@ class MeshEngine {
     _profile() {
         const s = this.small.matches;
         this.P = {
-            /* Brak sztucznego limitu FPS — pętla biegnie w rytmie ekranu.
+            /* Brak sztucznego limitu FPS - pętla biegnie w rytmie ekranu.
                Praca na klatkę jest liniowa względem liczby węzłów, więc
                płynność kursora zyskuje więcej niż kosztuje CPU.
                _dprCap / _countScale niosą decyzje samoregulacji, dlatego
@@ -216,13 +216,13 @@ class MeshEngine {
             spawn.push(q);
         }
 
-        /* Kompaktowanie w miejscu — tańsze niż splice() dla każdego trupa. */
+        /* Kompaktowanie w miejscu - tańsze niż splice() dla każdego trupa. */
         let w = 0;
         for (let i = 0; i < nodes.length; i++) if (!nodes[i].dead) nodes[w++] = nodes[i];
         nodes.length = w;
         for (let i = 0; i < spawn.length; i++) nodes.push(spawn[i]);
 
-        /* Impulsy trzymają referencje do węzłów — porzucamy te, których
+        /* Impulsy trzymają referencje do węzłów - porzucamy te, których
            koniec właśnie zniknął, żeby nie lecieć do zamrożonej pozycji. */
         for (let i = this.pulses.length - 1; i >= 0; i--) {
             const p = this.pulses[i];
@@ -332,7 +332,7 @@ class MeshEngine {
 
     /* Samoregulacja: mierzymy realny koszt klatki (nie interwał, który zawiera
        bezczynność przeglądarki). Przy trwale drogich klatkach redukujemy scenę.
-       Degradacja jest jednokierunkowa — unika oscylacji tam i z powrotem. */
+       Degradacja jest jednokierunkowa - unika oscylacji tam i z powrotem. */
     _monitor(cost) {
         this._cost += (cost - this._cost) * 0.05;
         if (++this._checkTick < 90) return;
@@ -464,7 +464,7 @@ const CloudBackground = () => {
         const onVisibility = () => (document.hidden ? engine.pause() : engine.play());
 
         // Gdy root jest nierozwiązywalny (np. osadzenie w iframe cross-origin),
-        // traktujemy warstwę jako widoczną — inaczej pętla animacji nigdy by nie ruszyła.
+        // traktujemy warstwę jako widoczną - inaczej pętla animacji nigdy by nie ruszyła.
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[entries.length - 1];
             engine.visible = entry.isIntersecting || entry.rootBounds === null;

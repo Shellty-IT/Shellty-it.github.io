@@ -510,15 +510,30 @@
     "title": "Doświadczenie",
     "kicker": "Stabilność • Automatyzacja • Wsparcie • Development",
     "jobs": {
+      "shellty": {
+        "where": "Shellty • Programista full-stack / własna działalność",
+        "date": "02.2024 - obecnie",
+        "loc": "zdalnie",
+        "bullets": [
+          "Realizacja komercyjnych projektów webowych dla klientów z branż gastronomicznej, logistycznej i dekarskiej: strony firmowe i wizytówki - od zebrania wymagań, przez implementację, po wdrożenie.",
+          "Stała opieka techniczna nad stronami dwóch klientów: bieżące zmiany, aktualizacje i rozwój funkcjonalności w miarę potrzeb.",
+          "Samodzielna konfiguracja i administracja infrastrukturą (Docker, Ansible, Oracle Cloud) oraz wdrożenia produkcyjne.",
+          "Bezpośrednia komunikacja z klientem - przekładanie wymagań biznesowych na konkretne rozwiązania techniczne."
+        ],
+        "tags": {
+          "tools": "Docker/Ansible",
+          "db": "Oracle Cloud"
+        }
+      },
       "streetcom": {
         "where": "Streetcom • Administrator Systemów IT / Programista",
         "date": "02.2024 - 08.2025",
         "loc": "Warszawa / zdalnie",
         "bullets": [
-          "Kompleksowa opieka nad środowiskiem IT, obejmująca administrację systemami, serwerami i bazami danych, a także ich rozwój i modernizację -\n z naciskiem na stabilność, bezpieczeństwo i realne potrzeby użytkowników korzystających z infrastruktury na co dzień.",
-          "Rozwiązywanie problemów technicznych i funkcjonalnych pracowników, oparte na współpracy, analizie i zrozumieniu tego, jak technologia wpływa na ich codzienną pracę; od drobnych trudności po złożone zgłoszenia wymagające głębszej diagnostyki.",
-          "Tworzenie i rozwijanie treści oraz funkcjonalności w systemach wewnętrznych, w tym dokumentacji, modułów i usprawnień, które ułatwiały komunikację, porządkowały procesy i zwiększały efektywność zespołów w całej firmie.",
-          "Udział w inicjatywach automatyzacji i optymalizacji procesów, polegający na projektowaniu narzędzi i rozwiązań, które eliminowały powtarzalne zadania, poprawiały niezawodność systemów i odczuwalnie wpływały na komfort pracy użytkowników."
+          "Praca bezpośrednio na kodzie aplikacji (Tier 2/3): diagnoza i naprawa błędów oraz optymalizacja istniejącego kodu w warstwie frontendu i UI.",
+          "Współpraca w 4-osobowym zespole deweloperskim i z project managerami - udział w code review i pull requestach, analiza i planowanie nowych funkcjonalności.",
+          "Rozwój i administracja autorskim systemem CMS; udział w testowaniu i projektowaniu jego następcy.",
+          "Przygotowanie i konfiguracja infrastruktury AWS we współpracy z zespołem DevOps; praca na produkcyjnych bazach MySQL."
         ],
         "tags": {
           "servers": "Windows/Linux",
@@ -532,10 +547,10 @@
         "date": "04.2023 - 09.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Wdrażanie i integracja systemów druku podążającego u klientów z różnych branż - od hal produkcyjnych po biura księgowe i kancelarie notarialne - z uwzględnieniem ich specyfiki pracy, procesów oraz realnych potrzeb biznesowych.",
-          "Rozwiązywanie problemów technicznych zdalnie i podczas wizyt u klientów, opartych na bezpośredniej rozmowie, analizie procesów i szybkim dopasowywaniu rozwiązań, które przywracały ciągłość pracy całych zespołów.",
-          "Optymalizacja i stabilizacja środowisk druku, obejmująca usprawnienie komunikacji między urządzeniami, poprawę przepustowości oraz ograniczanie opóźnień wpływających na sprawność kluczowych procesów operacyjnych klientów.",
-          "Stały nadzór nad urządzeniami i środowiskami druku, monitorowanie ich działania oraz szybkie reagowanie na wszelkie nieprawidłowości, aby technologia była dla klientów bezpiecznym i przewidywalnym narzędziem pracy."
+          "Wdrożenie systemu druku podążającego (MPS) dla organizacji Wód Polskich - setki użytkowników, automatyzacja zgłoszeń serwisowych.",
+          "Wsparcie techniczne i optymalizacja infrastruktury sieciowej dla 7 klientów z różnych branż: produkcja, księgowość, kancelarie notarialne.",
+          "Diagnoza problemów zdalnie i podczas wizyt u klienta - szybkie przywracanie ciągłości pracy całych zespołów.",
+          "Stały nadzór nad środowiskami druku: monitorowanie działania, reagowanie na nieprawidłowości, ograniczanie opóźnień w procesach operacyjnych."
         ],
           "tags": {
           "print": "Systemy druku",
@@ -548,10 +563,10 @@
         "date": "01.2022 - 04.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Administracja systemami i infrastrukturą sieciową, obejmująca wdrażanie nowych technologii, modernizację środowiska oraz dbanie o stabilność i bezpieczeństwo narzędzi, z których korzystała cała organizacja na każdym poziomie.",
-          "Budowa nowej serwerowni od podstaw, obejmująca fizyczny montaż, konfigurację i uruchomienie sprzętu sieciowego oraz serwerowego - projekt, który wymagał dokładności, planowania i odpowiedzialności za fundamenty całej infrastruktury firmy.",
-          "Zapewnienie nieprzerwanego działania kluczowych aplikacji i usług, od narzędzi operacyjnych po systemy wspierające pracę użytkowników końcowych, z szybkim reagowaniem na problemy i koncentracją na minimalizowaniu przestojów.",
-          "Bliska współpraca z użytkownikami i zespołami, nastawiona na szybkie rozwiązywanie ich zgłoszeń, wyjaśnianie działania systemów i budowanie środowiska, w którym technologia realnie usprawniała codzienną pracę ludzi."
+          "Współtworzenie infrastruktury 3 serwerowni w różnych lokalizacjach (ok. 5 szaf RACK): montaż, okablowanie strukturalne, konfiguracja switchy i routerów.",
+          "Helpdesk dla ~70 użytkowników - od drobnych zgłoszeń po incydenty wymagające głębszej diagnostyki.",
+          "Wsparcie systemów ERP (Symfonia, SAP) oraz wdrożenie WMS (PSIwms) w modelu omnichannel dla e-commerce - skala rzędu dziesiątek tysięcy zamówień miesięcznie.",
+          "Ewidencja sprzętu i licencji, kopie zapasowe, zapewnienie ciągłości działania kluczowych aplikacji i usług."
         ],
         "tags": {
           "servers": "Serwery",
@@ -564,10 +579,10 @@
         "date": "05.2021 - 10.2021",
         "loc": "Szczecin",
         "bullets": [
-          "Konfiguracja i nadzór nad systemami IT oraz administracja infrastrukturą sieciową, wspierające stabilne funkcjonowanie instytucji i zapewniające bezpieczny przepływ danych w codziennej pracy zespołów.",
-          "Bieżące wsparcie użytkowników w ich codziennych zadaniach, szybkie reagowanie na zgłoszenia i rozwiązywanie problemów technicznych, dzięki czemu technologia stawała się dla pracowników narzędziem, a nie przeszkodą.",
-          "Dbanie o ciągłą dostępność systemów i usług, monitorowanie ich działania oraz szybkie eliminowanie nieprawidłowości, aby minimalizować przestoje i utrzymywać sprawność kluczowych procesów operacyjnych.",
-          "Współpraca z różnymi działami organizacji, pozwalająca lepiej zrozumieć ich potrzeby i dostosowywać rozwiązania IT do sposobu, w jaki faktycznie pracują."
+          "Wsparcie techniczne ~100 stanowisk biurowych w instytucji publicznej.",
+          "Konfiguracja i nadzór nad systemami IT oraz administracja infrastrukturą sieciową.",
+          "Monitorowanie dostępności systemów i szybkie eliminowanie nieprawidłowości - minimalizowanie przestojów w pracy zespołów.",
+          "Współpraca z różnymi działami organizacji przy dopasowywaniu rozwiązań IT do faktycznych procesów pracy."
         ],
         "tags": {
           "net": "Sieci",
@@ -579,9 +594,9 @@
         "date": "10.2020 - 05.2021",
         "loc": "Szczecin (sieci handlowe)",
         "bullets": [
-          "Wsparcie IT i serwis urządzeń POS w sieciach handlowych, obejmujące diagnozę usterek, naprawę sprzętu oraz szybkie przywracanie ciągłości pracy sprzedaży.",
-          "Konfiguracja sieci, urządzeń i systemów kasowych oraz inwentaryzacja zasobów IT, zapewniająca stabilność i spójność środowiska w wielu lokalizacjach jednocześnie.",
-          "Bezpośrednia współpraca z pracownikami sklepów i kierownictwem, skuteczne rozwiązywanie problemów technicznych w terenie oraz wsparcie użytkowników w codziennych zadaniach."
+          "Serwis urządzeń POS w wielu lokalizacjach handlowych jednocześnie: diagnoza usterek, naprawa sprzętu, przywracanie ciągłości sprzedaży.",
+          "Konfiguracja sieci, urządzeń i systemów kasowych oraz inwentaryzacja zasobów IT w rozproszonym środowisku.",
+          "Bezpośrednia współpraca z pracownikami sklepów i kierownictwem - rozwiązywanie problemów technicznych w terenie."
         ],
         "tags": {
           "pos": "POS/Serwis",
@@ -593,9 +608,9 @@
         "date": "06.2020 - 09.2020",
         "loc": "Szczecin",
         "bullets": [
-          "Serwis i konfiguracja urządzeń drukujących oraz wsparcie sprzętu użytkowników w oddziałach banków, zapewniające płynną pracę biur i minimalizujące przestoje.",
-          "Diagnoza problemów na miejscu u klienta i szybkie przywracanie ciągłości pracy, reagowanie na awarie sprzętowe i programowe w środowisku wymagającym wysokiej niezawodności.",
-          "Przygotowanie, konfiguracja i uruchamianie nowego sprzętu w terenie, zapewniające sprawne wdrożenie technologii w wielu lokalizacjach i zgodność z wymaganiami użytkowników końcowych."
+          "Serwis i konfiguracja urządzeń drukujących oraz wsparcie sprzętu użytkowników w oddziałach banków - środowisko o wysokich wymaganiach niezawodności.",
+          "Diagnoza problemów na miejscu u klienta, reagowanie na awarie sprzętowe i programowe.",
+          "Przygotowanie, konfiguracja i uruchamianie nowego sprzętu w terenie."
         ]
       },
       "eot": {
@@ -603,9 +618,9 @@
         "date": "09.2018 - 03.2019",
         "loc": "Szczecin",
         "bullets": [
-          "Zdalne wsparcie IT dla szpitali i zespołów ratownictwa medycznego, zapewniające ciągłość działania krytycznych systemów w środowisku o wysokich wymaganiach niezawodności.",
-          "Obsługa zgłoszeń użytkowników, obejmująca diagnostykę problemów, rozwiązywanie incydentów oraz eskalacje do odpowiednich działów w celu szybkiego przywrócenia sprawności systemów.",
-          "Konfiguracja i modyfikacja stacji roboczych, aplikacji medycznych i uprawnień, dbanie o poprawne funkcjonowanie środowiska pracy i bezpieczeństwo danych wrażliwych."
+          "Zdalne wsparcie IT dla szpitali i zespołów ratownictwa medycznego: diagnostyka, rozwiązywanie incydentów, eskalacje.",
+          "Konfiguracja stacji roboczych, aplikacji medycznych i uprawnień dostępowych.",
+          "Pierwsza profesjonalna rola w IT - fundament rozumienia perspektywy użytkownika końcowego."
         ]
       }
     }

@@ -10,7 +10,7 @@
     border: 1px solid transparent;
     text-decoration: none;
     cursor: pointer;
-    /* overflow celowo NIE jest hidden — dzięki temu ikona (patrz --icon-scale)
+    /* overflow celowo NIE jest hidden - dzięki temu ikona (patrz --icon-scale)
        może wizualnie wystawać poza swoje miejsce w layoucie bez przycinania.
        Tło i błysk mają WŁASNĄ, przyciętą warstwę: .btn-cta__bg poniżej. */
     transition: transform .2s ease, background .25s ease, border-color .25s ease, box-shadow .3s ease;
@@ -29,7 +29,7 @@
     box-shadow: 0 0 0 3px rgba(12, 192, 255, .3);
 }
 
-/* Warstwa tła — przycięta do kształtu przycisku, żyje pod ikoną/tekstem */
+/* Warstwa tła - przycięta do kształtu przycisku, żyje pod ikoną/tekstem */
 .btn-cta__bg {
     position: absolute;
     inset: 0;

@@ -251,7 +251,7 @@ const About = () => {
                 {/* ── Header sekcji ── */}
                 <header className="about__header">
 
-                    {/* Ikona sekcji — floating DNA (bez zmian) */}
+                    {/* Ikona sekcji - floating DNA (bez zmian) */}
                     <div
                         ref={iconRef}
                         className={`dna dna--${iconPhase}`}

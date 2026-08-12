@@ -3,7 +3,7 @@ import './GlowIcon.css';
 
 /**
  * Singleton IntersectionObserver zamiast osobnej instancji per komponent.
- * Jeden observer śledzi wszystkie GlowIcon na stronie — zmniejsza liczbę
+ * Jeden observer śledzi wszystkie GlowIcon na stronie - zmniejsza liczbę
  * aktywnych obserwatorów z N (liczba ikon) do 1.
  */
 let sharedObserver = null;

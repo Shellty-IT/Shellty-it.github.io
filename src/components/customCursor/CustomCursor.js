@@ -8,7 +8,7 @@ const POINTER_QUERY = '(hover: hover) and (pointer: fine)';
 /**
  * Style trailsów wyliczone raz jako stała poza komponentem.
  * Poprzednio getTrailStyle(i) był wywoływany przy każdym renderze,
- * tworząc nowe obiekty — teraz są niezmiennymi referencjami.
+ * tworząc nowe obiekty - teraz są niezmiennymi referencjami.
  */
 const TRAIL_STYLES = Array.from({ length: TRAIL_COUNT }, (_, i) => {
     const progress = i / (TRAIL_COUNT - 1);

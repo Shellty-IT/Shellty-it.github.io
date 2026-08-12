@@ -144,15 +144,30 @@
     "sub": "Career path",
     "title": "Experience",
     "jobs": {
+      "shellty": {
+        "where": "Shellty • Full-stack Developer / Self-employed",
+        "date": "02.2024 - present",
+        "loc": "Remote",
+        "bullets": [
+          "Delivery of commercial web projects for clients in the food service, logistics and roofing industries: company websites and landing pages - from requirements gathering and implementation to deployment.",
+          "Ongoing technical support for two clients’ websites: day-to-day changes, updates and feature development as needed.",
+          "Independent infrastructure configuration and administration (Docker, Ansible, Oracle Cloud), as well as production deployments.",
+          "Direct client communication - translating business requirements into specific technical solutions."
+        ],
+        "tags": {
+          "tools": "Docker/Ansible",
+          "db": "Oracle Cloud"
+        }
+      },
       "streetcom": {
         "where": "Streetcom • IT Systems Administrator & Developer",
         "date": "02.2024 - 08.2025",
         "loc": "Warsaw / Remote",
         "bullets": [
-          "Comprehensive management of the IT environment, including administration of systems, servers and databases, as well as their development and modernization - with a focus on stability, security and the real needs of everyday users.",
-          "Resolving employees’ technical and functional issues based on collaboration, analysis and understanding how technology affects their daily work - from minor hiccups to complex incidents requiring deeper diagnostics.",
-          "Creating and developing content and functionality in internal systems, including documentation, modules and enhancements that improved communication, streamlined processes and increased efficiency across the company.",
-          "Participating in automation and process-optimization initiatives by designing tools and solutions that eliminated repetitive tasks, improved system reliability and noticeably enhanced user experience."
+          "Working directly with the application code (Tier 2/3): diagnosing and fixing bugs and optimizing existing frontend and UI code.",
+          "Collaborating in a 4-person development team and with project managers - participating in code reviews and pull requests, and analyzing and planning new features.",
+          "Developing and administering a proprietary CMS; participating in testing and designing its successor.",
+          "Preparing and configuring AWS infrastructure in cooperation with the DevOps team; working with production MySQL databases."
         ],
         "tags": {
           "servers": "Windows/Linux",
@@ -166,10 +181,10 @@
         "date": "04.2023 - 09.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Deployment and integration of secure/pull printing systems for clients across diverse industries - from production floors to accounting offices and notary chambers - tailored to their workflows, processes and real business needs.",
-          "Resolving technical issues remotely and on-site through direct communication, process analysis and rapid adaptation of solutions that restored the continuity of entire teams’ work.",
-          "Optimization and stabilization of printing environments, including streamlining device communication, improving throughput and reducing latency affecting key operational processes.",
-          "Ongoing supervision of devices and printing environments, proactive monitoring and rapid response to anomalies so that technology remained a safe, predictable work tool for clients."
+          "Deploying a Managed Print Services (MPS) system for the State Water Holding Polish Waters - hundreds of users and automated service requests.",
+          "Technical support and network infrastructure optimization for 7 clients across different industries: manufacturing, accounting and notary offices.",
+          "Diagnosing problems remotely and during client visits - quickly restoring continuity for entire teams.",
+          "Continuous oversight of print environments: monitoring operations, responding to anomalies and reducing delays in operational processes."
         ],
         "tags": {
           "print": "Print systems",
@@ -182,10 +197,10 @@
         "date": "01.2022 - 04.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Administration of systems and network infrastructure, including rolling out new technologies, modernizing the environment, and ensuring the stability and security of tools used across the organization at every level.",
-          "Building a new server room from the ground up: physical assembly, configuration and commissioning of network and server hardware - a project requiring precision, planning and responsibility for the foundations of the company’s entire infrastructure.",
-          "Ensuring uninterrupted operation of key applications and services - from operational tools to end-user systems - with quick incident response and a strong focus on minimizing downtime.",
-          "Close cooperation with users and teams, focused on rapidly resolving tickets, explaining how systems work and fostering an environment where technology genuinely improved daily work."
+          "Co-building the infrastructure of 3 server rooms in different locations (approx. 5 RACK cabinets): installation, structured cabling, and switch and router configuration.",
+          "Helpdesk support for ~70 users - from minor requests to incidents requiring deeper diagnostics.",
+          "Supporting ERP systems (Symfonia, SAP) and implementing a WMS (PSIwms) in an omnichannel model for e-commerce - handling tens of thousands of orders per month.",
+          "Maintaining hardware and license inventories, backups, and continuity of key applications and services."
         ],
         "tags": {
           "servers": "Servers",
@@ -198,10 +213,10 @@
         "date": "05.2021 - 10.2021",
         "loc": "Szczecin",
         "bullets": [
-          "Configuration and supervision of IT systems and administration of network infrastructure supporting the institution’s stable operations and secure flow of data in day-to-day team work.",
-          "Ongoing user support in daily tasks, swift response to tickets and resolution of technical issues - helping turn technology into a tool rather than an obstacle for employees.",
-          "Ensuring continuous availability of systems and services, monitoring their performance and promptly eliminating irregularities to minimize downtime and keep core operational processes efficient.",
-          "Collaboration with various departments to better understand their needs and adapt IT solutions to how they actually work."
+          "Technical support for ~100 office workstations in a public institution.",
+          "Configuration and oversight of IT systems and administration of network infrastructure.",
+          "Monitoring system availability and quickly resolving anomalies - minimizing downtime for teams.",
+          "Collaborating with different departments to align IT solutions with actual work processes."
         ],
         "tags": {
           "net": "Networks",
@@ -213,9 +228,9 @@
         "date": "10.2020 - 05.2021",
         "loc": "Szczecin (retail chains)",
         "bullets": [
-          "IT support for retail: service tickets, diagnostics and repair of POS equipment.",
-          "Network and device configuration, IT assets inventory.",
-          "Fiscal devices service - solving diverse issues across many locations."
+          "Servicing POS devices across multiple retail locations simultaneously: fault diagnosis, hardware repair and restoration of sales continuity.",
+          "Configuring networks, devices and checkout systems, and maintaining an IT asset inventory in a distributed environment.",
+          "Working directly with store employees and management - resolving technical problems on-site."
         ],
         "tags": {
           "pos": "POS/Service",
@@ -227,9 +242,9 @@
         "date": "06.2020 - 09.2020",
         "loc": "Szczecin",
         "bullets": [
-          "Service and configuration of printing devices, user hardware support in bank branches.",
-          "On-site diagnostics and work continuity restoration.",
-          "Preparing, configuring and deploying new equipment in the field."
+          "Servicing and configuring printing devices and supporting user hardware in bank branches - an environment with high reliability requirements.",
+          "Diagnosing problems on client premises and responding to hardware and software failures.",
+          "Preparing, configuring and commissioning new equipment in the field."
         ]
       },
       "eot": {
@@ -237,9 +252,9 @@
         "date": "09.2018 - 03.2019",
         "loc": "Szczecin",
         "bullets": [
-          "Remote IT support for hospitals and emergency medical teams.",
-          "Handling tickets: diagnostics, incident resolution, escalation.",
-          "Configurations and changes: workstations, medical apps, permissions."
+          "Remote IT support for hospitals and emergency medical teams: diagnostics, incident resolution and escalation.",
+          "Configuring workstations, medical applications and access permissions.",
+          "First professional IT role - the foundation for understanding the end-user perspective."
         ]
       }
     }

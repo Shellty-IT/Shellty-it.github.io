@@ -5,7 +5,7 @@ import "./CtaButton.css";
 
 /**
  * Główne CTA używane w hero i w sekcji bio.
- * Ikona ma dwa warianty: bazowy (wygaszony) i glow — przełączane na hover.
+ * Ikona ma dwa warianty: bazowy (wygaszony) i glow - przełączane na hover.
  */
 const CtaButton = ({
     to,
