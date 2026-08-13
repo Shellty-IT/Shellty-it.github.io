@@ -511,14 +511,14 @@
     "kicker": "Stabilność • Automatyzacja • Wsparcie • Development",
     "jobs": {
       "shellty": {
-        "where": "Shellty • Programista full-stack / własna działalność",
+        "where": "Shellty • Programista full-stack / freelance",
         "date": "02.2024 - obecnie",
         "loc": "zdalnie",
         "bullets": [
-          "Realizacja komercyjnych projektów webowych dla klientów z branż gastronomicznej, logistycznej i dekarskiej: strony firmowe i wizytówki - od zebrania wymagań, przez implementację, po wdrożenie.",
-          "Stała opieka techniczna nad stronami dwóch klientów: bieżące zmiany, aktualizacje i rozwój funkcjonalności w miarę potrzeb.",
-          "Samodzielna konfiguracja i administracja infrastrukturą (Docker, Ansible, Oracle Cloud) oraz wdrożenia produkcyjne.",
-          "Bezpośrednia komunikacja z klientem - przekładanie wymagań biznesowych na konkretne rozwiązania techniczne."
+          "Realizacja komercyjnych projektów webowych dla klientów z branż gastronomicznej, logistycznej i dekarskiej - od zebrania wymagań, przez implementację, po wdrożenie.",
+          "Stała opieka techniczna nad stronami dwóch klientów: bieżące zmiany, aktualizacje i rozwój funkcjonalności.",
+          "Samodzielna konfiguracja i administracja własną infrastrukturą (Docker, Ansible, Oracle Cloud) oraz wdrożenia produkcyjne.",
+          "Bezpośrednia komunikacja z klientem - przekładanie wymagań biznesowych na rozwiązania techniczne."
         ],
         "tags": {
           "tools": "Docker/Ansible",
@@ -530,10 +530,11 @@
         "date": "02.2024 - 08.2025",
         "loc": "Warszawa / zdalnie",
         "bullets": [
-          "Praca bezpośrednio na kodzie aplikacji (Tier 2/3): diagnoza i naprawa błędów oraz optymalizacja istniejącego kodu w warstwie frontendu i UI.",
-          "Współpraca w 4-osobowym zespole deweloperskim i z project managerami - udział w code review i pull requestach, analiza i planowanie nowych funkcjonalności.",
+          "Praca bezpośrednio na kodzie aplikacji (Tier 2/3): diagnoza i naprawa błędów oraz optymalizacja kodu w warstwie frontendu i UI.",
+          "Praca w zespole deweloperskim (dwóch programistów/devopsów i project manager) - wsparcie przy analizie i planowaniu nowych funkcjonalności.",
+          "Samodzielne prowadzenie pull requestów w workflow Git.",
           "Rozwój i administracja autorskim systemem CMS; udział w testowaniu i projektowaniu jego następcy.",
-          "Przygotowanie i konfiguracja infrastruktury AWS we współpracy z zespołem DevOps; praca na produkcyjnych bazach MySQL."
+          "Praca na produkcyjnych bazach MySQL."
         ],
         "tags": {
           "servers": "Windows/Linux",
@@ -548,9 +549,9 @@
         "loc": "Szczecin",
         "bullets": [
           "Wdrożenie systemu druku podążającego (MPS) dla organizacji Wód Polskich - setki użytkowników, automatyzacja zgłoszeń serwisowych.",
-          "Wsparcie techniczne i optymalizacja infrastruktury sieciowej dla 7 klientów z różnych branż: produkcja, księgowość, kancelarie notarialne.",
-          "Diagnoza problemów zdalnie i podczas wizyt u klienta - szybkie przywracanie ciągłości pracy całych zespołów.",
-          "Stały nadzór nad środowiskami druku: monitorowanie działania, reagowanie na nieprawidłowości, ograniczanie opóźnień w procesach operacyjnych."
+          "Wsparcie techniczne i optymalizacja infrastruktury sieciowej dla 7 klientów z branż: produkcja, księgowość, kancelarie notarialne.",
+          "Diagnoza problemów zdalnie i podczas wizyt u klienta - szybkie przywracanie ciągłości pracy zespołów.",
+          "Centralny nadzór nad urządzeniami drukującymi u klientów."
         ],
           "tags": {
           "print": "Systemy druku",
@@ -563,10 +564,10 @@
         "date": "01.2022 - 04.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Współtworzenie infrastruktury 3 serwerowni w różnych lokalizacjach (ok. 5 szaf RACK): montaż, okablowanie strukturalne, konfiguracja switchy i routerów.",
+          "Współtworzenie infrastruktury 3 serwerowni (ok. 5 szaf RACK): montaż, okablowanie strukturalne, konfiguracja switchy i routerów.",
           "Helpdesk dla ~70 użytkowników - od drobnych zgłoszeń po incydenty wymagające głębszej diagnostyki.",
-          "Wsparcie systemów ERP (Symfonia, SAP) oraz wdrożenie WMS (PSIwms) w modelu omnichannel dla e-commerce - skala rzędu dziesiątek tysięcy zamówień miesięcznie.",
-          "Ewidencja sprzętu i licencji, kopie zapasowe, zapewnienie ciągłości działania kluczowych aplikacji i usług."
+          "Wsparcie systemów ERP (Symfonia, SAP) oraz wdrożenie WMS (PSIwms) w modelu omnichannel dla e-commerce.",
+          "Ewidencja sprzętu i licencji, kopie zapasowe, zapewnienie ciągłości działania kluczowych aplikacji."
         ],
         "tags": {
           "servers": "Serwery",
@@ -581,8 +582,8 @@
         "bullets": [
           "Wsparcie techniczne ~100 stanowisk biurowych w instytucji publicznej.",
           "Konfiguracja i nadzór nad systemami IT oraz administracja infrastrukturą sieciową.",
-          "Monitorowanie dostępności systemów i szybkie eliminowanie nieprawidłowości - minimalizowanie przestojów w pracy zespołów.",
-          "Współpraca z różnymi działami organizacji przy dopasowywaniu rozwiązań IT do faktycznych procesów pracy."
+          "Monitorowanie dostępności systemów i eliminowanie nieprawidłowości - minimalizowanie przestojów.",
+          "Współpraca z różnymi działami przy dopasowywaniu rozwiązań IT do procesów pracy."
         ],
         "tags": {
           "net": "Sieci",
@@ -594,7 +595,7 @@
         "date": "10.2020 - 05.2021",
         "loc": "Szczecin (sieci handlowe)",
         "bullets": [
-          "Serwis urządzeń POS w wielu lokalizacjach handlowych jednocześnie: diagnoza usterek, naprawa sprzętu, przywracanie ciągłości sprzedaży.",
+          "Serwis urządzeń POS w wielu lokalizacjach handlowych: diagnoza usterek, naprawa sprzętu, przywracanie ciągłości sprzedaży.",
           "Konfiguracja sieci, urządzeń i systemów kasowych oraz inwentaryzacja zasobów IT w rozproszonym środowisku.",
           "Bezpośrednia współpraca z pracownikami sklepów i kierownictwem - rozwiązywanie problemów technicznych w terenie."
         ],
@@ -608,7 +609,7 @@
         "date": "06.2020 - 09.2020",
         "loc": "Szczecin",
         "bullets": [
-          "Serwis i konfiguracja urządzeń drukujących oraz wsparcie sprzętu użytkowników w oddziałach banków - środowisko o wysokich wymaganiach niezawodności.",
+          "Serwis i konfiguracja urządzeń drukujących oraz wsparcie sprzętu użytkowników w oddziałach banków.",
           "Diagnoza problemów na miejscu u klienta, reagowanie na awarie sprzętowe i programowe.",
           "Przygotowanie, konfiguracja i uruchamianie nowego sprzętu w terenie."
         ]
@@ -620,7 +621,7 @@
         "bullets": [
           "Zdalne wsparcie IT dla szpitali i zespołów ratownictwa medycznego: diagnostyka, rozwiązywanie incydentów, eskalacje.",
           "Konfiguracja stacji roboczych, aplikacji medycznych i uprawnień dostępowych.",
-          "Pierwsza profesjonalna rola w IT - fundament rozumienia perspektywy użytkownika końcowego."
+          "Pierwsza profesjonalna rola w IT."
         ]
       }
     }

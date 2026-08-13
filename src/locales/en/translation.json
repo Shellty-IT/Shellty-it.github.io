@@ -145,14 +145,14 @@
     "title": "Experience",
     "jobs": {
       "shellty": {
-        "where": "Shellty • Full-stack Developer / Self-employed",
+        "where": "Shellty • Full-stack Developer / Freelance",
         "date": "02.2024 - present",
         "loc": "Remote",
         "bullets": [
-          "Delivery of commercial web projects for clients in the food service, logistics and roofing industries: company websites and landing pages - from requirements gathering and implementation to deployment.",
-          "Ongoing technical support for two clients’ websites: day-to-day changes, updates and feature development as needed.",
-          "Independent infrastructure configuration and administration (Docker, Ansible, Oracle Cloud), as well as production deployments.",
-          "Direct client communication - translating business requirements into specific technical solutions."
+          "Delivering commercial web projects for clients in the hospitality, logistics and roofing industries - from gathering requirements through implementation to deployment.",
+          "Ongoing technical care for two clients' websites: routine changes, updates and feature development.",
+          "Independent configuration and administration of my own infrastructure (Docker, Ansible, Oracle Cloud) and production deployments.",
+          "Direct client communication - translating business requirements into technical solutions."
         ],
         "tags": {
           "tools": "Docker/Ansible",
@@ -164,10 +164,11 @@
         "date": "02.2024 - 08.2025",
         "loc": "Warsaw / Remote",
         "bullets": [
-          "Working directly with the application code (Tier 2/3): diagnosing and fixing bugs and optimizing existing frontend and UI code.",
-          "Collaborating in a 4-person development team and with project managers - participating in code reviews and pull requests, and analyzing and planning new features.",
-          "Developing and administering a proprietary CMS; participating in testing and designing its successor.",
-          "Preparing and configuring AWS infrastructure in cooperation with the DevOps team; working with production MySQL databases."
+          "Working directly on application code (Tier 2/3): diagnosing and fixing bugs, optimising code in the frontend and UI layer.",
+          "Working within a development team (two developers/DevOps and a project manager) - supporting the analysis and planning of new features.",
+          "Independently managing pull requests in a Git workflow.",
+          "Developing and administering a proprietary CMS; involved in testing and designing its successor.",
+          "Working with production MySQL databases."
         ],
         "tags": {
           "servers": "Windows/Linux",
@@ -181,10 +182,10 @@
         "date": "04.2023 - 09.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Deploying a Managed Print Services (MPS) system for the State Water Holding Polish Waters - hundreds of users and automated service requests.",
-          "Technical support and network infrastructure optimization for 7 clients across different industries: manufacturing, accounting and notary offices.",
-          "Diagnosing problems remotely and during client visits - quickly restoring continuity for entire teams.",
-          "Continuous oversight of print environments: monitoring operations, responding to anomalies and reducing delays in operational processes."
+          "Deployed a follow-me printing system (MPS) for the Polish Waters authority - hundreds of users, automated service request handling.",
+          "Technical support and network infrastructure optimisation for 7 clients across manufacturing, accounting and notary offices.",
+          "Diagnosing issues remotely and on-site - quickly restoring teams' continuity of work.",
+          "Central oversight of client printing devices."
         ],
         "tags": {
           "print": "Print systems",
@@ -197,10 +198,10 @@
         "date": "01.2022 - 04.2023",
         "loc": "Szczecin",
         "bullets": [
-          "Co-building the infrastructure of 3 server rooms in different locations (approx. 5 RACK cabinets): installation, structured cabling, and switch and router configuration.",
-          "Helpdesk support for ~70 users - from minor requests to incidents requiring deeper diagnostics.",
-          "Supporting ERP systems (Symfonia, SAP) and implementing a WMS (PSIwms) in an omnichannel model for e-commerce - handling tens of thousands of orders per month.",
-          "Maintaining hardware and license inventories, backups, and continuity of key applications and services."
+          "Co-built infrastructure for 3 server rooms (approx. 5 RACK cabinets): assembly, structured cabling, switch and router configuration.",
+          "Helpdesk for ~70 users - from minor tickets to incidents requiring deeper diagnostics.",
+          "Support for ERP systems (Symfonia, SAP) and deployment of a WMS (PSIwms) in an omnichannel e-commerce model.",
+          "Hardware and licence inventory, backups, ensuring continuity of key applications."
         ],
         "tags": {
           "servers": "Servers",
@@ -214,9 +215,9 @@
         "loc": "Szczecin",
         "bullets": [
           "Technical support for ~100 office workstations in a public institution.",
-          "Configuration and oversight of IT systems and administration of network infrastructure.",
-          "Monitoring system availability and quickly resolving anomalies - minimizing downtime for teams.",
-          "Collaborating with different departments to align IT solutions with actual work processes."
+          "Configuration and oversight of IT systems, administration of network infrastructure.",
+          "Monitoring system availability and resolving issues - minimising downtime.",
+          "Working with various departments to align IT solutions with actual work processes."
         ],
         "tags": {
           "net": "Networks",
@@ -228,9 +229,9 @@
         "date": "10.2020 - 05.2021",
         "loc": "Szczecin (retail chains)",
         "bullets": [
-          "Servicing POS devices across multiple retail locations simultaneously: fault diagnosis, hardware repair and restoration of sales continuity.",
-          "Configuring networks, devices and checkout systems, and maintaining an IT asset inventory in a distributed environment.",
-          "Working directly with store employees and management - resolving technical problems on-site."
+          "Servicing POS devices across multiple retail locations: fault diagnosis, hardware repair, restoring sales continuity.",
+          "Configuring networks, devices and POS systems, plus IT asset inventory in a distributed environment.",
+          "Direct cooperation with store staff and management - resolving technical issues on site."
         ],
         "tags": {
           "pos": "POS/Service",
@@ -242,8 +243,8 @@
         "date": "06.2020 - 09.2020",
         "loc": "Szczecin",
         "bullets": [
-          "Servicing and configuring printing devices and supporting user hardware in bank branches - an environment with high reliability requirements.",
-          "Diagnosing problems on client premises and responding to hardware and software failures.",
+          "Servicing and configuring printing devices and supporting user hardware in bank branches.",
+          "On-site fault diagnosis, responding to hardware and software failures.",
           "Preparing, configuring and commissioning new equipment in the field."
         ]
       },
@@ -252,9 +253,9 @@
         "date": "09.2018 - 03.2019",
         "loc": "Szczecin",
         "bullets": [
-          "Remote IT support for hospitals and emergency medical teams: diagnostics, incident resolution and escalation.",
+          "Remote IT support for hospitals and emergency medical teams: diagnostics, incident resolution, escalations.",
           "Configuring workstations, medical applications and access permissions.",
-          "First professional IT role - the foundation for understanding the end-user perspective."
+          "First professional role in IT."
         ]
       }
     }
