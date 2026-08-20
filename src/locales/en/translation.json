@@ -263,7 +263,7 @@
   "services": {
     "sub": "What I can do for you",
     "title": "IT Services",
-    "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> - so you get a solution that not only looks great, but is also stable, secure, and ready to go. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication - no middlemen, no agency markups.",
+    "intro": "I build websites and web applications and provide IT support for individuals and small businesses. I combine the roles of <b>developer and systems administrator</b> - so you get a solution that not only looks great, but is also stable, secure, and ready to go. To quickly get an estimated cost, <a class=\"warning-glow\" href=\"https://wycena.shellty.pl/\" target=\"_blank\" rel=\"noopener noreferrer\">complete the short quote form</a>. I work remotely (from the Szczecin/Stargard area), with direct, straightforward communication - no middlemen, no agency markups.",
     "forWhomLabel": "For whom:",
     "showreel": {
       "kicker": "Presentation • 90 s",

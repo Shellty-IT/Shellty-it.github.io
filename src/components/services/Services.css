@@ -283,6 +283,31 @@
     font-weight: 600;
 }
 
+.svc-intro .warning-glow {
+    color: #0cc0ff;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(12, 192, 255, 0.4);
+    animation: svcQuotePulse 2s infinite ease-in-out;
+    text-decoration: none;
+}
+
+.svc-intro .warning-glow:focus-visible {
+    outline: 2px solid rgba(12, 192, 255, 0.75);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+@keyframes svcQuotePulse {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(12, 192, 255, 0.3);
+        opacity: 0.9;
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(12, 192, 255, 0.7);
+        opacity: 1;
+    }
+}
+
 /* ─── Showreel (kompaktowy kafel filmu, otwiera modal) ─── */
 .svc-showreel {
     display: flex;

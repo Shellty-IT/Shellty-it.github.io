@@ -143,7 +143,7 @@
   "services": {
     "sub": "Co mogę dla Ciebie zrobić",
     "title": "Usługi IT",
-    "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> - dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem - bez pośredników i agencyjnych narzutów.",
+    "intro": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT dla osób prywatnych i małych firm. W jednej osobie łączę <b>programistę i administratora systemów</b> - dzięki temu dostajesz rozwiązanie nie tylko dobrze wyglądające, ale też stabilne, bezpieczne i gotowe do działania. Jeśli chcesz szybko poznać orientacyjny koszt, <a class=\"warning-glow\" href=\"https://wycena.shellty.pl/\" target=\"_blank\" rel=\"noopener noreferrer\">wypełnij krótki formularz wyceny</a>. Pracuję zdalnie (z okolic Szczecina i Stargardu), z bezpośrednim, prostym kontaktem - bez pośredników i agencyjnych narzutów.",
     "forWhomLabel": "Dla kogo:",
     "showreel": {
       "kicker": "Prezentacja - 40 s",
