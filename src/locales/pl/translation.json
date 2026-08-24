@@ -320,8 +320,8 @@
         "title": "Shellty Lingo",
         "subtitle": "- Mobilna platforma do nauki języków -",
         "description": "Projektowana od podstaw aplikacja mobilna do świadomej nauki języków. Łączy krótkie, dopasowane lekcje, inteligentne powtórki i rozmowy AI, aby prowadzić użytkownika od pierwszych słów do swobodniejszej komunikacji po angielsku lub tajsku.",
-        "statusPrefix": " (w trakcie tworzenia - dostępna ",
-        "betaLink": "wersja beta",
+        "statusPrefix": " (w trakcie testowania — ",
+        "betaLink": "pobierz nową wersję aplikacji",
         "statusSuffix": ")",
         "highlightsTitle": "CO WYRÓŻNIA PROJEKT:",
         "highlights": [

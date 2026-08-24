@@ -440,8 +440,8 @@
         "title": "Shellty Lingo",
         "subtitle": "- Mobile Language Learning Platform -",
         "description": "A mobile language-learning app being built from the ground up for intentional, lasting progress. It combines focused lessons, intelligent review and AI conversations to guide learners from their first words to more confident communication in English or Thai.",
-        "statusPrefix": " (under development - ",
-        "betaLink": "beta version available",
+        "statusPrefix": " (currently being tested — ",
+        "betaLink": "download the new app version",
         "statusSuffix": ")",
         "highlightsTitle": "WHAT MAKES THIS PROJECT STAND OUT:",
         "highlights": [
