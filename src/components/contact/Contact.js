@@ -337,7 +337,7 @@ export default function Contact() {
 
                         <div className="ct-socials-row">
                             <a
-                                href="https://www.instagram.com/shellty_it/"
+                                href="https://www.instagram.com/skorupski.tomek/"
                                 className="ct-channel ct-channel--social"
                                 target="_blank"
                                 rel="noopener noreferrer"
