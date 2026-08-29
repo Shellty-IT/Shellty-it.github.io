@@ -90,6 +90,7 @@ export default function Home() {
                             iconGlow={contactGlowIcon}
                             kicker={t("home.cta.contactKicker")}
                             title={t("home.cta.contactTitle")}
+                            arrow
                         />
                     </div>
 

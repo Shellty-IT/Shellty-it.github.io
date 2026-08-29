@@ -91,9 +91,9 @@
 
 .hero__lead {
     font-size: clamp(15px, 1.6vw, 18px);
-    line-height: 1.7;
+    line-height: 1.68;
     color: #94a3b8;
-    max-width: 720px;
+    max-width: 64ch;
 }
 
 .hero__lead p {
@@ -111,9 +111,28 @@
 
 .hero__cta {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin: 18px 0 12px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: 12px;
+    margin: 16px 0 0;
+}
+
+.hero__cta .btn-cta {
+    min-height: 70px;
+    border-radius: 16px;
+}
+
+.hero__cta .btn-cta__icon {
+    width: 42px;
+    height: 42px;
+}
+
+.hero__cta .btn-cta__title {
+    font-size: 16px;
+}
+
+.hero__cta .btn-cta__arrow svg {
+    width: 19px;
+    height: 19px;
 }
 
 .btn-glass {
@@ -214,10 +233,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 16px;
-    padding: 14px 18px;
-    border-radius: 14px;
+    gap: 14px;
+    min-height: 78px;
+    margin-top: 12px;
+    padding: 11px 16px;
+    box-sizing: border-box;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, .1);
     background: rgba(255, 255, 255, 0.035);
     text-decoration: none;
@@ -235,8 +256,8 @@
     position: relative;
     display: inline-flex;
     flex-shrink: 0;
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
     transition: filter .3s ease, transform .3s ease;
 }
 
@@ -293,28 +314,29 @@
 .services-teaser__text {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
+    gap: 3px;
     min-width: 0;
 }
 
 .services-teaser__kicker {
     font-family: 'Orbitron', sans-serif;
-    font-size: 9.5px;
-    letter-spacing: .2em;
+    font-size: 9px;
+    letter-spacing: .18em;
     text-transform: uppercase;
     color: #0cc0ff;
     font-weight: 600;
 }
 
 .services-teaser__title {
-    font-size: 14.5px;
+    font-size: 15px;
     font-weight: 700;
     color: #f1f5f9;
     line-height: 1.35;
 }
 
 .services-teaser__sub {
-    font-size: 12px;
+    font-size: 11.5px;
     color: #94a3b8;
     line-height: 1.5;
 }
@@ -589,6 +611,27 @@
 
     .hero__cta {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .hero__cta .btn-cta {
+        min-height: 66px;
+    }
+
+    .services-teaser {
+        align-items: center;
+        gap: 11px;
+        min-height: 0;
+        padding: 12px 14px;
+    }
+
+    .services-teaser__icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .services-teaser__arrow {
+        align-self: center;
     }
 
     .hero__title {

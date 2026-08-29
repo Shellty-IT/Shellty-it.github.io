@@ -4,8 +4,11 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 20px 10px 12px;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 18px 12px 14px;
+    box-sizing: border-box;
     border-radius: 14px;
     border: 1px solid transparent;
     text-decoration: none;
@@ -88,7 +91,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1px;
+    justify-content: center;
+    gap: 3px;
     min-width: 0;
 }
 
@@ -96,15 +100,15 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 9.5px;
     font-weight: 600;
-    letter-spacing: .2em;
+    letter-spacing: .18em;
     text-transform: uppercase;
-    line-height: 1.3;
+    line-height: 1.15;
 }
 
 .btn-cta__title {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.2;
     white-space: nowrap;
 }
 
@@ -164,11 +168,16 @@
 
 /* Ghost: szkło + wygaszona ikona, rozświetla się na hover */
 .btn-cta--ghost .btn-cta__bg {
-    background: rgba(255, 255, 255, .04);
+    background: rgba(255, 255, 255, .05);
 }
 
 .btn-cta--ghost {
-    border-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .12);
+}
+
+.btn-cta--ghost .btn-cta__icon-base {
+    opacity: .68;
+    filter: brightness(1.35) saturate(1.1);
 }
 
 .btn-cta--ghost:hover {
