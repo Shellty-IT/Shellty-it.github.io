@@ -9,9 +9,19 @@
     "services": "Usługi"
   },
   "home": {
-    "greeting": "Cześć! Nazywam\u00A0się",
-    "name": "Tomasz Skorupski",
-    "lead": "Tworzę strony i aplikacje internetowe oraz zapewniam wsparcie IT i administrację. Łączę kompetencje programisty i informatyka, dzięki czemu buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne.\n\nJestem otwarty na długoterminową współpracę z firmą, w której mogę wnosić realną wartość od pierwszego dnia i rozwijać się w stabilnym środowisku. Równolegle realizuję także pojedyncze zlecenia dla firm i osób prywatnych - ich zakres znajdziesz w sekcji Usługi.",
+    "headline": {
+      "primary": "Tworzę strony i aplikacje.",
+      "secondary": "Rozwiązuję problemy IT."
+    },
+    "profile": {
+      "name": "Tomasz Skorupski",
+      "roles": "Programowanie · Administracja · Wsparcie IT"
+    },
+    "intro": {
+      "question": "Chcesz zaistnieć w internecie, ale nie wiesz, od czego zacząć?",
+      "answer": "Tworzę strony i aplikacje oraz zajmuję się wszystkim, co potrzebne do ich uruchomienia - domeną, hostingiem, konfiguracją i wsparciem technicznym. Ty skupiasz się na swojej działalności, a ja dbam o technologię.",
+      "collaboration": "Jestem również otwarty na stałą, zdalną współpracę przy większych projektach. Łączę kompetencje developerskie z doświadczeniem w administracji i wsparciu IT oraz praktycznym podejściem do potrzeb klienta."
+    },
     "cta": {
       "portfolioKicker": "Portfolio",
       "portfolioTitle": "Zobacz projekty",

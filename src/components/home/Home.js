@@ -14,68 +14,9 @@ import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
 import servicesCenter from '../../assets/icons/services/services_center.webp';
 
-const ROLES_PL = [
-    "Specjalista IT",
-    "SysAdmin",
-    "Software Developer",
-    "Software Engineer",
-    "DevOps Engineer",
-    "Freelancer",
-    "Programista",
-    "Administrator Baz Danych",
-];
-
-const ROLES_EN = [
-    "IT Specialist",
-    "SysAdmin",
-    "Software Developer",
-    "Software Engineer",
-    "DevOps Engineer",
-    "Freelancer",
-    "Programmer",
-    "Database Administrator",
-];
-
 export default function Home() {
-    const { t, i18n } = useTranslation();
-    const isEN = i18n.language?.startsWith("en");
-    const ROLES = isEN ? ROLES_EN : ROLES_PL;
-
-    const [subIndex, setSubIndex]   = useState(0);
-    const [roleIndex, setRoleIndex] = useState(0);
-    const [reverse, setReverse]     = useState(false);
-    const [blink, setBlink]         = useState(true);
+    const { t } = useTranslation();
     const [logoGlow, setLogoGlow]   = useState(false);
-
-    useEffect(() => {
-        setSubIndex(0);
-        setRoleIndex(0);
-        setReverse(false);
-    }, [isEN]);
-
-    useEffect(() => {
-        if (reverse) {
-            if (subIndex === 0) {
-                setReverse(false);
-                setRoleIndex((prev) => (prev + 1) % ROLES.length);
-                return;
-            }
-        } else if (subIndex === ROLES[roleIndex].length + 1) {
-            const tmo = setTimeout(() => setReverse(true), 950);
-            return () => clearTimeout(tmo);
-        }
-
-        const timeout = setTimeout(() => {
-            setSubIndex((prev) => prev + (reverse ? -1 : 1));
-        }, reverse ? 38 : 85);
-
-        return () => clearTimeout(timeout);
-    }, [subIndex, roleIndex, reverse, ROLES]);
-
-    useEffect(() => {
-        const blinkTimer = setInterval(() => setBlink((b) => !b), 420);
-        return () => clearInterval(blinkTimer);
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -96,18 +37,24 @@ export default function Home() {
                 <div className="hero">
 
                     <h1 className="hero__title">
-                        {t("home.greeting")}<br />
-                        <span className="gradient-text">{t("home.name")}</span>
+                        <span>{t("home.headline.primary")}</span><br />
+                        <span className="gradient-text">{t("home.headline.secondary")}</span>
                     </h1>
 
-                    <h2 className="hero__subtitle">
-                        {ROLES[roleIndex].substring(0, subIndex)}
-                        <span className={`caret ${blink ? "is-on" : ""}`} />
-                    </h2>
-
-                    <p className="hero__lead">
-                        {t("home.lead")}
+                    <p className="hero__profile">
+                        <span className="hero__profile-name">{t("home.profile.name")}</span>
+                        <span className="hero__profile-roles">{t("home.profile.roles")}</span>
                     </p>
+
+                    <div className="hero__lead">
+                        <p>
+                            <strong>{t("home.intro.question")}</strong>{" "}
+                            {t("home.intro.answer")}
+                        </p>
+                        <p className="hero__collaboration">
+                            {t("home.intro.collaboration")}
+                        </p>
+                    </div>
 
                     {/* Meta stats */}
                     <div className="hero__meta">

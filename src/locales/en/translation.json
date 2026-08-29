@@ -9,9 +9,19 @@
     "services": "Services"
   },
   "home": {
-    "greeting": "Hi! My name is",
-    "name": "Tomasz Skorupski",
-    "lead": "I build websites and web applications and provide IT support and administration. I combine the skills of a developer and an IT specialist, which allows me to deliver solutions that are not only functional, but also stable and secure.\n\nI am open to long-term cooperation with a company where I can bring real value from day one and grow in a stable environment. I also take on individual projects for businesses and individuals - you can find their scope in the Services section.",
+    "headline": {
+      "primary": "I build websites and applications.",
+      "secondary": "I solve IT problems."
+    },
+    "profile": {
+      "name": "Tomasz Skorupski",
+      "roles": "Development · Administration · IT Support"
+    },
+    "intro": {
+      "question": "Want to establish an online presence, but don't know where to start?",
+      "answer": "I build websites and applications and take care of everything needed to launch them - domains, hosting, configuration and technical support. You focus on your business while I take care of the technology.",
+      "collaboration": "I am also open to ongoing remote collaboration on larger projects. I combine development skills with experience in administration and IT support, as well as a practical approach to client needs."
+    },
     "cta": {
       "portfolioKicker": "Portfolio",
       "portfolioTitle": "View projects",
