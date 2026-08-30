@@ -197,6 +197,10 @@
     color: #f1f5f9;
 }
 
+.btn-cta--ghost .btn-cta__arrow {
+    color: #0cc0ff;
+}
+
 .btn-cta--ghost:hover .btn-cta__icon {
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, .55));
 }
