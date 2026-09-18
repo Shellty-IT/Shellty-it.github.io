@@ -120,8 +120,10 @@
       "cert9Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert14.pdf",
       "cert10Name": "DWthon | Software 3.0 (Adaptive Planning) - (DataWorkshop, 2026)",
       "cert10Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert15.pdf",
-      "cert11Name": "Relevate Ascent Academy (Relativity & Nerds Family, 2026)",
-      "cert11Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert12.pdf"
+      "cert11Name": "The Relevate Ascent Academy (Relativity & Nerds Family, 2026)",
+      "cert11Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert12.pdf",
+      "cert12Name": "The Ascent Academy for Product Management (Relativity & Nerds Family, 2026)",
+      "cert12Url": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/cert16.pdf"
     },
     "softSkillsTitle": "Traits",
     "traits": {
