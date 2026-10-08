@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "cross-env NODE_NO_WARNINGS=1 react-scripts start",
-    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build && node scripts/generate-seo-pages.js",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build && node scripts/generate-seo-pages.js && npm run check:seo",
+    "check:seo": "node scripts/check-seo.js",
     "build:gh": "npm run build",
     "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d build --no-history",

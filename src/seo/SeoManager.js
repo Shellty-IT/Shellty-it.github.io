@@ -46,6 +46,8 @@ export default function SeoManager() {
 
         if (!route) {
             setMeta("name", "robots", "noindex, follow");
+            document.head.querySelector('link[rel="canonical"]')?.remove();
+            document.head.querySelector('meta[property="og:url"]')?.remove();
             return;
         }
 

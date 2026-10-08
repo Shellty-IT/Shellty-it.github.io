@@ -12,7 +12,6 @@ const escapeHtml = (value) => String(value)
     .replace(/>/g, "&gt;");
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const today = new Date().toISOString().slice(0, 10);
 
 const replaceRequired = (html, pattern, replacement, label) => {
     if (!pattern.test(html)) {
@@ -172,7 +171,6 @@ const renderSitemapXml = () => {
         .map((routePath) => [
             "  <url>",
             `    <loc>${escapeHtml(`${metadata.siteUrl}${routePath}`)}</loc>`,
-            `    <lastmod>${today}</lastmod>`,
             "  </url>"
         ].join("\n"))
         .join("\n");
@@ -195,6 +193,15 @@ if (!fs.existsSync(templatePath)) {
 }
 
 const template = fs.readFileSync(templatePath, "utf8");
+
+// GitHub Pages keeps the HTTP 404 status while React renders the existing
+// NotFound component at the requested URL, without the query-string redirect.
+const notFoundPage = replaceMeta(template, "name", "robots", "noindex, follow")
+    .replace(/<link\b[^>]*\brel="canonical"[^>]*>/i, "")
+    .replace(/<meta\b[^>]*\bproperty="og:url"[^>]*>/i, "")
+    .replace(/<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace('<noscript>You need to enable JavaScript to run this app.</noscript>', "");
+fs.writeFileSync(path.join(buildDir, "404.html"), notFoundPage, "utf8");
 
 for (const [routePath, route] of Object.entries(metadata.routes)) {
     const outputPath = path.join(buildDir, route.output);
