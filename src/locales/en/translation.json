@@ -158,6 +158,17 @@
     "sub": "Career path",
     "title": "Experience",
     "jobs": {
+      "lpe": {
+        "where": "LPE • Platform Operator",
+        "date": "10.2026 - present",
+        "loc": "Remote",
+        "bullets": [
+          "Contributing to educational materials, applications and tools intended for publication on the Polish Ministry of National Education's Integrated Educational Platform (zpe.gov.pl).",
+          "Participating in successive project stages - from requirements analysis and work planning to test environment preparation and solution verification.",
+          "Incorporating digital accessibility requirements, including WCAG guidelines, when creating and verifying educational materials and applications.",
+          "Collaborating with partners and organisations involved in developing educational software."
+        ]
+      },
       "shellty": {
         "where": "Shellty • Full-stack Developer / Freelance",
         "date": "02.2024 - present",

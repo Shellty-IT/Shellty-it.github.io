@@ -524,6 +524,17 @@
     "title": "Doświadczenie",
     "kicker": "Stabilność • Automatyzacja • Wsparcie • Development",
     "jobs": {
+      "lpe": {
+        "where": "LPE • Operator platformy",
+        "date": "10.2026 - obecnie",
+        "loc": "zdalnie",
+        "bullets": [
+          "Współtworzenie materiałów, aplikacji i narzędzi edukacyjnych przeznaczonych do publikacji na Zintegrowanej Platformie Edukacyjnej (zpe.gov.pl) Ministerstwa Edukacji Narodowej.",
+          "Udział na kolejnych etapach realizacji projektów - od analizy wymagań i planowania prac po przygotowanie środowiska testowego i weryfikację rozwiązań.",
+          "Uwzględnianie wymagań dostępności cyfrowej, w tym wytycznych WCAG, podczas tworzenia i weryfikacji materiałów oraz aplikacji edukacyjnych.",
+          "Współpraca z partnerami i organizacjami uczestniczącymi w tworzeniu oprogramowania edukacyjnego."
+        ]
+      },
       "shellty": {
         "where": "Shellty • Programista full-stack / freelance",
         "date": "02.2024 - obecnie",

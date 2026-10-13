@@ -33,6 +33,7 @@ const TAG_ICONS = {
 };
 
 const JOBS = [
+    { key: "lpe",       bulletCount: 4, tags: [] },
     { key: "shellty",   bulletCount: 4, tags: ["tools", "db"] },
     { key: "streetcom", bulletCount: 5, tags: ["servers", "net", "db", "tools"] },
     { key: "ata",       bulletCount: 4, tags: ["print", "net", "mon"] },
