@@ -167,7 +167,13 @@
           "Participating in successive project stages - from requirements analysis and work planning to test environment preparation and solution verification.",
           "Incorporating digital accessibility requirements, including WCAG guidelines, when creating and verifying educational materials and applications.",
           "Collaborating with partners and organisations involved in developing educational software."
-        ]
+        ],
+        "tags": {
+          "accessibility": "Accessibility/WCAG",
+          "requirements": "Requirements Analysis",
+          "testing": "Software Testing",
+          "elearning": "E-learning"
+        }
       },
       "shellty": {
         "where": "Shellty • Full-stack Developer / Freelance",

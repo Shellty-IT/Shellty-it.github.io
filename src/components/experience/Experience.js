@@ -11,6 +11,10 @@ import {
     FaPrint,
     FaCode,
     FaCogs,
+    FaUniversalAccess,
+    FaTasks,
+    FaVial,
+    FaGraduationCap,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
@@ -30,10 +34,14 @@ const TAG_ICONS = {
     win:     FaServer,
     pos:     FaCogs,
     cfg:     FaNetworkWired,
+    accessibility: FaUniversalAccess,
+    requirements:  FaTasks,
+    testing:       FaVial,
+    elearning:     FaGraduationCap,
 };
 
 const JOBS = [
-    { key: "lpe",       bulletCount: 4, tags: [] },
+    { key: "lpe",       bulletCount: 4, tags: ["accessibility", "requirements", "testing", "elearning"] },
     { key: "shellty",   bulletCount: 4, tags: ["tools", "db"] },
     { key: "streetcom", bulletCount: 5, tags: ["servers", "net", "db", "tools"] },
     { key: "ata",       bulletCount: 4, tags: ["print", "net", "mon"] },

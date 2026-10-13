@@ -533,7 +533,13 @@
           "Udział na kolejnych etapach realizacji projektów - od analizy wymagań i planowania prac po przygotowanie środowiska testowego i weryfikację rozwiązań.",
           "Uwzględnianie wymagań dostępności cyfrowej, w tym wytycznych WCAG, podczas tworzenia i weryfikacji materiałów oraz aplikacji edukacyjnych.",
           "Współpraca z partnerami i organizacjami uczestniczącymi w tworzeniu oprogramowania edukacyjnego."
-        ]
+        ],
+        "tags": {
+          "accessibility": "Dostępność/WCAG",
+          "requirements": "Analiza wymagań",
+          "testing": "Testowanie oprogramowania",
+          "elearning": "E-learning"
+        }
       },
       "shellty": {
         "where": "Shellty • Programista full-stack / freelance",
