@@ -15,7 +15,9 @@ import {
     FaTasks,
     FaVial,
     FaGraduationCap,
+    FaWordpressSimple,
 } from "react-icons/fa";
+import { SiNextdotjs } from "react-icons/si";
 import { useTranslation } from "react-i18next";
 import { useIconPhase } from "../../hooks/useIconPhase";
 import SectionTitle from "../sectionTitle/SectionTitle";
@@ -38,11 +40,14 @@ const TAG_ICONS = {
     requirements:  FaTasks,
     testing:       FaVial,
     elearning:     FaGraduationCap,
+    nextjs:        SiNextdotjs,
+    wordpress:     FaWordpressSimple,
+    hosting:       FaServer,
 };
 
 const JOBS = [
     { key: "lpe",       bulletCount: 4, tags: ["accessibility", "requirements", "testing", "elearning"] },
-    { key: "shellty",   bulletCount: 4, tags: ["tools", "db"] },
+    { key: "shellty",   bulletCount: 4, tags: ["tools", "db", "nextjs", "wordpress", "hosting"] },
     { key: "streetcom", bulletCount: 5, tags: ["servers", "net", "db", "tools"] },
     { key: "ata",       bulletCount: 4, tags: ["print", "net", "mon"] },
     { key: "hisert",    bulletCount: 4, tags: ["servers", "net", "backup"] },

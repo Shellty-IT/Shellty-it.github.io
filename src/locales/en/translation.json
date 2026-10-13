@@ -187,7 +187,10 @@
         ],
         "tags": {
           "tools": "Docker/Ansible",
-          "db": "Oracle Cloud"
+          "db": "Oracle Cloud",
+          "nextjs": "Next.js",
+          "wordpress": "WordPress",
+          "hosting": "Hosting Setup"
         }
       },
       "streetcom": {
