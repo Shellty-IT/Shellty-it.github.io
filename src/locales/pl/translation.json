@@ -10,8 +10,8 @@
   },
   "home": {
     "headline": {
-      "primary": "Tworzę strony i aplikacje.",
-      "secondary": "Rozwiązuję problemy IT."
+      "primary": "Stworzę Twoją stronę lub aplikację.",
+      "secondary": "Rozwiążę problemy IT"
     },
     "profile": {
       "name": "Tomasz Skorupski",
@@ -20,13 +20,15 @@
     "intro": {
       "question": "Chcesz zaistnieć w internecie, ale nie wiesz, od czego zacząć?",
       "answer": "Tworzę strony i aplikacje oraz zajmuję się wszystkim, co potrzebne do ich uruchomienia - domeną, hostingiem, konfiguracją i wsparciem technicznym. Ty skupiasz się na swojej działalności, a ja dbam o technologię. W razie potrzeby zapewniam również wsparcie sprawdzonych specjalistów SEO.",
-      "collaboration": "Jestem również otwarty na stałą, zdalną współpracę przy większych projektach. Łączę kompetencje developerskie z doświadczeniem w administracji i wsparciu IT oraz praktycznym podejściem do potrzeb klienta."
+      "collaboration": "Oferuję też stałą współpracę zdalną - łączę programowanie, administrację i wsparcie IT, dopasowując rozwiązania do Twoich potrzeb."
     },
     "cta": {
+      "servicesKicker": "Usługi",
+      "servicesTitle": "Strony internetowe, aplikacje i wsparcie IT",
       "portfolioKicker": "Portfolio",
       "portfolioTitle": "Zobacz projekty",
       "contactKicker": "Kontakt",
-      "contactTitle": "Napisz do mnie"
+      "contactTitle": "Darmowa konsultacja"
     },
     "stats": {
       "years": { "num": "7+", "label": "lat w IT" },
@@ -34,11 +36,6 @@
       "hybrid": { "num": "2 w 1", "label": "programista + informatyk" }
     },
     "caption": "Technologiczny partner Twojego biznesu",
-    "servicesTeaser": {
-      "kicker": "Usługi IT",
-      "title": "Tworzę strony i aplikacje na zamówienie",
-      "sub": "Wycena i pierwsza rozmowa są bezpłatne - zobacz, co mogę dla Ciebie zrobić."
-    },
     "scroll": {
       "aria": "Przewiń do sekcji About",
       "label": "Przewiń"
@@ -93,9 +90,9 @@
       "locationTitle": "Lokalizacja",
       "locationValue": "Stargard/Szczecin, Polska • otwarty na pracę zdalną/hybrydę",
       "statusTitle": "Status zawodowy",
-      "statusValue": "Aktywnie poszukuję stabilnej roli na stałe",
+      "statusValue": "Operator platformy LPE • Własna działalność",
       "languagesTitle": "Języki",
-      "languagesValue": "Angielski B2, Niemiecki A1",
+      "languagesValue": "Angielski B2",
       "educationTitle": "Wykształcenie",
       "educationValue": "Zachodniopomorska Szkoła Biznesu - Informatyka - Aplikacje Mobilne",
       "educationUrl": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/school.pdf",

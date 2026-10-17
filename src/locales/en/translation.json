@@ -10,8 +10,8 @@
   },
   "home": {
     "headline": {
-      "primary": "I build websites and applications.",
-      "secondary": "I solve IT problems."
+      "primary": "I'll build your website or application.",
+      "secondary": "I'll solve your IT problems"
     },
     "profile": {
       "name": "Tomasz Skorupski",
@@ -20,13 +20,15 @@
     "intro": {
       "question": "Want to establish an online presence, but don't know where to start?",
       "answer": "I build websites and applications and take care of everything needed to launch them - domains, hosting, configuration and technical support. You focus on your business while I take care of the technology.",
-      "collaboration": "I am also open to ongoing remote collaboration on larger projects. I combine development skills with experience in administration and IT support, as well as a practical approach to client needs."
+      "collaboration": "I also offer ongoing remote collaboration - combining development, system administration and IT support to deliver solutions tailored to your needs."
     },
     "cta": {
+      "servicesKicker": "Services",
+      "servicesTitle": "Websites, apps and IT support",
       "portfolioKicker": "Portfolio",
       "portfolioTitle": "View projects",
       "contactKicker": "Contact",
-      "contactTitle": "Write to me"
+      "contactTitle": "Free consultation"
     },
     "stats": {
       "years": { "num": "7+", "label": "years in IT" },
@@ -34,11 +36,6 @@
       "hybrid": { "num": "2-in-1", "label": "developer + IT admin" }
     },
     "caption": "The technological foundation of your business",
-    "servicesTeaser": {
-      "kicker": "IT Services",
-      "title": "I build websites and apps on demand",
-      "sub": "The quote and first consultation are free - see what I can do for you."
-    },
     "scroll": {
       "aria": "Scroll to About section",
       "label": "Scroll"
@@ -93,9 +90,9 @@
       "locationTitle": "Location",
       "locationValue": "Stargard/Szczecin, Poland • open to remote work/hybrid",
       "statusTitle": "Professional status",
-      "statusValue": "Actively seeking a stable, long-term role",
+      "statusValue": "LPE platform operator • Business owner",
       "languagesTitle": "Languages",
-      "languagesValue": "English B2, German A1",
+      "languagesValue": "English B2",
       "educationTitle": "Education",
       "educationValue": "The West Pomeranian Business School - IT - Mobile Applications",
       "educationUrl": "https://raw.githubusercontent.com/Shellty-IT/Shellty-IT.github.io/main/public/certs/school.pdf",

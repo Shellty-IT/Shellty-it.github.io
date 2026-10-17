@@ -72,7 +72,10 @@
 }
 
 .btn-cta__icon-lit {
+    position: absolute;
+    inset: 0;
     opacity: 0;
+    transition: opacity .3s ease;
 }
 
 .btn-cta:hover .btn-cta__icon {
@@ -116,11 +119,25 @@
     display: inline-flex;
     margin-left: auto;
     flex-shrink: 0;
-    transition: transform .25s ease;
+    overflow: visible;
 }
 
-.btn-cta:hover .btn-cta__arrow {
-    transform: translateX(4px);
+.btn-cta__arrow svg {
+    display: block;
+}
+
+.btn-cta:is(:hover, :focus-visible) .btn-cta__arrow svg {
+    animation: cta-arrow-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes cta-arrow-slide {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(6px);
+    }
 }
 
 /* Primary: gradient + ciemna ikona (jak ciemny tekst na gradiencie) */
@@ -150,7 +167,8 @@
     filter: drop-shadow(0 0 10px rgba(4, 18, 31, .45));
 }
 
-.btn-cta--primary .btn-cta__bg::after {
+.btn-cta--primary .btn-cta__bg::after,
+.hero__services-link .btn-cta__bg::after {
     content: "";
     position: absolute;
     top: 0;
@@ -162,7 +180,8 @@
     pointer-events: none;
 }
 
-.btn-cta--primary:hover .btn-cta__bg::after {
+.btn-cta--primary:is(:hover, :focus-visible) .btn-cta__bg::after,
+.hero__services-link:is(:hover, :focus-visible) .btn-cta__bg::after {
     left: 120%;
 }
 
@@ -209,7 +228,9 @@
     .btn-cta,
     .btn-cta__icon,
     .btn-cta__icon img,
+    .btn-cta__icon-lit,
     .btn-cta__arrow,
+    .btn-cta__arrow svg,
     .btn-cta__bg::after {
         transition: none !important;
         animation: none !important;

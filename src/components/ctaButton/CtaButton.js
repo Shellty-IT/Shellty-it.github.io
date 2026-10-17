@@ -15,12 +15,17 @@ const CtaButton = ({
     kicker,
     title,
     arrow = false,
+    className = "",
 }) => (
-    <HashLink smooth to={to} className={`btn-cta btn-cta--${variant}`}>
+    <HashLink smooth to={to} className={`btn-cta btn-cta--${variant}${className ? ` ${className}` : ''}`}>
         <span className="btn-cta__bg" aria-hidden="true" />
         <span className="btn-cta__icon" aria-hidden="true">
             <img src={icon} alt="" className="btn-cta__icon-base" width="38" height="38" />
-            <img src={iconGlow} alt="" className="btn-cta__icon-lit" width="38" height="38" />
+            <span className="btn-cta__icon-lit">
+                {(Array.isArray(iconGlow) ? iconGlow : [iconGlow]).map((src) => (
+                    <img key={src} src={src} alt="" width="38" height="38" />
+                ))}
+            </span>
         </span>
         <span className="btn-cta__text">
             <span className="btn-cta__kicker">{kicker}</span>
