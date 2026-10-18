@@ -1,5 +1,5 @@
 // src/components/home/Home.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./Home.css";
 import { useTranslation } from "react-i18next";
 import LogoSVG from "../../assets/logo/logo_vertical";
@@ -16,6 +16,42 @@ import servicesCenter from '../../assets/icons/services/services_center.webp';
 export default function Home() {
     const { t } = useTranslation();
     const [logoGlow, setLogoGlow] = useState(false);
+    const titleRef = useRef(null);
+    const primaryHeadline = t("home.headline.primary");
+    const secondaryHeadline = t("home.headline.secondary");
+
+    useLayoutEffect(() => {
+        const title = titleRef.current;
+        let active = true;
+
+        const fitTitle = () => {
+            if (!active) return;
+            if (window.matchMedia("(max-width: 560px)").matches) {
+                title.style.removeProperty("--hero-title-size");
+                return;
+            }
+
+            const widestLine = Math.max(...Array.from(title.children,
+                line => line.getBoundingClientRect().width));
+            if (!widestLine || title.clientWidth <= 1) return;
+
+            const currentSize = parseFloat(getComputedStyle(title).fontSize);
+            const fittedSize = Math.floor(currentSize * (title.clientWidth - 1) / widestLine * 10) / 10;
+            title.style.setProperty("--hero-title-size", `${fittedSize}px`);
+        };
+
+        fitTitle();
+        const observer = new ResizeObserver(fitTitle);
+        observer.observe(title);
+        document.fonts.ready.then(fitTitle);
+        document.fonts.addEventListener("loadingdone", fitTitle);
+
+        return () => {
+            active = false;
+            observer.disconnect();
+            document.fonts.removeEventListener("loadingdone", fitTitle);
+        };
+    }, [primaryHeadline, secondaryHeadline]);
 
     useEffect(() => {
         let glowTimeout;
@@ -40,9 +76,9 @@ export default function Home() {
                 {/* LEWA: hero */}
                 <div className="hero">
 
-                    <h1 className="hero__title">
-                        <span>{t("home.headline.primary")}</span><br />
-                        <span className="gradient-text">{t("home.headline.secondary")}</span>
+                    <h1 className="hero__title" ref={titleRef}>
+                        <span className="hero__title-line">{primaryHeadline}</span>
+                        <span className="hero__title-line gradient-text">{secondaryHeadline}</span>
                     </h1>
 
                     <p className="hero__profile">

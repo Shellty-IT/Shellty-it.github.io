@@ -29,6 +29,7 @@
 }
 
 .hero {
+    container-type: inline-size;
     position: relative;
     width: 100%;
     max-width: 660px;
@@ -56,12 +57,18 @@
 
 .hero__title {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: clamp(34px, 4.2vw, 50px);
+    font-size: var(--hero-title-size, min(50px, 7cqi));
     line-height: 1.1;
     font-weight: 800;
     margin: 0 0 16px;
     letter-spacing: -0.035em;
     color: #f1f5f9;
+}
+
+.hero__title-line {
+    display: block;
+    width: max-content;
+    white-space: nowrap;
 }
 
 .gradient-text {
@@ -548,6 +555,11 @@
 
     .hero__title {
         font-size: clamp(30px, 10vw, 40px);
+    }
+
+    .hero__title-line {
+        width: auto;
+        white-space: normal;
     }
 
     .hero__profile {
