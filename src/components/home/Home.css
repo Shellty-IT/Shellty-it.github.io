@@ -56,6 +56,7 @@
 }
 
 .hero__title {
+    display: flow-root;
     font-family: 'Inter', system-ui, sans-serif;
     font-size: var(--hero-title-size, min(50px, 7cqi));
     line-height: 1.1;
@@ -69,6 +70,12 @@
     display: block;
     width: max-content;
     white-space: nowrap;
+}
+
+.hero__title-line.gradient-text {
+    /* Extend the gradient below the baseline without changing line spacing. */
+    padding-bottom: 0.18em;
+    margin-bottom: -0.18em;
 }
 
 .gradient-text {
