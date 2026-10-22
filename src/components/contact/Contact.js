@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import "./Contact.css";
 import { useTranslation } from "react-i18next";
-import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from "../sectionTitle/SectionTitle";
 import {
     FaEnvelope,
@@ -37,7 +37,6 @@ export default function Contact() {
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
     const [titleHovered, setTitleHovered] = useState(false);
     const [showPrivacy, setShowPrivacy] = useState(false);
-    const { iconRef, iconPhase } = useIconPhase('ct-icon--pulse');
 
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
 
@@ -119,38 +118,12 @@ export default function Contact() {
 
                 {/* Header */}
                 <header className="contact-header">
-                    <div
-                        ref={iconRef}
-                        className={`ct-icon ct-icon--${iconPhase}`}
-                    >
-                        <div className="ct-icon__nodes" aria-hidden="true">
-                            {ICON_NODES.map((n) => (
-                                <span
-                                    key={n.id}
-                                    className="ct-icon__node"
-                                    style={{ left: n.x, top: n.y }}
-                                />
-                            ))}
-                        </div>
-                        <img
-                            src={contactIcon}
-                            alt=""
-                            aria-hidden="true"
-                            className="ct-icon__img ct-icon__img--base"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                        <img
-                            src={contactGlow}
-                            alt=""
-                            aria-hidden="true"
-                            className="ct-icon__img ct-icon__img--lit"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                    </div>
+                    <SectionIcon
+                        className="ct-icon"
+                        nodes={ICON_NODES}
+                        icon={contactIcon}
+                        glow={contactGlow}
+                    />
 
                     <div
                         className="contact-header-hover-area"

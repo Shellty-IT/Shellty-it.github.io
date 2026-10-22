@@ -8,33 +8,12 @@ import './styles/TestAccount.css';
 import { FaGithub, FaExternalLinkAlt, FaKey, FaCopy, FaCheck, FaPlay } from 'react-icons/fa';
 import { useTranslation, Trans } from 'react-i18next';
 import VideoModal from '../video/VideoModal';
-
-import mobisalonThumbnail from '../../assets/thumbnails/mobisalon.webp';
-import ksefThumbnail from '../../assets/thumbnails/ksef_master.webp';
-import ksefThumbnailAng from '../../assets/thumbnails/ksef_master_ang.webp';
-import smartquoteThumbnail from '../../assets/thumbnails/smartquote.webp';
-import postlioThumbnail from '../../assets/thumbnails/postlio.webp';
-import postlioThumbnailAng from '../../assets/thumbnails/postlio_ang.webp';
-import cookbookThumbnail from '../../assets/thumbnails/mobile_cook.webp';
-import animalsThumbnail from '../../assets/thumbnails/one_page_animals.webp';
-import shelltyBlogThumbnail from '../../assets/thumbnails/shellty_blog.webp';
-import shelltyPulseThumbnail from '../../assets/thumbnails/shellty_pulse.webp';
-import kanbanThumbnail from '../../assets/thumbnails/kanban.webp';
-import kanbanThumbnailAng from '../../assets/thumbnails/kanban_ang.webp';
-import shelltyCmsThumbnail from '../../assets/thumbnails/shellty_cms.webp';
-import shelltyCmsThumbnailAng from '../../assets/thumbnails/shellty_cms_en.webp';
-import budmaxThumbnail from '../../assets/thumbnails/wordpress_theme.webp';
-import tomiFornoPl from '../../assets/thumbnails/tomi_forno_pl.webp';
-import tomiFornoEn from '../../assets/thumbnails/tomi_forno_ang.webp';
-import promptCoachThumbnail from '../../assets/thumbnails/coach.webp';
-import promptCoachThumbnailAng from '../../assets/thumbnails/coach_ang.webp';
-import lingoThumbnail from '../../assets/thumbnails/lingo.webp';
-import lingoThumbnailAng from '../../assets/thumbnails/lingo_ang.webp';
+import { getProjects } from './projects';
 
 import portfolioIcon from '../../assets/icons/portfolio/portfolio.webp';
 import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
-import { useIconPhase } from '../../hooks/useIconPhase';
+import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from '../sectionTitle/SectionTitle';
 
 const ICON_NODES = [
@@ -201,8 +180,6 @@ const Portfolio = () => {
     const [videoModal, setVideoModal] = useState({ open: false, url: '', title: '' });
     const [activeFilter, setActiveFilter] = useState('all');
 
-    const { iconRef, iconPhase } = useIconPhase('pf-icon--pulse');
-
     const openVideo = useCallback((url, title) => {
         setVideoModal({ open: true, url, title });
     }, []);
@@ -211,269 +188,7 @@ const Portfolio = () => {
         setVideoModal({ open: false, url: '', title: '' });
     }, []);
 
-    const projects = useMemo(() => ([
-        {
-            id: "shelltyLingo",
-            categories: ['mobile', 'ai'],
-            image: currentLanguage === 'en' ? lingoThumbnailAng : lingoThumbnail,
-            githubLink: 'https://github.com/Shellty-IT/Shellty-Lingo',
-            title: t('portfolio.projects.shelltyLingo.title'),
-            status: true,
-            subtitle: t('portfolio.projects.shelltyLingo.subtitle'),
-            description: t('portfolio.projects.shelltyLingo.description'),
-            highlightsTitle: t('portfolio.projects.shelltyLingo.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyLingo.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyLingo.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyLingo.role', { defaultValue: 'Developer' }),
-            year: '2026',
-        },
-        {
-            id: "tomiForno",
-            categories: ['web', 'ai', 'wordpress'],
-            featured: true,
-            image: currentLanguage === 'en' ? tomiFornoEn : tomiFornoPl,
-            demoLink: 'https://tomi-forno.shellty.pl',
-            githubLink: null,
-            videoLink: 'https://vimeo.com/1212534874',
-            title: t('portfolio.projects.tomiForno.title'),
-            subtitle: t('portfolio.projects.tomiForno.subtitle'),
-            description: t('portfolio.projects.tomiForno.description'),
-            highlightsTitle: t('portfolio.projects.tomiForno.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.tomiForno.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.tomiForno.tech', { returnObjects: true }),
-            role: t('portfolio.projects.tomiForno.role', { defaultValue: 'Developer' }),
-            year: '2026',
-        },
-        {
-            id: "shelltyPromptCoach",
-            categories: ['web', 'ai'],
-            featured: true,
-            image: currentLanguage === 'en' ? promptCoachThumbnailAng : promptCoachThumbnail,
-            demoLink: 'https://prompt-coach.shellty.pl/',
-            githubLink: null,
-            videoLink: 'https://vimeo.com/1210656722?share=copy&fl=sv&fe=ci',
-            title: t('portfolio.projects.shelltyPromptCoach.title'),
-            subtitle: t('portfolio.projects.shelltyPromptCoach.subtitle'),
-            description: t('portfolio.projects.shelltyPromptCoach.description'),
-            highlightsTitle: t('portfolio.projects.shelltyPromptCoach.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyPromptCoach.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyPromptCoach.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyPromptCoach.role', { defaultValue: 'Developer' }),
-            year: '2026',
-        },
-        {
-            id: "smartQuoteAI",
-            categories: ['web', 'ai', 'mobile'],
-            featured: true,
-            image: smartquoteThumbnail,
-            demoLink: 'https://smart-quote.shellty.pl',
-            githubLink: 'https://github.com/Shellty-IT/SmartQuote',
-            videoLink: 'https://vimeo.com/1211656250',
-            title: t('portfolio.projects.smartQuoteAI.title'),
-            subtitle: t('portfolio.projects.smartQuoteAI.subtitle'),
-            description: t('portfolio.projects.smartQuoteAI.description'),
-            highlightsTitle: t('portfolio.projects.smartQuoteAI.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.smartQuoteAI.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.smartQuoteAI.tech', { returnObjects: true }),
-            role: t('portfolio.projects.smartQuoteAI.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.smartQuoteAI.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'testowy@test.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "shelltyCMS",
-            categories: ['web', 'wordpress'],
-            image: currentLanguage === 'en' ? shelltyCmsThumbnailAng : shelltyCmsThumbnail,
-            demoLink: 'https://cms.shellty.pl/',
-            githubLink: null,
-            videoLink: 'https://vimeo.com/1213704067',
-            title: t('portfolio.projects.shelltyCMS.title'),
-            subtitle: t('portfolio.projects.shelltyCMS.subtitle'),
-            description: t('portfolio.projects.shelltyCMS.description'),
-            highlightsTitle: t('portfolio.projects.shelltyCMS.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyCMS.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyCMS.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyCMS.role', { defaultValue: 'Developer' }),
-            year: '2026',
-        },
-        {
-            id: "budmaxTheme",
-            categories: ['wordpress'],
-            image: budmaxThumbnail,
-            demoLink: 'https://dev-customer-test.pantheonsite.io/',
-            githubLink: null,
-            videoLink: 'https://vimeo.com/1210625892?share=copy&fl=sv&fe=ci',
-            title: t('portfolio.projects.budmaxTheme.title'),
-            subtitle: t('portfolio.projects.budmaxTheme.subtitle'),
-            description: t('portfolio.projects.budmaxTheme.description'),
-            highlightsTitle: t('portfolio.projects.budmaxTheme.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.budmaxTheme.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.budmaxTheme.tech', { returnObjects: true }),
-            role: t('portfolio.projects.budmaxTheme.role', { defaultValue: 'Developer' }),
-            year: '2026',
-        },
-        {
-            id: "shelltyKanban",
-            categories: ['web'],
-            image: currentLanguage === 'en' ? kanbanThumbnailAng : kanbanThumbnail,
-            demoLink: 'https://kanban.shellty.pl/',
-            githubLink: 'https://github.com/Shellty-IT/NerdsApp_KanbanApp',
-            title: t('portfolio.projects.shelltyKanban.title'),
-            subtitle: t('portfolio.projects.shelltyKanban.subtitle'),
-            description: t('portfolio.projects.shelltyKanban.description'),
-            highlightsTitle: t('portfolio.projects.shelltyKanban.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyKanban.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyKanban.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyKanban.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.shelltyKanban.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'testowe@test.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "shelltyPulse",
-            categories: ['tools'],
-            image: shelltyPulseThumbnail,
-            demoLink: 'https://pulse.shellty.pl',
-            githubLink: 'https://github.com/Shellty-IT/Shellty-Pulse',
-            title: t('portfolio.projects.shelltyPulse.title'),
-            subtitle: t('portfolio.projects.shelltyPulse.subtitle'),
-            description: t('portfolio.projects.shelltyPulse.description'),
-            highlightsTitle: t('portfolio.projects.shelltyPulse.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyPulse.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyPulse.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyPulse.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.shelltyPulse.case', { defaultValue: '' }) || null,
-        },
-        {
-            id: "ksefMaster",
-            categories: ['web', 'tools'],
-            image: currentLanguage === 'en' ? ksefThumbnailAng : ksefThumbnail,
-            demoLink: 'https://ksef-master.shellty.pl/',
-            githubLink: 'https://github.com/Shellty-IT/KSeF_Master',
-            title: t('portfolio.projects.ksefMaster.title'),
-            subtitle: t('portfolio.projects.ksefMaster.subtitle'),
-            description: t('portfolio.projects.ksefMaster.description'),
-            highlightsTitle: t('portfolio.projects.ksefMaster.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.ksefMaster.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.ksefMaster.tech', { returnObjects: true }),
-            role: t('portfolio.projects.ksefMaster.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.ksefMaster.case', { defaultValue: '' }) || null,
-            testAccount: {
-                noteKey: 'portfolio.testAccount.noteKsef',
-                fields: [
-                    { labelKey: 'login', value: 'test@testowe.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "shelltyBlog",
-            categories: ['web'],
-            image: shelltyBlogThumbnail,
-            demoLink: 'https://blog.shellty.pl',
-            githubLink: 'https://github.com/Shellty-IT/Shellty_Blog',
-            videoLink: 'https://vimeo.com/1175749805',
-            title: t('portfolio.projects.shelltyBlog.title'),
-            subtitle: t('portfolio.projects.shelltyBlog.subtitle'),
-            description: t('portfolio.projects.shelltyBlog.description'),
-            highlightsTitle: t('portfolio.projects.shelltyBlog.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.shelltyBlog.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.shelltyBlog.tech', { returnObjects: true }),
-            role: t('portfolio.projects.shelltyBlog.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.shelltyBlog.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'admin@shellty.com' },
-                    { labelKey: 'password', value: 'Admin123!' },
-                ],
-            },
-        },
-        {
-            id: "postlio",
-            categories: ['web', 'ai', 'mobile'],
-            image: currentLanguage === 'en' ? postlioThumbnailAng : postlioThumbnail,
-            demoLink: 'https://postlio.shellty.pl/',
-            githubLink: null,
-            title: t('portfolio.projects.postlio.title'),
-            subtitle: t('portfolio.projects.postlio.subtitle'),
-            description: t('portfolio.projects.postlio.description'),
-            highlightsTitle: t('portfolio.projects.postlio.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.postlio.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.postlio.tech', { returnObjects: true }),
-            role: t('portfolio.projects.postlio.role', { defaultValue: 'Developer' }),
-            year: '2026',
-            caseStudyLink: t('portfolio.projects.postlio.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'test@test.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "mobiSalon",
-            categories: ['web'],
-            image: mobisalonThumbnail,
-            demoLink: 'https://mobisalon.netlify.app/',
-            githubLink: 'https://github.com/Shellty-IT/mobi-grooming',
-            title: t('portfolio.projects.mobiSalon.title'),
-            subtitle: t('portfolio.projects.mobiSalon.subtitle'),
-            description: t('portfolio.projects.mobiSalon.description'),
-            highlightsTitle: t('portfolio.projects.mobiSalon.highlightsTitle', { defaultValue: '' }),
-            highlights: t('portfolio.projects.mobiSalon.highlights', { returnObjects: true, defaultValue: [] }),
-            technologies: t('portfolio.projects.mobiSalon.tech', { returnObjects: true }),
-            role: t('portfolio.projects.mobiSalon.role', { defaultValue: 'Developer' }),
-            year: '2025',
-            caseStudyLink: t('portfolio.projects.mobiSalon.case', { defaultValue: '' }) || null,
-        },
-        {
-            id: "pwaCookbook",
-            categories: ['mobile'],
-            image: cookbookThumbnail,
-            demoLink: 'https://mobilnaksiazkakucharska.netlify.app',
-            githubLink: 'https://github.com/shellty-it/Mobilna-ksiazka-kucharska',
-            title: t('portfolio.projects.pwaCookbook.title'),
-            subtitle: t('portfolio.projects.pwaCookbook.subtitle'),
-            description: t('portfolio.projects.pwaCookbook.description'),
-            technologies: t('portfolio.projects.pwaCookbook.tech', { returnObjects: true }),
-            role: t('portfolio.projects.pwaCookbook.role', { defaultValue: 'Developer' }),
-            year: '2021',
-            caseStudyLink: t('portfolio.projects.pwaCookbook.case', { defaultValue: '' }) || null,
-            testAccount: {
-                fields: [
-                    { labelKey: 'login', value: 'test@testowy.pl' },
-                    { labelKey: 'password', value: 'Testowe123!' },
-                ],
-            },
-        },
-        {
-            id: "animalsOnePage",
-            categories: ['web'],
-            image: animalsThumbnail,
-            demoLink: 'https://zwierzeta.netlify.app/#fourty-page',
-            githubLink: 'https://github.com/shellty-it/Strona-typu-One-Page',
-            title: t('portfolio.projects.animalsOnePage.title'),
-            subtitle: t('portfolio.projects.animalsOnePage.subtitle'),
-            description: t('portfolio.projects.animalsOnePage.description'),
-            technologies: t('portfolio.projects.animalsOnePage.tech', { returnObjects: true }),
-            role: t('portfolio.projects.animalsOnePage.role', { defaultValue: 'Developer' }),
-            year: '2018',
-            caseStudyLink: t('portfolio.projects.animalsOnePage.case', { defaultValue: '' }) || null,
-        }
-    ]), [t, currentLanguage]);
+    const projects = useMemo(() => getProjects(t, currentLanguage), [t, currentLanguage]);
 
     const filters = [
         { key: 'all', label: t('portfolio.filters.all') },
@@ -495,38 +210,13 @@ const Portfolio = () => {
             <div className="gradient-background" aria-hidden="true"></div>
             <div className="content-wrapper">
                 <header className="portfolio-header animate-fade-in">
-                    <div
-                        ref={iconRef}
-                        className={`pf-icon pf-icon--${iconPhase}`}
-                    >
-                        <div className="pf-icon__nodes" aria-hidden="true">
-                            {ICON_NODES.map((n) => (
-                                <span
-                                    key={n.id}
-                                    className="pf-icon__node"
-                                    style={{ left: n.x, top: n.y }}
-                                />
-                            ))}
-                        </div>
-                        <img
-                            src={portfolioIcon}
-                            alt=""
-                            aria-hidden="true"
-                            className="pf-icon__img pf-icon__img--base"
-                            draggable="false"
-                            width="200"
-                            height="200"
-                        />
-                        <img
-                            src={portfolioGlow}
-                            alt=""
-                            aria-hidden="true"
-                            className="pf-icon__img pf-icon__img--lit"
-                            draggable="false"
-                            width="200"
-                            height="200"
-                        />
-                    </div>
+                    <SectionIcon
+                        className="pf-icon"
+                        nodes={ICON_NODES}
+                        icon={portfolioIcon}
+                        glow={portfolioGlow}
+                        size="200"
+                    />
 
                     <div
                         className="portfolio-header-hover-area"

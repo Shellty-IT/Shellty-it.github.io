@@ -36,7 +36,7 @@ import {
 import { TbBrandAzure, TbApi } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from "../sectionTitle/SectionTitle";
 
 import skillsIcon from "../../assets/icons/skills/skills.webp";
@@ -138,11 +138,16 @@ const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons }) {
     );
 });
 
+const SKILL_GROUPS = [
+    { key: 'core', num: '01', skills: CORE_SKILLS, className: 'sk-grid--core', Card: CoreCard },
+    { key: 'solid', num: '02', skills: SOLID_SKILLS, className: 'sk-grid--solid', Card: SolidCard },
+    { key: 'growing', num: '03', skills: GROWING_SKILLS, className: 'sk-tag-cloud', Card: GrowingTag },
+];
+
 // ─── Główny komponent ─────────────────────────────────────────────────────────
 const Skills = () => {
     const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
-    const { iconRef, iconPhase } = useIconPhase('sk-icon-wrap--pulse');
 
     return (
         <section id="skills" className="skills">
@@ -150,38 +155,12 @@ const Skills = () => {
 
                 {/* Header */}
                 <header className="skills__header">
-                    <div
-                        ref={iconRef}
-                        className={`sk-icon-wrap sk-icon-wrap--${iconPhase}`}
-                    >
-                        <div className="sk-icon-wrap__nodes" aria-hidden="true">
-                            {ICON_NODES.map((n) => (
-                                <span
-                                    key={n.id}
-                                    className="sk-icon-wrap__node"
-                                    style={{ left: n.x, top: n.y }}
-                                />
-                            ))}
-                        </div>
-                        <img
-                            src={skillsIcon}
-                            alt=""
-                            aria-hidden="true"
-                            className="sk-icon-wrap__img sk-icon-wrap__img--base"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                        <img
-                            src={skillsGlow}
-                            alt=""
-                            aria-hidden="true"
-                            className="sk-icon-wrap__img sk-icon-wrap__img--lit"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                    </div>
+                    <SectionIcon
+                        className="sk-icon-wrap"
+                        nodes={ICON_NODES}
+                        icon={skillsIcon}
+                        glow={skillsGlow}
+                    />
 
                     <div
                         className="skills__header-hover-area"
@@ -197,56 +176,21 @@ const Skills = () => {
                     </div>
                 </header>
 
-                {/* Tier 1 – Kluczowe kompetencje */}
-                <section className="sk-group">
-                    <div className="sk-group__head">
-                        <span className="sk-group__num">01 /</span>
-                        <h2 className="sk-group__title">{t("skills.groups.core")}</h2>
-                        <span className="sk-group__rule" />
-                        <span className="sk-group__count">
-                            {String(CORE_SKILLS.length).padStart(2, '0')}
-                        </span>
-                    </div>
-                    <div className="sk-grid--core">
-                        {CORE_SKILLS.map((s) => (
-                            <CoreCard key={s.name} {...s} />
-                        ))}
-                    </div>
-                </section>
-
-                {/* Tier 2 – Solidna znajomość */}
-                <section className="sk-group">
-                    <div className="sk-group__head">
-                        <span className="sk-group__num">02 /</span>
-                        <h2 className="sk-group__title">{t("skills.groups.solid")}</h2>
-                        <span className="sk-group__rule" />
-                        <span className="sk-group__count">
-                            {String(SOLID_SKILLS.length).padStart(2, '0')}
-                        </span>
-                    </div>
-                    <div className="sk-grid--solid">
-                        {SOLID_SKILLS.map((s) => (
-                            <SolidCard key={s.name} {...s} />
-                        ))}
-                    </div>
-                </section>
-
-                {/* Tier 3 – Aktywnie rozwijam */}
-                <section className="sk-group">
-                    <div className="sk-group__head">
-                        <span className="sk-group__num">03 /</span>
-                        <h2 className="sk-group__title">{t("skills.groups.growing")}</h2>
-                        <span className="sk-group__rule" />
-                        <span className="sk-group__count">
-                            {String(GROWING_SKILLS.length).padStart(2, '0')}
-                        </span>
-                    </div>
-                    <div className="sk-tag-cloud">
-                        {GROWING_SKILLS.map((s) => (
-                            <GrowingTag key={s.name} {...s} />
-                        ))}
-                    </div>
-                </section>
+                {SKILL_GROUPS.map(({ key, num, skills, className, Card }) => (
+                    <section className="sk-group" key={key}>
+                        <div className="sk-group__head">
+                            <span className="sk-group__num">{`${num} /`}</span>
+                            <h2 className="sk-group__title">{t(`skills.groups.${key}`)}</h2>
+                            <span className="sk-group__rule" />
+                            <span className="sk-group__count">
+                                {String(skills.length).padStart(2, '0')}
+                            </span>
+                        </div>
+                        <div className={className}>
+                            {skills.map((skill) => <Card key={skill.name} {...skill} />)}
+                        </div>
+                    </section>
+                ))}
 
             </div>
         </section>

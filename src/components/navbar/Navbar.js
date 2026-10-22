@@ -8,6 +8,22 @@ import GlowIcon from '../glowIcon/GlowIcon';
 import homeIcon from '../../assets/icons/home/home.webp';
 import homeGlow from '../../assets/icons/home/home_glow.webp';
 
+const LanguageSwitcher = ({ className, language, onChange }) => (
+    <div className={className} data-lang={language} role="group" aria-label="Wybór języka">
+        {['pl', 'en'].map((lang) => (
+            <button
+                key={lang}
+                type="button"
+                className={language === lang ? 'is-active' : ''}
+                onClick={() => onChange(lang)}
+                aria-pressed={language === lang}
+            >
+                {lang.toUpperCase()}
+            </button>
+        ))}
+    </div>
+);
+
 const Navbar = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -111,55 +127,19 @@ const Navbar = () => {
                     ))}
 
                     {/* Language switcher w szufladzie (tylko mobile) */}
-                    <div
+                    <LanguageSwitcher
                         className="nav__lang--drawer"
-                        data-lang={i18n.language}
-                        role="group"
-                        aria-label="Wybór języka"
-                    >
-                        <button
-                            type="button"
-                            className={i18n.language === 'pl' ? 'is-active' : ''}
-                            onClick={() => handleLangChange('pl')}
-                            aria-pressed={i18n.language === 'pl'}
-                        >
-                            PL
-                        </button>
-                        <button
-                            type="button"
-                            className={i18n.language === 'en' ? 'is-active' : ''}
-                            onClick={() => handleLangChange('en')}
-                            aria-pressed={i18n.language === 'en'}
-                        >
-                            EN
-                        </button>
-                    </div>
+                        language={i18n.language}
+                        onChange={handleLangChange}
+                    />
                 </div>
 
                 {/* Language switcher – prawa krawędź */}
-                <div
+                <LanguageSwitcher
                     className="nav__lang"
-                    data-lang={i18n.language}
-                    role="group"
-                    aria-label="Wybór języka"
-                >
-                    <button
-                        type="button"
-                        className={i18n.language === 'pl' ? 'is-active' : ''}
-                        onClick={() => handleLangChange('pl')}
-                        aria-pressed={i18n.language === 'pl'}
-                    >
-                        PL
-                    </button>
-                    <button
-                        type="button"
-                        className={i18n.language === 'en' ? 'is-active' : ''}
-                        onClick={() => handleLangChange('en')}
-                        aria-pressed={i18n.language === 'en'}
-                    >
-                        EN
-                    </button>
-                </div>
+                    language={i18n.language}
+                    onChange={handleLangChange}
+                />
 
                 {/* Hamburger */}
                 <button

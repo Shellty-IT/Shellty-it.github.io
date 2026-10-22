@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
 import { useTranslation } from "react-i18next";
-import { useIconPhase } from "../../hooks/useIconPhase";
+import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from "../sectionTitle/SectionTitle";
 
 import experienceIcon from "../../assets/icons/experience/experience.webp";
@@ -72,7 +72,6 @@ const NODE_POINTS = [
 const Experience = () => {
     const { t } = useTranslation();
     const [titleHovered, setTitleHovered] = useState(false);
-    const { iconRef, iconPhase } = useIconPhase('exp-icon--pulse');
 
     return (
         <section id="experience" className="exp">
@@ -80,38 +79,12 @@ const Experience = () => {
 
                 {/* Header */}
                 <header className="exp__header">
-                    <div
-                        ref={iconRef}
-                        className={`exp-icon exp-icon--${iconPhase}`}
-                    >
-                        <div className="exp-icon__nodes" aria-hidden="true">
-                            {NODE_POINTS.map((n) => (
-                                <span
-                                    key={n.id}
-                                    className="exp-icon__node"
-                                    style={{ left: n.x, top: n.y }}
-                                />
-                            ))}
-                        </div>
-                        <img
-                            src={experienceIcon}
-                            alt=""
-                            aria-hidden="true"
-                            className="exp-icon__img exp-icon__img--base"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                        <img
-                            src={experienceGlow}
-                            alt=""
-                            aria-hidden="true"
-                            className="exp-icon__img exp-icon__img--lit"
-                            draggable="false"
-                            width="160"
-                            height="160"
-                        />
-                    </div>
+                    <SectionIcon
+                        className="exp-icon"
+                        nodes={NODE_POINTS}
+                        icon={experienceIcon}
+                        glow={experienceGlow}
+                    />
 
                     <div
                         className="exp__header-hover-area"

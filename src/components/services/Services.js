@@ -126,47 +126,23 @@ const Services = () => {
         }
     };
 
-    const cards = [
-        {
-            icon: <FaWindowMaximize />,
-            num: '01',
-            kicker: t('services.card1.kicker'),
-            title: t('services.card1.title'),
-            desc: t('services.card1.desc'),
-            forWhom: t('services.card1.forWhom'),
-        },
-        {
-            icon: <FaLayerGroup />,
-            num: '02',
-            kicker: t('services.card2.kicker'),
-            title: t('services.card2.title'),
-            desc: t('services.card2.desc'),
-            forWhom: t('services.card2.forWhom'),
-        },
-        {
-            icon: <FaScrewdriverWrench />,
-            num: '03',
-            kicker: t('services.card3.kicker'),
-            title: t('services.card3.title'),
-            desc: t('services.card3.desc'),
-            forWhom: t('services.card3.forWhom'),
-        },
-        {
-            icon: <FaHeadset />,
-            num: '04',
-            kicker: t('services.card4.kicker'),
-            title: t('services.card4.title'),
-            desc: t('services.card4.desc'),
-            forWhom: t('services.card4.forWhom'),
-        },
-    ];
+    const cards = [FaWindowMaximize, FaLayerGroup, FaScrewdriverWrench, FaHeadset].map((Icon, i) => {
+        const key = `services.card${i + 1}`;
+        return {
+            icon: <Icon />,
+            num: String(i + 1).padStart(2, '0'),
+            kicker: t(`${key}.kicker`),
+            title: t(`${key}.title`),
+            desc: t(`${key}.desc`),
+            forWhom: t(`${key}.forWhom`),
+        };
+    });
 
-    const steps = [
-        { n: '1', title: t('services.step1.title'), desc: t('services.step1.desc') },
-        { n: '2', title: t('services.step2.title'), desc: t('services.step2.desc') },
-        { n: '3', title: t('services.step3.title'), desc: t('services.step3.desc') },
-        { n: '4', title: t('services.step4.title'), desc: t('services.step4.desc') },
-    ];
+    const steps = [1, 2, 3, 4].map((n) => ({
+        n: String(n),
+        title: t(`services.step${n}.title`),
+        desc: t(`services.step${n}.desc`),
+    }));
 
     const whys = [
         {
