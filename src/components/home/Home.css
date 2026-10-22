@@ -283,7 +283,7 @@
 }
 
 .hero__services-link.btn-cta--ghost:is(:hover, :focus-visible) .btn-cta__bg {
-    background: linear-gradient(110deg, rgba(12, 192, 255, .23), rgba(0, 98, 176, .14) 60%, rgba(12, 192, 255, .1));
+    background: linear-gradient(110deg, rgba(12, 192, 255, .16), rgba(0, 98, 176, .09) 60%, rgba(12, 192, 255, .06));
 }
 
 .hero__services-link.btn-cta--ghost:focus-visible {
@@ -624,6 +624,7 @@
     .hero__cta .btn-cta {
         gap: 8px;
         padding: 12px 10px;
+        --cta-arrow-shift: 20px;
     }
 
     .hero__cta .btn-cta__icon {
@@ -635,7 +636,8 @@
         font-size: 14px;
     }
 
-    .hero__cta .btn-cta__arrow svg {
+    .hero__cta .btn-cta__arrow svg,
+    .hero__cta .btn-cta__arrow-in svg {
         width: 16px;
         height: 16px;
     }

@@ -103,6 +103,7 @@ export default function Home() {
                         iconGlow={[servicesRotating, servicesCenter]}
                         kicker={t("home.cta.servicesKicker")}
                         title={t("home.cta.servicesTitle")}
+                        hoverReveal
                         arrow
                     />
 
@@ -114,6 +115,7 @@ export default function Home() {
                             iconGlow={portfolioGlowIcon}
                             kicker={t("home.cta.portfolioKicker")}
                             title={t("home.cta.portfolioTitle")}
+                            hoverArrow
                             arrow
                         />
 
@@ -123,6 +125,7 @@ export default function Home() {
                             iconGlow={contactGlowIcon}
                             kicker={t("home.cta.contactKicker")}
                             title={t("home.cta.contactTitle")}
+                            hoverArrow
                             arrow
                         />
                     </div>

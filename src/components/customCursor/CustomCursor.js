@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './CustomCursor.css';
 
 const TRAIL_COUNT = 5;
@@ -39,19 +39,6 @@ const CustomCursor = () => {
     const ringRef = useRef(null);
     const trailRefs = useRef([]);
 
-    const mouse = useRef({ x: -100, y: -100 });
-    const dotPos = useRef({ x: -100, y: -100 });
-    const ringPos = useRef({ x: -100, y: -100 });
-    const trails = useRef(Array.from({ length: TRAIL_COUNT }, () => ({ x: -100, y: -100 })));
-    const ringScale = useRef({ current: 1, target: 1 });
-    const isVisible = useRef(false);
-    const isHovering = useRef(false);
-    const raf = useRef(null);
-
-    const animating = useRef(false);
-    const isMoving = useRef(false);
-    const moveTimer = useRef(null);
-
     useEffect(() => {
         const mql = window.matchMedia(POINTER_QUERY);
         const onChange = (e) => setHasPointer(e.matches);
@@ -65,135 +52,124 @@ const CustomCursor = () => {
         return () => document.documentElement.classList.remove('has-custom-cursor');
     }, [hasPointer]);
 
-    const startLoop = useCallback(() => {
-        if (animating.current) return;
-        animating.current = true;
-        raf.current = requestAnimationFrame(tick);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const tick = useCallback(() => {
-        const mx = mouse.current.x, my = mouse.current.y;
-
-        dotPos.current.x += (mx - dotPos.current.x) * 0.7;
-        dotPos.current.y += (my - dotPos.current.y) * 0.7;
-        if (dotRef.current)
-            dotRef.current.style.transform = `translate3d(${dotPos.current.x}px,${dotPos.current.y}px,0)`;
-
-        ringPos.current.x += (mx - ringPos.current.x) * 0.16;
-        ringPos.current.y += (my - ringPos.current.y) * 0.16;
-        ringScale.current.current += (ringScale.current.target - ringScale.current.current) * 0.1;
-        if (ringRef.current)
-            ringRef.current.style.transform = `translate3d(${ringPos.current.x}px,${ringPos.current.y}px,0) scale(${ringScale.current.current})`;
-
-        for (let i = 0; i < TRAIL_COUNT; i++) {
-            const prev = i === 0 ? ringPos.current : trails.current[i - 1];
-            const trail = trails.current[i];
-            const speed = 0.4 - (i / (TRAIL_COUNT - 1)) * 0.28;
-            trail.x += (prev.x - trail.x) * speed;
-            trail.y += (prev.y - trail.y) * speed;
-            if (trailRefs.current[i])
-                trailRefs.current[i].style.transform = `translate3d(${trail.x}px,${trail.y}px,0)`;
-        }
-
-        if (!isMoving.current) {
-            const last = trails.current[TRAIL_COUNT - 1];
-            if (Math.abs(last.x - mx) < 0.8 && Math.abs(last.y - my) < 0.8) {
-                animating.current = false;
-                return;
-            }
-        }
-
-        raf.current = requestAnimationFrame(tick);
-    }, []);
-
     useEffect(() => {
         if (!hasPointer) return;
 
-        const show = () => {
-            if (dotRef.current) dotRef.current.style.opacity = '1';
-            if (ringRef.current) ringRef.current.style.opacity = '1';
-            trailRefs.current.forEach(t => { if (t) t.style.opacity = '1'; });
-        };
-        const hide = () => {
-            [dotRef.current, ringRef.current, ...trailRefs.current].forEach(el => {
-                if (el) el.style.opacity = '0';
-            });
-        };
-        const resetPositions = (x, y) => {
-            dotPos.current = { x, y }; ringPos.current = { x, y };
-            trails.current = trails.current.map(() => ({ x, y }));
-            trailRefs.current.forEach(t => {
-                if (t) t.style.transform = `translate3d(${x}px,${y}px,0)`;
-            });
+        const dot = dotRef.current;
+        const ring = ringRef.current;
+        const trailElements = trailRefs.current.slice();
+        const elements = [dot, ring, ...trailElements];
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const mouse = { x: -100, y: -100 };
+        const ringPos = { ...mouse };
+        const trails = Array.from({ length: TRAIL_COUNT }, () => ({ ...mouse }));
+        let scale = 1, targetScale = 1;
+        let visible = false, hovering = false;
+        let raf = 0, lastFrame = 0;
+
+        const stopLoop = () => {
+            cancelAnimationFrame(raf);
+            raf = 0;
+            lastFrame = 0;
         };
 
-        const onMouseMove = (e) => {
+        function startLoop() {
+            if (!raf && visible && !document.hidden) raf = requestAnimationFrame(tick);
+        }
+
+        function tick(now) {
+            raf = 0;
+            // Keep the same trailing motion on 60, 120 and 144 Hz displays.
+            const frames = lastFrame ? Math.min((now - lastFrame) / (1000 / 60), 4) : 1;
+            lastFrame = now;
+            const ease = (speed) => reducedMotion.matches ? 1 : 1 - Math.pow(1 - speed, frames);
+            const ringEase = ease(0.16);
+            ringPos.x += (mouse.x - ringPos.x) * ringEase;
+            ringPos.y += (mouse.y - ringPos.y) * ringEase;
+            scale += (targetScale - scale) * ease(0.1);
+            ring.style.transform = `translate3d(${ringPos.x}px,${ringPos.y}px,0) scale(${scale})`;
+
+            let settled = Math.abs(scale - targetScale) < 0.001
+                && Math.abs(ringPos.x - mouse.x) < 0.1 && Math.abs(ringPos.y - mouse.y) < 0.1;
+            if (!reducedMotion.matches) {
+                for (let i = 0; i < TRAIL_COUNT; i++) {
+                    const prev = i === 0 ? ringPos : trails[i - 1];
+                    const trail = trails[i];
+                    const speed = ease(0.4 - (i / (TRAIL_COUNT - 1)) * 0.28);
+                    trail.x += (prev.x - trail.x) * speed;
+                    trail.y += (prev.y - trail.y) * speed;
+                    trailElements[i].style.transform = `translate3d(${trail.x}px,${trail.y}px,0)`;
+                    settled = settled && Math.abs(trail.x - mouse.x) < 0.8 && Math.abs(trail.y - mouse.y) < 0.8;
+                }
+            }
+            if (settled) lastFrame = 0;
+            else startLoop();
+        }
+
+        const updateHover = (e) => {
             if (e.pointerType === 'touch') return;
-            mouse.current.x = e.clientX;
-            mouse.current.y = e.clientY;
-
-            if (!isVisible.current) {
-                isVisible.current = true;
-                resetPositions(e.clientX, e.clientY);
-                show();
-            }
-
-            const hovering = !!safeClosest(e.target, INTERACTIVE);
-            if (hovering !== isHovering.current) {
-                isHovering.current = hovering;
-                ringScale.current.target = hovering ? 1.12 : 1;
-                const method = hovering ? 'add' : 'remove';
-                ringRef.current?.classList[method]('hovering');
-                dotRef.current?.classList[method]('hovering');
-            }
-
-            isMoving.current = true;
-            clearTimeout(moveTimer.current);
-            moveTimer.current = setTimeout(() => { isMoving.current = false; }, 200);
+            const next = !!safeClosest(e.target, INTERACTIVE);
+            if (next === hovering) return;
+            hovering = next;
+            targetScale = hovering ? 1.12 : 1;
+            ring.classList.toggle('hovering', hovering);
+            dot.classList.toggle('hovering', hovering);
             startLoop();
         };
 
-        const onMouseLeave = () => {
-            isVisible.current = false;
-            isHovering.current = false;
-            hide();
-        };
-        const onMouseEnter = (e) => {
-            resetPositions(e.clientX, e.clientY);
+        const onPointerMove = (e) => {
+            if (e.pointerType === 'touch') return;
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            // The tip tracks the input immediately; only the decoration trails.
+            const transform = `translate3d(${mouse.x}px,${mouse.y}px,0)`;
+            dot.style.transform = transform;
+            if (!visible) {
+                visible = true;
+                Object.assign(ringPos, mouse);
+                trails.forEach(trail => Object.assign(trail, mouse));
+                elements.forEach(el => {
+                    el.style.transform = transform;
+                    el.style.opacity = '1';
+                });
+                updateHover(e);
+            }
             startLoop();
+        };
+
+        const hide = () => {
+            visible = false;
+            hovering = false;
+            targetScale = scale = 1;
+            stopLoop();
+            elements.forEach(el => { el.style.opacity = '0'; });
+            ring.classList.remove('hovering');
+            dot.classList.remove('hovering');
         };
         const onVisibilityChange = () => {
-            if (document.hidden) {
-                cancelAnimationFrame(raf.current);
-                animating.current = false;
-            } else if (isVisible.current) {
-                startLoop();
-            }
+            if (document.hidden) hide();
         };
 
-        window.addEventListener('mousemove', onMouseMove, { passive: true });
-        document.documentElement.addEventListener('mouseleave', onMouseLeave);
-        document.documentElement.addEventListener('mouseenter', onMouseEnter);
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
+        window.addEventListener('pointerover', updateHover, { passive: true });
+        window.addEventListener('blur', hide);
+        document.documentElement.addEventListener('pointerleave', hide);
         document.addEventListener('visibilitychange', onVisibilityChange);
 
-        startLoop();
-
         return () => {
-            clearTimeout(moveTimer.current);
-            cancelAnimationFrame(raf.current);
-            animating.current = false;
-            window.removeEventListener('mousemove', onMouseMove);
-            document.documentElement.removeEventListener('mouseleave', onMouseLeave);
-            document.documentElement.removeEventListener('mouseenter', onMouseEnter);
+            stopLoop();
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerover', updateHover);
+            window.removeEventListener('blur', hide);
+            document.documentElement.removeEventListener('pointerleave', hide);
             document.removeEventListener('visibilitychange', onVisibilityChange);
         };
-    }, [hasPointer, tick, startLoop]);
+    }, [hasPointer]);
 
     if (!hasPointer) return null;
 
     return (
-        <div className="cursor-container">
+        <div className="cursor-container" aria-hidden="true">
             {TRAIL_STYLES.map((s, i) => (
                 <div
                     key={i}

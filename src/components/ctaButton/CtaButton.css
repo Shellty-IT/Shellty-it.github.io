@@ -167,8 +167,7 @@
     filter: drop-shadow(0 0 10px rgba(4, 18, 31, .45));
 }
 
-.btn-cta--primary .btn-cta__bg::after,
-.hero__services-link .btn-cta__bg::after {
+.btn-cta--primary .btn-cta__bg::after {
     content: "";
     position: absolute;
     top: 0;
@@ -180,8 +179,7 @@
     pointer-events: none;
 }
 
-.btn-cta--primary:is(:hover, :focus-visible) .btn-cta__bg::after,
-.hero__services-link:is(:hover, :focus-visible) .btn-cta__bg::after {
+.btn-cta--primary:is(:hover, :focus-visible) .btn-cta__bg::after {
     left: 120%;
 }
 
@@ -224,7 +222,103 @@
     filter: drop-shadow(0 0 12px rgba(12, 192, 255, .55));
 }
 
+/* Reveal from the pointer, with the arrow moving from right to left. */
+.btn-cta--reveal .btn-cta__bg {
+    contain: layout paint;
+    /* Clip the composited circle to this small layer, below text and icons. */
+    transform: translateZ(0);
+}
+
+.btn-cta--reveal .btn-cta__bg::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    translate: var(--reveal-x, 0px) var(--reveal-y, 0px);
+    width: var(--reveal-size, 225%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #0cc0ff;
+    transform: translate(-50%, -50%) scale(0);
+    will-change: transform;
+    transition: transform .45s cubic-bezier(.4, 0, .2, 1);
+}
+
+.btn-cta--reveal:is(:hover, :focus-visible) .btn-cta__bg::before {
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: .7s;
+}
+
+.btn-cta--arrow-swap .btn-cta__kicker,
+.btn-cta--arrow-swap .btn-cta__title {
+    transition: transform .2s ease;
+}
+
+.btn-cta--reveal .btn-cta__kicker,
+.btn-cta--reveal .btn-cta__title {
+    transition: transform .2s ease, color .6s cubic-bezier(.4, 0, .2, 1);
+}
+
+.btn-cta--reveal:is(:hover, :focus-visible) .btn-cta__kicker,
+.btn-cta--reveal:is(:hover, :focus-visible) .btn-cta__title,
+.btn-cta--reveal:is(:hover, :focus-visible) .btn-cta__arrow,
+.btn-cta--reveal:is(:hover, :focus-visible) .btn-cta__arrow-in {
+    color: #04121f;
+}
+
+.btn-cta--arrow-swap .btn-cta__arrow-in {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    display: inline-flex;
+    color: #0cc0ff;
+    opacity: 0;
+    transform: translate(-12px, calc(-50% - 12px));
+    transition: transform .2s ease, opacity .2s ease;
+    pointer-events: none;
+}
+
+.btn-cta--arrow-swap .btn-cta__arrow svg {
+    animation: none;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__kicker,
+.btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__title {
+    /* Use the space vacated by the trailing arrow, without reflowing text. */
+    transform: translateX(var(--cta-arrow-shift, 26px));
+}
+
+.btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__arrow-in {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+.btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__arrow svg {
+    animation: none;
+    opacity: 0;
+    transform: translate(12px, 12px);
+}
+
 @media (prefers-reduced-motion: reduce) {
+    .btn-cta--reveal .btn-cta__bg::before {
+        transition: none;
+        will-change: auto;
+    }
+
+    .btn-cta--arrow-swap .btn-cta__arrow-in {
+        display: none;
+    }
+
+    .btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__kicker,
+    .btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__title,
+    .btn-cta--arrow-swap:is(:hover, :focus-visible) .btn-cta__arrow svg {
+        transform: none;
+        opacity: 1;
+    }
+
+    .btn-cta--arrow-swap .btn-cta__kicker,
+    .btn-cta--arrow-swap .btn-cta__title,
     .btn-cta,
     .btn-cta__icon,
     .btn-cta__icon img,
