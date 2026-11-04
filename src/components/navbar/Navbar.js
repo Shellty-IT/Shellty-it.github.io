@@ -37,7 +37,7 @@ const Navbar = () => {
         { to: '/experience/', labelKey: 'nav.experience', num: '04', end: false },
         { to: '/skills/',     labelKey: 'nav.skills',     num: '05', end: false },
         { to: '/portfolio/',  labelKey: 'nav.portfolio',  num: '06', end: false },
-        { to: '/contact/',    labelKey: 'nav.contact',    num: '07', end: false },
+        { to: '/contact/',    labelKey: 'nav.contact',    num: '07', end: false, accent: true },
     ]), []);
 
     const handleLangChange = (newLang) => {
@@ -116,13 +116,13 @@ const Navbar = () => {
                             key={item.to}
                             to={item.to}
                             className={({ isActive }) =>
-                                `nav__link${isActive ? ' is-active' : ''}`
+                                `nav__link${item.accent ? ' nav__link--accent' : ''}${isActive ? ' is-active' : ''}`
                             }
                             end={item.end}
                             onClick={closeMenu}
                         >
                             <span className="num">{item.num}</span>
-                            {t(item.labelKey)}
+                            <span className="nav__label">{t(item.labelKey)}</span>
                         </NavLink>
                     ))}
 
