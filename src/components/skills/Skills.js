@@ -82,7 +82,6 @@ const SOLID_SKILLS = [
     { name: "Next.js",                 Icon: SiNextdotjs },
     { name: "Python",                  Icon: SiPython },
     { name: "PHP",                     Icon: SiPhp },
-    { name: "Firebase",                Icon: SiFirebase },
     { name: "Jira",                    Icon: SiJira },
 ];
 
