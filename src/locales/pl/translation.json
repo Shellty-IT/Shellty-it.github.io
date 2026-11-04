@@ -31,7 +31,7 @@
       "contactTitle": "Darmowa konsultacja"
     },
     "stats": {
-      "years": { "num": "7+", "label": "lat w IT" },
+      "years": { "num": "8+", "label": "lat w IT" },
       "projects": { "num": "10+", "label": "projekty własne" },
       "hybrid": { "num": "2 w 1", "label": "programista + informatyk" }
     },
@@ -235,10 +235,10 @@
   "skills": {
     "sub": "Technologie i narzędzia",
     "title": "Umiejętności",
-    "basics": "podstawy",
     "groups": {
       "core": "Kluczowe kompetencje",
       "solid": "Solidna znajomość",
+      "basics": "Podstawy",
       "growing": "Aktywnie rozwijam"
     }
   },

@@ -31,7 +31,7 @@
       "contactTitle": "Free consultation"
     },
     "stats": {
-      "years": { "num": "7+", "label": "years in IT" },
+      "years": { "num": "8+", "label": "years in IT" },
       "projects": { "num": "10+", "label": "side projects" },
       "hybrid": { "num": "2-in-1", "label": "developer + IT admin" }
     },
@@ -375,10 +375,10 @@
   "skills": {
     "sub": "Technologies and tools",
     "title": "Skills",
-    "basics": "basics",
     "groups": {
       "core": "Core competencies",
       "solid": "Solid knowledge",
+      "basics": "Basics",
       "growing": "Actively developing"
     }
   },

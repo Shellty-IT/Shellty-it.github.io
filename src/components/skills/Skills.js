@@ -26,6 +26,7 @@ import {
     SiPhp,
     SiNextdotjs,
     SiAngular,
+    SiNestjs,
     SiTailwindcss,
     SiNodedotjs,
     SiTypescript,
@@ -85,14 +86,21 @@ const SOLID_SKILLS = [
     { name: "Jira",                    Icon: SiJira },
 ];
 
-// ─── Konfiguracja: Tier 3 – growing ──────────────────────────────────────────
+// ─── Konfiguracja: Tier 3 – basics ───────────────────────────────────────────
+const BASIC_SKILLS = [
+    { name: "NestJS",         Icon: SiNestjs },
+    { name: "Angular",        Icon: SiAngular },
+    { name: "Ansible (IaC)",  Icon: SiAnsible },
+    { name: "Firebase",       Icon: SiFirebase },
+];
+
+// ─── Konfiguracja: Tier 4 – growing ──────────────────────────────────────────
 const GROWING_SKILLS = [
     { name: "Ansible (IaC)",              Icon: SiAnsible },
     { name: "Chmura",                     Icon: FaCloud, suffixIcons: [FaAmazon, TbBrandAzure, SiGooglecloud] },
     { name: "CI/CD (GH Actions)",         Icon: SiGithubactions },
     { name: "Next.js",                    Icon: SiNextdotjs },
     { name: "Tailwind CSS",               Icon: SiTailwindcss },
-    { name: "Angular",                    Icon: SiAngular, basics: true },
 ];
 
 // ─── Karta Tier 1 ─────────────────────────────────────────────────────────────
@@ -125,16 +133,15 @@ const SolidCard = memo(function SolidCard({ name, Icon }) {
     );
 });
 
-// ─── Tag Tier 3 ───────────────────────────────────────────────────────────────
-const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons, basics }) {
-    const { t } = useTranslation();
+// ─── Tag Tier 4 ───────────────────────────────────────────────────────────────
+const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons }) {
     return (
         <span className="sk-tag">
             <Icon className="sk-tag__icon" />
             {suffixIcons && suffixIcons.map((S, i) => (
                 <S key={i} className="sk-tag__icon sk-tag__icon--mini" />
             ))}
-            <span className="sk-tag__name">{basics ? `${name} (${t("skills.basics")})` : name}</span>
+            <span className="sk-tag__name">{name}</span>
         </span>
     );
 });
@@ -142,7 +149,8 @@ const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons, basics })
 const SKILL_GROUPS = [
     { key: 'core', num: '01', skills: CORE_SKILLS, className: 'sk-grid--core', Card: CoreCard },
     { key: 'solid', num: '02', skills: SOLID_SKILLS, className: 'sk-grid--solid', Card: SolidCard },
-    { key: 'growing', num: '03', skills: GROWING_SKILLS, className: 'sk-tag-cloud', Card: GrowingTag },
+    { key: 'basics', num: '03', skills: BASIC_SKILLS, className: 'sk-grid--solid', Card: SolidCard },
+    { key: 'growing', num: '04', skills: GROWING_SKILLS, className: 'sk-tag-cloud', Card: GrowingTag },
 ];
 
 // ─── Główny komponent ─────────────────────────────────────────────────────────
