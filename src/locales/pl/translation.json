@@ -235,54 +235,11 @@
   "skills": {
     "sub": "Technologie i narzędzia",
     "title": "Umiejętności",
+    "basics": "podstawy",
     "groups": {
       "core": "Kluczowe kompetencje",
       "solid": "Solidna znajomość",
       "growing": "Aktywnie rozwijam"
-    },
-    "items": {
-      "win": { "name": "Windows Server (AD, GPO)", "level": "Zaawansowany", "notes": "Administracja domeną, polityki GPO" },
-      "linux": { "name": "Linux / Bash", "level": "Średniozaawansowany", "notes": "CLI, skrypty, podstawy automatyzacji" },
-      "scripts": { "name": "Skrypty Bash / PowerShell", "level": "Średniozaawansowany" },
-      "hardening": { "name": "Kopie zapasowe i monitoring", "level": "Średniozaawansowany" },
-
-      "netProtocols": { "name": "TCP/IP, DNS, DHCP, VPN", "level": "Średniozaawansowany" },
-      "netDevices": { "name": ["Routery", "Switche", "Firewalle"], "level": "Średniozaawansowany" },
-
-      "mysql": { "name": "MySQL", "level": "Średniozaawansowany", "notes": "administracja, optymalizacja, kopie" },
-      "postgres": { "name": "PostgreSQL", "level": "Podstawy" },
-      "sql": { "name": "SQL (zapytania, optymalizacja)", "level": "Średniozaawansowany" },
-
-      "cicd": { "name": "CI/CD (GitHub Actions)", "level": "Podstawy" },
-      "docker": { "name": "Docker", "level": "Podstawy" },
-      "cloud": { "name": "Chmura: AWS / Azure / GCP / Oracle", "level": "Podstawy" },
-
-      "react": { "name": "React", "level": "Średniozaawansowany" },
-      "nextjs": { "name": "Next.js", "level": "Podstawy" },
-      "angular": { "name": "Angular", "level": "Podstawy" },
-      "htmlcss": { "name": "HTML5 / CSS3", "level": "Średniozaawansowany" },
-      "tailwind": { "name": "Tailwind CSS", "level": "Podstawy" },
-      "bootstrap": { "name": "Bootstrap", "level": "Podstawy" },
-      "pwa": { "name": "PWA", "level": "Średniozaawansowany" },
-      "firebase": { "name": "Firebase", "level": "Średniozaawansowany" },
-      "nodejs": { "name": "Node.js", "level": "Podstawy" },
-      "restapi": { "name": "REST API", "level": "Średniozaawansowany" },
-      "dotnet": { "name": "ASP.NET / .NET", "level": "Podstawy" },
-
-      "js": { "name": "JavaScript", "level": "Średniozaawansowany" },
-      "ts": { "name": "TypeScript", "level": "Podstawy" },
-      "python": { "name": "Python", "level": "Podstawy" },
-      "csharp": { "name": "C#", "level": "Podstawy" },
-      "php": { "name": "PHP", "level": "Podstawy" },
-
-      "jira": { "name": "Jira", "level": "Zaawansowany" },
-      "gitlab": { "name": "GitLab", "level": "Podstawy" },
-      "github": { "name": "GitHub", "level": "Średniozaawansowany" },
-      "security": { "name": "Bezpieczeństwo i dobre praktyki", "level": "Średniozaawansowany" },
-
-      "problemSolving": { "name": "Rozwiązywanie problemów", "level": "Zaawansowany" },
-      "communication": { "name": "Komunikacja", "level": "Zaawansowany" },
-      "teamwork": { "name": "Współpraca i organizacja pracy", "level": "Zaawansowany" }
     }
   },
   "portfolio": {

@@ -375,54 +375,11 @@
   "skills": {
     "sub": "Technologies and tools",
     "title": "Skills",
+    "basics": "basics",
     "groups": {
       "core": "Core competencies",
       "solid": "Solid knowledge",
       "growing": "Actively developing"
-    },
-    "items": {
-      "win": { "name": "Windows Server (AD, GPO)", "level": "Advanced", "notes": "Domain admin, GPO policies" },
-      "linux": { "name": "Linux / Bash", "level": "Intermediate", "notes": "CLI, scripts, basic automation" },
-      "scripts": { "name": "Bash / PowerShell scripts", "level": "Intermediate" },
-      "hardening": { "name": "Backups and monitoring", "level": "Intermediate" },
-
-      "netProtocols": { "name": "TCP/IP, DNS, DHCP, VPN", "level": "Advanced" },
-      "netDevices": { "name": ["Routers", "Switches", "Firewalls"], "level": "Intermediate" },
-
-      "mysql": { "name": "MySQL", "level": "Intermediate", "notes": "administration, optimization, backups" },
-      "postgres": { "name": "PostgreSQL", "level": "Basics" },
-      "sql": { "name": "SQL (queries, optimization)", "level": "Intermediate" },
-
-      "cicd": { "name": "CI/CD (GitHub Actions)", "level": "Basics" },
-      "docker": { "name": "Docker", "level": "Basics" },
-      "cloud": { "name": "Cloud: AWS / Azure / GCP / Oracle", "level": "Basics" },
-
-      "react": { "name": "React", "level": "Intermediate" },
-      "nextjs": { "name": "Next.js", "level": "Basics" },
-      "angular": { "name": "Angular", "level": "Basics" },
-      "htmlcss": { "name": "HTML5 / CSS3", "level": "Intermediate" },
-      "tailwind": { "name": "Tailwind CSS", "level": "Basics" },
-      "bootstrap": { "name": "Bootstrap", "level": "Basics" },
-      "pwa": { "name": "PWA", "level": "Intermediate" },
-      "firebase": { "name": "Firebase", "level": "Intermediate" },
-      "nodejs": { "name": "Node.js", "level": "Basics" },
-      "restapi": { "name": "REST API", "level": "Intermediate" },
-      "dotnet": { "name": "ASP.NET / .NET", "level": "Basics" },
-
-      "js": { "name": "JavaScript", "level": "Intermediate" },
-      "ts": { "name": "TypeScript", "level": "Basics" },
-      "python": { "name": "Python", "level": "Basics" },
-      "csharp": { "name": "C#", "level": "Basics" },
-      "php": { "name": "PHP", "level": "Basics" },
-
-      "jira": { "name": "Jira", "level": "Advanced" },
-      "gitlab": { "name": "GitLab", "level": "Basics" },
-      "github": { "name": "GitHub", "level": "Intermediate" },
-      "security": { "name": "Security & good practices", "level": "Intermediate" },
-
-      "problemSolving": { "name": "Problem solving", "level": "Advanced" },
-      "communication": { "name": "Communication", "level": "Advanced" },
-      "teamwork": { "name": "Collaboration & organization", "level": "Advanced" }
     }
   },
   "portfolio": {

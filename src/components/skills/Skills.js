@@ -64,7 +64,6 @@ const CORE_SKILLS = [
     { name: "SQL",                                Icon: FaDatabase,       meta: "Core · Data" },
     { name: "HTML5 / CSS3",                       Icon: FaHtml5,          twinIcon: FaCss3, meta: "Core · Frontend" },
     { name: "Git / GitHub",                       Icon: SiGit,            meta: "Core · Workflow" },
-    { name: "Jira",                               Icon: SiJira,           meta: "Core · Workflow" },
 ];
 
 // ─── Konfiguracja: Tier 2 – solid ────────────────────────────────────────────
@@ -83,7 +82,7 @@ const SOLID_SKILLS = [
     { name: "Python",                  Icon: SiPython },
     { name: "PHP",                     Icon: SiPhp },
     { name: "Firebase",                Icon: SiFirebase },
-    { name: "Angular",                 Icon: SiAngular },
+    { name: "Jira",                    Icon: SiJira },
 ];
 
 // ─── Konfiguracja: Tier 3 – growing ──────────────────────────────────────────
@@ -93,6 +92,7 @@ const GROWING_SKILLS = [
     { name: "CI/CD (GH Actions)",         Icon: SiGithubactions },
     { name: "Next.js",                    Icon: SiNextdotjs },
     { name: "Tailwind CSS",               Icon: SiTailwindcss },
+    { name: "Angular",                    Icon: SiAngular, basics: true },
 ];
 
 // ─── Karta Tier 1 ─────────────────────────────────────────────────────────────
@@ -126,14 +126,15 @@ const SolidCard = memo(function SolidCard({ name, Icon }) {
 });
 
 // ─── Tag Tier 3 ───────────────────────────────────────────────────────────────
-const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons }) {
+const GrowingTag = memo(function GrowingTag({ name, Icon, suffixIcons, basics }) {
+    const { t } = useTranslation();
     return (
         <span className="sk-tag">
             <Icon className="sk-tag__icon" />
             {suffixIcons && suffixIcons.map((S, i) => (
                 <S key={i} className="sk-tag__icon sk-tag__icon--mini" />
             ))}
-            <span className="sk-tag__name">{name}</span>
+            <span className="sk-tag__name">{basics ? `${name} (${t("skills.basics")})` : name}</span>
         </span>
     );
 });
