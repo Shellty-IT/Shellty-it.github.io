@@ -44,10 +44,15 @@ function renderFunnel() {
             </MemoryRouter>
         </I18nextProvider>
     );
-    act(() => jest.advanceTimersByTime(3000));
 }
 
 describe('LeadFunnel', () => {
+    it('shows both launchers on the first render', () => {
+        renderFunnel();
+        expect(screen.getByRole('button', { name: pl.qualifier.launcher.label })).toBeVisible();
+        expect(screen.getByRole('button', { name: pl.chat.launcherAria })).toBeVisible();
+    });
+
     it('moves a visitor who prefers to talk from the qualifier to the chat', async () => {
         renderFunnel();
         fireEvent.click(screen.getByRole('button', { name: pl.qualifier.launcher.label }));

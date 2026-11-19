@@ -10,7 +10,6 @@ import './LeadChat.css';
 
 const ChatWindow = lazy(() => import('./ChatWindow'));
 
-const LAUNCHER_DELAY_MS = 3000;
 export const TEASER_DELAY_MS = 15000;
 const TEASER_MIN_DELAY_MS = 5000;
 const TEASER_DURATION_MS = 12000;
@@ -39,23 +38,17 @@ function teaserAllowed(pathname) {
 export default function LeadChat({ open, onOpen, onClose, onOpenQualifier }) {
     const { t } = useTranslation();
     const { pathname } = useLocation();
-    const [visible, setVisible] = useState(false);
     const [teaser, setTeaser] = useState(false);
     const [pulse, setPulse] = useState(() => !chatSeenBefore());
     const [hasOpened, setHasOpened] = useState(open);
     const launcherRef = useRef(null);
 
     useEffect(() => {
-        const timer = setTimeout(() => setVisible(true), LAUNCHER_DELAY_MS);
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
         if (open) setHasOpened(true);
     }, [open]);
 
     useEffect(() => {
-        if (!visible || open || !teaserAllowed(pathname)) return undefined;
+        if (open || !teaserAllowed(pathname)) return undefined;
         const startedAt = Date.now();
         let timer;
         const stop = () => {
@@ -77,7 +70,7 @@ export default function LeadChat({ open, onOpen, onClose, onOpenQualifier }) {
         timer = setTimeout(show, TEASER_DELAY_MS);
         window.addEventListener('scroll', onScroll, { passive: true });
         return stop;
-    }, [visible, open, pathname]);
+    }, [open, pathname]);
 
     useEffect(() => {
         if (!teaser) return undefined;
@@ -119,25 +112,23 @@ export default function LeadChat({ open, onOpen, onClose, onOpenQualifier }) {
                         </button>
                     </div>
                 )}
-                {visible && (
-                    <button
-                        ref={launcherRef}
-                        type="button"
-                        className={`lc-launcher${pulse ? ' is-pulse' : ''}`}
-                        onClick={open ? closeChat : openChat}
-                        aria-label={open ? t('chat.closeAria') : t('chat.launcherAria')}
-                        aria-expanded={open}
-                    >
-                        {open ? (
-                            <FaTimes aria-hidden="true" />
-                        ) : (
-                            <>
-                                <img className="lc-launcher__avatar" src={avatarSmall} alt="" />
-                                <FaCommentDots className="lc-launcher__badge" aria-hidden="true" />
-                            </>
-                        )}
-                    </button>
-                )}
+                <button
+                    ref={launcherRef}
+                    type="button"
+                    className={`lc-launcher${pulse ? ' is-pulse' : ''}`}
+                    onClick={open ? closeChat : openChat}
+                    aria-label={open ? t('chat.closeAria') : t('chat.launcherAria')}
+                    aria-expanded={open}
+                >
+                    {open ? (
+                        <FaTimes aria-hidden="true" />
+                    ) : (
+                        <>
+                            <img className="lc-launcher__avatar" src={avatarSmall} alt="" />
+                            <FaCommentDots className="lc-launcher__badge" aria-hidden="true" />
+                        </>
+                    )}
+                </button>
             </div>
             {(open || hasOpened) && (
                 <Suspense fallback={null}>

@@ -316,27 +316,23 @@ describe('LeadChat teaser', () => {
         <LeadChat open={false} onOpen={jest.fn()} onClose={jest.fn()} onOpenQualifier={jest.fn()} />,
         path
     );
-    const waitForLauncherAndTeaser = () => {
-        act(() => jest.advanceTimersByTime(3000));
-        act(() => jest.advanceTimersByTime(TEASER_DELAY_MS));
-    };
+    const waitForTeaser = () => act(() => jest.advanceTimersByTime(TEASER_DELAY_MS));
 
     it('shows a page-specific teaser once per session', () => {
         const { unmount } = renderLauncher('/services');
-        act(() => jest.advanceTimersByTime(3000));
         expect(screen.queryByText(chat.teasers.services)).not.toBeInTheDocument();
         act(() => jest.advanceTimersByTime(TEASER_DELAY_MS));
         expect(screen.getByText(chat.teasers.services)).toBeInTheDocument();
         unmount();
 
         renderLauncher('/services');
-        waitForLauncherAndTeaser();
+        waitForTeaser();
         expect(screen.queryByText(chat.teasers.services)).not.toBeInTheDocument();
     });
 
     it('does not show the teaser on the contact page', () => {
         renderLauncher('/contact');
-        waitForLauncherAndTeaser();
+        waitForTeaser();
         expect(screen.getByRole('button', { name: chat.launcherAria })).toBeInTheDocument();
         expect(screen.queryByText(chat.teasers.default)).not.toBeInTheDocument();
     });
@@ -344,13 +340,13 @@ describe('LeadChat teaser', () => {
     it('does not show the teaser after the visitor opened the qualifier or the chat', () => {
         updateLeadSession({ engaged: true });
         renderLauncher('/');
-        waitForLauncherAndTeaser();
+        waitForTeaser();
         expect(screen.queryByText(chat.teasers.home)).not.toBeInTheDocument();
     });
 
     it('hides the teaser by itself after a while', () => {
         renderLauncher('/');
-        waitForLauncherAndTeaser();
+        waitForTeaser();
         expect(screen.getByText(chat.teasers.home)).toBeInTheDocument();
         act(() => jest.advanceTimersByTime(12000));
         expect(screen.queryByText(chat.teasers.home)).not.toBeInTheDocument();
