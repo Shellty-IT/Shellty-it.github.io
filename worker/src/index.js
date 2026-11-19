@@ -4,12 +4,13 @@ import { handleEvent } from "./event.js";
 import { HttpError, json } from "./http.js";
 import { handleLead, handleLeadNote, handleListLeads } from "./lead.js";
 import { deliverLeadNotifications } from "./leadNotifications.js";
-import { handleSession } from "./session.js";
+import { handleLeadSession, handleSession } from "./session.js";
 import { handleStats } from "./stats.js";
 
 const routes = {
   "GET /health": () => json({ ok: true }),
   "POST /session": handleSession,
+  "POST /lead/session": handleLeadSession,
   "POST /lead": handleLead,
   "POST /lead/note": handleLeadNote,
   "POST /chat": handleChat,

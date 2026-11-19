@@ -42,6 +42,7 @@ export default defineConfig(async () => ({
           SESSION_SIGNING_KEY: "test-signing-key",
           DEV_LEADS_TOKEN: "test-leads-token",
           RATE_LIMIT_PER_SESSION: "5",
+          LEAD_LIMIT_PER_SESSION: "5",
           RATE_LIMIT_PER_IP_PER_DAY: "10",
           CHAT_LIMIT_PER_SESSION: "2",
           EVENT_LIMIT_PER_SESSION: "4",

@@ -1,15 +1,15 @@
 import { positiveInt, requiredSecret } from "./config.js";
 import { encodeText, fromBase64Url, hmacSign, hmacVerify, toBase64Url } from "./crypto.js";
 import { HttpError, bearerToken, clientIp, json, readJson } from "./http.js";
-import { enforceRateLimits } from "./rateLimit.js";
+import { enforceLeadSessionLimits, enforceRateLimits } from "./rateLimit.js";
 
 const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const TURNSTILE_TIMEOUT_MS = 5000;
 const MAX_TURNSTILE_TOKEN_LENGTH = 2048;
 
-export async function createSessionToken(env, nowMs = Date.now()) {
+export async function createSessionToken(env, nowMs = Date.now(), purpose) {
   const expiresAt = Math.floor(nowMs / 1000) + positiveInt(env, "SESSION_TTL_SECONDS");
-  const payload = toBase64Url(encodeText(JSON.stringify({ sid: crypto.randomUUID(), exp: expiresAt })));
+  const payload = toBase64Url(encodeText(JSON.stringify({ sid: crypto.randomUUID(), exp: expiresAt, purpose })));
   const signature = await hmacSign(requiredSecret(env, "SESSION_SIGNING_KEY"), payload);
   return {
     token: `${payload}.${toBase64Url(signature)}`,
@@ -17,7 +17,7 @@ export async function createSessionToken(env, nowMs = Date.now()) {
   };
 }
 
-export async function verifySessionToken(env, token, nowMs = Date.now()) {
+export async function verifySessionToken(env, token, nowMs = Date.now(), purpose) {
   const parts = token.split(".");
   if (parts.length !== 2) return null;
   const [payload, signature] = parts;
@@ -36,16 +36,23 @@ export async function verifySessionToken(env, token, nowMs = Date.now()) {
     throw error;
   }
 
-  if (typeof claims.sid !== "string" || !Number.isInteger(claims.exp)) return null;
+  if (typeof claims?.sid !== "string" || !Number.isInteger(claims.exp)) return null;
+  if (claims.purpose !== undefined && claims.purpose !== purpose) return null;
   if (claims.exp * 1000 <= nowMs) return null;
   return claims.sid;
 }
 
-export async function requireSession(request, env) {
+export async function requireSession(request, env, purpose) {
   const token = bearerToken(request);
-  const sessionId = token ? await verifySessionToken(env, token) : null;
+  const sessionId = token ? await verifySessionToken(env, token, Date.now(), purpose) : null;
   if (!sessionId) throw new HttpError(401, "invalid_session");
   return sessionId;
+}
+
+export async function handleLeadSession(request, env) {
+  if (!request.headers.get("Origin")) throw new HttpError(403, "origin_required");
+  await enforceLeadSessionLimits(env, clientIp(request));
+  return json(await createSessionToken(env, Date.now(), "lead"));
 }
 
 async function verifyTurnstile(env, token, ip) {

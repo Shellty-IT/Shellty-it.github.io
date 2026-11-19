@@ -35,7 +35,7 @@ afterEach(() => {
 });
 
 function saveSession() {
-    updateLeadSession({ apiSession: { token: 'signed', expiresAt: new Date(Date.now() + 600_000).toISOString() } });
+    updateLeadSession({ submissionSession: { token: 'signed', expiresAt: new Date(Date.now() + 600_000).toISOString() } });
 }
 
 it.each(['qualifier', 'chat', 'contact'])('sends a %s submission to the Worker', async (source) => {
@@ -55,6 +55,15 @@ it('rejects an unconfirmed submission instead of sending it through another prov
     global.fetch.mockRejectedValueOnce(new TypeError('Connection closed'));
     await expect(api.submitLead(lead)).rejects.toThrow('Connection closed');
     expect(global.fetch).toHaveBeenCalledTimes(1);
+});
+
+it('starts a dedicated submission session without running the assistant verification', async () => {
+    global.fetch.mockResolvedValueOnce(result(200, { token: 'form', expiresAt: new Date(Date.now() + 600_000).toISOString() }));
+    global.fetch.mockResolvedValueOnce(result(201, { ok: true }));
+    await api.submitLead(lead);
+    expect(getTurnstileToken).not.toHaveBeenCalled();
+    expect(global.fetch.mock.calls.map(([url]) => url)).toEqual([WORKER + '/lead/session', WORKER + '/lead']);
+    expect(global.fetch.mock.calls[1][1].headers.Authorization).toBe('Bearer form');
 });
 
 it('continues to authenticate AI chat sessions through Turnstile', async () => {

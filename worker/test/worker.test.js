@@ -113,6 +113,23 @@ describe("POST /session", () => {
 });
 
 describe("POST /lead", () => {
+  it("accepts a restricted submission session and rejects its token for AI and analytics", async () => {
+    const session = await call("/lead/session", { method: "POST", headers: { Origin: ORIGIN } });
+    expect(session.status).toBe(200);
+    const { token } = await session.json();
+    expect((await call("/lead", { method: "POST", token, body: leadBody() })).status).toBe(201);
+    expect((await call("/chat", { method: "POST", token, body: {} })).status).toBe(401);
+    expect((await call("/event", { method: "POST", token, body: {} })).status).toBe(401);
+  });
+
+  it("blocks session creation without an allowed web origin and caps requests from the same IP", async () => {
+    expect((await call("/lead/session", { method: "POST" })).status).toBe(403);
+    const headers = { Origin: ORIGIN };
+    const ip = uniqueIp();
+    const bindings = { ...env, LEAD_SESSION_LIMIT_PER_IP_PER_DAY: "1" };
+    expect((await call("/lead/session", { method: "POST", ip, headers, bindings })).status).toBe(200);
+    expect((await call("/lead/session", { method: "POST", ip, headers, bindings })).status).toBe(429);
+  });
   it("stores a valid lead with its score", async () => {
     const token = await startSession();
     const response = await call("/lead", { method: "POST", token, body: leadBody() });

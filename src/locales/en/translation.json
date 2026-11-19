@@ -725,7 +725,7 @@
               ],
               "items": [
                   "Resend, Inc. (USA) - email notifications about enquiries from the contact form, qualifier and chat.",
-                  "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an enquiry or assistant session.",
+                  "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an assistant session.",
                   "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant's replies from the information described in section 2."
               ],
               "after": [
@@ -766,7 +766,7 @@
               "items": [
                   "The site does not use analytics or advertising cookies.",
                   "Browser storage keeps the selected site language and information needed for the qualifier and chat, e.g. whether the chat tip has already been shown.",
-                  "Cloudflare Turnstile may store data needed to verify the enquiry or assistant session."
+                  "Cloudflare Turnstile may store data needed to verify the assistant session."
               ]
           },
           {

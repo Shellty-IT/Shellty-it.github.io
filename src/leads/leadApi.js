@@ -28,6 +28,7 @@ async function post(path, body, token) {
 }
 
 let pendingSession = null;
+let pendingSubmissionSession = null;
 
 async function createSession() {
     if (!API_URL || !TURNSTILE_SITE_KEY) throw new LeadApiError(0, 'not_configured');
@@ -37,8 +38,8 @@ async function createSession() {
     return session.token;
 }
 
-function savedSessionToken() {
-    const saved = loadLeadSession().apiSession;
+function savedSessionToken(key = 'apiSession') {
+    const saved = loadLeadSession()[key];
     return saved && Date.parse(saved.expiresAt) - Date.now() > SESSION_REFRESH_MARGIN_MS ? saved.token : null;
 }
 
@@ -61,15 +62,33 @@ async function postWithSession(path, body) {
     }
 }
 
-export function submitLead(lead) {
-    return postWithSession('/lead', lead);
+function submissionToken() {
+    const token = savedSessionToken('submissionSession');
+    if (token) return Promise.resolve(token);
+    pendingSubmissionSession ??= post('/lead/session', {}).then((session) => {
+        updateLeadSession({ submissionSession: session });
+        return session.token;
+    }).finally(() => {
+        pendingSubmissionSession = null;
+    });
+    return pendingSubmissionSession;
+}
+
+export async function submitLead(lead) {
+    try {
+        return await post('/lead', lead, await submissionToken());
+    } catch (error) {
+        if (!(error instanceof LeadApiError) || error.status !== 401) throw error;
+        updateLeadSession({ submissionSession: null });
+        return post('/lead', lead, await submissionToken());
+    }
 }
 
 export function submitLeadNote(note) {
     if (loadLeadSession().leadSent?.emailReceipt) {
         return Promise.reject(new LeadApiError(404, 'lead_not_found'));
     }
-    const token = savedSessionToken();
+    const token = savedSessionToken('submissionSession') ?? savedSessionToken();
     if (!token) return Promise.reject(new LeadApiError(401, 'invalid_session'));
     return post('/lead/note', { note }, token);
 }

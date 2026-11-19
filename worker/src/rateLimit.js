@@ -52,6 +52,30 @@ export async function enforceRateLimits(env, { ip, sessionId }, nowMs = Date.now
   await consume(env, checks, "rate_limited");
 }
 
+export async function enforceLeadSessionLimits(env, ip, nowMs = Date.now()) {
+  const checks = await limitChecks(env, {
+    ip, prefix: "lead-session-", ipLimitVar: "LEAD_SESSION_LIMIT_PER_IP_PER_DAY",
+  }, nowMs);
+  await consume(env, checks, "rate_limited");
+}
+
+export async function enforceLeadLimits(env, { ip, sessionId }, nowMs = Date.now()) {
+  const checks = await limitChecks(env, {
+    ip, sessionId, prefix: "lead-", ipLimitVar: "LEAD_LIMIT_PER_IP_PER_DAY",
+    sessionLimitVar: "LEAD_LIMIT_PER_SESSION",
+  }, nowMs);
+  await consume(env, checks, "rate_limited");
+}
+
+export async function enforceLeadVolume(env, nowMs = Date.now()) {
+  const nowSeconds = Math.floor(nowMs / 1000);
+  await consume(env, [{
+    bucket: "lead-global",
+    windowStart: nowSeconds - (nowSeconds % DAY_SECONDS),
+    limit: positiveInt(env, "LEAD_LIMIT_PER_DAY"),
+  }], "rate_limited");
+}
+
 export async function enforceEventLimits(env, { ip, sessionId }, nowMs = Date.now()) {
   const checks = await limitChecks(env, {
     ip,

@@ -9,7 +9,7 @@ import {
   readJson,
   readText,
 } from "./http.js";
-import { enforceRateLimits } from "./rateLimit.js";
+import { enforceLeadLimits, enforceLeadVolume } from "./rateLimit.js";
 import { requireSession } from "./session.js";
 
 const HONEYPOT_FIELD = "fax";
@@ -137,8 +137,8 @@ function logLead(env, lead) {
 }
 
 export async function handleLead(request, env) {
-  const sessionId = await requireSession(request, env);
-  await enforceRateLimits(env, { ip: clientIp(request), sessionId });
+  const sessionId = await requireSession(request, env, "lead");
+  await enforceLeadLimits(env, { ip: clientIp(request), sessionId });
   const body = await readJson(request);
 
   if (body[HONEYPOT_FIELD]) {
@@ -147,6 +147,7 @@ export async function handleLead(request, env) {
   }
 
   const lead = validateLead(body);
+  await enforceLeadVolume(env);
   const stored = {
     ...lead,
     id: crypto.randomUUID(),
@@ -173,14 +174,15 @@ export async function handleLead(request, env) {
 }
 
 export async function handleLeadNote(request, env) {
-  const sessionId = await requireSession(request, env);
-  await enforceRateLimits(env, { ip: clientIp(request), sessionId });
+  const sessionId = await requireSession(request, env, "lead");
+  await enforceLeadLimits(env, { ip: clientIp(request), sessionId });
   const body = await readJson(request);
 
   const errors = {};
   const note = readText(body, "note", MAX_FOLLOW_UP, errors);
   if (!note) errors.note ??= "required";
   assertValid(errors);
+  await enforceLeadVolume(env);
 
   const [{ meta }] = await env.DB.batch([
     env.DB.prepare(
