@@ -679,7 +679,7 @@
   "privacyPolicy": {
       "email": "kontakt@shellty.pl",
       "title": "Polityka Prywatności",
-      "updated": "Data ostatniej aktualizacji: 16 listopada 2026",
+      "updated": "Data ostatniej aktualizacji: 19 listopada 2026",
       "closeAria": "Zamknij politykę prywatności",
       "closeBtn": "Zamknij",
       "sections": [
@@ -701,7 +701,7 @@
                   "Przy każdym zgłoszeniu zapisuję też treść i datę wyrażonej zgody, podstronę, z której wysłano zgłoszenie, oraz język strony."
               ],
               "after": [
-                  "Treść rozmowy z asystentem jest przetwarzana także po to, żeby wygenerować odpowiedzi (szczegóły w punkcie 6). Numery telefonów i adresy e-mail nie są przekazywane do usług AI."
+                  "Gdy wysyłasz wiadomość do asystenta, serwer otrzymuje ją wraz z fragmentem rozmowy i podsumowaniem dotychczasowych odpowiedzi z kwalifikatora, jeśli z niego korzystasz. Te informacje pomagają wygenerować odpowiedź także przed wysłaniem zgłoszenia. Przed przekazaniem treści do usługi AI serwer automatycznie maskuje rozpoznane numery telefonów i adresy e-mail."
               ]
           },
           {
@@ -718,7 +718,7 @@
                   "Zgłoszenia z kwalifikatora i czatu - do 12 miesięcy od wysłania, chyba że wcześniej poprosisz o ich usunięcie lub wycofasz zgodę. Jeśli podejmiemy współpracę, dane potrzebne do jej realizacji przechowuję przez czas wymagany przepisami.",
                   "Wiadomości z formularza kontaktowego - przez czas potrzebny do obsługi zapytania.",
                   "Dane techniczne chroniące stronę przed nadużyciami (zaszyfrowany skrót adresu IP, który nie pozwala odczytać samego adresu, oraz liczniki zapytań) - nie dłużej niż 12 miesięcy.",
-                  "Postęp w kwalifikatorze i historia czatu są zapisywane tylko w pamięci sesji Twojej przeglądarki i znikają po zamknięciu karty. Na serwer trafiają dopiero wtedy, gdy wyślesz zgłoszenie."
+                  "Kopia historii czatu i postęp w kwalifikatorze pozostają w pamięci sesji przeglądarki do zamknięcia karty. Gdy wysyłasz zgłoszenie z czatu, w bazie zgłoszeń zapisuję także skrócony zapis Twoich wiadomości. Do wysłanego zgłoszenia mogę też zapisać późniejsze dopiski."
               ]
           },
           {
@@ -729,7 +729,7 @@
               "items": [
                   "Formspree, Inc. (USA) - obsługa formularza kontaktowego.",
                   "Cloudflare, Inc. (USA) - serwer obsługujący kwalifikator i czat, baza zgłoszeń oraz ochrona przed botami (Cloudflare Turnstile), która może analizować informacje o przeglądarce i adres IP.",
-                  "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści rozmowy, po usunięciu z niej numerów telefonów i adresów e-mail."
+                  "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści opisanych w punkcie 2."
               ],
               "after": [
                   "Ci dostawcy mają siedzibę poza Europejskim Obszarem Gospodarczym. Dane są przekazywane z zastosowaniem mechanizmów przewidzianych w RODO, takich jak standardowe klauzule umowne lub decyzja Komisji Europejskiej w sprawie ram EU-U.S. Data Privacy Framework.",

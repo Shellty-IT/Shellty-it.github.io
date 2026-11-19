@@ -676,7 +676,7 @@
   "privacyPolicy": {
       "email": "kontakt@shellty.pl",
       "title": "Privacy Policy",
-      "updated": "Last updated: 16 November 2026",
+      "updated": "Last updated: 19 November 2026",
       "closeAria": "Close privacy policy",
       "closeBtn": "Close",
       "sections": [
@@ -698,7 +698,7 @@
                   "With every request I also store the text and date of your consent, the page it was sent from and the site language."
               ],
               "after": [
-                  "The conversation with the assistant is also processed to generate replies (see section 6). Phone numbers and email addresses are not passed to AI services."
+                  "When you send a message to the assistant, the server receives it along with part of the conversation and a summary of your answers so far if you used the qualifier. This information helps generate a reply even before you submit an enquiry. The server automatically masks phone numbers and email addresses it detects before passing the content to the AI service."
               ]
           },
           {
@@ -715,7 +715,7 @@
                   "Requests from the qualifier and chat - up to 12 months after sending, unless you ask for deletion or withdraw your consent earlier. If we start working together, data needed for the work is kept for as long as the law requires.",
                   "Contact form messages - for as long as needed to handle the enquiry.",
                   "Technical data protecting the site against abuse (an encrypted hash of the IP address that does not reveal the address itself, and request counters) - no longer than 12 months.",
-                  "Your progress in the qualifier and the chat history are stored only in your browser session and disappear when you close the tab. They reach the server only when you send a request."
+                  "A copy of your chat history and your progress in the qualifier stay in your browser session until you close the tab. When you submit an enquiry from the chat, I also save a shortened record of your messages with the enquiry. I can also save any follow-up notes you send."
               ]
           },
           {
@@ -726,7 +726,7 @@
               "items": [
                   "Formspree, Inc. (USA) - contact form handling.",
                   "Cloudflare, Inc. (USA) - the server running the qualifier and chat, the request database and bot protection (Cloudflare Turnstile), which may analyse browser information and the IP address.",
-                  "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant replies from the conversation, after phone numbers and email addresses are removed."
+                  "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant's replies from the information described in section 2."
               ],
               "after": [
                   "These providers are based outside the European Economic Area. Data is transferred using mechanisms provided for in the GDPR, such as standard contractual clauses or the European Commission decision on the EU-U.S. Data Privacy Framework.",
