@@ -20,7 +20,6 @@ import PrivacyPolicyModal from '../contact/PrivacyPolicyModal';
 import avatarSmall from '../../assets/avatar/tomek_small.webp';
 import { BotTurn, TypingIndicator, UserMessage, scrollToTurn } from '../leadQualifier/Chat';
 import ContactStep from '../leadQualifier/ContactStep';
-import ProjectCard from '../leadQualifier/ProjectCard';
 import '../leadQualifier/QualifierModal.css';
 
 const TYPING_DELAY_MS = 700;
@@ -68,10 +67,6 @@ function assistantHistory(t, turns, text) {
     return [...history, { role: 'user', content: text }].slice(-HISTORY_LIMIT);
 }
 
-function projectFromAction(action) {
-    return /^show_project:(\w+)$/.exec(action ?? '')?.[1] ?? null;
-}
-
 function AnswersCard({ rows }) {
     return (
         <dl className="lq-card lq-summary">
@@ -82,26 +77,6 @@ function AnswersCard({ rows }) {
                 </div>
             ))}
         </dl>
-    );
-}
-
-function NodeCards({ node }) {
-    const { t } = useTranslation();
-    const config = CHAT_NODES[node];
-    const projects = config.projects ?? (config.project ? [config.project] : []);
-    return (
-        <>
-            {projects.map(({ id, reason }) => (
-                <ProjectCard key={id} projectId={id} reason={reason} />
-            ))}
-            {config.process && (
-                <ol className="lq-card lq-process lc-process">
-                    {t('qualifier.diagnosis.process', { returnObjects: true }).map((step) => (
-                        <li key={step}>{step}</li>
-                    ))}
-                </ol>
-            )}
-        </>
     );
 }
 
@@ -308,8 +283,9 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
         if (current.ai) {
             const { quickReplies, action } = current.ai;
             if (action === 'show_contact_card' && !submitted) return renderContactCard('chat', '');
+            const suggestions = action.startsWith('show_project:') ? [] : quickReplies;
             return renderReplyButtons([
-                ...quickReplies.map((label) => ({ key: `ai-${label}`, label, onClick: () => askAssistant(label) })),
+                ...suggestions.map((label) => ({ key: `ai-${label}`, label, onClick: () => askAssistant(label) })),
                 ...(action === 'open_qualifier' ? [scriptedButton(OPEN_QUALIFIER)] : []),
                 ...(submitted ? [] : [scriptedButton(WRITE_TO_TOMEK)]),
             ]);
@@ -327,10 +303,8 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     const renderBotTurn = (turn, isCurrent) => {
         const showActions = isCurrent && !waiting;
         if (turn.ai) {
-            const projectId = projectFromAction(turn.ai.action);
             return (
                 <BotTurn ref={isCurrent ? promptRef : undefined} focusable={isCurrent} messages={[turn.ai.reply]}>
-                    {projectId && <ProjectCard projectId={projectId} />}
                     {showActions && renderCurrentActions()}
                 </BotTurn>
             );
@@ -339,7 +313,13 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
         return (
             <BotTurn ref={isCurrent ? promptRef : undefined} focusable={isCurrent} messages={nodeMessages(t, turn)}>
                 {turn.rows && <AnswersCard rows={turn.rows} />}
-                <NodeCards node={turn.node} />
+                {CHAT_NODES[turn.node].process && (
+                    <ol className="lq-card lq-process lc-process">
+                        {t('qualifier.diagnosis.process', { returnObjects: true }).map((step) => (
+                            <li key={step}>{step}</li>
+                        ))}
+                    </ol>
+                )}
                 {after && <p className="lq-bubble">{after}</p>}
                 {showActions && renderCurrentActions()}
             </BotTurn>

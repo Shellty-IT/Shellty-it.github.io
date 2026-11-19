@@ -1294,20 +1294,19 @@
         "teasers": {
             "home": "Chcesz, żeby internet przynosił Twojej firmie klientów? Podpowiem, od czego zacząć.",
             "services": "Nie wiesz, która usługa pasuje do Twojej sytuacji? Pomogę wybrać w minutę.",
-            "portfolio": "Podoba Ci się któryś projekt? Tomek może przygotować coś podobnego dla Twojej firmy.",
+            "portfolio": "Masz pytanie o współpracę? Chętnie podpowiem.",
             "default": "Masz pytanie o współpracę? Chętnie podpowiem."
         },
         "greetings": {
             "home": "Cześć! Jestem asystentem Tomka. Pomogę Ci sprawdzić, jak strona, aplikacja albo wsparcie IT mogą przynieść Twojej firmie więcej klientów lub oszczędzić czas.",
             "services": "Cześć! Jestem asystentem Tomka. Pomogę Ci w minutę ustalić, która usługa najlepiej pasuje do Twojej sytuacji.",
-            "portfolio": "Cześć! Jestem asystentem Tomka. Jeśli któryś projekt Ci się spodobał, Tomek może przygotować coś podobnego, dopasowanego do Twojej firmy.",
+            "portfolio": "Cześć! Jestem asystentem Tomka. Czego potrzebuje Twoja firma?",
             "default": "Cześć! Jestem asystentem Tomka. Chętnie pomogę dobrać rozwiązanie dla Twojej firmy."
         },
         "replies": {
             "website": "Potrzebuję strony",
             "app": "Chcę usprawnić firmę",
             "it": "Mam problem z IT",
-            "portfolio": "Pokaż realizacje",
             "websiteNew": "Zaczynam od zera",
             "websiteRedo": "Mam stronę do poprawy",
             "appOffers": "Oferty i obsługa klientów",
@@ -1336,8 +1335,7 @@
             },
             "websiteNew": {
                 "messages": [
-                    "Czysta karta to pełna swoboda. Tomek zaprojektuje stronę pod Twoich klientów: szybką, wygodną na telefonie i prowadzącą prosto do kontaktu.",
-                    "Tak to może wyglądać w praktyce:"
+                    "Tomek może przygotować od podstaw stronę, na której klienci łatwo znajdą ofertę i skontaktują się z Twoją firmą."
                 ],
                 "after": "Dopasujmy rozwiązanie do Twojej branży - to zajmie około minuty."
             },
@@ -1355,23 +1353,18 @@
             },
             "appOffers": {
                 "messages": [
-                    "Oferty i obsługa klientów to serce sprzedaży - szybciej wysłana, dopracowana oferta często decyduje o wygranej.",
-                    "Tomek zbudował CRM, w którym AI przygotowuje oferty dopasowane do klienta:"
-                ],
-                "after": "Podobne rozwiązanie można dopasować do tego, jak sprzedaje Twoja firma."
+                    "Tomek może pomóc uporządkować zapytania klientów i skrócić czas przygotowywania ofert."
+                ]
             },
             "appInvoices": {
                 "messages": [
-                    "KSeF to dziś temat dla każdej firmy. Tomek ma go przećwiczonego we własnej platformie do e-faktur:"
-                ],
-                "after": "Integrację można dopasować do systemu, z którego już korzystasz."
+                    "Tomek może dopasować integrację z KSeF do systemu, z którego już korzystasz."
+                ]
             },
             "appAi": {
                 "messages": [
-                    "Dobrze wdrożone AI to nie gadżet - doradza klientom, przygotowuje treści i odciąża zespół.",
-                    "Zobacz agenta AI w działaniu:"
-                ],
-                "after": "W SmartQuote AI przygotowuje też oferty za handlowca. Podobny asystent może pracować w Twojej firmie."
+                    "Asystent AI może odpowiadać na częste pytania klientów albo pomóc zespołowi przygotowywać oferty. Co najbardziej odciążyłoby Twoją firmę?"
+                ]
             },
             "appOther": {
                 "messages": [
@@ -1402,7 +1395,7 @@
             },
             "portfolio": {
                 "messages": [
-                    "Oto realizacje, które dobrze pokazują, co Tomek może zrobić dla Twojej firmy:"
+                    "Dotychczasowe realizacje Tomka znajdziesz w zakładce Portfolio."
                 ]
             },
             "process": {
@@ -1429,8 +1422,7 @@
             },
             "thanks": {
                 "messages": [
-                    "Dzięki! Tomek odezwie się w ciągu 24 godzin.",
-                    "W międzyczasie możesz obejrzeć realizacje albo dobrać rozwiązanie krok po kroku."
+                    "Dzięki! Tomek odezwie się w ciągu 24 godzin."
                 ]
             },
             "noted": {

@@ -1,6 +1,5 @@
 import pl from '../locales/pl/translation.json';
 import en from '../locales/en/translation.json';
-import { getProjects } from '../components/portfolio/projects';
 import {
     CHAT_NODES,
     CHAT_START,
@@ -13,7 +12,6 @@ import {
 } from './chatScenario';
 
 const LOCALES = { pl, en };
-const PROJECT_IDS = new Set(getProjects((key) => key, 'pl').map((project) => project.id));
 const allReplies = [...new Set(Object.keys(CHAT_NODES).flatMap(nodeReplies))];
 
 function reachableNodes() {
@@ -32,8 +30,8 @@ function reachableNodes() {
 }
 
 describe('chat scenario', () => {
-    it('starts with the four main topics and the option to write to Tomek', () => {
-        expect(nodeReplies(CHAT_START)).toEqual(['website', 'app', 'it', 'portfolio', WRITE_TO_TOMEK]);
+    it('starts with the service topics and the option to write to Tomek', () => {
+        expect(nodeReplies(CHAT_START)).toEqual(['website', 'app', 'it', WRITE_TO_TOMEK]);
     });
 
     it('points every reply to an existing node or to the qualifier', () => {
@@ -61,12 +59,6 @@ describe('chat scenario', () => {
         expect(missing).toEqual([]);
     });
 
-    it('shows only existing portfolio projects', () => {
-        const projects = Object.values(CHAT_NODES).flatMap((node) => node.projects ?? (node.project ? [node.project] : []));
-        expect(projects.filter(({ id }) => !PROJECT_IDS.has(id))).toEqual([]);
-        expect(projects.map(({ id }) => id)).not.toContain('mobiSalon');
-    });
-
     it.each([
         ['Ile kosztuje strona?', 'pricing'],
         ['How much would it cost?', 'pricing'],
@@ -80,6 +72,9 @@ describe('chat scenario', () => {
         ['Potrzebuję wsparcia IT', 'it'],
         ['Is it possible to meet?', 'unknown'],
         ['Pokażesz jakieś realizacje?', 'portfolio'],
+        ['Gdzie zobaczę Twoje poprzednie realizacje stron?', 'portfolio'],
+        ['Chcę zbudować stronę portfolio', 'website'],
+        ['Can I see your previous work?', 'portfolio'],
         ['Jak wygląda współpraca?', 'process'],
         ['Dzień dobry', 'unknown'],
     ])('understands "%s"', (text, node) => {

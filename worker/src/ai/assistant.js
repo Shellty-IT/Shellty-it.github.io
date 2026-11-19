@@ -1,5 +1,5 @@
 import { isPlainObject } from '../http.js';
-import { ACTIONS, PROJECT_IDS, PROJECT_TITLES, SERVICES, buildSystemPrompt } from './prompt.js';
+import { ACTIONS, SERVICES, buildSystemPrompt } from './prompt.js';
 
 const PROVIDER_DEFAULTS = {
     groq: {
@@ -30,7 +30,6 @@ const EMAIL_PATTERN = /[^\s@]+@[^\s@]+\.[^\s@]+/g;
 const PHONE_PATTERN = /(?:\+|00)?\d[\d\s().-]{7,}\d/g;
 
 const LONG_DASH_PATTERN = /[\u2013\u2014]/g;
-const PROJECT_ID_PATTERN = new RegExp(`\\b(${PROJECT_IDS.join('|')})\\b`, 'g');
 const GENDERED_FORMS = [
     [/(?<!\p{L})chciała?by(?:ś|s)(?!\p{L})/giu, 'chcesz'],
     [/(?<!\p{L})(?:mógłby|mogłaby)(?:ś|s)(?!\p{L})/giu, 'możesz'],
@@ -39,7 +38,7 @@ const GENDERED_FORMS = [
 const openCircuits = new Map();
 
 export function normalizeReplyText(text) {
-    let normalized = text.replace(LONG_DASH_PATTERN, '-').replace(PROJECT_ID_PATTERN, (id) => PROJECT_TITLES[id]);
+    let normalized = text.replace(LONG_DASH_PATTERN, '-');
     for (const [pattern, neutral] of GENDERED_FORMS) {
         normalized = normalized.replace(pattern, (match) => (match[0] === match[0].toUpperCase() ? neutral[0].toUpperCase() + neutral.slice(1) : neutral));
     }
@@ -92,13 +91,6 @@ function parseJsonContent(content) {
     }
 }
 
-function validAction(action) {
-    if (action === undefined) return 'none';
-    if (ACTIONS.includes(action)) return action;
-    const projectId = /^show_project:(\w+)$/.exec(action ?? '')?.[1];
-    return projectId && PROJECT_IDS.includes(projectId) ? action : null;
-}
-
 export function parseAssistantReply(content) {
     const data = parseJsonContent(content);
     if (!isPlainObject(data)) throw new ProviderError('bad_response', 'not an object');
@@ -115,8 +107,8 @@ export function parseAssistantReply(content) {
             .slice(0, MAX_QUICK_REPLIES)
         : [];
 
-    const action = validAction(data.action);
-    if (action === null) throw new ProviderError('bad_response', 'action not allowed');
+    const { action = 'none' } = data;
+    if (!ACTIONS.includes(action)) throw new ProviderError('bad_response', 'action not allowed');
 
     const service = data.signals?.service;
     return {

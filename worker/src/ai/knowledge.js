@@ -37,67 +37,10 @@ export const KNOWLEDGE = {
     "whyMe": [
         "Programista i informatyk w jednym: Buduję rozwiązania nie tylko funkcjonalne, ale też stabilne i bezpieczne - bo rozumiem całą infrastrukturę, na której działają.",
         "Bezpośredni kontakt: Rozmawiasz z osobą, która wykonuje pracę, nie z pośrednikiem.",
-        "Działające portfolio: Moje projekty możesz zobaczyć na żywo (live demo), a nie tylko na obrazkach.",
         "Indywidualne podejście: Dopasowuję rozwiązanie do Twoich potrzeb i budżetu, nie odwrotnie."
     ],
     "reviews": [
         "Bardzo profesjonalne podejście, szybka realizacja i pełna komunikacja na każdym etapie. Polecam współpracę z tym specjalistą - solidny, terminowy i skuteczny. (Jan, Google)",
         "Zdecydowanie polecam usługi tego wykonawcy! Współpraca przebiegła super sprawnie, a strona działa i wygląda dokładnie tak, jak chcieliśmy. Kontakt był bezproblemowy, a wszystkie poprawki robione od ręki. (Malwina, Oferteo.pl)"
-    ],
-    "projects": {
-        "tomiForno": {
-            "title": "Tomi Forno",
-            "summary": "Pizzeria Neapolitańska · Full-Stack",
-            "description": "Wielostronicowa aplikacja webowa dla pizzerii neapolitańskiej zbudowana jako projekt portfolio. Zawiera interaktywne menu, galerię, system rezerwacji oraz kreator własnej pizzy.",
-            "demo": "https://tomi-forno.shellty.pl"
-        },
-        "smartQuoteAI": {
-            "title": "SmartQuote",
-            "summary": "CRM & Sales Automation",
-            "description": "Kompletny CRM sprzedażowy do przygotowywania ofert: łączy zarządzanie klientami, edytor bloków PDF, automatyzację procesu ofertowego oraz integrację z e-fakturami. Aplikacja wykorzystuje profesjonalne, gotowe szablony dokumentów, które AI automatycznie wypełnia dopasowaną do klienta i zakresu usługi treścią.",
-            "demo": "https://smart-quote.shellty.pl"
-        },
-        "ksefMaster": {
-            "title": "KSeF Master",
-            "summary": "National E-Invoicing Ecosystem",
-            "description": "Profesjonalna platforma do integracji z rządowym systemem e-faktur (KSeF). Architektura .",
-            "demo": "https://ksef-master.shellty.pl/"
-        },
-        "shelltyCMS": {
-            "title": "Shellty CMS",
-            "summary": "WordPress Alternative for B2B",
-            "description": "Next.js i Payload jako lekka alternatywa dla WordPressa.",
-            "demo": "https://cms.shellty.pl/"
-        },
-        "budmaxTheme": {
-            "title": "BudMax Theme",
-            "summary": "Premium WordPress Construction Theme",
-            "description": "Autorski motyw WordPress dla branży budowlanej, stawiający na czysty kod i wysoką wydajność. Pełna edycja treści przez ACF bez użycia ciężkich i nieprzewidywalnych page builderów.",
-            "demo": "https://dev-customer-test.pantheonsite.io/"
-        },
-        "shelltyKanban": {
-            "title": "Shellty.Kanban",
-            "summary": "Real-time Project Management",
-            "description": "Fullstack aplikacja Kanban do zarządzania zadaniami i współpracy zespołowej, zbudowana od podstaw w .NET 10 i React 18.",
-            "demo": "https://kanban.shellty.pl/"
-        },
-        "shelltyLingo": {
-            "title": "Shellty Lingo",
-            "summary": "Mobilna platforma do nauki języków",
-            "description": "Projektowana od podstaw aplikacja mobilna do świadomej nauki języków. Łączy krótkie, dopasowane lekcje, inteligentne powtórki i rozmowy AI, aby prowadzić użytkownika od pierwszych słów do swobodniejszej komunikacji po angielsku lub tajsku.",
-            "demo": null
-        },
-        "shelltyPromptCoach": {
-            "title": "Prompt Coach",
-            "summary": "AI Prompt Engineering Coach",
-            "description": "Aplikacja edukacyjno-narzędziowa do prompt engineeringu, która nie tylko doradza, ale samodzielnie generuje gotowe prompty na podstawie celu użytkownika. Każdy prompt powstaje w oparciu o bazę wiedzy (RAG) z cytowanymi źródłami i jest oceniany wg mierzalnych kryteriów jakości - istniejący prompt można też przeanalizować albo przekształcić w jednym z pięciu trybów (lekki, profesjonalny, agentowy, programistyczny, badawczy).",
-            "demo": "https://prompt-coach.shellty.pl/"
-        },
-        "shelltyBlog": {
-            "title": "Shellty Blog",
-            "summary": "Modern MVC Blog Platform",
-            "description": "Nowoczesny system CMS zbudowany w architekturze ASP.NET Core MVC z naciskiem na wzorce projektowe i Clean Code.",
-            "demo": "https://blog.shellty.pl"
-        }
-    }
+    ]
 };

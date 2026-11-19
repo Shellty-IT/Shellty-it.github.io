@@ -5,18 +5,6 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const output = join(root, 'worker', 'src', 'ai', 'knowledge.js');
 
-const SHOWCASE_PROJECTS = [
-    'tomiForno',
-    'smartQuoteAI',
-    'ksefMaster',
-    'shelltyCMS',
-    'budmaxTheme',
-    'shelltyKanban',
-    'shelltyLingo',
-    'shelltyPromptCoach',
-    'shelltyBlog',
-];
-
 function readTranslations(lang) {
     const text = readFileSync(join(root, 'src', 'locales', lang, 'translation.json'), 'utf8');
     return JSON.parse(text.replace(/^﻿/, ''));
@@ -31,19 +19,7 @@ function firstSentences(text, count) {
     return sentences.slice(0, count).join('').trim();
 }
 
-function projectLinks() {
-    const source = readFileSync(join(root, 'src', 'components', 'portfolio', 'projects.js'), 'utf8');
-    const links = {};
-    for (const block of source.split(/\n\s*\{\s*\n/)) {
-        const id = /id:\s*["']([^"']+)["']/.exec(block)?.[1];
-        const demo = /demoLink:\s*["']([^"']+)["']/.exec(block)?.[1];
-        if (id && demo) links[id] = demo;
-    }
-    return links;
-}
-
 const pl = readTranslations('pl');
-const links = projectLinks();
 const { services } = pl;
 
 const knowledge = {
@@ -57,20 +33,8 @@ const knowledge = {
         description: firstSentences(services[key].desc, 3),
     })),
     process: ['step1', 'step2', 'step3', 'step4'].map((key) => `${plain(services[key].title)}: ${plain(services[key].desc)}`),
-    whyMe: ['why1', 'why2', 'why3', 'why4'].map((key) => `${plain(services[key].title)}: ${plain(services[key].desc)}`),
+    whyMe: ['why1', 'why2', 'why4'].map((key) => `${plain(services[key].title)}: ${plain(services[key].desc)}`),
     reviews: services.reviews.items.map((review) => `${plain(review.text)} (${review.author}, ${review.source})`),
-    projects: Object.fromEntries(
-        SHOWCASE_PROJECTS.map((id) => {
-            const project = pl.portfolio.projects[id];
-            if (!project) throw new Error(`Missing portfolio translation for ${id}`);
-            return [id, {
-                title: plain(project.title),
-                summary: plain(project.subtitle).replace(/^-\s*|\s*-$/g, ''),
-                description: firstSentences(project.description, 2),
-                demo: links[id] ?? null,
-            }];
-        })
-    ),
 };
 
 writeFileSync(output, `export const KNOWLEDGE = ${JSON.stringify(knowledge, null, 4)};\n`);

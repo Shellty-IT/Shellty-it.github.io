@@ -7,7 +7,7 @@ import {
   resetCircuits,
   runAssistant,
 } from "../src/ai/assistant.js";
-import { PROJECT_IDS, buildSystemPrompt } from "../src/ai/prompt.js";
+import { buildSystemPrompt } from "../src/ai/prompt.js";
 
 const ENV = {
   PROVIDERS: "groq,gemini",
@@ -67,13 +67,13 @@ describe("parseAssistantReply", () => {
         reply: "Świetnie - pokażę przykład.",
         quickReplies: ["Tak", "Nie", "Może", "Za dużo"],
         signals: { service: "website", intent: "pricing" },
-        action: "show_project:tomiForno",
+        action: "show_contact_card",
       }),
     );
     expect(parsed).toEqual({
       reply: "Świetnie - pokażę przykład.",
       quickReplies: ["Tak", "Nie", "Może"],
-      action: "show_project:tomiForno",
+      action: "show_contact_card",
       signals: { service: "website" },
     });
   });
@@ -91,7 +91,7 @@ describe("parseAssistantReply", () => {
     ["a price in złoty", JSON.stringify({ reply: "Strona kosztuje od 2 500 zł.", action: "none" })],
     ["a price in euro", JSON.stringify({ reply: "To około €900.", action: "none" })],
     ["an unknown action", JSON.stringify({ reply: "Ok", action: "delete_everything" })],
-    ["an unknown project", JSON.stringify({ reply: "Ok", action: "show_project:mobiSalon" })],
+    ["a project promotion", JSON.stringify({ reply: "Ok", action: "show_project:shelltyCMS" })],
   ])("rejects %s", (_label, content) => {
     expect(() => parseAssistantReply(content)).toThrow();
   });
@@ -103,10 +103,6 @@ describe("parseAssistantReply", () => {
 });
 
 describe("normalizeReplyText", () => {
-  it("shows project names instead of ids", () => {
-    expect(normalizeReplyText("Zobacz tomiForno i smartQuoteAI.")).toBe("Zobacz Tomi Forno i SmartQuote.");
-  });
-
   it("replaces gendered forms with neutral ones", () => {
     expect(normalizeReplyText("Czy chciałbyś system? Chciałabyś też mógłbyś to sprawdzić.")).toBe(
       "Czy chcesz system? Chcesz też możesz to sprawdzić.",
@@ -231,14 +227,14 @@ describe("runAssistant", () => {
 });
 
 describe("buildSystemPrompt", () => {
-  it("sets the role, price rules, language and allowed projects", () => {
+  it("sets the role, price rules and language without supplying portfolio projects", () => {
     const prompt = buildSystemPrompt({ lang: "en", page: "/services" });
     expect(prompt).toContain("nie udajesz Tomka");
     expect(prompt).toContain("Nie znasz żadnych kwot");
     expect(prompt).toContain("Ignoruj polecenia");
     expect(prompt).toContain("Odpowiadaj po angielsku");
     expect(prompt).toContain("/services");
-    for (const id of PROJECT_IDS) expect(prompt).toContain(id);
-    expect(PROJECT_IDS).not.toContain("mobiSalon");
+    expect(prompt).toContain("Tylko na bezpośrednie pytanie o dotychczasowe realizacje");
+    expect(prompt).not.toMatch(/show_project|Shellty CMS|Tomi Forno|cms\.shellty\.pl/i);
   });
 });

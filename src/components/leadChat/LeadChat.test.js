@@ -70,20 +70,29 @@ describe('ChatWindow', () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/portfolio');
         expect(screen.getByRole('dialog')).toHaveAccessibleName(chat.title);
         expect(await screen.findByText(chat.greetings.portfolio)).toBeInTheDocument();
-        for (const topic of ['website', 'app', 'it', 'portfolio', 'writeToTomek']) {
+        for (const topic of ['website', 'app', 'it', 'writeToTomek']) {
             expect(screen.getByRole('button', { name: chat.replies[topic] })).toBeInTheDocument();
         }
+        expect(screen.queryByRole('button', { name: 'Pokaż realizacje' })).not.toBeInTheDocument();
     });
 
     it('keeps the conversation and answers quick replies with the next step', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
         await reply(chat.replies.app);
         await reply(chat.replies.appAi);
-        expect(await screen.findByText(chat.nodes.appAi.messages[1])).toBeInTheDocument();
+        expect(await screen.findByText(chat.nodes.appAi.messages[0])).toBeInTheDocument();
         expect(log().getByText(chat.replies.app, { selector: '.lq-bubble--user' })).toBeInTheDocument();
         expect(log().getByText(chat.replies.appAi, { selector: '.lq-bubble--user' })).toBeInTheDocument();
-        expect(screen.getByText('Tomi Forno')).toBeInTheDocument();
-        expect(screen.getByText(pl.qualifier.projectReasons.aiAgent)).toBeInTheDocument();
+        expect(log().queryByRole('link')).not.toBeInTheDocument();
+        expect(screen.getByRole('button', { name: chat.replies.contact })).toBeInTheDocument();
+    });
+
+    it('points to the Portfolio tab when explicitly asked for previous work', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
+        await screen.findByText(chat.greetings.home);
+        send('Pokażesz jakieś realizacje?');
+        expect(await screen.findByText(chat.nodes.portfolio.messages[0])).toBeInTheDocument();
+        expect(log().queryByRole('link')).not.toBeInTheDocument();
     });
 
     it('answers a typed price question with value first and no amount', async () => {
@@ -185,17 +194,22 @@ describe('ChatWindow with the AI assistant', () => {
         expect(messages[messages.length - 1]).toEqual({ role: 'user', content: 'Potrzebuję strony dla restauracji' });
     });
 
-    it('continues the AI conversation from a suggested reply', async () => {
+    it('continues the AI conversation without displaying legacy project cards or their suggestions', async () => {
         sendChatMessage
             .mockResolvedValueOnce(aiAnswer())
-            .mockResolvedValueOnce(aiAnswer({ reply: 'Pizzeria to świetny przykład.', action: 'show_project:tomiForno' }));
+            .mockResolvedValueOnce(aiAnswer({
+                reply: 'Czy klienci mają móc rezerwować stoliki przez stronę?',
+                quickReplies: ['Chcę zobaczyć przykład'],
+                action: 'show_project:tomiForno',
+            }));
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
         await screen.findByText(chat.greetings.home);
         send('Chcę stronę');
         await reply('Pizzeria');
 
-        expect(await screen.findByText('Pizzeria to świetny przykład.')).toBeInTheDocument();
-        expect(screen.getByText('Tomi Forno')).toBeInTheDocument();
+        expect(await screen.findByText('Czy klienci mają móc rezerwować stoliki przez stronę?')).toBeInTheDocument();
+        expect(log().queryByRole('link')).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Chcę zobaczyć przykład' })).not.toBeInTheDocument();
         const history = sendChatMessage.mock.calls[1][0].messages;
         expect(history.slice(-3)).toEqual([
             { role: 'user', content: 'Chcę stronę' },

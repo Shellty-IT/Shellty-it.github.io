@@ -1289,20 +1289,19 @@
         "teasers": {
             "home": "Want the internet to bring your business customers? I'll suggest where to start.",
             "services": "Not sure which service fits your situation? I'll help you choose in a minute.",
-            "portfolio": "Like one of the projects? Tomek can build something similar for your business.",
+            "portfolio": "Have a question about working together? Happy to help.",
             "default": "Have a question about working together? Happy to help."
         },
         "greetings": {
             "home": "Hi! I'm Tomek's assistant. I'll help you see how a website, an app or IT support can bring your business more customers or save you time.",
             "services": "Hi! I'm Tomek's assistant. In a minute I'll help you find the service that best fits your situation.",
-            "portfolio": "Hi! I'm Tomek's assistant. If you liked one of the projects, Tomek can build something similar, tailored to your business.",
+            "portfolio": "Hi! I'm Tomek's assistant. What does your business need?",
             "default": "Hi! I'm Tomek's assistant. I'm happy to help you find the right solution for your business."
         },
         "replies": {
             "website": "I need a website",
             "app": "I want to streamline my business",
             "it": "I have an IT problem",
-            "portfolio": "Show me your work",
             "websiteNew": "I'm starting from scratch",
             "websiteRedo": "I have a site to improve",
             "appOffers": "Quotes and customer service",
@@ -1331,8 +1330,7 @@
             },
             "websiteNew": {
                 "messages": [
-                    "A clean slate gives full freedom. Tomek will design a site around your customers: fast, comfortable on phones and leading straight to contact.",
-                    "This is what it can look like in practice:"
+                    "Tomek can build a site from scratch that makes it easy for customers to find what you offer and get in touch."
                 ],
                 "after": "Let's tailor the solution to your industry - it takes about a minute."
             },
@@ -1350,23 +1348,18 @@
             },
             "appOffers": {
                 "messages": [
-                    "Quotes and customer service are the heart of sales - a faster, polished quote often decides who wins the deal.",
-                    "Tomek built a CRM where AI prepares quotes tailored to the client:"
-                ],
-                "after": "A similar solution can be adapted to the way your business sells."
+                    "Tomek can help you organise customer enquiries and prepare quotes faster."
+                ]
             },
             "appInvoices": {
                 "messages": [
-                    "KSeF matters to every Polish business today. Tomek has already built it into his own e-invoicing platform:"
-                ],
-                "after": "The integration can be adapted to the system you already use."
+                    "Tomek can integrate KSeF with the system you already use."
+                ]
             },
             "appAi": {
                 "messages": [
-                    "Well-implemented AI is not a gimmick - it advises customers, prepares content and takes load off the team.",
-                    "See an AI agent in action:"
-                ],
-                "after": "In SmartQuote, AI also prepares quotes for the salesperson. A similar assistant can work in your business."
+                    "An AI assistant can answer common customer questions or help your team prepare quotes. What would save your team the most time?"
+                ]
             },
             "appOther": {
                 "messages": [
@@ -1397,7 +1390,7 @@
             },
             "portfolio": {
                 "messages": [
-                    "Here are projects that show well what Tomek can do for your business:"
+                    "You can find Tomek's previous work in the Portfolio section."
                 ]
             },
             "process": {
@@ -1424,8 +1417,7 @@
             },
             "thanks": {
                 "messages": [
-                    "Thanks! Tomek will get back to you within 24 hours.",
-                    "In the meantime you can browse the projects or find your solution step by step."
+                    "Thanks! Tomek will get back to you within 24 hours."
                 ]
             },
             "noted": {

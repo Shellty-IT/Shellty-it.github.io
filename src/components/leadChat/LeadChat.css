@@ -275,14 +275,6 @@
     cursor: not-allowed;
 }
 
-.lc-window .lq-project {
-    flex-direction: column;
-}
-
-.lc-window .lq-project__image {
-    width: 100%;
-}
-
 @keyframes lcLauncherIn {
     from { opacity: 0; transform: translateY(16px) scale(.96); }
     to { opacity: 1; transform: none; }
