@@ -1,4 +1,4 @@
-﻿{
+{
   "nav": {
     "home": "Shellty",
     "about": "Bio",
@@ -724,8 +724,8 @@
                   "I use providers who process data on my behalf:"
               ],
               "items": [
-                  "Formspree, Inc. (USA) - contact form handling and email notifications about enquiries from the qualifier and chat.",
-                  "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an assistant session.",
+                  "Resend, Inc. (USA) - email notifications about enquiries from the contact form, qualifier and chat.",
+                  "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an enquiry or assistant session.",
                   "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant's replies from the information described in section 2."
               ],
               "after": [
@@ -734,8 +734,8 @@
               ],
               "links": [
                   {
-                      "label": "Formspree",
-                      "href": "https://formspree.io/legal/privacy-policy"
+                      "label": "Resend",
+                      "href": "https://resend.com/legal/privacy-policy"
                   },
                   {
                       "label": "Cloudflare",
@@ -766,7 +766,7 @@
               "items": [
                   "The site does not use analytics or advertising cookies.",
                   "Browser storage keeps the selected site language and information needed for the qualifier and chat, e.g. whether the chat tip has already been shown.",
-                  "Cloudflare Turnstile may store data needed to verify the assistant session."
+                  "Cloudflare Turnstile may store data needed to verify the enquiry or assistant session."
               ]
           },
           {

@@ -14,7 +14,7 @@ import { requireSession } from "./session.js";
 
 const HONEYPOT_FIELD = "fax";
 
-const SOURCES = ["qualifier", "chat"];
+const SOURCES = ["qualifier", "chat", "contact"];
 const LANGS = ["pl", "en"];
 const SERVICES = ["website", "app", "fixes", "it", "unsure", "emergency"];
 const TIMELINES = ["asap", "month", "quarter", "browsing"];
@@ -26,6 +26,7 @@ const MAX_EMAIL = 254;
 const MAX_PAGE = 200;
 const MAX_CHAT_SUMMARY = 2000;
 const MAX_FOLLOW_UP = 1000;
+const MAX_CONTACT_MESSAGE = 4000;
 const MAX_CONSENT_TEXT = 600;
 const MAX_ANSWERS = 20;
 const MAX_ANSWER_KEY = 40;
@@ -69,21 +70,30 @@ function readAnswers(value, errors) {
 
 export function validateLead(body) {
   const errors = {};
+  const fromContact = body.source === "contact";
   const name = readText(body, "name", MAX_NAME, errors);
   const phoneInput = readText(body, "phone", MAX_PHONE, errors);
   const email = readText(body, "email", MAX_EMAIL, errors);
   const page = readText(body, "page", MAX_PAGE, errors);
   const chatSummary = readText(body, "chatSummary", MAX_CHAT_SUMMARY, errors);
   const consentText = readText(body, "consentText", MAX_CONSENT_TEXT, errors);
-  const answers = readAnswers(body.answers, errors);
+  const answers = fromContact ? {} : readAnswers(body.answers, errors);
   const lang = body.lang ?? "pl";
 
   const phone = phoneInput ? normalizePolishPhone(phoneInput) : null;
   if (phoneInput && !phone) errors.phone = "invalid";
   if (email && !EMAIL_PATTERN.test(email)) errors.email = "invalid";
   if (!phoneInput && !email) errors.contact = "required";
-  if (body.consent !== true) errors.consent = "required";
-  if (!consentText) errors.consentText ??= "required";
+  if (fromContact) {
+    if (!name) errors.name ??= "required";
+    if (!email) errors.email ??= "required";
+    const message = readText(body, "message", MAX_CONTACT_MESSAGE, errors);
+    if (!message) errors.message ??= "required";
+    answers.message = message;
+  } else {
+    if (body.consent !== true) errors.consent = "required";
+    if (!consentText) errors.consentText ??= "required";
+  }
   if (!SOURCES.includes(body.source)) errors.source = "invalid";
   if (!LANGS.includes(lang)) errors.lang = "invalid";
   assertValid(errors);
@@ -94,7 +104,7 @@ export function validateLead(body) {
     email: email || null,
     page: page || null,
     chatSummary: chatSummary || null,
-    consentText,
+    consentText: fromContact ? null : consentText,
     answers,
     source: body.source,
     lang,
@@ -143,16 +153,17 @@ export async function handleLead(request, env) {
     score: scoreLead(lead),
     createdAt: new Date().toISOString(),
   };
+  const consent = stored.source === "contact" ? 0 : 1;
 
   await env.DB.batch([
     env.DB.prepare(
       `INSERT INTO leads (id, session_id, name, phone, email, answers, score, source, page, lang,
          consent, consent_at, consent_text, chat_summary, created_at)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, 1, ?11, ?12, ?13, ?11)`,
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)`,
     ).bind(
       stored.id, sessionId, stored.name, stored.phone, stored.email,
       JSON.stringify(stored.answers), stored.score, stored.source, stored.page, stored.lang,
-      stored.createdAt, stored.consentText, stored.chatSummary,
+      consent, consent ? stored.createdAt : null, stored.consentText, stored.chatSummary, stored.createdAt,
     ),
     env.DB.prepare("INSERT INTO lead_notifications (lead_id) VALUES (?1)").bind(stored.id),
   ]);
@@ -174,11 +185,11 @@ export async function handleLeadNote(request, env) {
   const [{ meta }] = await env.DB.batch([
     env.DB.prepare(
       `UPDATE leads SET follow_up = ?1
-       WHERE id = (SELECT id FROM leads WHERE session_id = ?2 ORDER BY created_at DESC, id DESC LIMIT 1)`,
+       WHERE id = (SELECT id FROM leads WHERE session_id = ?2 AND source <> 'contact' ORDER BY created_at DESC, id DESC LIMIT 1)`,
     ).bind(note, sessionId),
     env.DB.prepare(
       `INSERT INTO lead_notifications (lead_id, note)
-       SELECT id, ?1 FROM leads WHERE session_id = ?2 ORDER BY created_at DESC, id DESC LIMIT 1`,
+       SELECT id, ?1 FROM leads WHERE session_id = ?2 AND source <> 'contact' ORDER BY created_at DESC, id DESC LIMIT 1`,
     ).bind(note, sessionId),
   ]);
   if (!meta.changes) throw new HttpError(404, "lead_not_found");

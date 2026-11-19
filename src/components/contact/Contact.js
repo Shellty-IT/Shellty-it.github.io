@@ -5,7 +5,7 @@ import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from "../sectionTitle/SectionTitle";
-import { postFormspree } from "../../leads/formspree";
+import { submitLead } from "../../leads/leadApi";
 import {
     FaEnvelope,
     FaFacebookF,
@@ -30,8 +30,7 @@ const ICON_NODES = [
 ];
 
 export default function Contact() {
-    const { t } = useTranslation();
-    const formRef = useRef(null);
+    const { t, i18n } = useTranslation();
     const messageRef = useRef(null);
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [touched, setTouched] = useState({ name: false, email: false, message: false });
@@ -75,17 +74,17 @@ export default function Contact() {
         setStatus({ loading: true, ok: null, text: "" });
 
         try {
-            const response = await postFormspree(new FormData(formRef.current));
-
-            const data = await response.json().catch(() => ({}));
-
-            if (response.ok) {
-                setStatus({ loading: false, ok: true, text: t("contact.status.ok") });
-                setForm({ name: "", email: "", message: "" });
-                setTouched({ name: false, email: false, message: false });
-            } else {
-                setStatus({ loading: false, ok: false, text: data.error || t("contact.status.sendError") });
-            }
+            await submitLead({
+                name: form.name.trim(),
+                email: form.email.trim(),
+                message: form.message.trim(),
+                source: 'contact',
+                page: window.location.pathname,
+                lang: i18n.language === 'en' ? 'en' : 'pl',
+            });
+            setStatus({ loading: false, ok: true, text: t("contact.status.ok") });
+            setForm({ name: "", email: "", message: "" });
+            setTouched({ name: false, email: false, message: false });
         } catch {
             setStatus({ loading: false, ok: false, text: t("contact.status.network") });
         }
@@ -139,12 +138,13 @@ export default function Contact() {
 
                     {/* Formularz */}
                     <div className="contact-card">
-                        <form ref={formRef} className="contact-form" onSubmit={handleSubmit} noValidate>
+                        <form className="contact-form" onSubmit={handleSubmit} noValidate>
 
                             <label className={fieldClass("name")}>
                                 <span className="field-label">{t("contact.fields.name")}</span>
                                 <input
                                     name="name"
+                                    maxLength={60}
                                     value={form.name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -163,6 +163,7 @@ export default function Contact() {
                                 <span className="field-label">{t("contact.fields.email")}</span>
                                 <input
                                     name="email"
+                                    maxLength={254}
                                     type="email"
                                     value={form.email}
                                     onChange={handleChange}
@@ -207,6 +208,7 @@ export default function Contact() {
                                 <textarea
                                     ref={messageRef}
                                     name="message"
+                                    maxLength={4000}
                                     rows="6"
                                     value={form.message}
                                     onChange={handleChange}

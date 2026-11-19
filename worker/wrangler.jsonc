@@ -15,6 +15,8 @@
   ],
   "triggers": { "crons": ["* * * * *"] },
   "vars": {
+    "LEAD_MAIL_FROM": "Shellty <zgloszenia@mail.shellty.pl>",
+    "LEAD_MAIL_TO": "kontakt@shellty.pl",
     "ALLOWED_ORIGINS": "https://shellty.pl,https://www.shellty.pl,http://localhost:3000",
     "DEV_MODE": "false",
     "SESSION_TTL_SECONDS": "7200",

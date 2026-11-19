@@ -35,7 +35,7 @@ describe('PrivacyPolicyModal', () => {
 
     it.each(Object.keys(LOCALES))('describes the real data flow of the lead funnel in %s', (lang) => {
         const text = JSON.stringify(LOCALES[lang].privacyPolicy);
-        for (const provider of ['Formspree', 'Cloudflare', 'Turnstile', 'Groq', 'Gemini']) {
+        for (const provider of ['Resend', 'Cloudflare', 'Turnstile', 'Groq', 'Gemini']) {
             expect(text).toContain(provider);
         }
         expect(text).toMatch(/12 (miesięcy|months)/);

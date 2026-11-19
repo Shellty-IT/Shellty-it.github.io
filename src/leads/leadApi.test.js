@@ -1,11 +1,10 @@
-import { loadLeadSession, updateLeadSession } from './leadSession';
-import { markLeadSent } from './funnelContext';
+import { updateLeadSession } from './leadSession';
 import { getTurnstileToken } from './turnstile';
 
 jest.mock('./turnstile', () => ({ getTurnstileToken: jest.fn() }));
 
 const WORKER = 'https://worker.test';
-const FORMSPREE = 'https://formspree.io/f/xnjbjvoz';
+
 const lead = {
     name: 'Test',
     email: 'test@example.com',
@@ -18,20 +17,20 @@ const result = (status, data) => ({ status, ok: status >= 200 && status < 300, j
 let api;
 const originalFetch = global.fetch;
 const originalEnvironment = process.env;
-const originalCrypto = global.crypto;
+
 
 beforeEach(() => {
     sessionStorage.clear();
     jest.clearAllMocks();
     global.fetch = jest.fn();
-    global.crypto = { randomUUID: () => 'lead-reference' };
+
     process.env = { ...originalEnvironment, REACT_APP_LEAD_API_URL: WORKER, REACT_APP_TURNSTILE_SITEKEY: 'test' };
     jest.isolateModules(() => { api = require('./leadApi'); });
 });
 
 afterEach(() => {
     global.fetch = originalFetch;
-    global.crypto = originalCrypto;
+
     process.env = originalEnvironment;
 });
 
@@ -39,49 +38,23 @@ function saveSession() {
     updateLeadSession({ apiSession: { token: 'signed', expiresAt: new Date(Date.now() + 600_000).toISOString() } });
 }
 
-it.each(['qualifier', 'chat'])('sends a %s lead and its follow-up to Formspree without starting Turnstile', async (source) => {
-    global.fetch.mockResolvedValue(result(200, { ok: true }));
-    await api.sendEvent({ name: 'chat_open' });
-    expect(global.fetch).not.toHaveBeenCalled();
-
-    const saved = await api.submitLead({ ...lead, source, chatSummary: 'Treść rozmowy' });
-    markLeadSent(lead.name, saved.emailReceipt);
-    await api.submitLeadNote('Dopisek testowy');
-
-    expect(getTurnstileToken).not.toHaveBeenCalled();
-    const [submission, followUp] = global.fetch.mock.calls;
-    expect(submission[0]).toBe(FORMSPREE);
-    expect(submission[1].body.get('email')).toBe(lead.email);
-    expect(submission[1].body.get('message')).toContain('Nowa strona internetowa');
-    expect(submission[1].body.get('message')).toContain('Treść rozmowy');
-    expect(followUp[0]).toBe(FORMSPREE);
-    expect(followUp[1].body.get('message')).toContain('lead-reference');
-    expect(followUp[1].body.get('message')).toContain('Dopisek testowy');
-});
-
-it('keeps using the Worker with an existing session and switches only when that session is rejected', async () => {
+it.each(['qualifier', 'chat', 'contact'])('sends a %s submission to the Worker', async (source) => {
     saveSession();
-    global.fetch.mockResolvedValueOnce(result(201, { ok: true }));
-    expect(await api.submitLead(lead)).toEqual({ ok: true });
+    global.fetch.mockResolvedValue(result(201, { ok: true }));
+    const submission = { ...lead, source, message: 'Treść zgłoszenia' };
+    await expect(api.submitLead(submission)).resolves.toEqual({ ok: true });
     expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch.mock.calls[0][0]).toBe(`${WORKER}/lead`);
-
-    global.fetch.mockResolvedValueOnce(result(401, { error: 'invalid_session' }));
-    global.fetch.mockResolvedValueOnce(result(200, { ok: true }));
-    expect((await api.submitLead(lead)).emailReceipt.reference).toBe('lead-reference');
-    expect(global.fetch.mock.calls[2][0]).toBe(FORMSPREE);
-    expect(loadLeadSession().apiSession).toBeNull();
-    expect(getTurnstileToken).not.toHaveBeenCalled();
+    const [url, request] = global.fetch.mock.calls[0];
+    expect(url).toBe(WORKER + '/lead');
+    expect(request.headers.Authorization).toBe('Bearer signed');
+    expect(JSON.parse(request.body)).toEqual(submission);
 });
 
-it('reports provider failures and avoids a second submission after an ambiguous Worker failure', async () => {
-    global.fetch.mockResolvedValueOnce(result(200, { ok: false }));
-    await expect(api.submitLead(lead)).rejects.toMatchObject({ code: 'formspree_failed' });
-
+it('rejects an unconfirmed submission instead of sending it through another provider', async () => {
     saveSession();
     global.fetch.mockRejectedValueOnce(new TypeError('Connection closed'));
     await expect(api.submitLead(lead)).rejects.toThrow('Connection closed');
-    expect(global.fetch).toHaveBeenCalledTimes(2);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
 });
 
 it('continues to authenticate AI chat sessions through Turnstile', async () => {

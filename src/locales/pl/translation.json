@@ -727,8 +727,8 @@
                   "Korzystam z usług dostawców, którzy przetwarzają dane w moim imieniu:"
               ],
               "items": [
-                  "Formspree, Inc. (USA) - obsługa formularza kontaktowego i wysyłka powiadomień o zgłoszeniach z kwalifikatora i czatu.",
-                  "Cloudflare, Inc. (USA) - serwer czatu i baza zgłoszeń obsługiwanych przez serwer. Przy rozpoczynaniu sesji asystenta Cloudflare Turnstile może poprosić o weryfikację.",
+                  "Resend, Inc. (USA) - wysyłka powiadomień o zgłoszeniach z formularza kontaktowego, kwalifikatora i czatu.",
+                  "Cloudflare, Inc. (USA) - serwer czatu i baza zgłoszeń obsługiwanych przez serwer. Przy rozpoczynaniu sesji zgłoszeń lub asystenta Cloudflare Turnstile może poprosić o weryfikację.",
                   "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści opisanych w punkcie 2."
               ],
               "after": [
@@ -737,8 +737,8 @@
               ],
               "links": [
                   {
-                      "label": "Formspree",
-                      "href": "https://formspree.io/legal/privacy-policy"
+                      "label": "Resend",
+                      "href": "https://resend.com/legal/privacy-policy"
                   },
                   {
                       "label": "Cloudflare",
@@ -769,7 +769,7 @@
               "items": [
                   "Strona nie używa plików cookies analitycznych ani reklamowych.",
                   "W pamięci przeglądarki zapisuję wybrany język strony oraz informacje potrzebne do działania kwalifikatora i czatu, np. czy podpowiedź czatu była już wyświetlona.",
-                  "Cloudflare Turnstile może zapisać dane potrzebne do weryfikacji sesji asystenta."
+                  "Cloudflare Turnstile może zapisać dane potrzebne do weryfikacji sesji zgłoszeń lub asystenta."
               ]
           },
           {
