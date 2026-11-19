@@ -83,6 +83,7 @@ it("keeps unsuccessful notifications for retry without resubmitting a lead", asy
 });
 
 it("keeps rejected notifications and exposes their error without repeating permanent failures", async () => {
+  const reportError = vi.spyOn(console, "error").mockImplementation(() => {});
   const { token } = await createSessionToken(bindings);
   const fetch = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 403 }));
   expect((await submit("/lead", token, {
@@ -96,4 +97,7 @@ it("keeps rejected notifications and exposes their error without repeating perma
   ).first();
   expect(notification.failed_at).toBeGreaterThan(0);
   expect(notification.accepted_at).toBeNull();
+  expect(reportError).toHaveBeenCalledExactlyOnceWith({
+    event: "lead_notification_failed", leadId: expect.any(String), reason: "http_403",
+  });
 });

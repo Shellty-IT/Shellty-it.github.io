@@ -4,7 +4,7 @@
   "account_id": "1f142e3e63f3c07cdd8f447f0340be82",
   "main": "src/index.js",
   "compatibility_date": "2026-11-01",
-  "observability": { "enabled": true },
+  "observability": { "enabled": true, "issues": { "enabled": true } },
   "d1_databases": [
     {
       "binding": "DB",
@@ -13,7 +13,7 @@
       "migrations_dir": "migrations"
     }
   ],
-  "triggers": { "crons": ["* * * * *"] },
+  "triggers": { "crons": ["* * * * *", "17 3 * * *"] },
   "vars": {
     "LEAD_MAIL_FROM": "Shellty <zgloszenia@mail.shellty.pl>",
     "LEAD_MAIL_TO": "kontakt@shellty.pl",

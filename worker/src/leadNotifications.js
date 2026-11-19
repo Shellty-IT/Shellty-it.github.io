@@ -39,12 +39,15 @@ export function formatLeadNotification(lead) {
 
 export async function deliverLeadNotifications(env) {
   const { RESEND_API_KEY: apiKey, LEAD_MAIL_FROM: from, LEAD_MAIL_TO: to } = env;
-  if (!apiKey || !from || !to) return;
 
   const { results } = await env.DB.prepare(
     `SELECT id FROM lead_notifications WHERE next_attempt_at <= ?1 AND accepted_at IS NULL AND failed_at IS NULL
      ORDER BY next_attempt_at, id LIMIT ?2`,
   ).bind(Date.now(), BATCH_SIZE).all();
+  if (!apiKey || !from || !to) {
+    if (results.length) console.error({ event: "lead_notification_failed", reason: "missing_configuration" });
+    return;
+  }
 
   for (const { id } of results) {
     const now = Date.now();
@@ -102,6 +105,10 @@ export async function deliverLeadNotifications(env) {
     const retry = retryable && nextAttempt < lead.first_attempt_at + RETRY_WINDOW_MS;
     await env.DB.prepare("UPDATE lead_notifications SET next_attempt_at = ?1, failed_at = ?2, last_error = ?3 WHERE id = ?4")
       .bind(nextAttempt, retry ? null : Date.now(), failure, id).run();
-    console.error(retry ? "Lead notification retry scheduled" : "Lead notification failed", lead.lead_id, failure);
+    if (retry) {
+      console.warn("Lead notification retry scheduled", lead.lead_id, failure);
+    } else {
+      console.error({ event: "lead_notification_failed", leadId: lead.lead_id, reason: failure });
+    }
   }
 }

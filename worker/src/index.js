@@ -4,6 +4,7 @@ import { handleEvent } from "./event.js";
 import { HttpError, json } from "./http.js";
 import { handleLead, handleLeadNote, handleListLeads } from "./lead.js";
 import { deliverLeadNotifications } from "./leadNotifications.js";
+import { purgeExpiredData, RETENTION_CRON } from "./retention.js";
 import { handleLeadSession, handleSession } from "./session.js";
 import { handleStats } from "./stats.js";
 
@@ -43,7 +44,8 @@ async function route(request, env) {
 }
 
 export default {
-  scheduled(_controller, env) {
+  scheduled(controller, env) {
+    if (controller.cron === RETENTION_CRON) return purgeExpiredData(env, controller.scheduledTime);
     return deliverLeadNotifications(env);
   },
 

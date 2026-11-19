@@ -5,8 +5,8 @@ import { HttpError } from "./http.js";
 const DAY_SECONDS = 24 * 60 * 60;
 const SESSION_WINDOW = 0;
 
-const HIT_SQL = `INSERT INTO rate_limits (bucket, window_start, count) VALUES (?1, ?2, 1)
-  ON CONFLICT (bucket, window_start) DO UPDATE SET count = count + 1
+const HIT_SQL = `INSERT INTO rate_limits (bucket, window_start, count, last_seen_at) VALUES (?1, ?2, 1, ?3)
+  ON CONFLICT (bucket, window_start) DO UPDATE SET count = count + 1, last_seen_at = excluded.last_seen_at
   RETURNING count`;
 
 async function ipHash(env, ip) {
@@ -15,8 +15,9 @@ async function ipHash(env, ip) {
 }
 
 async function consume(env, checks, code) {
+  const nowSeconds = Math.floor(Date.now() / 1000);
   const results = await env.DB.batch(
-    checks.map(({ bucket, windowStart }) => env.DB.prepare(HIT_SQL).bind(bucket, windowStart)),
+    checks.map(({ bucket, windowStart }) => env.DB.prepare(HIT_SQL).bind(bucket, windowStart, nowSeconds)),
   );
   const exceeded = checks.some(({ limit }, index) => results[index].results[0].count > limit);
   if (exceeded) throw new HttpError(429, code);
