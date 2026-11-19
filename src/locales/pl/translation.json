@@ -1402,6 +1402,12 @@
                 "messages": [
                     "Współpraca jest prosta i przejrzysta:"
                 ],
+                "steps": [
+                    "Bezpłatna rozmowa o Twoich potrzebach",
+                    "Propozycja rozwiązania i wycena",
+                    "W trakcie prac Tomek daje Ci znać, jak idzie",
+                    "Wsparcie po wdrożeniu"
+                ],
                 "after": "Na każdym etapie rozmawiasz bezpośrednio z Tomkiem, bez pośredników."
             },
             "pricing": {
@@ -1439,7 +1445,7 @@
                 "messages": [
                     "Mam już Twoje odpowiedzi z kwalifikatora:"
                 ],
-                "after": "Nie musisz niczego powtarzać. O co chcesz jeszcze zapytać? Napisz własnymi słowami albo wybierz temat."
+                "after": "Masz pytanie lub chcesz coś dodać? Wpisz wiadomość poniżej."
             }
         },
         "privacyLink": "Jak przetwarzane są dane"

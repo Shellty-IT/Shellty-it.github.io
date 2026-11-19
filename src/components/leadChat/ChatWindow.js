@@ -310,12 +310,15 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             );
         }
         const after = t(`chat.nodes.${turn.node}.after`, { defaultValue: '' });
+        const steps = CHAT_NODES[turn.node].process
+            ? t('chat.nodes.process.steps', { returnObjects: true, defaultValue: [] })
+            : [];
         return (
             <BotTurn ref={isCurrent ? promptRef : undefined} focusable={isCurrent} messages={nodeMessages(t, turn)}>
                 {turn.rows && <AnswersCard rows={turn.rows} />}
-                {CHAT_NODES[turn.node].process && (
+                {Array.isArray(steps) && steps.length > 0 && (
                     <ol className="lq-card lq-process lc-process">
-                        {t('qualifier.diagnosis.process', { returnObjects: true }).map((step) => (
+                        {steps.map((step) => (
                             <li key={step}>{step}</li>
                         ))}
                     </ol>

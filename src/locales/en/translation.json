@@ -1397,6 +1397,12 @@
                 "messages": [
                     "Working together is simple and transparent:"
                 ],
+                "steps": [
+                    "A free conversation about your needs",
+                    "A proposed solution and a quote",
+                    "Tomek keeps you updated as work progresses",
+                    "Support after launch"
+                ],
                 "after": "At every stage you talk directly to Tomek, with no middlemen."
             },
             "pricing": {
@@ -1434,7 +1440,7 @@
                 "messages": [
                     "I already have your answers from the qualifier:"
                 ],
-                "after": "No need to repeat anything. What else would you like to ask? Write in your own words or pick a topic."
+                "after": "Have a question or something to add? Type a message below."
             }
         },
         "privacyLink": "How data is processed"

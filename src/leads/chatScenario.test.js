@@ -100,6 +100,12 @@ describe('chat translations', () => {
         }
     });
 
+    it.each(Object.keys(LOCALES))('has a list of cooperation steps in %s', (lang) => {
+        const { steps } = LOCALES[lang].chat.nodes.process;
+        expect(Array.isArray(steps)).toBe(true);
+        expect(steps.length).toBeGreaterThan(0);
+    });
+
     it.each(Object.keys(LOCALES))('never mentions a price or uses an em dash in %s', (lang) => {
         const text = JSON.stringify(LOCALES[lang].chat);
         expect(text).not.toMatch(/\d\s*(zł|pln|eur|usd)|[€$£]/i);

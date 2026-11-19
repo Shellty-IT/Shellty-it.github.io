@@ -103,6 +103,23 @@ describe('ChatWindow', () => {
         expect(screen.getByRole('dialog').textContent).not.toMatch(/\d+\s*zł/);
     });
 
+    it('shows the cooperation steps when the user asks about them', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
+        await screen.findByText(chat.greetings.home);
+        send(chat.replies.process);
+
+        expect(await screen.findByText('Propozycja rozwiązania i wycena')).toBeInTheDocument();
+        expect(screen.getByLabelText(chat.inputLabel)).toBeEnabled();
+    });
+
+    it('restores a saved conversation about the cooperation process', async () => {
+        updateLeadSession({ chat: { turns: [{ from: 'bot', node: 'process' }] } });
+        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
+
+        expect(await screen.findByText('Wsparcie po wdrożeniu')).toBeInTheDocument();
+        expect(screen.getByLabelText(chat.inputLabel)).toBeEnabled();
+    });
+
     it('passes an unrecognised message to Tomek and sends it with the lead', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/services');
         await reply(chat.replies.website);
@@ -274,6 +291,7 @@ describe('ChatWindow after the qualifier', () => {
         expect(screen.getByText('Gastronomia, hotel, turystyka')).toBeInTheDocument();
         expect(screen.getByText('Rezerwacje lub zamówienia online')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: chat.replies.contact })).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: chat.replies.process })).not.toBeInTheDocument();
     });
 
     it('shows the answers only once per set of answers', async () => {
@@ -310,10 +328,12 @@ describe('ChatWindow after the qualifier', () => {
     });
 
     it('does not ask for contact again after a lead from the qualifier', async () => {
-        updateLeadSession({ leadSent: { name: 'Ola' } });
+        updateLeadSession({ qualifierAnswers, leadSent: { name: 'Ola' } });
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.fromQualifier.after);
         expect(screen.queryByRole('button', { name: chat.replies.writeToTomek })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: chat.replies.contact })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: chat.replies.process })).not.toBeInTheDocument();
         send('Najlepiej dzwonić po 16');
         expect(await screen.findByText(chat.nodes.noted.messages[0])).toBeInTheDocument();
         expect(submitLeadNote).toHaveBeenCalledWith('Najlepiej dzwonić po 16');

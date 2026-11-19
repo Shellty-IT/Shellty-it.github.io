@@ -34,7 +34,7 @@ export const CHAT_NODES = {
     pricing: { replies: ['contact', 'qualifier'] },
     contact: { contact: 'chat' },
     unknown: { contact: 'chat' },
-    fromQualifier: { replies: ['contact', 'process'] },
+    fromQualifier: { replies: ['contact'] },
     thanks: { replies: ['qualifier'] },
     noted: { replies: ['qualifier'] },
     noteFailed: { replies: ['qualifier'] },
