@@ -718,7 +718,7 @@
                   "Zgłoszenia z kwalifikatora i czatu - do 12 miesięcy od wysłania, chyba że wcześniej poprosisz o ich usunięcie lub wycofasz zgodę. Jeśli podejmiemy współpracę, dane potrzebne do jej realizacji przechowuję przez czas wymagany przepisami.",
                   "Wiadomości z formularza kontaktowego - przez czas potrzebny do obsługi zapytania.",
                   "Dane techniczne chroniące stronę przed nadużyciami (zaszyfrowany skrót adresu IP, który nie pozwala odczytać samego adresu, oraz liczniki zapytań) - nie dłużej niż 12 miesięcy.",
-                  "Kopia historii czatu i postęp w kwalifikatorze pozostają w pamięci sesji przeglądarki do zamknięcia karty. Gdy wysyłasz zgłoszenie z czatu, w bazie zgłoszeń zapisuję także skrócony zapis Twoich wiadomości. Do wysłanego zgłoszenia mogę też zapisać późniejsze dopiski."
+                  "Kopia historii czatu i postęp w kwalifikatorze pozostają w pamięci sesji przeglądarki do zamknięcia karty. Ze zgłoszeniem z czatu otrzymuję skrócony zapis Twoich wiadomości. Możesz też przesłać późniejsze dopiski."
               ]
           },
           {
@@ -727,8 +727,8 @@
                   "Korzystam z usług dostawców, którzy przetwarzają dane w moim imieniu:"
               ],
               "items": [
-                  "Formspree, Inc. (USA) - obsługa formularza kontaktowego.",
-                  "Cloudflare, Inc. (USA) - serwer obsługujący kwalifikator i czat, baza zgłoszeń oraz ochrona przed botami (Cloudflare Turnstile), która może analizować informacje o przeglądarce i adres IP.",
+                  "Formspree, Inc. (USA) - obsługa formularza kontaktowego i wysyłka powiadomień o zgłoszeniach z kwalifikatora i czatu.",
+                  "Cloudflare, Inc. (USA) - serwer czatu i baza zgłoszeń obsługiwanych przez serwer. Przy rozpoczynaniu sesji asystenta Cloudflare Turnstile może poprosić o weryfikację.",
                   "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści opisanych w punkcie 2."
               ],
               "after": [
@@ -761,7 +761,7 @@
                   "Odpowiedzi asystenta nie są ofertą ani wiążącą wyceną. Zakres i cenę ustala Tomek osobiście po rozmowie.",
                   "Gdy usługi AI są niedostępne, czat odpowiada wcześniej przygotowanymi wiadomościami.",
                   "Nie wpisuj w czacie danych wrażliwych, np. informacji o zdrowiu, haseł czy numerów dokumentów.",
-                  "Kwalifikator „Dobierz rozwiązanie” nie korzysta z AI - jego pytania i podpowiedzi są przygotowane wcześniej."
+                  "Kwalifikator „Dobierz rozwiązanie” prowadzi przez przygotowane pytania. W trakcie możesz przejść do asystenta AI, który może uwzględnić udzielone odpowiedzi."
               ]
           },
           {
@@ -769,7 +769,7 @@
               "items": [
                   "Strona nie używa plików cookies analitycznych ani reklamowych.",
                   "W pamięci przeglądarki zapisuję wybrany język strony oraz informacje potrzebne do działania kwalifikatora i czatu, np. czy podpowiedź czatu była już wyświetlona.",
-                  "Usługa Cloudflare Turnstile może zapisywać w przeglądarce dane niezbędne do odróżnienia ludzi od botów."
+                  "Cloudflare Turnstile może zapisać dane potrzebne do weryfikacji sesji asystenta."
               ]
           },
           {

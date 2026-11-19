@@ -1,5 +1,6 @@
 import { loadLeadSession, updateLeadSession } from './leadSession';
 import { getTurnstileToken } from './turnstile';
+import { postFormspree } from './formspree';
 
 const API_URL = process.env.REACT_APP_LEAD_API_URL;
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITEKEY;
@@ -14,7 +15,7 @@ export class LeadApiError extends Error {
 }
 
 async function post(path, body, token) {
-    if (!API_URL || !TURNSTILE_SITE_KEY) throw new LeadApiError(0, 'not_configured');
+    if (!API_URL) throw new LeadApiError(0, 'not_configured');
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers.Authorization = `Bearer ${token}`;
     const response = await fetch(`${API_URL}${path}`, {
@@ -30,17 +31,21 @@ async function post(path, body, token) {
 let pendingSession = null;
 
 async function createSession() {
+    if (!API_URL || !TURNSTILE_SITE_KEY) throw new LeadApiError(0, 'not_configured');
     const turnstileToken = await getTurnstileToken(TURNSTILE_SITE_KEY);
     const session = await post('/session', { turnstileToken });
     updateLeadSession({ apiSession: session });
     return session.token;
 }
 
-function sessionToken() {
+function savedSessionToken() {
     const saved = loadLeadSession().apiSession;
-    if (saved && Date.parse(saved.expiresAt) - Date.now() > SESSION_REFRESH_MARGIN_MS) {
-        return Promise.resolve(saved.token);
-    }
+    return saved && Date.parse(saved.expiresAt) - Date.now() > SESSION_REFRESH_MARGIN_MS ? saved.token : null;
+}
+
+function sessionToken() {
+    const token = savedSessionToken();
+    if (token) return Promise.resolve(token);
     pendingSession ??= createSession().finally(() => {
         pendingSession = null;
     });
@@ -57,16 +62,42 @@ async function postWithSession(path, body) {
     }
 }
 
-export function submitLead(lead) {
-    return postWithSession('/lead', lead);
+async function sendLeadEmail(lead, reference, note) {
+    const { leadEmail } = await import('./leadEmail');
+    const response = await postFormspree(leadEmail(lead, reference, note));
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || data.ok !== true) throw new LeadApiError(response.status, 'formspree_failed');
+}
+
+export async function submitLead(lead) {
+    const token = savedSessionToken();
+    if (API_URL && token) {
+        try {
+            return await post('/lead', lead, token);
+        } catch (error) {
+            if (!(error instanceof LeadApiError) || error.status !== 401) throw error;
+            updateLeadSession({ apiSession: null });
+        }
+    }
+    const reference = crypto.randomUUID();
+    await sendLeadEmail(lead, reference);
+    return { ok: true, emailReceipt: { reference, source: lead.source } };
 }
 
 export function submitLeadNote(note) {
-    return postWithSession('/lead/note', { note });
+    const lead = loadLeadSession().leadSent;
+    if (lead?.emailReceipt) {
+        const { source, reference } = lead.emailReceipt;
+        return sendLeadEmail({ name: lead.name, source }, reference, note);
+    }
+    const token = savedSessionToken();
+    if (!token) return Promise.reject(new LeadApiError(401, 'invalid_session'));
+    return post('/lead/note', { note }, token);
 }
 
 export function sendEvent({ name, page, data }) {
-    return postWithSession('/event', { name, page, data });
+    const token = savedSessionToken();
+    return token ? post('/event', { name, page, data }, token) : Promise.resolve();
 }
 
 export function sendChatMessage({ messages, lang, page, context }) {

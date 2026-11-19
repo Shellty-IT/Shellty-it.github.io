@@ -5,6 +5,7 @@ import "./Contact.css";
 import { useTranslation } from "react-i18next";
 import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from "../sectionTitle/SectionTitle";
+import { postFormspree } from "../../leads/formspree";
 import {
     FaEnvelope,
     FaFacebookF,
@@ -37,8 +38,6 @@ export default function Contact() {
     const [status, setStatus] = useState({ loading: false, ok: null, text: "" });
     const [titleHovered, setTitleHovered] = useState(false);
     const [showPrivacy, setShowPrivacy] = useState(false);
-
-    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjbjvoz";
 
     const emailOk = (v) =>
         /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).toLowerCase());
@@ -76,11 +75,7 @@ export default function Contact() {
         setStatus({ loading: true, ok: null, text: "" });
 
         try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
-                method: "POST",
-                headers: { Accept: "application/json" },
-                body: new FormData(formRef.current)
-            });
+            const response = await postFormspree(new FormData(formRef.current));
 
             const data = await response.json().catch(() => ({}));
 

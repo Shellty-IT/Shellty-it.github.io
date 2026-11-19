@@ -16,8 +16,8 @@ export function sentLead() {
     return loadLeadSession().leadSent ?? null;
 }
 
-export function markLeadSent(name) {
-    updateLeadSession({ leadSent: { name } });
+export function markLeadSent(name, emailReceipt) {
+    updateLeadSession({ leadSent: { name, ...(emailReceipt && { emailReceipt }) } });
 }
 
 export function chatService() {

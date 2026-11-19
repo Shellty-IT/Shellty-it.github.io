@@ -715,7 +715,7 @@
                   "Requests from the qualifier and chat - up to 12 months after sending, unless you ask for deletion or withdraw your consent earlier. If we start working together, data needed for the work is kept for as long as the law requires.",
                   "Contact form messages - for as long as needed to handle the enquiry.",
                   "Technical data protecting the site against abuse (an encrypted hash of the IP address that does not reveal the address itself, and request counters) - no longer than 12 months.",
-                  "A copy of your chat history and your progress in the qualifier stay in your browser session until you close the tab. When you submit an enquiry from the chat, I also save a shortened record of your messages with the enquiry. I can also save any follow-up notes you send."
+                  "A copy of your chat history and your progress in the qualifier stay in your browser session until you close the tab. When you submit an enquiry from the chat, I receive a shortened record of your messages with the enquiry. You can also send follow-up notes."
               ]
           },
           {
@@ -724,8 +724,8 @@
                   "I use providers who process data on my behalf:"
               ],
               "items": [
-                  "Formspree, Inc. (USA) - contact form handling.",
-                  "Cloudflare, Inc. (USA) - the server running the qualifier and chat, the request database and bot protection (Cloudflare Turnstile), which may analyse browser information and the IP address.",
+                  "Formspree, Inc. (USA) - contact form handling and email notifications about enquiries from the qualifier and chat.",
+                  "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an assistant session.",
                   "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant's replies from the information described in section 2."
               ],
               "after": [
@@ -758,7 +758,7 @@
                   "The assistant's replies are not an offer or a binding quote. Tomek agrees the scope and price personally after a conversation.",
                   "When AI services are unavailable, the chat replies with pre-written messages.",
                   "Do not enter sensitive data in the chat, e.g. health information, passwords or document numbers.",
-                  "The \"Find your solution\" qualifier does not use AI - its questions and suggestions are written in advance."
+                  "The \"Find your solution\" qualifier guides you through prepared questions. You can switch to the AI assistant during the questionnaire, and it can use your answers as context."
               ]
           },
           {
@@ -766,7 +766,7 @@
               "items": [
                   "The site does not use analytics or advertising cookies.",
                   "Browser storage keeps the selected site language and information needed for the qualifier and chat, e.g. whether the chat tip has already been shown.",
-                  "Cloudflare Turnstile may store data in the browser needed to tell humans from bots."
+                  "Cloudflare Turnstile may store data needed to verify the assistant session."
               ]
           },
           {

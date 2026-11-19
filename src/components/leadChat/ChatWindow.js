@@ -227,7 +227,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     };
 
     const sendLead = async (contact) => {
-        await submitLead({
+        const receipt = await submitLead({
             name: contact.name,
             phone: contact.phone,
             email: contact.email,
@@ -240,7 +240,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             answers: { ...(service && { service }), ...qualifierAnswers(), ...contact.answers },
             chatSummary: chatSummary(turns),
         });
-        markLeadSent(contact.name);
+        markLeadSent(contact.name, receipt?.emailReceipt);
         trackEvent('lead_submitted', { source: 'chat' });
         setState((previous) => ({
             ...previous,

@@ -239,7 +239,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
     const sendLead = async (contact) => {
         setSubmitting(true);
         try {
-            await submitLead({
+            const receipt = await submitLead({
                 name: contact.name,
                 phone: contact.phone,
                 email: contact.email,
@@ -251,7 +251,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
                 lang: i18n.language === 'en' ? 'en' : 'pl',
                 answers: { ...relevant, ...contact.answers },
             });
-            markLeadSent(contact.name);
+            markLeadSent(contact.name, receipt?.emailReceipt);
             trackEvent('lead_submitted', { source: 'qualifier', variant: stepId });
             setState((current) => ({
                 ...current,
