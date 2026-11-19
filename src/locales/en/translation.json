@@ -1282,9 +1282,10 @@
         "closeAria": "Close chat",
         "closeTeaser": "Close tip",
         "title": "Tomek's AI assistant",
-        "subtitle": "Tomek replies within 24 hours",
+        "subtitle": "Tomek replies to enquiries within 24 hours",
         "inputLabel": "Write a message",
-        "placeholder": "Tell me what you need...",
+        "placeholder": "Ask the assistant…",
+        "notePlaceholder": "Add to your enquiry…",
         "send": "Send",
         "teasers": {
             "home": "Want the internet to bring your business customers? I'll suggest where to start.",
@@ -1314,7 +1315,7 @@
             "process": "How does working together look?",
             "qualifier": "Find your solution in 60 s",
             "contact": "Let's talk",
-            "writeToTomek": "I'd rather write to Tomek"
+            "writeToTomek": "Send an enquiry to Tomek"
         },
         "nodes": {
             "start": {

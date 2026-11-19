@@ -1287,9 +1287,10 @@
         "closeAria": "Zamknij czat",
         "closeTeaser": "Zamknij podpowiedź",
         "title": "Asystent AI Tomka",
-        "subtitle": "Tomek odpowiada w ciągu 24 godzin",
+        "subtitle": "Tomek odpowiada na zgłoszenia w ciągu 24 godzin",
         "inputLabel": "Napisz wiadomość",
-        "placeholder": "Napisz, czego potrzebujesz...",
+        "placeholder": "Zapytaj asystenta…",
+        "notePlaceholder": "Dopisz do zgłoszenia…",
         "send": "Wyślij",
         "teasers": {
             "home": "Chcesz, żeby internet przynosił Twojej firmie klientów? Podpowiem, od czego zacząć.",
@@ -1319,7 +1320,7 @@
             "process": "Jak wygląda współpraca?",
             "qualifier": "Dobierz rozwiązanie w 60 s",
             "contact": "Umówmy rozmowę",
-            "writeToTomek": "Wolę napisać do Tomka"
+            "writeToTomek": "Wyślij zgłoszenie do Tomka"
         },
         "nodes": {
             "start": {

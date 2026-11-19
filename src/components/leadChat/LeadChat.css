@@ -243,9 +243,20 @@
     border-top: 1px solid var(--hairline);
 }
 
-.lc-input .lc-privacy {
+.lc-input__actions {
     grid-column: 1 / -1;
-    justify-self: start;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+}
+
+.lc-input__actions .lc-reply:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.lc-input .lc-privacy {
     min-height: 24px;
     font-size: .75rem;
 }

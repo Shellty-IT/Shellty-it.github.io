@@ -4,6 +4,7 @@ const BATCH_SIZE = 20;
 const LEASE_MS = 2 * 60_000;
 const RETRY_MS = 5 * 60_000;
 const REQUEST_TIMEOUT_MS = 8_000;
+const FORM_REFERER = "https://shellty.pl/";
 
 const sources = { qualifier: "Dobierz rozwiązanie", chat: "Czat" };
 const priorities = { hot: "pilne", warm: "standardowe", cold: "na później" };
@@ -32,7 +33,10 @@ export function formatLeadNotification(lead) {
     `ZGŁOSZENIE\nŹródło: ${source}\nPriorytet: ${priorities[lead.score]}\nPodstrona: ${lead.page || "—"}\nJęzyk: ${lead.lang}\nData (UTC): ${lead.created_at}\nNumer: ${lead.lead_id}`,
     `ZGODA NA KONTAKT\n${lead.consent_text || "Zapisana przy zgłoszeniu."}`,
   ].filter(Boolean).join("\n\n");
-  return { _subject: subject, message };
+  const form = new FormData();
+  form.set("subject", subject);
+  form.set("message", message);
+  return form;
 }
 
 export async function deliverLeadNotifications(env) {
@@ -60,8 +64,8 @@ export async function deliverLeadNotifications(env) {
     try {
       const response = await fetch(endpoint, {
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(formatLeadNotification(lead)),
+        headers: { Accept: "application/json", Referer: FORM_REFERER },
+        body: formatLeadNotification(lead),
         redirect: "manual",
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       });
@@ -75,6 +79,6 @@ export async function deliverLeadNotifications(env) {
     }
 
     await env.DB.prepare("DELETE FROM lead_notifications WHERE id = ?1").bind(id).run();
-    console.log("Lead notification sent", id);
+    console.log("Lead notification accepted by Formspree", id);
   }
 }

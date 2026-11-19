@@ -198,12 +198,13 @@ describe("POST /lead/note", () => {
     expect(stored.follow_up).toBe("Mam logo i domenę");
   });
 
-  it("does not touch leads of other sessions", async () => {
+  it("reports when a session has no lead and leaves other sessions untouched", async () => {
     const owner = await startSession();
     await call("/lead", { method: "POST", token: owner, body: leadBody({ name: "Adam" }) });
     const stranger = await startSession();
     const response = await call("/lead/note", { method: "POST", token: stranger, body: { note: "Obca notatka" } });
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(404);
+    expect(await response.json()).toEqual({ error: "lead_not_found" });
     const stored = await env.DB.prepare("SELECT follow_up FROM leads WHERE name = 'Adam'").first();
     expect(stored.follow_up).toBeNull();
   });
@@ -351,7 +352,8 @@ describe("rate limits", () => {
   it("limits requests per session", async () => {
     const token = await startSession();
     const limit = Number(env.RATE_LIMIT_PER_SESSION);
-    for (let i = 0; i < limit; i += 1) {
+    expect((await call("/lead", { method: "POST", token, body: leadBody() })).status).toBe(201);
+    for (let i = 1; i < limit; i += 1) {
       const response = await call("/lead/note", { method: "POST", token, body: { note: "Notatka" } });
       expect(response.status).toBe(200);
     }

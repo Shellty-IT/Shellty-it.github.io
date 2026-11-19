@@ -1,6 +1,7 @@
 import { isDevMode } from "./config.js";
 import { requireDevAccess } from "./dev.js";
 import {
+  HttpError,
   assertValid,
   clientIp,
   isPlainObject,
@@ -180,7 +181,8 @@ export async function handleLeadNote(request, env) {
        SELECT id, ?1 FROM leads WHERE session_id = ?2 ORDER BY created_at DESC, id DESC LIMIT 1`,
     ).bind(note, sessionId),
   ]);
-  if (meta.changes > 0 && isDevMode(env)) console.log(`Dopisek do leada (sesja ${sessionId}): ${note}`);
+  if (!meta.changes) throw new HttpError(404, "lead_not_found");
+  if (isDevMode(env)) console.log(`Dopisek do leada (sesja ${sessionId}): ${note}`);
   return json({ ok: true });
 }
 

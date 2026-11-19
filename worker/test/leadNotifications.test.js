@@ -16,8 +16,12 @@ async function submit(path, token, body) {
 afterEach(() => vi.restoreAllMocks());
 
 it("emails both sources and subsequent notes, and queues only accepted leads", async () => {
+  const emails = [];
   const fetch = vi.spyOn(globalThis, "fetch").mockImplementation(async (url, init) => {
-    new Request(url, init);
+    const request = new Request(url, init);
+    expect(request.headers.get("referer")).toBe("https://shellty.pl/");
+    expect(request.headers.get("accept")).toBe("application/json");
+    emails.push(Object.fromEntries(await request.formData()));
     return Response.json({ ok: true });
   });
   for (const source of ["qualifier", "chat"]) {
@@ -33,8 +37,7 @@ it("emails both sources and subsequent notes, and queues only accepted leads", a
   }
 
   await worker.scheduled({}, bindings);
-  const emails = fetch.mock.calls.map(([, request]) => JSON.parse(request.body));
-  expect(emails.map(({ _subject }) => _subject)).toEqual([
+  expect(emails.map(({ subject }) => subject)).toEqual([
     "Nowe zgłoszenie Shellty · Dobierz rozwiązanie",
     "Nowe zgłoszenie Shellty · Czat",
     "Dopisek do zgłoszenia Shellty · Czat",

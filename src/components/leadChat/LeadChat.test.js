@@ -151,12 +151,19 @@ describe('ChatWindow', () => {
 
     it('adds later messages to the submitted lead', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
+        fireEvent.change(screen.getByLabelText(chat.inputLabel), { target: { value: 'Chcę zapytać o nową stronę' } });
         await reply(chat.replies.writeToTomek);
+        expect(await screen.findByLabelText(pl.qualifier.contact.fields.message)).toHaveValue('Chcę zapytać o nową stronę');
+        expect(sendChatMessage).not.toHaveBeenCalled();
         fireEvent.change(await screen.findByLabelText('Imię (opcjonalnie)'), { target: { value: 'Jan' } });
         fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '512345678' } });
         fireEvent.click(screen.getByRole('checkbox'));
         fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
         await screen.findByText(pl.chat.nodes.thanks.messages[0]);
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
+            source: 'chat',
+            answers: { message: 'Chcę zapytać o nową stronę' },
+        }));
 
         send('Najlepiej po 16');
         expect(await screen.findByText(chat.nodes.noted.messages[0])).toBeInTheDocument();

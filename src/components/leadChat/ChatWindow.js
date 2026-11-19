@@ -96,6 +96,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     const { turns, service, note, submitted } = state;
     const lastIndex = turns.length - 1;
     const current = turns[lastIndex];
+    const showingContact = current.ai?.action === 'show_contact_card' || CHAT_NODES[current.node]?.contact;
     const lang = i18n.language === 'en' ? 'en' : 'pl';
     const [revealedIndex, setRevealedIndex] = useState(lastIndex - 1);
     const typing = revealedIndex < lastIndex;
@@ -200,6 +201,11 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             onOpenQualifier();
             return;
         }
+        if (reply === WRITE_TO_TOMEK) {
+            setDraft('');
+            addTurns(t(`chat.replies.${reply}`), replyTarget(reply), { note: draft.trim() });
+            return;
+        }
         addTurns(t(`chat.replies.${reply}`), replyTarget(reply));
     };
 
@@ -287,15 +293,14 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             return renderReplyButtons([
                 ...suggestions.map((label) => ({ key: `ai-${label}`, label, onClick: () => askAssistant(label) })),
                 ...(action === 'open_qualifier' ? [scriptedButton(OPEN_QUALIFIER)] : []),
-                ...(submitted ? [] : [scriptedButton(WRITE_TO_TOMEK)]),
             ]);
         }
         const config = CHAT_NODES[current.node];
         if (config.contact && !submitted) {
-            return renderContactCard(config.contact, current.node === 'unknown' ? note : '');
+            return renderContactCard(config.contact, ['contact', 'unknown'].includes(current.node) ? note : '');
         }
         const replies = nodeReplies(current.node).filter(
-            (reply) => !submitted || (replyTarget(reply) !== 'contact' && reply !== WRITE_TO_TOMEK)
+            (reply) => reply !== WRITE_TO_TOMEK && (!submitted || replyTarget(reply) !== 'contact')
         );
         return replies.length > 0 ? renderReplyButtons(replies.map(scriptedButton)) : null;
     };
@@ -379,16 +384,23 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                     type="text"
                     autoComplete="off"
                     maxLength={MAX_MESSAGE}
-                    placeholder={t('chat.placeholder')}
+                    placeholder={t(submitted ? 'chat.notePlaceholder' : 'chat.placeholder')}
                     value={draft}
                     onChange={(event) => setDraft(event.target.value)}
                 />
                 <button type="submit" className="lc-send" disabled={!draft.trim() || waiting} aria-label={t('chat.send')}>
                     <FaPaperPlane aria-hidden="true" />
                 </button>
-                <button type="button" className="lq-inline-link lc-privacy" onClick={() => setShowPrivacy(true)}>
-                    {t('chat.privacyLink')}
-                </button>
+                <div className="lc-input__actions">
+                    {!submitted && !showingContact && (
+                        <button type="button" className="lc-reply lc-reply--accent" disabled={waiting} onClick={() => chooseReply(WRITE_TO_TOMEK)}>
+                            {t(`chat.replies.${WRITE_TO_TOMEK}`)}
+                        </button>
+                    )}
+                    <button type="button" className="lq-inline-link lc-privacy" onClick={() => setShowPrivacy(true)}>
+                        {t('chat.privacyLink')}
+                    </button>
+                </div>
             </form>
             {showPrivacy && <PrivacyPolicyModal onClose={hidePrivacy} />}
         </section>
