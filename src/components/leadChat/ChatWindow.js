@@ -342,6 +342,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             role="dialog"
             aria-modal="false"
             aria-labelledby="lc-title"
+            aria-describedby="lc-subtitle"
             onKeyDown={(event) => {
                 if (event.key === 'Escape' && !showPrivacy) onClose();
             }}
@@ -354,7 +355,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                     <h2 id="lc-title" className="lc-header__title">
                         {t('chat.title')}
                     </h2>
-                    <p className="lc-header__subtitle">{t('chat.subtitle')}</p>
+                    <p id="lc-subtitle" className="lc-header__subtitle">{t('chat.subtitle')}</p>
                 </div>
                 <button type="button" className="lq-icon-btn" onClick={onClose} aria-label={t('chat.closeAria')}>
                     <FaTimes aria-hidden="true" />

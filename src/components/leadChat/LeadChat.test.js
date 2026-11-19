@@ -61,7 +61,9 @@ beforeEach(() => {
 describe('ChatWindow', () => {
     it('identifies the AI assistant on opening and provides access to the privacy policy', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        expect(screen.getByRole('heading', { name: 'Asystent AI Tomka' })).toBeVisible();
+        expect(screen.getByRole('heading', { name: 'Asystent Tomka' })).toBeVisible();
+        expect(screen.getByText(/^Rozmawiasz z AI\./)).toBeVisible();
+        expect(screen.getByRole('dialog')).toHaveAccessibleDescription(chat.subtitle);
         fireEvent.click(screen.getByRole('button', { name: chat.privacyLink }));
         expect(await screen.findByRole('heading', { name: pl.privacyPolicy.title })).toBeInTheDocument();
     });
