@@ -6,11 +6,8 @@ import {
     FaClock,
     FaCogs,
     FaCommentDots,
-    FaDesktop,
     FaExclamationTriangle,
     FaHammer,
-    FaLaptopCode,
-    FaQuestion,
     FaSearch,
     FaServer,
     FaShoppingCart,
@@ -20,6 +17,13 @@ import {
     FaUtensils,
     FaWrench,
 } from 'react-icons/fa';
+import {
+    AdviceIcon,
+    NewWebsiteIcon,
+    OperationsDashboardIcon,
+    ProjectUpdateIcon,
+    SystemPulseIcon,
+} from './ServiceIcons';
 
 export const FIRST_STEP = 'service';
 export const ASK_QUESTION = 'ask';
@@ -39,11 +43,11 @@ export function resolvePath(answers) {
 export const QUESTION_STEPS = {
     service: {
         options: [
-            { id: 'website', icon: FaDesktop },
-            { id: 'app', icon: FaLaptopCode },
-            { id: 'fixes', icon: FaWrench },
-            { id: 'it', icon: FaServer },
-            { id: 'unsure', icon: FaQuestion },
+            { id: 'website', icon: NewWebsiteIcon },
+            { id: 'app', icon: OperationsDashboardIcon },
+            { id: 'fixes', icon: ProjectUpdateIcon },
+            { id: 'it', icon: SystemPulseIcon },
+            { id: 'unsure', icon: AdviceIcon },
         ],
         urgentOption: { id: 'emergency', icon: FaExclamationTriangle },
         next: (value) => {
