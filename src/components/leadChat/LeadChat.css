@@ -184,22 +184,9 @@
 }
 
 .lc-header__title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     margin: 0;
     font-size: 1rem;
     font-weight: 700;
-}
-
-.lc-badge {
-    padding: 2px 7px;
-    border: 1px solid rgba(12, 192, 255, .45);
-    border-radius: var(--radius-full);
-    color: var(--accent);
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .08em;
 }
 
 .lc-header__subtitle {
@@ -210,13 +197,6 @@
 
 .lc-log {
     padding: 16px;
-}
-
-.lc-notice {
-    margin: 0;
-    color: var(--fg-mute);
-    font-size: .75rem;
-    line-height: 1.45;
 }
 
 .lc-replies {
@@ -256,10 +236,18 @@
 }
 
 .lc-input {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 8px;
     padding: 12px;
     border-top: 1px solid var(--hairline);
+}
+
+.lc-input .lc-privacy {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 24px;
+    font-size: .75rem;
 }
 
 .lc-input .lq-input {

@@ -16,7 +16,10 @@ async function submit(path, token, body) {
 afterEach(() => vi.restoreAllMocks());
 
 it("emails both sources and subsequent notes, and queues only accepted leads", async () => {
-  const fetch = vi.spyOn(globalThis, "fetch").mockImplementation(async () => Response.json({ ok: true }));
+  const fetch = vi.spyOn(globalThis, "fetch").mockImplementation(async (url, init) => {
+    new Request(url, init);
+    return Response.json({ ok: true });
+  });
   for (const source of ["qualifier", "chat"]) {
     const { token } = await createSessionToken(bindings);
     const body = {
@@ -31,7 +34,7 @@ it("emails both sources and subsequent notes, and queues only accepted leads", a
 
   await worker.scheduled({}, bindings);
   const emails = fetch.mock.calls.map(([, request]) => JSON.parse(request.body));
-  expect(emails.map(({ subject }) => subject)).toEqual([
+  expect(emails.map(({ _subject }) => _subject)).toEqual([
     "Nowe zgłoszenie Shellty · Dobierz rozwiązanie",
     "Nowe zgłoszenie Shellty · Czat",
     "Dopisek do zgłoszenia Shellty · Czat",
@@ -40,6 +43,7 @@ it("emails both sources and subsequent notes, and queues only accepted leads", a
   expect(emails[0].message).toContain("Nowa strona internetowa");
   expect(emails[1].message).toContain("Potrzebuję rezerwacji online.");
   expect(emails[2].message).toContain("Najlepiej po południu.");
+  expect((await bindings.DB.prepare("SELECT COUNT(*) AS count FROM lead_notifications").first()).count).toBe(0);
   await worker.scheduled({}, bindings);
   expect(fetch).toHaveBeenCalledTimes(3);
 });

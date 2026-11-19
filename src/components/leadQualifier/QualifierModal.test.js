@@ -64,7 +64,7 @@ async function walkToDiagnosis() {
     await reply('Rezerwacje lub zamówienia online');
     await reply('Dalej');
     await reply('Jak najszybciej');
-    await screen.findByText(qualifier.chat.diagnosisIntro);
+    await screen.findByText(qualifier.diagnosis.benefitsTitle);
 }
 
 beforeEach(() => {
@@ -122,13 +122,16 @@ describe('QualifierModal', () => {
         expect(await screen.findByText(qualifier.steps.industry.prompt)).toBeInTheDocument();
     });
 
-    it('builds a diagnosis with benefits, a matching project and no price', async () => {
+    it('ends with a short plan and the call to action outside the scrolled conversation', async () => {
         renderModal();
         await walkToDiagnosis();
         expect(screen.getByText(qualifier.benefits.booking)).toBeInTheDocument();
         expect(screen.getByText(qualifier.benefits.industryGastro)).toBeInTheDocument();
-        expect(screen.getByText('Tomi Forno')).toBeInTheDocument();
-        expect(screen.getByText(qualifier.projectReasons.booking)).toBeInTheDocument();
+        expect(screen.queryByText('Tomi Forno')).toBeNull();
+        expect(chat().queryByRole('figure')).toBeNull();
+        expect(chat().queryByRole('button')).toBeNull();
+        expect(screen.getByRole('button', { name: qualifier.diagnosis.yes })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: qualifier.diagnosis.question })).toBeInTheDocument();
         expect(screen.getByText(qualifier.plan.ready)).toBeInTheDocument();
         expect(screen.getByRole('dialog').textContent).not.toMatch(/zł|PLN/);
     });

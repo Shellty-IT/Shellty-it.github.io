@@ -1,16 +1,14 @@
 import {
     ANSWER_BENEFITS,
-    FALLBACK_PROJECT,
     FIRST_STEP,
     INDUSTRY_BENEFITS,
     PATH_BENEFITS,
-    PATH_REVIEW,
-    PROJECT_RULES,
     QUESTION_STEPS,
     resolvePath,
 } from './qualifierConfig';
 
 export const INITIAL_STATE = { history: [FIRST_STEP], answers: {} };
+export const MAX_BENEFITS = 3;
 
 export function isQuestionStep(stepId) {
     return Object.prototype.hasOwnProperty.call(QUESTION_STEPS, stepId);
@@ -61,26 +59,16 @@ function answerEntries(answers) {
     );
 }
 
-function pickProject(answers, path) {
-    if (path === 'D') return { project: null, reason: null };
-    const entries = new Set(answerEntries(answers));
-    return PROJECT_RULES.find(({ when }) => when.some((entry) => entries.has(entry))) ?? FALLBACK_PROJECT;
-}
-
 export function buildDiagnosis(answers) {
     const path = resolvePath(answers);
     const benefits = [
-        ...(path === 'A' && INDUSTRY_BENEFITS[answers.industry] ? [INDUSTRY_BENEFITS[answers.industry]] : []),
         ...answerEntries(answers).map((entry) => ANSWER_BENEFITS[entry]).filter(Boolean),
+        ...(path === 'A' && INDUSTRY_BENEFITS[answers.industry] ? [INDUSTRY_BENEFITS[answers.industry]] : []),
         ...PATH_BENEFITS[path],
     ];
-    const { project, reason } = pickProject(answers, path);
     return {
         path,
-        benefits: [...new Set(benefits)],
-        projectId: project,
-        projectReason: reason,
-        reviewIndex: PATH_REVIEW[path],
+        benefits: [...new Set(benefits)].slice(0, MAX_BENEFITS),
         isShort: answers.timeline === 'browsing',
     };
 }

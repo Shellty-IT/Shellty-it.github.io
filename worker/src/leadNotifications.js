@@ -32,7 +32,7 @@ export function formatLeadNotification(lead) {
     `ZGŁOSZENIE\nŹródło: ${source}\nPriorytet: ${priorities[lead.score]}\nPodstrona: ${lead.page || "—"}\nJęzyk: ${lead.lang}\nData (UTC): ${lead.created_at}\nNumer: ${lead.lead_id}`,
     `ZGODA NA KONTAKT\n${lead.consent_text || "Zapisana przy zgłoszeniu."}`,
   ].filter(Boolean).join("\n\n");
-  return { subject, message };
+  return { _subject: subject, message };
 }
 
 export async function deliverLeadNotifications(env) {
@@ -62,18 +62,19 @@ export async function deliverLeadNotifications(env) {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: JSON.stringify(formatLeadNotification(lead)),
-        redirect: "error",
+        redirect: "manual",
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || result.ok !== true) throw new Error(`Notification response HTTP ${response.status}`);
     } catch (error) {
-      console.error("Lead notification failed; retry scheduled", id, error.name);
+      console.error("Lead notification failed; retry scheduled", id, `${error.name}: ${error.message}`);
       await env.DB.prepare("UPDATE lead_notifications SET next_attempt_at = ?1 WHERE id = ?2")
         .bind(Date.now() + RETRY_MS, id).run();
       continue;
     }
 
     await env.DB.prepare("DELETE FROM lead_notifications WHERE id = ?1").bind(id).run();
+    console.log("Lead notification sent", id);
   }
 }

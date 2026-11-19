@@ -1,17 +1,15 @@
 import pl from '../locales/pl/translation.json';
 import en from '../locales/en/translation.json';
-import { getProjects } from '../components/portfolio/projects';
 import {
     ANSWER_BENEFITS,
     ASK_QUESTION,
     FIRST_STEP,
     INDUSTRY_BENEFITS,
-    FALLBACK_PROJECT,
     PATH_BENEFITS,
-    PROJECT_RULES,
     QUESTION_STEPS,
 } from './qualifierConfig';
 import {
+    MAX_BENEFITS,
     buildDiagnosis,
     isQuestionStep,
     nextStep,
@@ -22,7 +20,6 @@ import {
 } from './qualifierEngine';
 
 const LOCALES = { pl, en };
-const PROJECT_IDS = new Set(getProjects((key) => key, 'pl').map((project) => project.id));
 
 function choicesFor(stepId) {
     return stepOptions(stepId).map(({ id }) => (QUESTION_STEPS[stepId].multiple ? [id] : id));
@@ -141,53 +138,17 @@ describe('relevantAnswers', () => {
 });
 
 describe('diagnosis', () => {
-    it('gives a benefit point for every answer that has one', () => {
-        const missing = diagnosisJourneys.flatMap(({ answers }) => {
-            const { benefits } = buildDiagnosis(answers);
-            return Object.entries(answers)
-                .flatMap(([stepId, value]) => [].concat(value).map((item) => ANSWER_BENEFITS[`${stepId}:${item}`]))
-                .filter((benefit) => benefit && !benefits.includes(benefit));
-        });
-        expect(missing).toEqual([]);
-    });
-
-    it('always has at least one benefit and no duplicates', () => {
+    it('shows one to three points without duplicates, the visitor\'s own answers first', () => {
         for (const { answers } of diagnosisJourneys) {
             const { benefits } = buildDiagnosis(answers);
+            const fromAnswers = [...new Set(Object.entries(answers)
+                .flatMap(([stepId, value]) => [].concat(value).map((item) => ANSWER_BENEFITS[`${stepId}:${item}`]))
+                .filter(Boolean))];
             expect(benefits.length).toBeGreaterThan(0);
+            expect(benefits.length).toBeLessThanOrEqual(MAX_BENEFITS);
             expect(new Set(benefits).size).toBe(benefits.length);
+            expect(benefits.slice(0, fromAnswers.length)).toEqual(fromAnswers.slice(0, MAX_BENEFITS));
         }
-    });
-
-    it('matches an existing portfolio project for every industry on website, app and fixes paths', () => {
-        const diagnoses = diagnosisJourneys.map(({ answers }) => buildDiagnosis(answers));
-        const withProject = diagnoses.filter(({ path }) => path !== 'D');
-        expect(withProject.filter(({ projectId }) => !PROJECT_IDS.has(projectId))).toEqual([]);
-        expect(diagnoses.filter(({ path }) => path === 'D').every(({ projectId }) => projectId === null)).toBe(true);
-    });
-
-    it.each([
-        ['an AI assistant on a website', ['website', 'construction', 'no', ['ai'], 'asap']],
-        ['AI in a business app', ['app', 'b2b', 'ai', 'idea', 'month']],
-    ])('shows the AI agent in Tomi Forno for %s', (_label, choices) => {
-        const { answers } = walkChoices(choices);
-        expect(buildDiagnosis(answers)).toMatchObject({ projectId: 'tomiForno', projectReason: 'aiAgent' });
-    });
-
-    it('prefers a specific need over the industry', () => {
-        const { answers } = walkChoices(['app', 'gastro', 'invoices', 'spec', 'asap']);
-        expect(buildDiagnosis(answers).projectId).toBe('ksefMaster');
-    });
-
-    it('falls back to the industry when no need points to a project', () => {
-        const { answers } = walkChoices(['website', 'construction', 'no', ['google'], 'asap']);
-        expect(buildDiagnosis(answers).projectId).toBe('budmaxTheme');
-    });
-
-    it('recommends only projects chosen as showcase examples', () => {
-        const showcase = [...PROJECT_RULES.map(({ project }) => project), FALLBACK_PROJECT.project];
-        const excluded = ['mobiSalon', 'pwaCookbook', 'animalsOnePage', 'postlio', 'shelltyPulse'];
-        expect(showcase.filter((project) => excluded.includes(project))).toEqual([]);
     });
 
     it('marks people who are just looking around for the short diagnosis', () => {
@@ -214,9 +175,6 @@ describe('translations', () => {
             for (const { id } of options) expect(step.options[id]?.label).toBeTruthy();
         }
         for (const key of benefitKeys) expect(qualifier.benefits[key]).toBeTruthy();
-        for (const { reason } of [...PROJECT_RULES, FALLBACK_PROJECT]) {
-            expect(qualifier.projectReasons[reason]).toBeTruthy();
-        }
     });
 
     it.each(Object.keys(LOCALES))('never mentions a price in %s', (lang) => {

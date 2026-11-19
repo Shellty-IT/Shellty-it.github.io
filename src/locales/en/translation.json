@@ -789,7 +789,7 @@
   },
     "qualifier": {
         "launcher": {
-            "label": "Find your solution · 60 s",
+            "label": "Submit in a few steps",
             "saved": "Your answers are saved - you can come back any time."
         },
         "close": "Close",
@@ -1149,58 +1149,45 @@
             }
         },
         "benefits": {
-            "industryGastro": "A website where guests book a table and check the menu without calling",
-            "industryLocal": "A business card site that helps local customers find you and book a visit",
-            "industryConstruction": "A gallery of completed projects that sells your services for you",
-            "industryRetail": "Online sales that keep working even when your shop is closed",
-            "industryB2b": "A clear presentation of your offer that makes the decision easier for business clients",
-            "industrySolo": "A starter business card site or portfolio that shows you at your best",
-            "moreLeads": "A website designed to turn visitors into enquiries: clear calls to action and a simple form",
-            "google": "A fast website with basic SEO, plus trusted SEO specialists if needed",
-            "selfEdit": "A CMS panel where you change texts and photos yourself, no coding needed",
-            "booking": "A booking or ordering system that works for you even at night",
-            "modern": "A modern, consistent look that builds trust from the first visit",
-            "fast": "A fast, fully responsive website that is comfortable on any phone",
-            "allInOne": "I'll take care of everything: domain, hosting, setup and launch",
-            "excel": "Data in one place instead of spreadsheets - no more retyping and mistakes",
-            "offers": "Quotes, orders and customer service in one system, with nothing slipping through",
-            "invoices": "Integration with KSeF and e-invoices - I've already built it into my own system",
-            "automation": "Automation that gives you back hours every week",
-            "ai": "An AI assistant or automated content preparation tailored to your industry and your customers",
-            "mobile": "An app for phones, also as a PWA, without publishing in an app store",
-            "tailored": "A solution made to measure for your business that can grow with it",
-            "diagnosisFirst": "First I'll check what your website or app runs on and tell you plainly what is worth doing",
-            "repair": "Quick diagnosis and repair so everything works again",
-            "feature": "New features added to what you already have, without starting from scratch",
-            "speed": "A faster website that doesn't put customers off with waiting",
-            "finish": "I'll finish an abandoned project and get it launched",
-            "itOneOff": "One-off help or setup done properly and documented, so you know what you have",
-            "itCare": "Ongoing remote IT care: backups, monitoring, quick response - without the cost of an in-house IT person",
-            "itServer": "Server, hosting and business email set up so they simply work",
-            "itNetwork": "A reliable network, devices and backups you don't have to worry about",
-            "itSecurity": "A security review, backups and configuration that follows good practice",
-            "aiSite": "An AI assistant on your website that answers customer questions and advises them even outside business hours"
+            "industryGastro": "Table booking and menu online, no phone calls",
+            "industryLocal": "A business card site that helps local customers find you",
+            "industryConstruction": "A project gallery that sells your services",
+            "industryRetail": "An online shop that sells after hours too",
+            "industryB2b": "A clear offer that makes clients' decision easier",
+            "industrySolo": "A business card site or portfolio that shows you well",
+            "moreLeads": "A website that turns visitors into enquiries",
+            "google": "A fast website that is easy to find on Google",
+            "selfEdit": "A panel where you change texts and photos yourself",
+            "booking": "Online bookings and orders, even at night",
+            "modern": "A modern look that builds trust",
+            "fast": "A fast website that works well on any phone",
+            "allInOne": "I take care of the domain, hosting and launch",
+            "excel": "Data in one place instead of spreadsheets",
+            "offers": "Quotes, orders and clients in one system",
+            "invoices": "Integration with KSeF and e-invoices",
+            "automation": "Automation that saves you hours every week",
+            "ai": "An AI assistant tailored to your industry",
+            "mobile": "A phone app, no app store needed",
+            "tailored": "A solution made to measure for your business",
+            "diagnosisFirst": "First I'll check what you have and tell you plainly what is worth doing",
+            "repair": "Quick diagnosis and repair",
+            "feature": "New features added to what you already have",
+            "speed": "A faster website customers don't wait for",
+            "finish": "I'll finish an abandoned project and launch it",
+            "itOneOff": "One-off help, done properly",
+            "itCare": "Ongoing remote IT care, no in-house IT person needed",
+            "itServer": "Server, hosting and business email that simply work",
+            "itNetwork": "A reliable network, devices and backups",
+            "itSecurity": "A security review and backups",
+            "aiSite": "An AI assistant on your website that answers customers 24/7"
         },
         "diagnosis": {
             "benefitsTitle": "What I'll do for you",
-            "projectTitle": "See what it looks like in practice",
             "projectLink": "See the {{project}} project",
-            "whyTitle": "Why me",
-            "why": [
-                "A developer and an IT specialist in one - I'll build the website or app and look after the server, email and hardware",
-                "Direct contact with no middlemen - you talk to the person who does the work"
-            ],
-            "processTitle": "What happens next",
-            "process": [
-                "A free conversation about your needs",
-                "A proposed solution and a quote",
-                "I keep you updated as I work on your project",
-                "Support after launch"
-            ],
-            "consentQuestion": "Shall I prepare a proposal for your business?",
+            "note": "Free call and quote, no obligation.",
             "yes": "Yes, please",
-            "question": "I have another question",
-            "softText": "Leave your email and I'll send you a proposed solution. No obligation, no spam.",
+            "question": "I have a question",
+            "softText": "I'll email you a proposal. No obligation, no spam.",
             "softCta": "Send me a proposal"
         },
         "contact": {
@@ -1225,8 +1212,7 @@
             },
             "consent": "I agree to be contacted about my request and to the processing of the data I provide in accordance with the",
             "privacyLink": "Privacy Policy",
-            "noObligation": "No obligation. Your number is used only for this conversation, no spam.",
-            "responseTime": "I reply within 24 hours.",
+            "reassure": "No obligation. I reply within 24 hours.",
             "sending": "Sending...",
             "errors": {
                 "name": "Enter your first name.",
@@ -1279,18 +1265,14 @@
             "intro": "Hi! A few short questions, and at the end I'll show you a plan for your business.",
             "typing": "Typing a message",
             "you": "You",
-            "diagnosisIntro": "I have the full picture. Here's how I see your situation and what I can do for you:",
             "contactSent": "I'm leaving my contact details.",
             "change": "Change answer"
         },
         "projectReasons": {
             "aiAgent": "Here an AI agent advises customers while they order and suggests the best combinations. A similar assistant can work for your customers.",
-            "booking": "See online bookings in action - customers pick a time themselves, without calling or waiting for a reply.",
             "ksef": "An e-invoicing platform integrated with KSeF - I know how the system works from the inside.",
             "offers": "A CRM where AI fills professional quote templates with content tailored to the client and the scope of work.",
-            "mobile": "A mobile app with lessons tailored to the user and conversations with AI.",
             "wordpress": "My own WordPress theme for construction: a project gallery and full content editing without heavy plugins.",
-            "cms": "A lightweight content management system where you change texts and photos yourself, no coding needed.",
             "fallback": "A web app with online bookings and an AI assistant - a good example of a website that works for results."
         },
         "noteIntro": "Answers from the qualifier:"
@@ -1299,8 +1281,7 @@
         "launcherAria": "Open chat with Tomek's assistant",
         "closeAria": "Close chat",
         "closeTeaser": "Close tip",
-        "title": "Tomek's assistant",
-        "badge": "AI",
+        "title": "Tomek's AI assistant",
         "subtitle": "Tomek replies within 24 hours",
         "inputLabel": "Write a message",
         "placeholder": "Tell me what you need...",
@@ -1464,7 +1445,6 @@
                 "after": "No need to repeat anything. What else would you like to ask? Write in your own words or pick a topic."
             }
         },
-        "aiNotice": "You are talking to an AI assistant that can make mistakes. Tomek will confirm any arrangements personally. Do not enter sensitive data here.",
         "privacyLink": "How data is processed"
     }
 }

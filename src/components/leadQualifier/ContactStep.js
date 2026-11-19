@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
 import { LeadApiError } from '../../leads/leadApi';
 import { trackEvent } from '../../leads/funnelEvents';
-import Review from './Review';
 
 const MAX_NAME = 60;
 const MAX_EMAIL = 254;
@@ -55,7 +54,7 @@ function Field({ id, label, error, children }) {
     );
 }
 
-export default function ContactStep({ variant, review, initialNote = '', onSubmit, onShowPrivacy }) {
+export default function ContactStep({ variant, initialNote = '', onSubmit, onShowPrivacy }) {
     const { t } = useTranslation();
     const [channel, setChannel] = useState(() => initialChannel(variant));
     const [values, setValues] = useState({
@@ -250,11 +249,7 @@ export default function ContactStep({ variant, review, initialNote = '', onSubmi
             <p className="lq-form-status" role="alert">{status.error}</p>
 
             {CHANNEL_CHOICE.includes(variant) && (
-                <div className="lq-reassure">
-                    <p>{t('qualifier.contact.noObligation')}</p>
-                    <p>{t('qualifier.contact.responseTime')}</p>
-                    {variant === 'contact' && <Review index={review} compact />}
-                </div>
+                <p className="lq-card__note">{t('qualifier.contact.reassure')}</p>
             )}
         </form>
     );

@@ -792,7 +792,7 @@
   },
     "qualifier": {
         "launcher": {
-            "label": "Dobierz rozwiązanie · 60 s",
+            "label": "Zgłoś w kilku krokach",
             "saved": "Zapisałem Twoje odpowiedzi, możesz wrócić w każdej chwili."
         },
         "close": "Zamknij",
@@ -1154,58 +1154,45 @@
             }
         },
         "benefits": {
-            "industryGastro": "Strona, przez którą goście zarezerwują stolik i sprawdzą menu bez dzwonienia",
-            "industryLocal": "Wizytówka, dzięki której klienci z okolicy łatwo Cię znajdą i umówią wizytę",
-            "industryConstruction": "Galeria realizacji, która sprzedaje Twoje usługi za Ciebie",
-            "industryRetail": "Sprzedaż online, która działa także wtedy, gdy sklep jest zamknięty",
-            "industryB2b": "Przejrzysta prezentacja oferty, która ułatwia klientom biznesowym decyzję",
-            "industrySolo": "Wizytówka lub portfolio na start, które pokaże Cię z najlepszej strony",
-            "moreLeads": "Strona zaprojektowana tak, żeby odwiedzający zostawiali zapytania: wyraźne wezwania do kontaktu i prosty formularz",
-            "google": "Szybka strona z podstawową optymalizacją SEO, a w razie potrzeby wsparcie sprawdzonych specjalistów SEO",
-            "selfEdit": "Panel CMS, w którym sam zmienisz treści i zdjęcia, bez znajomości kodu",
-            "booking": "System rezerwacji lub zamówień, który pracuje za Ciebie także w nocy",
-            "modern": "Nowoczesny, spójny wygląd, który buduje zaufanie od pierwszego wejścia",
-            "fast": "Szybka, w pełni responsywna strona, wygodna na każdym telefonie",
-            "allInOne": "Zajmę się wszystkim: domeną, hostingiem, konfiguracją i uruchomieniem",
-            "excel": "Dane w jednym miejscu zamiast arkuszy - koniec z ręcznym przepisywaniem i błędami",
-            "offers": "Oferty, zamówienia i obsługa klientów w jednym systemie, bez gubienia wątków",
-            "invoices": "Integracja z KSeF i e-fakturami - mam to przećwiczone we własnym systemie",
-            "automation": "Automatyzacja, która oddaje Ci godziny w tygodniu",
-            "ai": "Asystent AI lub automatyczne przygotowywanie treści, dopasowane do Twojej branży i Twoich klientów",
-            "mobile": "Aplikacja na telefon, także jako PWA, bez publikowania w sklepie z aplikacjami",
-            "tailored": "Rozwiązanie szyte na miarę Twojej firmy, które można rozwijać razem z nią",
-            "diagnosisFirst": "Najpierw sprawdzę, na czym działa Twoja strona lub aplikacja, i powiem wprost, co warto zrobić",
-            "repair": "Szybka diagnoza i naprawa, żeby wszystko znów działało",
-            "feature": "Nowe funkcje dopisane do tego, co już masz, bez budowania od zera",
-            "speed": "Szybsza strona, która nie zniechęca klientów czekaniem",
-            "finish": "Dokończę porzucony projekt i doprowadzę go do uruchomienia",
-            "itOneOff": "Jednorazowa pomoc lub konfiguracja wykonana porządnie i opisana, żeby było jasne, co masz",
-            "itCare": "Stała opieka IT zdalnie: kopie zapasowe, monitoring, szybka reakcja - bez kosztu informatyka na etacie",
-            "itServer": "Serwer, hosting i poczta firmowa skonfigurowane tak, żeby po prostu działały",
-            "itNetwork": "Sprawna sieć, urządzenia i kopie zapasowe, o które nie musisz się martwić",
-            "itSecurity": "Przegląd zabezpieczeń, kopie zapasowe i konfiguracja zgodna z dobrymi praktykami",
-            "aiSite": "Asystent AI na stronie, który odpowiada na pytania klientów i doradza im także poza godzinami pracy"
+            "industryGastro": "Rezerwacja stolika i menu online, bez dzwonienia",
+            "industryLocal": "Wizytówka, dzięki której klienci z okolicy łatwo Cię znajdą",
+            "industryConstruction": "Galeria realizacji, która sprzedaje Twoje usługi",
+            "industryRetail": "Sklep online, który sprzedaje także po godzinach",
+            "industryB2b": "Przejrzysta oferta, która ułatwia klientom decyzję",
+            "industrySolo": "Wizytówka lub portfolio, które dobrze Cię pokaże",
+            "moreLeads": "Strona, z której klienci wysyłają zapytania",
+            "google": "Szybka strona, dobrze widoczna w Google",
+            "selfEdit": "Panel, w którym sam zmienisz teksty i zdjęcia",
+            "booking": "Rezerwacje i zamówienia online, także w nocy",
+            "modern": "Nowoczesny wygląd, który buduje zaufanie",
+            "fast": "Szybka strona, wygodna na każdym telefonie",
+            "allInOne": "Domenę, hosting i uruchomienie biorę na siebie",
+            "excel": "Dane w jednym miejscu zamiast arkuszy",
+            "offers": "Oferty, zamówienia i klienci w jednym systemie",
+            "invoices": "Integracja z KSeF i e-fakturami",
+            "automation": "Automatyzacja, która oszczędza Ci godziny w tygodniu",
+            "ai": "Asystent AI dopasowany do Twojej branży",
+            "mobile": "Aplikacja na telefon, bez sklepu z aplikacjami",
+            "tailored": "Rozwiązanie szyte na miarę Twojej firmy",
+            "diagnosisFirst": "Najpierw sprawdzę, co masz, i powiem wprost, co warto zrobić",
+            "repair": "Szybka diagnoza i naprawa",
+            "feature": "Nowe funkcje dopisane do tego, co już masz",
+            "speed": "Szybsza strona, na którą klienci nie czekają",
+            "finish": "Dokończę porzucony projekt i go uruchomię",
+            "itOneOff": "Jednorazowa pomoc, zrobiona porządnie",
+            "itCare": "Stała opieka IT zdalnie, bez informatyka na etacie",
+            "itServer": "Serwer, hosting i poczta firmowa, które po prostu działają",
+            "itNetwork": "Sprawna sieć, sprzęt i kopie zapasowe",
+            "itSecurity": "Przegląd zabezpieczeń i kopie zapasowe",
+            "aiSite": "Asystent AI na stronie, który odpowiada klientom całą dobę"
         },
         "diagnosis": {
             "benefitsTitle": "Co dla Ciebie zrobię",
-            "projectTitle": "Zobacz, jak to wygląda w praktyce",
             "projectLink": "Zobacz realizację {{project}}",
-            "whyTitle": "Dlaczego ja",
-            "why": [
-                "Programista i informatyk w jednym - zrobię stronę lub aplikację i zadbam o serwer, pocztę i sprzęt",
-                "Bezpośredni kontakt bez pośredników - rozmawiasz z osobą, która wykonuje pracę"
-            ],
-            "processTitle": "Jak to dalej wygląda",
-            "process": [
-                "Bezpłatna rozmowa o Twoich potrzebach",
-                "Propozycja rozwiązania i wycena",
-                "W trakcie prac daję Ci znać, jak idzie",
-                "Wsparcie po wdrożeniu"
-            ],
-            "consentQuestion": "Przygotować propozycję rozwiązania dla Twojej firmy?",
+            "note": "Bezpłatna rozmowa i wycena, bez zobowiązań.",
             "yes": "Tak, chętnie",
-            "question": "Mam jeszcze pytanie",
-            "softText": "Zostaw e-mail, a prześlę Ci propozycję rozwiązania. Bez zobowiązań i bez spamu.",
+            "question": "Mam pytanie",
+            "softText": "Prześlę Ci propozycję na e-mail. Bez zobowiązań i bez spamu.",
             "softCta": "Prześlij mi propozycję"
         },
         "contact": {
@@ -1230,8 +1217,7 @@
             },
             "consent": "Wyrażam zgodę na kontakt w sprawie mojego zgłoszenia i przetwarzanie podanych danych zgodnie z",
             "privacyLink": "Polityką prywatności",
-            "noObligation": "Bez zobowiązań. Numer tylko do tej rozmowy, bez spamu.",
-            "responseTime": "Odpowiadam w ciągu 24 godzin.",
+            "reassure": "Bez zobowiązań. Odpowiadam w ciągu 24 godzin.",
             "sending": "Wysyłam...",
             "errors": {
                 "name": "Podaj imię.",
@@ -1284,18 +1270,14 @@
             "intro": "Cześć! Kilka krótkich pytań, a na końcu pokażę plan dla Twojej firmy.",
             "typing": "Pisze wiadomość",
             "you": "Ty",
-            "diagnosisIntro": "Mam pełny obraz. Oto jak widzę Twoją sytuację i co mogę dla Ciebie zrobić:",
             "contactSent": "Zostawiam swoje dane kontaktowe.",
             "change": "Zmień odpowiedź"
         },
         "projectReasons": {
             "aiAgent": "Tu agent AI doradza klientom przy składaniu zamówienia i podpowiada najlepsze połączenia. Podobny asystent może pracować dla Twoich klientów.",
-            "booking": "Zobacz rezerwacje online w działaniu - klient sam wybiera termin, bez dzwonienia i czekania na odpowiedź.",
             "ksef": "Platforma do e-faktur zintegrowana z KSeF - wiem, jak ten system działa od środka.",
             "offers": "CRM, w którym AI wypełnia profesjonalne szablony ofert treścią dopasowaną do klienta i zakresu usługi.",
-            "mobile": "Aplikacja mobilna z lekcjami dopasowanymi do użytkownika i rozmowami z AI.",
             "wordpress": "Mój autorski motyw WordPress dla budownictwa: galeria realizacji i pełna edycja treści bez ciężkich wtyczek.",
-            "cms": "Lekki system zarządzania treścią, w którym samodzielnie zmieniasz teksty i zdjęcia, bez znajomości kodu.",
             "fallback": "Aplikacja webowa z rezerwacjami online i asystentem AI - dobry przykład tego, jak strona może pracować na wynik."
         },
         "noteIntro": "Odpowiedzi z kwalifikatora:"
@@ -1304,8 +1286,7 @@
         "launcherAria": "Otwórz czat z asystentem Tomka",
         "closeAria": "Zamknij czat",
         "closeTeaser": "Zamknij podpowiedź",
-        "title": "Asystent Tomka",
-        "badge": "AI",
+        "title": "Asystent AI Tomka",
         "subtitle": "Tomek odpowiada w ciągu 24 godzin",
         "inputLabel": "Napisz wiadomość",
         "placeholder": "Napisz, czego potrzebujesz...",
@@ -1469,7 +1450,6 @@
                 "after": "Nie musisz niczego powtarzać. O co chcesz jeszcze zapytać? Napisz własnymi słowami albo wybierz temat."
             }
         },
-        "aiNotice": "Rozmawiasz z asystentem AI, który może się mylić. Wiążące ustalenia przekaże Tomek osobiście. Nie wpisuj tu danych wrażliwych.",
         "privacyLink": "Jak przetwarzane są dane"
     }
 }

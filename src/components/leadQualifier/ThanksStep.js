@@ -3,14 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { buildDiagnosis, resolveFollowUp } from '../../leads/qualifierEngine';
 import { submitLeadNote } from '../../leads/leadApi';
-import { ProjectLink, useProject } from './ProjectCard';
 
 const MAX_NOTE = 1000;
 
 export default function ThanksStep({ variant, answers, onClose }) {
     const { t } = useTranslation();
     const diagnosis = buildDiagnosis(answers);
-    const project = useProject(variant === 'emergency' ? null : diagnosis.projectId);
     const [note, setNote] = useState('');
     const [noteStatus, setNoteStatus] = useState('idle');
     const followUp = resolveFollowUp(diagnosis.path, variant);
@@ -60,13 +58,9 @@ export default function ThanksStep({ variant, answers, onClose }) {
             )}
 
             <div className="lq-thanks__actions">
-                {project ? (
-                    <ProjectLink project={project} />
-                ) : (
-                    <Link className="lq-link" to="/portfolio" onClick={onClose}>
-                        {t('qualifier.thanks.portfolio')}
-                    </Link>
-                )}
+                <Link className="lq-link" to="/portfolio" onClick={onClose}>
+                    {t('qualifier.thanks.portfolio')}
+                </Link>
                 <button type="button" className="lq-secondary" onClick={onClose}>
                     {t('qualifier.thanks.close')}
                 </button>

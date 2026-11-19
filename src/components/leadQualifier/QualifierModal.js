@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaThumbsUp, FaTimes } from 'react-icons/fa';
 import { ASK_QUESTION, QUESTION_STEPS } from '../../leads/qualifierConfig';
 import {
     INITIAL_STATE,
@@ -96,7 +96,7 @@ function botMessages(t, history, index, answers, submitted) {
     if (isQuestionStep(stepId)) {
         return [index === 0 ? t('qualifier.chat.intro') : reaction, t(`qualifier.steps.${stepId}.prompt`)];
     }
-    if (stepId === 'diagnosis') return [reaction, t('qualifier.chat.diagnosisIntro')];
+    if (stepId === 'diagnosis') return [reaction];
     if (stepId === 'thanks') {
         return [
             t('qualifier.thanks.title', { name: submitted?.name, context: submitted?.name ? undefined : 'anonymous' }),
@@ -152,6 +152,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
         };
     });
     const showPlan = isQuestion || history.includes('diagnosis');
+    const diagnosis = stepId === 'diagnosis' ? buildDiagnosis(relevant) : null;
     const [revealedIndex, setRevealedIndex] = useState(currentIndex - 1);
     const typing = revealedIndex < currentIndex;
 
@@ -240,7 +241,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
 
     const acceptProposal = async () => {
         trackEvent('qualifier_yes');
-        const nextContactStep = buildDiagnosis(relevant).isShort ? 'soft' : 'contact';
+        const nextContactStep = diagnosis.isShort ? 'soft' : 'contact';
         const existingLead = sentLead();
         if (!existingLead) {
             goTo(nextContactStep);
@@ -263,15 +264,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
         if (isQuestionStep(stepId)) {
             return <TileStep key={stepId} stepId={stepId} answers={answers} onAnswer={answer} />;
         }
-        if (stepId === 'diagnosis') {
-            return (
-                <DiagnosisStep
-                    answers={relevant}
-                    onAccept={acceptProposal}
-                    onAskQuestion={() => goTo(ASK_QUESTION)}
-                />
-            );
-        }
+        if (stepId === 'diagnosis') return <DiagnosisStep diagnosis={diagnosis} />;
         if (stepId === 'thanks') {
             return <ThanksStep variant={submitted?.variant} answers={relevant} onClose={close} />;
         }
@@ -279,7 +272,6 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
             <ContactStep
                 key={stepId}
                 variant={stepId}
-                review={buildDiagnosis(relevant).reviewIndex}
                 onSubmit={sendLead}
                 onShowPrivacy={() => setShowPrivacy(true)}
             />
@@ -349,6 +341,17 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
                             {isQuestion && (
                                 <button type="button" className="lq-own-words" onClick={onAskQuestion}>
                                     {t('qualifier.ownWords')}
+                                </button>
+                            )}
+                            {diagnosis && !typing && !diagnosis.isShort && (
+                                <button type="button" className="lq-own-words" onClick={onAskQuestion}>
+                                    {t('qualifier.diagnosis.question')}
+                                </button>
+                            )}
+                            {diagnosis && !typing && (
+                                <button type="button" className="lq-primary lq-dialog__cta" onClick={acceptProposal}>
+                                    <FaThumbsUp aria-hidden="true" />
+                                    {t(diagnosis.isShort ? 'qualifier.diagnosis.softCta' : 'qualifier.diagnosis.yes')}
                                 </button>
                             )}
                         </div>

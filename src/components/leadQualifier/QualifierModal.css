@@ -252,6 +252,10 @@
     border-top: 1px solid var(--hairline);
 }
 
+.lq-back + .lq-dialog__cta {
+    margin-left: auto;
+}
+
 .lq-chat {
     position: relative;
     flex: 1;
@@ -613,13 +617,10 @@
     color: var(--ok);
 }
 
-.lq-process {
-    display: grid;
-    gap: 8px;
-    margin: 0;
-    padding-left: 22px;
-    color: var(--color-text-secondary);
-    line-height: 1.5;
+.lq-card__note {
+    margin: 12px 0 0;
+    color: var(--fg-mute);
+    font-size: .9rem;
 }
 
 .lq-project {
@@ -670,29 +671,6 @@
 
 .lq-link svg {
     font-size: .8em;
-}
-
-.lq-review__stars {
-    display: inline-flex;
-    gap: 3px;
-    color: var(--twin);
-    font-size: .9rem;
-}
-
-.lq-review__text {
-    margin: 10px 0;
-    color: var(--color-text-secondary);
-    font-style: italic;
-    line-height: 1.55;
-}
-
-.lq-review__meta {
-    color: var(--fg-mute);
-    font-size: .85rem;
-}
-
-.lq-review--compact {
-    padding: 14px 16px;
 }
 
 .lq-review--compact .lq-review__text {
@@ -839,18 +817,6 @@
     display: none;
 }
 
-.lq-reassure {
-    display: grid;
-    gap: 10px;
-    padding-top: 4px;
-}
-
-.lq-reassure > p {
-    margin: 0;
-    color: var(--fg-mute);
-    font-size: .9rem;
-}
-
 .lq-honeypot {
     position: absolute;
     left: -10000px;
@@ -985,7 +951,14 @@
     }
 
     .lq-dialog__footer {
+        flex-wrap: wrap;
+        gap: 4px 12px;
         padding: 8px 12px max(12px, env(safe-area-inset-bottom));
+    }
+
+    .lq-dialog__cta {
+        flex: 1 1 100%;
+        order: -1;
     }
 
     .lq-tiles {

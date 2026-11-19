@@ -364,7 +364,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                 </span>
                 <div className="lc-header__text">
                     <h2 id="lc-title" className="lc-header__title">
-                        {t('chat.title')} <span className="lc-badge">{t('chat.badge')}</span>
+                        {t('chat.title')}
                     </h2>
                     <p className="lc-header__subtitle">{t('chat.subtitle')}</p>
                 </div>
@@ -374,12 +374,6 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             </header>
 
             <div ref={logRef} className="lq-chat lc-log" role="log" aria-labelledby="lc-title">
-                <p className="lc-notice">
-                    {t('chat.aiNotice')}{' '}
-                    <button type="button" className="lq-inline-link" onClick={() => setShowPrivacy(true)}>
-                        {t('chat.privacyLink')}
-                    </button>
-                </p>
                 {turns.map((turn, index) => {
                     const isCurrent = index === lastIndex;
                     if (turn.from === 'user') return <UserMessage key={index}>{turn.text}</UserMessage>;
@@ -408,6 +402,9 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                 />
                 <button type="submit" className="lc-send" disabled={!draft.trim() || waiting} aria-label={t('chat.send')}>
                     <FaPaperPlane aria-hidden="true" />
+                </button>
+                <button type="button" className="lq-inline-link lc-privacy" onClick={() => setShowPrivacy(true)}>
+                    {t('chat.privacyLink')}
                 </button>
             </form>
             {showPrivacy && <PrivacyPolicyModal onClose={hidePrivacy} />}

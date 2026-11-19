@@ -178,18 +178,3 @@ export const ANSWER_BENEFITS = {
     'itPains:slow': 'itNetwork',
     'itPains:security': 'itSecurity',
 };
-
-export const PROJECT_RULES = [
-    { when: ['siteGoals:ai', 'appPain:ai'], project: 'tomiForno', reason: 'aiAgent' },
-    { when: ['appPain:invoices'], project: 'ksefMaster', reason: 'ksef' },
-    { when: ['appPain:excel', 'appPain:offers'], project: 'smartQuoteAI', reason: 'offers' },
-    { when: ['siteGoals:booking', 'industry:gastro', 'industry:local'], project: 'tomiForno', reason: 'booking' },
-    { when: ['appPain:mobile'], project: 'shelltyLingo', reason: 'mobile' },
-    { when: ['industry:construction', 'fixTarget:wordpress'], project: 'budmaxTheme', reason: 'wordpress' },
-    { when: ['siteGoals:self_edit', 'sitePains:cant_edit'], project: 'shelltyCMS', reason: 'cms' },
-    { when: ['industry:b2b'], project: 'smartQuoteAI', reason: 'offers' },
-];
-
-export const FALLBACK_PROJECT = { project: 'tomiForno', reason: 'fallback' };
-
-export const PATH_REVIEW = { A: 1, B: 0, C: 1, D: 0 };

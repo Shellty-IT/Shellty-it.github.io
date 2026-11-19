@@ -22,7 +22,7 @@ export function ProjectLink({ project }) {
     );
 }
 
-export default function ProjectCard({ projectId, reason, title }) {
+export default function ProjectCard({ projectId, reason }) {
     const { t } = useTranslation();
     const project = useProject(projectId);
     if (!project) return null;
@@ -38,7 +38,6 @@ export default function ProjectCard({ projectId, reason, title }) {
                 loading="lazy"
             />
             <div className="lq-project__text">
-                {title && <h3 className="lq-card__title">{title}</h3>}
                 <p className="lq-project__name">{project.title}</p>
                 <p className="lq-project__desc">
                     {reason ? t(`qualifier.projectReasons.${reason}`) : project.subtitle.replace(/^-\s*|\s*-$/g, '')}

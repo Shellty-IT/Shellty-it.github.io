@@ -59,17 +59,16 @@ beforeEach(() => {
 });
 
 describe('ChatWindow', () => {
-    it('tells the visitor that they are talking to an AI assistant', async () => {
+    it('identifies the AI assistant on opening and provides access to the privacy policy', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        expect(screen.getByText(chat.badge)).toBeInTheDocument();
-        expect(screen.getByText(chat.aiNotice, { exact: false })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Asystent AI Tomka' })).toBeVisible();
         fireEvent.click(screen.getByRole('button', { name: chat.privacyLink }));
         expect(await screen.findByRole('heading', { name: pl.privacyPolicy.title })).toBeInTheDocument();
     });
 
     it('greets according to the page and offers the main topics', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/portfolio');
-        expect(screen.getByRole('dialog')).toHaveAccessibleName(`${chat.title} ${chat.badge}`);
+        expect(screen.getByRole('dialog')).toHaveAccessibleName(chat.title);
         expect(await screen.findByText(chat.greetings.portfolio)).toBeInTheDocument();
         for (const topic of ['website', 'app', 'it', 'portfolio', 'writeToTomek']) {
             expect(screen.getByRole('button', { name: chat.replies[topic] })).toBeInTheDocument();
