@@ -16,7 +16,7 @@ function isFirstVisit() {
     }
 }
 
-export default function LeadQualifier({ open, onOpen, onClose, onAskQuestion }) {
+export default function LeadQualifier({ open, onOpen, onClose }) {
     const { t } = useTranslation();
     const [intro, setIntro] = useState(isFirstVisit);
     const [notice, setNotice] = useState('');
@@ -82,7 +82,7 @@ export default function LeadQualifier({ open, onOpen, onClose, onAskQuestion }) 
             </div>
             {open && (
                 <Suspense fallback={null}>
-                    <QualifierModal onClose={closeModal} onAskQuestion={onAskQuestion} />
+                    <QualifierModal onClose={closeModal} />
                 </Suspense>
             )}
         </>

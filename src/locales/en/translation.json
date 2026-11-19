@@ -789,7 +789,7 @@
   },
     "qualifier": {
         "launcher": {
-            "label": "Submit in a few steps",
+            "label": "Send a request",
             "saved": "Your answers are saved - you can come back any time."
         },
         "close": "Close",
@@ -819,7 +819,7 @@
         },
         "steps": {
             "service": {
-                "prompt": "Where shall we start?",
+                "prompt": "How can I help?",
                 "summary": "Service",
                 "options": {
                     "website": {
@@ -839,7 +839,7 @@
                         "reaction": "Good thinking. You only notice IT when it stops working, and then the whole business stops too."
                     },
                     "unsure": {
-                        "label": "Not sure - advise me",
+                        "label": "Describe it in my own words",
                         "reaction": "No problem, that's what I'm here for. The best solution usually comes from talking about goals, not technology."
                     },
                     "emergency": {
@@ -1226,7 +1226,7 @@
             "contact": {
                 "title": "How should I contact you?",
                 "lead": "I'll prepare a proposal for your business and get back to you personally.",
-                "submit": "Get a free proposal"
+                "submit": "Send request"
             },
             "soft": {
                 "title": "Where should I send the proposal?",
@@ -1235,11 +1235,19 @@
             },
             "emergency": {
                 "title": "Leave your number and I'll call back as soon as possible",
-                "lead": "Just your name and phone. Questions can wait for the call.",
+                "lead": "Leave your number and I’ll call back as soon as I can.",
                 "submit": "Call me back"
             },
             "chat": {
                 "submit": "Send to Tomek"
+            },
+            "topics": {
+                "website": "What should visitors be able to do on your website?",
+                "fixes": "What would you like to change? You can paste a link.",
+                "app": "What do you do manually today?",
+                "it": "What do you need help with?",
+                "unsure": "Describe your request in one sentence.",
+                "emergency": "What stopped working?"
             }
         },
         "thanks": {
@@ -1288,16 +1296,10 @@
         "notePlaceholder": "Add to your enquiry…",
         "send": "Send",
         "teasers": {
-            "home": "Want the internet to bring your business customers? I'll suggest where to start.",
-            "services": "Not sure which service fits your situation? I'll help you choose in a minute.",
-            "portfolio": "Have a question about working together? Happy to help.",
-            "default": "Have a question about working together? Happy to help."
-        },
-        "greetings": {
-            "home": "Hi! I'm Tomek's assistant. I'll help you see how a website, an app or IT support can bring your business more customers or save you time.",
-            "services": "Hi! I'm Tomek's assistant. In a minute I'll help you find the service that best fits your situation.",
-            "portfolio": "Hi! I'm Tomek's assistant. What does your business need?",
-            "default": "Hi! I'm Tomek's assistant. I'm happy to help you find the right solution for your business."
+            "home": "Have a question for Tomek?",
+            "services": "Have a question for Tomek?",
+            "portfolio": "Have a question for Tomek?",
+            "default": "Have a question for Tomek?"
         },
         "replies": {
             "website": "I need a website",
@@ -1313,80 +1315,74 @@
             "itCare": "Ongoing IT care",
             "itOneOff": "One-off help",
             "process": "How does working together look?",
-            "qualifier": "Find your solution in 60 s",
-            "contact": "Let's talk",
+            "qualifier": "Choose a request topic",
+            "contact": "Leave contact details",
             "writeToTomek": "Send an enquiry to Tomek"
         },
         "nodes": {
             "start": {
                 "messages": [
-                    "What brings you here? Pick a topic or write in your own words."
+                    "How can I help? Choose a topic or type a message."
                 ]
             },
             "website": {
                 "messages": [
-                    "Good call - your website is where customers judge a business first, usually before they ever call.",
-                    "Do you already have a website, or are we starting from scratch?"
+                    "Do you have a website or are you starting from scratch?"
                 ]
             },
             "websiteNew": {
                 "messages": [
-                    "Tomek can build a site from scratch that makes it easy for customers to find what you offer and get in touch."
-                ],
-                "after": "Let's tailor the solution to your industry - it takes about a minute."
+                    "What should visitors be able to do on your website?"
+                ]
             },
             "websiteRedo": {
                 "messages": [
-                    "Understood. A few well-chosen changes often do more than a new site: faster loading, clearer calls to action, comfort on phones.",
-                    "Tomek will gladly review your current site and point out what to improve first."
+                    "What would you like to change? You can paste a link."
                 ]
             },
             "app": {
                 "messages": [
-                    "Great. A well-fitted app can take hours of repetitive work off your business every week.",
-                    "What takes up most of your time today?"
+                    "What would you like to streamline?"
                 ]
             },
             "appOffers": {
                 "messages": [
-                    "Tomek can help you organise customer enquiries and prepare quotes faster."
+                    "How do you prepare quotes today?"
                 ]
             },
             "appInvoices": {
                 "messages": [
-                    "Tomek can integrate KSeF with the system you already use."
+                    "What invoicing software do you use?"
                 ]
             },
             "appAi": {
                 "messages": [
-                    "An AI assistant can answer common customer questions or help your team prepare quotes. What would save your team the most time?"
+                    "What task would you like AI to help with?"
                 ]
             },
             "appOther": {
                 "messages": [
-                    "Describe in a sentence or two what you want to improve. I'll pass it on to Tomek and he'll prepare a concrete proposal."
+                    "What do you do manually today?"
                 ]
             },
             "it": {
                 "messages": [
-                    "You only notice IT when it stops working - and then the whole business stops. Tomek has worked professionally with servers, networks and databases for years.",
-                    "What do you need?"
+                    "Is this an outage, ongoing support or a one-off job?"
                 ]
             },
             "itEmergency": {
                 "messages": [
-                    "Understood, every minute of downtime costs. Leave your number - Tomek will call back as soon as possible."
+                    "Leave your number and Tomek will call back as soon as he can."
                 ]
             },
             "itCare": {
                 "messages": [
-                    "Ongoing IT care means peace of mind: backups, monitoring and a quick response before a problem stops work - without the cost of an in-house IT person.",
-                    "Tomek will tailor the scope to your number of workstations and what matters most to you."
+                    "What would you like IT support to cover?"
                 ]
             },
             "itOneOff": {
                 "messages": [
-                    "One-off help makes sense too: server, email, network or backup setup - done properly and documented, so it's clear what works and how."
+                    "What do you need help with?"
                 ]
             },
             "portfolio": {
@@ -1408,18 +1404,17 @@
             },
             "pricing": {
                 "messages": [
-                    "The cost depends on what the solution should achieve for your business - so before naming a figure, it's worth agreeing on the goal. Then the quote is accurate, not a guess.",
-                    "Tomek will prepare an exact quote after a short, free call - usually within 24 hours."
+                    "The price depends on the scope. Tomek can quote after a free consultation."
                 ]
             },
             "contact": {
                 "messages": [
-                    "Great. Leave your contact details and Tomek will prepare a proposal and get back to you personally."
+                    "How can Tomek reach you?"
                 ]
             },
             "unknown": {
                 "messages": [
-                    "Thanks for your message. To answer it properly, I'll pass it on to Tomek - leave your contact details and he'll get back to you personally."
+                    "Leave your contact details and Tomek will reply."
                 ]
             },
             "thanks": {

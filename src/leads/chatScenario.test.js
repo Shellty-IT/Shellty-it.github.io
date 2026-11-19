@@ -95,7 +95,6 @@ describe('chat translations', () => {
         for (const node of Object.keys(CHAT_NODES)) expect(chat.nodes[node]?.messages?.length).toBeGreaterThan(0);
         for (const reply of [...allReplies, OPEN_QUALIFIER]) expect(chat.replies[reply]).toBeTruthy();
         for (const key of ['home', 'services', 'portfolio', 'default']) {
-            expect(chat.greetings[key]).toBeTruthy();
             expect(chat.teasers[key]).toBeTruthy();
         }
     });

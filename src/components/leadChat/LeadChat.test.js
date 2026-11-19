@@ -71,7 +71,7 @@ describe('ChatWindow', () => {
     it('greets according to the page and offers the main topics', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/portfolio');
         expect(screen.getByRole('dialog')).toHaveAccessibleName(chat.title);
-        expect(await screen.findByText(chat.greetings.portfolio)).toBeInTheDocument();
+        expect(await screen.findByText(chat.nodes.start.messages[0])).toBeInTheDocument();
         for (const topic of ['website', 'app', 'it', 'writeToTomek']) {
             expect(screen.getByRole('button', { name: chat.replies[topic] })).toBeInTheDocument();
         }
@@ -91,7 +91,7 @@ describe('ChatWindow', () => {
 
     it('points to the Portfolio tab when explicitly asked for previous work', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Pokażesz jakieś realizacje?');
         expect(await screen.findByText(chat.nodes.portfolio.messages[0])).toBeInTheDocument();
         expect(log().queryByRole('link')).not.toBeInTheDocument();
@@ -99,7 +99,7 @@ describe('ChatWindow', () => {
 
     it('answers a typed price question with value first and no amount', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Ile kosztuje strona?');
         expect(await screen.findByText(chat.nodes.pricing.messages[0])).toBeInTheDocument();
         expect(screen.getByRole('dialog').textContent).not.toMatch(/\d+\s*zł/);
@@ -107,7 +107,7 @@ describe('ChatWindow', () => {
 
     it('shows the cooperation steps when the user asks about them', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send(chat.replies.process);
 
         expect(await screen.findByText('Propozycja rozwiązania i wycena')).toBeInTheDocument();
@@ -125,10 +125,10 @@ describe('ChatWindow', () => {
     it('passes an unrecognised message to Tomek and sends it with the lead', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/services');
         await reply(chat.replies.website);
-        await screen.findByText(chat.nodes.website.messages[1]);
+        await screen.findByText(chat.nodes.website.messages[0]);
         send('Dzień dobry, mam nietypową sprawę');
         expect(await screen.findByText(chat.nodes.unknown.messages[0])).toBeInTheDocument();
-        expect(screen.getByLabelText(pl.qualifier.contact.fields.message)).toHaveValue('Dzień dobry, mam nietypową sprawę');
+        expect(screen.getByLabelText(pl.qualifier.contact.fields.message)).toHaveValue(`${chat.replies.website} → Dzień dobry, mam nietypową sprawę`);
 
         fireEvent.change(screen.getByLabelText('Imię (opcjonalnie)'), { target: { value: 'Ola' } });
         fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '600100200' } });
@@ -146,7 +146,7 @@ describe('ChatWindow', () => {
             source: 'chat',
             page: '/services',
             lang: 'pl',
-            answers: { service: 'website', message: 'Dzień dobry, mam nietypową sprawę' },
+            answers: { service: 'website' },
             chatSummary: `${chat.replies.website} → Dzień dobry, mam nietypową sprawę`,
         });
     });
@@ -164,7 +164,7 @@ describe('ChatWindow', () => {
         await screen.findByText(pl.chat.nodes.thanks.messages[0]);
         expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
             source: 'chat',
-            answers: { message: 'Chcę zapytać o nową stronę' },
+            chatSummary: 'Chcę zapytać o nową stronę',
         }));
 
         send('Najlepiej po 16');
@@ -205,7 +205,7 @@ describe('ChatWindow with the AI assistant', () => {
     it('sends a typed question with the conversation and shows the answer', async () => {
         sendChatMessage.mockResolvedValueOnce(aiAnswer());
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/services');
-        await screen.findByText(chat.greetings.services);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Potrzebuję strony dla restauracji');
 
         expect(await screen.findByText('Rozumiem. Czym zajmuje się Twoja restauracja?')).toBeInTheDocument();
@@ -215,7 +215,7 @@ describe('ChatWindow with the AI assistant', () => {
         expect({ lang, page }).toEqual({ lang: 'pl', page: '/services' });
         expect(messages[0]).toEqual({
             role: 'assistant',
-            content: `${chat.greetings.services} ${chat.nodes.start.messages[0]}`,
+            content: chat.nodes.start.messages[0],
         });
         expect(messages[messages.length - 1]).toEqual({ role: 'user', content: 'Potrzebuję strony dla restauracji' });
     });
@@ -229,7 +229,7 @@ describe('ChatWindow with the AI assistant', () => {
                 action: 'show_project:tomiForno',
             }));
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Chcę stronę');
         await reply('Pizzeria');
 
@@ -252,10 +252,13 @@ describe('ChatWindow with the AI assistant', () => {
             signals: { service: 'app' },
         }));
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Chcę zacząć jak najszybciej');
 
-        fireEvent.change(await screen.findByLabelText('Imię (opcjonalnie)'), { target: { value: 'Ewa' } });
+        const preview = await screen.findByLabelText(pl.qualifier.contact.fields.message);
+        expect(preview).toHaveValue('Chcę zacząć jak najszybciej');
+        fireEvent.change(preview, { target: { value: 'Potrzebuję aplikacji do faktur' } });
+        fireEvent.change(screen.getByLabelText('Imię (opcjonalnie)'), { target: { value: 'Ewa' } });
         fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '512345678' } });
         fireEvent.click(screen.getByRole('checkbox'));
         fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
@@ -264,7 +267,7 @@ describe('ChatWindow with the AI assistant', () => {
         expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
             source: 'chat',
             answers: { service: 'app' },
-            chatSummary: 'Chcę zacząć jak najszybciej',
+            chatSummary: 'Potrzebuję aplikacji do faktur',
         }));
     });
 
@@ -272,7 +275,7 @@ describe('ChatWindow with the AI assistant', () => {
         const onOpenQualifier = jest.fn();
         sendChatMessage.mockResolvedValueOnce(aiAnswer({ quickReplies: [], action: 'open_qualifier' }));
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={onOpenQualifier} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Nie wiem, czego potrzebuję');
         await reply(chat.replies.qualifier);
         expect(onOpenQualifier).toHaveBeenCalled();
@@ -281,7 +284,7 @@ describe('ChatWindow with the AI assistant', () => {
     it('falls back to the scripted answers when the assistant is unavailable', async () => {
         sendChatMessage.mockRejectedValueOnce(new TypeError('Failed to fetch'));
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.greetings.home);
+        await screen.findByText(chat.nodes.start.messages[0]);
         send('Ile kosztuje strona?');
         expect(await screen.findByText(chat.nodes.pricing.messages[0])).toBeInTheDocument();
     });

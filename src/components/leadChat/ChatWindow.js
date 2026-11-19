@@ -9,7 +9,6 @@ import {
     WRITE_TO_TOMEK,
     matchTopic,
     nodeReplies,
-    pageKey,
     replyTarget,
 } from '../../leads/chatScenario';
 import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
@@ -35,16 +34,16 @@ function prefersReducedMotion() {
     return Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
 }
 
-function initialState(pathname) {
+function initialState() {
     const saved = loadLeadSession().chat;
     return Array.isArray(saved?.turns) && saved.turns.length > 0
         ? saved
-        : { turns: [{ from: 'bot', node: CHAT_START, page: pageKey(pathname) }], service: null, note: '' };
+        : { turns: [{ from: 'bot', node: CHAT_START }], service: null, note: '' };
 }
 
 function chatSummary(turns) {
     return turns
-        .filter((turn) => turn.from === 'user')
+        .filter((turn) => turn.from === 'user' && !turn.control)
         .map((turn) => turn.text)
         .join(' → ')
         .slice(0, MAX_SUMMARY);
@@ -54,7 +53,6 @@ function nodeMessages(t, turn) {
     const key = `chat.nodes.${turn.node}.messages`;
     const count = t(key, { returnObjects: true }).length;
     const messages = Array.from({ length: count }, (_, index) => t(`${key}.${index}`));
-    if (turn.node === CHAT_START) return [t(`chat.greetings.${turn.page}`), ...messages];
     return messages;
 }
 
@@ -83,7 +81,7 @@ function AnswersCard({ rows }) {
 export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     const { t, i18n } = useTranslation();
     const { pathname } = useLocation();
-    const [state, setState] = useState(() => initialState(pathname));
+    const [state, setState] = useState(initialState);
     const [draft, setDraft] = useState('');
     const [waiting, setWaiting] = useState(false);
     const [showPrivacy, setShowPrivacy] = useState(false);
@@ -150,7 +148,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             ...previous,
             ...patch,
             service: CHAT_NODES[node].service ?? previous.service,
-            turns: [...previous.turns, { from: 'user', text: userText }, { from: 'bot', node }],
+            turns: [...previous.turns, { from: 'user', text: userText, control: node === 'contact' }, { from: 'bot', node }],
         }));
     }, []);
 
@@ -203,7 +201,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
         }
         if (reply === WRITE_TO_TOMEK) {
             setDraft('');
-            addTurns(t(`chat.replies.${reply}`), replyTarget(reply), { note: draft.trim() });
+            addTurns(t(`chat.replies.${reply}`), replyTarget(reply), { note: draft.trim() || note });
             return;
         }
         addTurns(t(`chat.replies.${reply}`), replyTarget(reply));
@@ -227,6 +225,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     };
 
     const sendLead = async (contact) => {
+        const { message, ...details } = contact.answers;
         await submitLead({
             name: contact.name,
             phone: contact.phone,
@@ -237,8 +236,8 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             source: 'chat',
             page: pathname,
             lang,
-            answers: { ...(service && { service }), ...qualifierAnswers(), ...contact.answers },
-            chatSummary: chatSummary(turns),
+            answers: { ...(service && { service }), ...qualifierAnswers(), ...details },
+            chatSummary: message ?? contact.answers.description ?? '',
         });
         markLeadSent(contact.name);
         trackEvent('lead_submitted', { source: 'chat' });
@@ -252,6 +251,11 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
             ],
         }));
     };
+
+    const summary = chatSummary(turns);
+    const preview = note && !turns.some((turn) => turn.from === 'user' && turn.text === note)
+        ? [summary, note].filter(Boolean).join(' → ').slice(0, MAX_SUMMARY)
+        : summary;
 
     const renderContactCard = (variant, initialNote) => (
         <ContactStep
@@ -288,7 +292,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
     const renderCurrentActions = () => {
         if (current.ai) {
             const { quickReplies, action } = current.ai;
-            if (action === 'show_contact_card' && !submitted) return renderContactCard('chat', '');
+            if (action === 'show_contact_card' && !submitted) return renderContactCard('chat', preview);
             const suggestions = action.startsWith('show_project:') ? [] : quickReplies;
             return renderReplyButtons([
                 ...suggestions.map((label) => ({ key: `ai-${label}`, label, onClick: () => askAssistant(label) })),
@@ -297,7 +301,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
         }
         const config = CHAT_NODES[current.node];
         if (config.contact && !submitted) {
-            return renderContactCard(config.contact, ['contact', 'unknown'].includes(current.node) ? note : '');
+            return renderContactCard(config.contact, config.contact === 'emergency' ? note : preview);
         }
         const replies = nodeReplies(current.node).filter(
             (reply) => reply !== WRITE_TO_TOMEK && (!submitted || replyTarget(reply) !== 'contact')
@@ -376,7 +380,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                 {waiting && <TypingIndicator key="waiting" />}
             </div>
 
-            <form className="lc-input" onSubmit={sendMessage}>
+            {(!showingContact || submitted) && <form className="lc-input" onSubmit={sendMessage}>
                 <label className="lq-visually-hidden" htmlFor="lc-message">{t('chat.inputLabel')}</label>
                 <input
                     ref={inputRef}
@@ -402,7 +406,7 @@ export default function ChatWindow({ open = true, onClose, onOpenQualifier }) {
                         {t('chat.privacyLink')}
                     </button>
                 </div>
-            </form>
+            </form>}
             {showPrivacy && <PrivacyPolicyModal onClose={hidePrivacy} />}
         </section>
     );

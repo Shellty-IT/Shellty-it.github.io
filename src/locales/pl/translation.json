@@ -792,7 +792,7 @@
   },
     "qualifier": {
         "launcher": {
-            "label": "Zgłoś w kilku krokach",
+            "label": "Zgłoś sprawę",
             "saved": "Zapisałem Twoje odpowiedzi, możesz wrócić w każdej chwili."
         },
         "close": "Zamknij",
@@ -824,7 +824,7 @@
         },
         "steps": {
             "service": {
-                "prompt": "Od czego zaczynamy?",
+                "prompt": "W czym mogę Ci pomóc?",
                 "summary": "Usługa",
                 "options": {
                     "website": {
@@ -844,7 +844,7 @@
                         "reaction": "Słusznie. Sprawne IT zauważa się dopiero wtedy, gdy przestaje działać, a wtedy stoi cała firma."
                     },
                     "unsure": {
-                        "label": "Nie wiem - doradź mi",
+                        "label": "Opiszę własnymi słowami",
                         "reaction": "Nie ma problemu, od tego jestem. Najlepsze rozwiązanie zwykle wychodzi z rozmowy o celu, a nie o technologii."
                     },
                     "emergency": {
@@ -1231,7 +1231,7 @@
             "contact": {
                 "title": "Gdzie mam się z Tobą skontaktować?",
                 "lead": "Przygotuję propozycję dla Twojej firmy i odezwę się osobiście.",
-                "submit": "Chcę bezpłatną propozycję"
+                "submit": "Wyślij zgłoszenie"
             },
             "soft": {
                 "title": "Gdzie wysłać propozycję?",
@@ -1240,11 +1240,19 @@
             },
             "emergency": {
                 "title": "Zostaw numer, oddzwonię najszybciej, jak to możliwe",
-                "lead": "Tylko imię i telefon. Pytania zostawmy na rozmowę.",
+                "lead": "Zostaw numer, oddzwonię najszybciej, jak to możliwe.",
                 "submit": "Oddzwoń do mnie"
             },
             "chat": {
                 "submit": "Wyślij do Tomka"
+            },
+            "topics": {
+                "website": "Co klient ma móc zrobić na Twojej stronie?",
+                "fixes": "Co chcesz zmienić? Możesz wkleić adres strony.",
+                "app": "Co robisz teraz ręcznie?",
+                "it": "W czym potrzebujesz pomocy?",
+                "unsure": "Opisz sprawę jednym zdaniem.",
+                "emergency": "Co przestało działać?"
             }
         },
         "thanks": {
@@ -1293,16 +1301,10 @@
         "notePlaceholder": "Dopisz do zgłoszenia…",
         "send": "Wyślij",
         "teasers": {
-            "home": "Chcesz, żeby internet przynosił Twojej firmie klientów? Podpowiem, od czego zacząć.",
-            "services": "Nie wiesz, która usługa pasuje do Twojej sytuacji? Pomogę wybrać w minutę.",
-            "portfolio": "Masz pytanie o współpracę? Chętnie podpowiem.",
-            "default": "Masz pytanie o współpracę? Chętnie podpowiem."
-        },
-        "greetings": {
-            "home": "Cześć! Jestem asystentem Tomka. Pomogę Ci sprawdzić, jak strona, aplikacja albo wsparcie IT mogą przynieść Twojej firmie więcej klientów lub oszczędzić czas.",
-            "services": "Cześć! Jestem asystentem Tomka. Pomogę Ci w minutę ustalić, która usługa najlepiej pasuje do Twojej sytuacji.",
-            "portfolio": "Cześć! Jestem asystentem Tomka. Czego potrzebuje Twoja firma?",
-            "default": "Cześć! Jestem asystentem Tomka. Chętnie pomogę dobrać rozwiązanie dla Twojej firmy."
+            "home": "Masz pytanie do Tomka?",
+            "services": "Masz pytanie do Tomka?",
+            "portfolio": "Masz pytanie do Tomka?",
+            "default": "Masz pytanie do Tomka?"
         },
         "replies": {
             "website": "Potrzebuję strony",
@@ -1318,80 +1320,74 @@
             "itCare": "Stała opieka IT",
             "itOneOff": "Jednorazowa pomoc",
             "process": "Jak wygląda współpraca?",
-            "qualifier": "Dobierz rozwiązanie w 60 s",
-            "contact": "Umówmy rozmowę",
+            "qualifier": "Wybierz temat zgłoszenia",
+            "contact": "Zostaw kontakt",
             "writeToTomek": "Wyślij zgłoszenie do Tomka"
         },
         "nodes": {
             "start": {
                 "messages": [
-                    "Z czym przychodzisz? Wybierz temat albo napisz własnymi słowami."
+                    "W czym mogę pomóc? Wybierz temat albo napisz własnymi słowami."
                 ]
             },
             "website": {
                 "messages": [
-                    "Dobra decyzja - strona to dziś pierwsze miejsce, w którym klient ocenia firmę, zwykle zanim w ogóle zadzwoni.",
-                    "Masz już stronę, czy zaczynamy od zera?"
+                    "Masz już stronę czy zaczynasz od zera?"
                 ]
             },
             "websiteNew": {
                 "messages": [
-                    "Tomek może przygotować od podstaw stronę, na której klienci łatwo znajdą ofertę i skontaktują się z Twoją firmą."
-                ],
-                "after": "Dopasujmy rozwiązanie do Twojej branży - to zajmie około minuty."
+                    "Co klient ma móc zrobić na Twojej stronie?"
+                ]
             },
             "websiteRedo": {
                 "messages": [
-                    "Rozumiem. Często kilka trafnych zmian daje więcej niż nowa strona: szybsze ładowanie, wyraźniejsze wezwania do kontaktu, wygoda na telefonie.",
-                    "Tomek chętnie przejrzy Twoją obecną stronę i wskaże, co poprawić w pierwszej kolejności."
+                    "Co chcesz zmienić? Możesz wkleić adres strony."
                 ]
             },
             "app": {
                 "messages": [
-                    "Świetnie. Dobrze dopasowana aplikacja potrafi zdjąć z firmy godziny powtarzalnej pracy każdego tygodnia.",
-                    "Co dziś zabiera Ci najwięcej czasu?"
+                    "Co chcesz usprawnić?"
                 ]
             },
             "appOffers": {
                 "messages": [
-                    "Tomek może pomóc uporządkować zapytania klientów i skrócić czas przygotowywania ofert."
+                    "Jak dziś przygotowujesz oferty?"
                 ]
             },
             "appInvoices": {
                 "messages": [
-                    "Tomek może dopasować integrację z KSeF do systemu, z którego już korzystasz."
+                    "Jakiego programu do faktur używasz?"
                 ]
             },
             "appAi": {
                 "messages": [
-                    "Asystent AI może odpowiadać na częste pytania klientów albo pomóc zespołowi przygotowywać oferty. Co najbardziej odciążyłoby Twoją firmę?"
+                    "W jakim zadaniu ma Ci pomóc AI?"
                 ]
             },
             "appOther": {
                 "messages": [
-                    "Opisz w jednym, dwóch zdaniach, co chcesz usprawnić. Przekażę to Tomkowi, a on przygotuje konkretną propozycję."
+                    "Co robisz teraz ręcznie?"
                 ]
             },
             "it": {
                 "messages": [
-                    "Sprawne IT zauważa się dopiero wtedy, gdy przestaje działać - a wtedy stoi cała firma. Tomek przez lata zawodowo zajmował się serwerami, sieciami i bazami danych.",
-                    "Czego potrzebujesz?"
+                    "Chodzi o awarię, stałą opiekę czy jednorazową pomoc?"
                 ]
             },
             "itEmergency": {
                 "messages": [
-                    "Rozumiem, każda minuta przestoju kosztuje. Zostaw numer - Tomek oddzwoni najszybciej, jak to możliwe."
+                    "Zostaw numer, a Tomek oddzwoni tak szybko, jak będzie mógł."
                 ]
             },
             "itCare": {
                 "messages": [
-                    "Stała opieka IT to spokój: kopie zapasowe, monitoring i szybka reakcja, zanim problem zatrzyma pracę - bez kosztu informatyka na etacie.",
-                    "Tomek dopasuje zakres do liczby stanowisk i tego, co jest dla Ciebie najważniejsze."
+                    "Co chcesz objąć opieką IT?"
                 ]
             },
             "itOneOff": {
                 "messages": [
-                    "Jednorazowa pomoc też ma sens: konfiguracja serwera, poczty, sieci albo kopii zapasowych - zrobiona porządnie i opisana, żeby było jasne, co i jak działa."
+                    "W czym potrzebujesz pomocy?"
                 ]
             },
             "portfolio": {
@@ -1413,18 +1409,17 @@
             },
             "pricing": {
                 "messages": [
-                    "Koszt zależy od tego, co rozwiązanie ma dać Twojej firmie - dlatego zanim padnie kwota, warto ustalić cel. Wtedy wycena jest trafiona, a nie „na oko”.",
-                    "Dokładną wycenę Tomek przygotuje po krótkiej, bezpłatnej rozmowie - zwykle w ciągu 24 godzin."
+                    "Cena zależy od zakresu. Tomek przygotuje wycenę po bezpłatnej rozmowie."
                 ]
             },
             "contact": {
                 "messages": [
-                    "Świetnie. Zostaw kontakt, a Tomek przygotuje propozycję i odezwie się osobiście."
+                    "Jak Tomek może się z Tobą skontaktować?"
                 ]
             },
             "unknown": {
                 "messages": [
-                    "Dziękuję za wiadomość. Żeby odpowiedzieć konkretnie, przekażę ją Tomkowi - zostaw kontakt, a odezwie się osobiście."
+                    "Zostaw kontakt, a Tomek odpowie na Twoją wiadomość."
                 ]
             },
             "thanks": {

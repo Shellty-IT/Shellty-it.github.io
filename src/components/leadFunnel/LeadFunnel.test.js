@@ -53,33 +53,15 @@ describe('LeadFunnel', () => {
         expect(screen.getByRole('button', { name: pl.chat.launcherAria })).toBeVisible();
     });
 
-    it('moves a visitor who prefers to talk from the qualifier to the chat', async () => {
-        renderFunnel();
-        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.launcher.label }));
-        fireEvent.click(await screen.findByRole('button', { name: /Nie wiem - doradź mi/ }));
-        fireEvent.click(await screen.findByRole('button', { name: /Wolę po prostu porozmawiać/ }));
-
-        expect(await screen.findByText(pl.chat.greetings.home)).toBeInTheDocument();
-        expect(await screen.findByText(pl.chat.nodes.fromQualifier.messages[0])).toBeInTheDocument();
-        expect(screen.getByText('Nie wiem - doradź mi')).toBeInTheDocument();
-        expect(screen.queryByText(pl.qualifier.chat.title)).not.toBeInTheDocument();
-        expect(loadLeadSession().engaged).toBe(true);
-    });
-
-    it('opens the qualifier from the chat', async () => {
+    it('opens the contact form with the service selected in the chat', async () => {
         renderFunnel();
         fireEvent.click(screen.getByRole('button', { name: pl.chat.launcherAria }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.website }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.websiteNew }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.qualifier }));
-
-        expect(await screen.findByText(pl.qualifier.steps.industry.prompt)).toBeInTheDocument();
+        expect(await screen.findByLabelText(pl.qualifier.contact.topics.website)).toBeVisible();
         expect(screen.queryByRole('log', { name: /Asystent Tomka/ })).not.toBeInTheDocument();
-
-        fireEvent.click(screen.getByRole('button', { name: /Gastronomia/ }));
-        fireEvent.click(await screen.findByRole('button', { name: pl.qualifier.ownWords }));
-        expect(await screen.findByText(pl.chat.nodes.fromQualifier.messages[0])).toBeInTheDocument();
-        expect(screen.getByText('Gastronomia, hotel, turystyka')).toBeInTheDocument();
+        expect(loadLeadSession().engaged).toBe(true);
     });
 
     it.each([true, false])('keeps a pending chat reply after closing (reopened before reply: %s)', async (reopenBeforeReply) => {
@@ -91,7 +73,7 @@ describe('LeadFunnel', () => {
         const answer = 'Mogę pomóc dobrać stronę do Twojej firmy.';
 
         openChat();
-        await screen.findByText(pl.chat.greetings.home);
+        await screen.findByText(pl.chat.nodes.start.messages[0]);
         fireEvent.change(input(), { target: { value: 'Potrzebuję strony' } });
         fireEvent.submit(input().form);
         expect(sendChatMessage).toHaveBeenCalledTimes(1);

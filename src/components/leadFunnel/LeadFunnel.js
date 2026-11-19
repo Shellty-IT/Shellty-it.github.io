@@ -23,7 +23,6 @@ export default function LeadFunnel() {
                 open={active === 'qualifier'}
                 onOpen={openQualifier}
                 onClose={close}
-                onAskQuestion={openChat}
             />
             <LeadChat
                 open={active === 'chat'}
