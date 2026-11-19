@@ -26,7 +26,7 @@ function Tile({ stepId, option, selected, disabled, onClick, className = '' }) {
     );
 }
 
-export default function TileStep({ stepId, answers, onAnswer }) {
+export default function TileStep({ stepId, answers, onAnswer, disabled }) {
     const { t } = useTranslation();
     const step = QUESTION_STEPS[stepId];
     const options = stepOptions(stepId);
@@ -59,7 +59,7 @@ export default function TileStep({ stepId, answers, onAnswer }) {
                             stepId={stepId}
                             option={option}
                             selected={isSelected}
-                            disabled={step.multiple && !isSelected && selected.length >= step.multiple}
+                            disabled={disabled || (step.multiple && !isSelected && selected.length >= step.multiple)}
                             onClick={() => (step.multiple ? toggle(option.id) : onAnswer(option.id))}
                         />
                     );
@@ -71,6 +71,7 @@ export default function TileStep({ stepId, answers, onAnswer }) {
                     stepId={stepId}
                     option={step.urgentOption}
                     selected={answers[stepId] === step.urgentOption.id}
+                    disabled={disabled}
                     className="lq-tile--urgent"
                     onClick={() => onAnswer(step.urgentOption.id)}
                 />
@@ -90,13 +91,14 @@ export default function TileStep({ stepId, answers, onAnswer }) {
                         maxLength={MAX_SITE_URL}
                         placeholder={t('qualifier.siteUrl.placeholder')}
                         value={siteUrl}
+                        disabled={disabled}
                         onChange={(event) => setSiteUrl(event.target.value)}
                     />
                 </div>
             )}
 
             {step.multiple && (
-                <button type="submit" className="lq-primary" disabled={selected.length === 0}>
+                <button type="submit" className="lq-primary" disabled={disabled || selected.length === 0}>
                     {t('qualifier.next')}
                 </button>
             )}

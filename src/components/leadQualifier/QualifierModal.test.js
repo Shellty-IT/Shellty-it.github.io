@@ -45,11 +45,12 @@ function renderModal(onClose = jest.fn(), onAskQuestion = jest.fn()) {
     );
 }
 
-const reply = async (name) => {
-    fireEvent.click(await screen.findByRole('button', { name: new RegExp(name) }));
-};
-
 const chat = () => within(screen.getByRole('log'));
+const activeExchange = () => within(screen.getByRole('log').lastElementChild);
+const reply = async (name, scope = activeExchange()) => {
+    fireEvent.click(await scope.findByRole('button', { name: new RegExp(name) }));
+};
+const accept = (name = qualifier.diagnosis.yes) => reply(name, screen);
 
 async function fillContact(name = 'Jan', phone = '512345678') {
     fireEvent.change(await screen.findByLabelText('Imię (opcjonalnie)'), { target: { value: name } });
@@ -64,7 +65,7 @@ async function walkToDiagnosis() {
     await reply('Rezerwacje lub zamówienia online');
     await reply('Dalej');
     await reply('Jak najszybciej');
-    await screen.findByText(qualifier.diagnosis.benefitsTitle);
+    await activeExchange().findByText(qualifier.diagnosis.benefitsTitle);
 }
 
 beforeEach(() => {
@@ -84,13 +85,14 @@ describe('QualifierModal', () => {
         expect(screen.getByTestId('location')).toHaveTextContent('/services');
     });
 
-    it('shows one question at a time and keeps the chosen answers in the notes', async () => {
+    it('keeps earlier prompts, replies and selected tiles in the conversation', async () => {
         renderModal();
         await reply('Nowa strona internetowa');
         await reply('Gastronomia');
         await screen.findByText(qualifier.steps.hasSite.prompt);
 
-        expect(chat().queryByText(qualifier.steps.industry.prompt)).toBeNull();
+        expect(chat().getByText(qualifier.steps.industry.prompt)).toBeInTheDocument();
+        expect(chat().getByRole('button', { name: /Gastronomia/ })).toHaveAttribute('aria-pressed', 'true');
         expect(chat().getByText(qualifier.steps.industry.options.gastro.reaction)).toBeInTheDocument();
         expect(chat().getByText('Gastronomia, hotel, turystyka', { selector: '.lq-bubble--user' })).toBeInTheDocument();
 
@@ -129,7 +131,7 @@ describe('QualifierModal', () => {
         expect(screen.getByText(qualifier.benefits.industryGastro)).toBeInTheDocument();
         expect(screen.queryByText('Tomi Forno')).toBeNull();
         expect(chat().queryByRole('figure')).toBeNull();
-        expect(chat().queryByRole('button')).toBeNull();
+        expect(activeExchange().queryByRole('button')).toBeNull();
         expect(screen.getByRole('button', { name: qualifier.diagnosis.yes })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: qualifier.diagnosis.question })).toBeInTheDocument();
         expect(screen.getByText(qualifier.plan.ready)).toBeInTheDocument();
@@ -146,6 +148,22 @@ describe('QualifierModal', () => {
         expect(chat().queryByText('Gastronomia, hotel, turystyka', { selector: '.lq-bubble--user' })).toBeNull();
     });
 
+    it('restarts from the changed tile and removes the obsolete branch', async () => {
+        renderModal();
+        await walkToDiagnosis();
+        await accept();
+        const phone = screen.getByLabelText('Telefon');
+        fireEvent.change(phone, { target: { value: '512345678' } });
+        await reply('Nowa strona internetowa', chat());
+        expect(phone).toHaveValue('512 345 678');
+
+        await reply('Awaria', chat());
+        expect(screen.getByRole('button', { name: /Awaria/ })).toHaveAttribute('aria-pressed', 'true');
+        expect(chat().queryByText(qualifier.steps.industry.prompt)).not.toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Oddzwoń do mnie' })).toBeInTheDocument();
+        expect(loadLeadSession().qualifierAnswers).toEqual({ service: 'emergency' });
+    });
+
     it('limits multiple choice to two answers', async () => {
         renderModal();
         await reply('Nowa strona internetowa');
@@ -159,7 +177,7 @@ describe('QualifierModal', () => {
     it('validates the contact form and sends the lead with the relevant answers', async () => {
         renderModal();
         await walkToDiagnosis();
-        await reply('Tak, chętnie');
+        await accept();
 
         fireEvent.click(await screen.findByRole('button', { name: 'Chcę bezpłatną propozycję' }));
         expect(screen.getByText('Podaj 9-cyfrowy numer telefonu.')).toBeInTheDocument();
@@ -197,7 +215,7 @@ describe('QualifierModal', () => {
     it('sends the lead without a name, which is optional', async () => {
         renderModal();
         await walkToDiagnosis();
-        await reply('Tak, chętnie');
+        await accept();
         await fillContact('');
         fireEvent.click(screen.getByRole('button', { name: 'Chcę bezpłatną propozycję' }));
 
@@ -230,7 +248,7 @@ describe('QualifierModal', () => {
         await reply('Brak kopii zapasowych');
         await reply('Dalej');
         await reply('Tylko się rozglądam');
-        await reply('Prześlij mi propozycję');
+        await accept(qualifier.diagnosis.softCta);
         expect(await screen.findByLabelText('E-mail')).toBeInTheDocument();
         expect(screen.queryByLabelText('Telefon')).not.toBeInTheDocument();
     });
@@ -238,7 +256,7 @@ describe('QualifierModal', () => {
     it('sends the optional follow-up note after the lead', async () => {
         renderModal();
         await walkToDiagnosis();
-        await reply('Tak, chętnie');
+        await accept();
         await fillContact();
         fireEvent.click(screen.getByRole('button', { name: 'Chcę bezpłatną propozycję' }));
         fireEvent.change(await screen.findByLabelText(/Co już masz/), { target: { value: 'Mam logo' } });
@@ -275,7 +293,7 @@ describe('QualifierModal', () => {
         updateLeadSession({ leadSent: { name: 'Ola' } });
         renderModal();
         await walkToDiagnosis();
-        await reply('Tak, chętnie');
+        await accept();
 
         expect(await screen.findByText('Dzięki, Ola!')).toBeInTheDocument();
         expect(screen.getByText(qualifier.thanks.text.noted)).toBeInTheDocument();
@@ -291,7 +309,7 @@ describe('QualifierModal', () => {
         submitLeadNote.mockRejectedValueOnce(new TypeError('Failed to fetch'));
         renderModal();
         await walkToDiagnosis();
-        await reply('Tak, chętnie');
+        await accept();
         expect(await screen.findByLabelText('Telefon')).toBeInTheDocument();
     });
 
@@ -304,5 +322,6 @@ describe('QualifierModal', () => {
         renderModal();
         expect(await screen.findByText(qualifier.steps.fixTarget.prompt)).toBeInTheDocument();
         expect(chat().getByText('Handel, sklep', { selector: '.lq-bubble--user' })).toBeInTheDocument();
+        expect(chat().getByRole('button', { name: /Poprawki i rozbudowa/ })).toHaveAttribute('aria-pressed', 'true');
     });
 });

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -25,7 +25,7 @@ import {
 } from '../../leads/funnelContext';
 import { trackEvent } from '../../leads/funnelEvents';
 import PrivacyPolicyModal from '../contact/PrivacyPolicyModal';
-import { BotTurn, TypingIndicator, UserMessage } from './Chat';
+import { BotTurn, TypingIndicator, UserMessage, scrollToTurn } from './Chat';
 import QualifierRail from './QualifierRail';
 import TileStep from './TileStep';
 import DiagnosisStep from './DiagnosisStep';
@@ -130,6 +130,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
     const promptRef = useRef(null);
     const [state, setState] = useState(loadQualifierState);
     const [showPrivacy, setShowPrivacy] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
     const { history, answers, submitted } = state;
     const currentIndex = history.length - 1;
@@ -137,8 +138,9 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
     const relevant = relevantAnswers(history, answers);
     const stepProgress = progress(history, answers);
     const isQuestion = isQuestionStep(stepId);
+    const isDiagnosis = stepId === 'diagnosis';
+    const isContact = !isQuestion && !isDiagnosis && stepId !== 'thanks';
     const canGoBack = history.length > 1 && !submitted;
-    const previousReply = currentIndex > 0 ? userReply(t, history, currentIndex - 1, answers) : '';
     const path = questionPath(relevant);
     const answeredCount = history.filter(isQuestionStep).length - (isQuestion ? 1 : 0);
     const notes = path.map((noteStep, index) => {
@@ -151,19 +153,14 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
             state: answered ? 'done' : noteStep === stepId ? 'current' : '',
         };
     });
-    const showPlan = isQuestion || history.includes('diagnosis');
-    const diagnosis = stepId === 'diagnosis' ? buildDiagnosis(relevant) : null;
+    const diagnosis = history.includes('diagnosis') ? buildDiagnosis(relevant) : null;
     const [revealedIndex, setRevealedIndex] = useState(currentIndex - 1);
-    const typing = revealedIndex < currentIndex;
+    const typing = !isContact && revealedIndex < currentIndex;
 
     useEffect(() => {
         updateLeadSession({ qualifier: submitted ? null : state });
         saveQualifierAnswers(relevantAnswers(state.history, state.answers));
     }, [state, submitted]);
-
-    useEffect(() => {
-        dialogRef.current?.focus();
-    }, []);
 
     useEffect(() => {
         if (isQuestionStep(stepId)) trackEvent('qualifier_step', { step: stepId, index: currentIndex + 1 });
@@ -175,16 +172,22 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
             setRevealedIndex(currentIndex);
             return undefined;
         }
-        if (revealedIndex === currentIndex) return undefined;
+        if (!typing) return undefined;
         const delay = prefersReducedMotion() ? REDUCED_TYPING_DELAY_MS : TYPING_DELAY_MS;
         const timer = setTimeout(() => setRevealedIndex(currentIndex), delay);
         return () => clearTimeout(timer);
-    }, [currentIndex, revealedIndex]);
+    }, [currentIndex, revealedIndex, typing]);
 
-    useEffect(() => {
-        chatRef.current?.scrollTo?.({ top: 0 });
-        if (!typing) promptRef.current?.focus({ preventScroll: true });
-    }, [typing, currentIndex]);
+    useLayoutEffect(() => {
+        const chat = chatRef.current;
+        if (isContact) {
+            chat.scrollTop = chat.scrollHeight;
+        } else {
+            scrollToTurn(chat, chat.lastElementChild, chat.firstElementChild.offsetTop, 'instant');
+        }
+        const focusTarget = (!typing && promptRef.current) || dialogRef.current;
+        focusTarget.focus({ preventScroll: true });
+    }, [typing, currentIndex, isContact, stepId]);
 
     const close = useCallback(() => {
         const savedMidway = !submitted && history.length > 1;
@@ -196,21 +199,37 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
 
     const hidePrivacy = useCallback(() => setShowPrivacy(false), []);
 
-    const goTo = (next, patch = {}) => {
-        if (next === ASK_QUESTION) {
-            onAskQuestion();
-            return;
-        }
+    const openContact = (next) => {
         setState((current) => ({
             ...current,
-            answers: { ...current.answers, ...patch },
             history: [...current.history, next],
         }));
     };
 
-    const answer = (value, extra = {}) => {
-        const patch = { ...extra, [stepId]: value };
-        goTo(nextStep(stepId, { ...answers, ...patch }), patch);
+    const answer = (index, value, extra = {}) => {
+        if (submitting || submitted) return;
+        const question = history[index];
+        const editing = index < currentIndex;
+        if (editing) {
+            const saved = [].concat(answers[question]);
+            const selected = [].concat(value);
+            const sameUrl = extra.siteUrl === undefined || extra.siteUrl === (answers.siteUrl ?? '');
+            if (sameUrl && saved.length === selected.length && saved.every((id, i) => id === selected[i])) return;
+        }
+
+        const nextHistory = history.slice(0, index + 1);
+        const nextAnswers = {
+            ...(editing ? relevantAnswers(nextHistory, answers) : answers),
+            ...extra,
+            [question]: value,
+        };
+        const next = nextStep(question, nextAnswers);
+        if (next === ASK_QUESTION) {
+            onAskQuestion();
+            return;
+        }
+        setRevealedIndex(index);
+        setState({ history: [...nextHistory, next], answers: nextAnswers });
     };
 
     const back = () => {
@@ -218,25 +237,30 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
     };
 
     const sendLead = async (contact) => {
-        await submitLead({
-            name: contact.name,
-            phone: contact.phone,
-            email: contact.email,
-            consent: contact.consent,
-            consentText: contact.consentText,
-            fax: contact.fax,
-            source: 'qualifier',
-            page: pathname,
-            lang: i18n.language === 'en' ? 'en' : 'pl',
-            answers: { ...relevant, ...contact.answers },
-        });
-        markLeadSent(contact.name);
-        trackEvent('lead_submitted', { source: 'qualifier', variant: stepId });
-        setState((current) => ({
-            ...current,
-            submitted: { name: contact.name, variant: stepId },
-            history: [...current.history, 'thanks'],
-        }));
+        setSubmitting(true);
+        try {
+            await submitLead({
+                name: contact.name,
+                phone: contact.phone,
+                email: contact.email,
+                consent: contact.consent,
+                consentText: contact.consentText,
+                fax: contact.fax,
+                source: 'qualifier',
+                page: pathname,
+                lang: i18n.language === 'en' ? 'en' : 'pl',
+                answers: { ...relevant, ...contact.answers },
+            });
+            markLeadSent(contact.name);
+            trackEvent('lead_submitted', { source: 'qualifier', variant: stepId });
+            setState((current) => ({
+                ...current,
+                submitted: { name: contact.name, variant: stepId },
+                history: [...current.history, 'thanks'],
+            }));
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const acceptProposal = async () => {
@@ -244,10 +268,11 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
         const nextContactStep = diagnosis.isShort ? 'soft' : 'contact';
         const existingLead = sentLead();
         if (!existingLead) {
-            goTo(nextContactStep);
+            openContact(nextContactStep);
             return;
         }
         const note = `${t('qualifier.noteIntro')} ${summaryText(qualifierSummary(t, relevant))}`.slice(0, MAX_NOTE);
+        setSubmitting(true);
         try {
             await submitLeadNote(note);
             setState((current) => ({
@@ -256,16 +281,28 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
                 history: [...current.history, 'thanks'],
             }));
         } catch {
-            goTo(nextContactStep);
+            openContact(nextContactStep);
+        } finally {
+            setSubmitting(false);
         }
     };
 
-    const renderReplies = () => {
-        if (isQuestionStep(stepId)) {
-            return <TileStep key={stepId} stepId={stepId} answers={answers} onAnswer={answer} />;
+    const renderStep = (turnStep, index) => {
+        const current = index === currentIndex;
+        if (isQuestionStep(turnStep)) {
+            return (
+                <TileStep
+                    key={current ? 'current' : 'history'}
+                    stepId={turnStep}
+                    answers={answers}
+                    disabled={submitting || Boolean(submitted)}
+                    onAnswer={(value, extra) => answer(index, value, extra)}
+                />
+            );
         }
-        if (stepId === 'diagnosis') return <DiagnosisStep diagnosis={diagnosis} />;
-        if (stepId === 'thanks') {
+        if (turnStep === 'diagnosis') return <DiagnosisStep diagnosis={diagnosis} />;
+        if (!current) return null;
+        if (turnStep === 'thanks') {
             return <ThanksStep variant={submitted?.variant} answers={relevant} onClose={close} />;
         }
         return (
@@ -287,7 +324,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
         >
             <div
                 ref={dialogRef}
-                className="lq-dialog"
+                className={isContact ? 'lq-dialog lq-dialog--contact' : 'lq-dialog'}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="lq-chat-title"
@@ -295,7 +332,7 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
             >
                 <QualifierRail
                     notes={notes}
-                    plan={showPlan ? { answered: answeredCount, total: path.length } : null}
+                    plan={isQuestion || diagnosis ? { answered: answeredCount, total: path.length } : null}
                 />
                 <div className="lq-main">
                     <div className="lq-dialog__top">
@@ -314,27 +351,37 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
                     </div>
 
                     <div ref={chatRef} className="lq-chat" role="log" aria-labelledby="lq-chat-title">
-                        {previousReply && <UserMessage>{previousReply}</UserMessage>}
-                        {typing ? (
-                            <TypingIndicator />
-                        ) : (
-                            <div key={`${currentIndex}-${stepId}`} className="lq-turn">
-                                <BotTurn
-                                    ref={promptRef}
-                                    focusable
-                                    ask={isQuestion}
-                                    messages={botMessages(t, history, currentIndex, answers, submitted)}
-                                >
-                                    {renderReplies()}
-                                </BotTurn>
-                            </div>
-                        )}
+                        {history.map((turnStep, index) => {
+                            const current = index === currentIndex;
+                            const contact = current && isContact;
+                            const reply = index > 0 ? userReply(t, history, index - 1, answers) : '';
+                            const className = 'lq-exchange'
+                                + (current ? ' lq-exchange--current' : '')
+                                + (contact ? ' lq-exchange--contact' : '');
+                            return (
+                                <div key={`${index}-${turnStep}`} className={className}>
+                                    {reply && <UserMessage>{reply}</UserMessage>}
+                                    {current && typing ? <TypingIndicator /> : (
+                                        <div className={current ? 'lq-turn' : undefined}>
+                                            <BotTurn
+                                                ref={current ? promptRef : undefined}
+                                                focusable={current}
+                                                ask={isQuestionStep(turnStep)}
+                                                messages={botMessages(t, history, index, answers, submitted)}
+                                            >
+                                                {renderStep(turnStep, index)}
+                                            </BotTurn>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
 
                     {(canGoBack || isQuestion) && (
                         <div className="lq-dialog__footer">
                             {canGoBack && (
-                                <button type="button" className="lq-back" onClick={back}>
+                                <button type="button" className="lq-back" onClick={back} disabled={submitting}>
                                     <FaArrowLeft aria-hidden="true" /> {t('qualifier.back')}
                                 </button>
                             )}
@@ -343,13 +390,18 @@ export default function QualifierModal({ onClose, onAskQuestion }) {
                                     {t('qualifier.ownWords')}
                                 </button>
                             )}
-                            {diagnosis && !typing && !diagnosis.isShort && (
+                            {isDiagnosis && !typing && !diagnosis.isShort && (
                                 <button type="button" className="lq-own-words" onClick={onAskQuestion}>
                                     {t('qualifier.diagnosis.question')}
                                 </button>
                             )}
-                            {diagnosis && !typing && (
-                                <button type="button" className="lq-primary lq-dialog__cta" onClick={acceptProposal}>
+                            {isDiagnosis && !typing && (
+                                <button
+                                    type="button"
+                                    className="lq-primary lq-dialog__cta"
+                                    onClick={acceptProposal}
+                                    disabled={submitting}
+                                >
                                     <FaThumbsUp aria-hidden="true" />
                                     {t(diagnosis.isShort ? 'qualifier.diagnosis.softCta' : 'qualifier.diagnosis.yes')}
                                 </button>

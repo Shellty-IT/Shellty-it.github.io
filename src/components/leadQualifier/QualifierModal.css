@@ -268,6 +268,25 @@
     padding: 12px 24px 24px;
 }
 
+.lq-exchange {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lq-exchange--current {
+    min-height: 100%;
+}
+
+.lq-exchange--contact {
+    gap: 10px;
+}
+
+.lq-exchange--contact .lq-turn {
+    animation: none;
+}
+
 .lq-turn {
     display: flex;
     flex-direction: column;
@@ -817,6 +836,78 @@
     display: none;
 }
 
+.lq-exchange--contact .lq-bot__content {
+    gap: 6px;
+}
+
+.lq-exchange--contact .lq-bubble {
+    padding: 6px 12px;
+    line-height: 1.35;
+}
+
+.lq-exchange--contact .lq-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px 12px;
+    padding: 12px 16px;
+}
+
+.lq-exchange--contact .lq-contact > :not(.lq-contact__detail) {
+    grid-column: 1 / -1;
+}
+
+.lq-exchange--contact .lq-field {
+    gap: 5px 8px;
+}
+
+.lq-exchange--contact .lq-field__label,
+.lq-exchange--contact .lq-consent,
+.lq-exchange--contact .lq-card__note {
+    line-height: 1.35;
+}
+
+.lq-exchange--contact .lq-tiles {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.lq-exchange--contact .lq-tile {
+    width: auto;
+    min-height: 44px;
+    padding: 6px 14px;
+}
+
+.lq-exchange--contact .lq-input {
+    min-width: 0;
+    min-height: 44px;
+    padding: 7px 10px;
+}
+
+.lq-exchange--contact .lq-input--area {
+    min-height: 76px;
+}
+
+.lq-exchange--contact .lq-phone__prefix {
+    padding-inline: 8px;
+}
+
+.lq-exchange--contact .lq-chips legend {
+    margin-bottom: 4px;
+}
+
+.lq-exchange--contact .lq-chip {
+    min-height: 36px;
+    padding-inline: 12px;
+}
+
+.lq-exchange--contact .lq-primary {
+    min-height: 44px;
+}
+
+.lq-exchange--contact .lq-card__note {
+    margin: 0;
+}
+
 .lq-honeypot {
     position: absolute;
     left: -10000px;
@@ -980,6 +1071,108 @@
 
     .lq-project__image {
         width: 100%;
+    }
+
+    .lq-exchange--contact {
+        gap: 6px;
+    }
+
+    .lq-exchange--contact .lq-contact {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+        padding-inline: 12px;
+    }
+
+    .lq-exchange--contact .lq-tiles {
+        flex-wrap: nowrap;
+    }
+
+    .lq-exchange--contact .lq-tile {
+        flex: 1;
+        justify-content: center;
+        gap: 6px;
+        min-width: 0;
+        padding-inline: 8px;
+        font-size: .9rem;
+    }
+
+    .lq-exchange--contact .lq-phone .lq-input {
+        letter-spacing: normal;
+    }
+
+    .lq-exchange--contact .lq-chip {
+        padding-inline: 10px;
+    }
+}
+
+@media (max-height: 650px), (max-width: 820px) and (max-height: 740px) {
+    .lq-dialog--contact .lq-chat {
+        padding-block: 8px 10px;
+    }
+
+    .lq-dialog--contact .lq-dialog__footer {
+        padding-block: 5px max(6px, env(safe-area-inset-bottom));
+    }
+
+    .lq-exchange--contact .lq-bubble {
+        padding-block: 4px;
+    }
+
+    .lq-exchange--contact .lq-contact {
+        gap: 6px 12px;
+        padding-block: 10px;
+    }
+}
+
+@media (min-width: 641px) and (max-height: 650px) {
+    .lq-dialog--contact {
+        height: min(680px, calc(100dvh - 24px));
+    }
+
+    .lq-dialog--contact .lq-dialog__top {
+        padding-top: 8px;
+    }
+}
+
+@media (max-width: 640px) and (max-height: 740px) {
+    .lq-dialog--contact .lq-rail {
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+
+    .lq-dialog--contact .lq-plan {
+        flex: 0 0 138px;
+        gap: 5px;
+    }
+
+    .lq-dialog--contact .lq-plan__top {
+        gap: 4px;
+        line-height: 1.2;
+    }
+
+    .lq-dialog--contact .lq-rail__name,
+    .lq-dialog--contact .lq-rail__status {
+        line-height: 1.25;
+    }
+
+    .lq-dialog--contact .lq-rail__status {
+        align-items: flex-start;
+    }
+
+    .lq-dialog--contact .lq-rail__status::before {
+        flex-shrink: 0;
+        margin-top: 4px;
+    }
+
+    .lq-dialog--contact .lq-dialog__top {
+        padding-block: 1px;
+    }
+
+    .lq-dialog--contact .lq-chat {
+        padding-bottom: 6px;
+    }
+
+    .lq-exchange--contact .lq-contact {
+        row-gap: 5px;
     }
 }
 

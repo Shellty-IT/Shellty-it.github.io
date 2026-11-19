@@ -44,9 +44,9 @@ function submitErrorMessage(error, t) {
     return t('qualifier.contact.errors.network');
 }
 
-function Field({ id, label, error, children }) {
+function Field({ id, label, error, children, className = '' }) {
     return (
-        <div className="lq-field">
+        <div className={`lq-field ${className}`.trimEnd()}>
             <label className="lq-field__label" htmlFor={id}>{label}</label>
             {children}
             {error && <p id={`${id}-error`} className="lq-field__error">{error}</p>}
@@ -137,7 +137,7 @@ export default function ContactStep({ variant, initialNote = '', onSubmit, onSho
                 </div>
             )}
 
-            <Field id="lq-name" label={t('qualifier.contact.fields.name')} error={visibleErrors.name}>
+            <Field id="lq-name" label={t('qualifier.contact.fields.name')} className="lq-contact__detail">
                 <input
                     {...inputProps('name')}
                     className="lq-input"
@@ -150,7 +150,7 @@ export default function ContactStep({ variant, initialNote = '', onSubmit, onSho
             </Field>
 
             {channel === 'phone' ? (
-                <Field id="lq-phone" label={t('qualifier.contact.fields.phone')} error={visibleErrors.phone}>
+                <Field id="lq-phone" label={t('qualifier.contact.fields.phone')} error={visibleErrors.phone} className="lq-contact__detail">
                     <div className="lq-phone">
                         <span className="lq-phone__prefix" aria-hidden="true">+48</span>
                         <input
@@ -166,7 +166,7 @@ export default function ContactStep({ variant, initialNote = '', onSubmit, onSho
                     </div>
                 </Field>
             ) : (
-                <Field id="lq-email" label={t('qualifier.contact.fields.email')} error={visibleErrors.email}>
+                <Field id="lq-email" label={t('qualifier.contact.fields.email')} error={visibleErrors.email} className="lq-contact__detail">
                     <input
                         {...inputProps('email')}
                         className="lq-input"
