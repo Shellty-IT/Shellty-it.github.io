@@ -612,7 +612,7 @@
     }
   },
   "contact": {
-    "sub": "I usually reply the same day",
+    "sub": "I reply within 24 hours",
     "title": "Contact form",
     "subtitle": "Have a question or a collaboration idea? Fill out the form or email me directly.",
     "fields": {
@@ -674,52 +674,797 @@
     "cta": "Back to homepage"
   },
   "privacyPolicy": {
-    "title": "Privacy Policy",
-    "updated": "Last updated: May 31, 2026",
-    "closeAria": "Close privacy policy",
-    "closeBtn": "Close",
-    "s1": {
-      "title": "1. Data Controller",
-      "p1": "The controller of your personal data is Tomasz Skorupski (hereinafter: the Controller), owner of this website.",
-      "contactLabel": "Contact:"
+      "email": "kontakt@shellty.pl",
+      "title": "Privacy Policy",
+      "updated": "Last updated: 16 November 2026",
+      "closeAria": "Close privacy policy",
+      "closeBtn": "Close",
+      "sections": [
+          {
+              "title": "1. Data controller",
+              "paragraphs": [
+                  "The controller of your personal data is Tomasz Skorupski (Shellty), the owner of this website."
+              ],
+              "contact": "Contact:"
+          },
+          {
+              "title": "2. What data I collect and why",
+              "paragraphs": [
+                  "I only collect the data you provide yourself:"
+              ],
+              "items": [
+                  "Contact form: first name, email address and message - to answer your question.",
+                  "The \"Find your solution\" qualifier and the assistant chat: first name, phone number or email address, your answers, optional additional information and the course of the conversation with the assistant - to prepare a proposal and contact you about your request.",
+                  "With every request I also store the text and date of your consent, the page it was sent from and the site language."
+              ],
+              "after": [
+                  "The conversation with the assistant is also processed to generate replies (see section 6). Phone numbers and email addresses are not passed to AI services."
+              ]
+          },
+          {
+              "title": "3. Legal basis",
+              "items": [
+                  "Requests from the qualifier and chat - your consent (Art. 6(1)(a) GDPR) and steps taken at your request before entering into a contract (Art. 6(1)(b) GDPR).",
+                  "Contact form - the legitimate interest of the controller, i.e. replying to your enquiry (Art. 6(1)(f) GDPR).",
+                  "Protecting the site against spam and abuse - the legitimate interest of the controller (Art. 6(1)(f) GDPR)."
+              ]
+          },
+          {
+              "title": "4. How long I keep your data",
+              "items": [
+                  "Requests from the qualifier and chat - up to 12 months after sending, unless you ask for deletion or withdraw your consent earlier. If we start working together, data needed for the work is kept for as long as the law requires.",
+                  "Contact form messages - for as long as needed to handle the enquiry.",
+                  "Technical data protecting the site against abuse (an encrypted hash of the IP address that does not reveal the address itself, and request counters) - no longer than 12 months.",
+                  "Your progress in the qualifier and the chat history are stored only in your browser session and disappear when you close the tab. They reach the server only when you send a request."
+              ]
+          },
+          {
+              "title": "5. Recipients of data",
+              "paragraphs": [
+                  "I use providers who process data on my behalf:"
+              ],
+              "items": [
+                  "Formspree, Inc. (USA) - contact form handling.",
+                  "Cloudflare, Inc. (USA) - the server running the qualifier and chat, the request database and bot protection (Cloudflare Turnstile), which may analyse browser information and the IP address.",
+                  "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant replies from the conversation, after phone numbers and email addresses are removed."
+              ],
+              "after": [
+                  "These providers are based outside the European Economic Area. Data is transferred using mechanisms provided for in the GDPR, such as standard contractual clauses or the European Commission decision on the EU-U.S. Data Privacy Framework.",
+                  "Apart from that, your data is not shared with anyone else. Providers' privacy policies:"
+              ],
+              "links": [
+                  {
+                      "label": "Formspree",
+                      "href": "https://formspree.io/legal/privacy-policy"
+                  },
+                  {
+                      "label": "Cloudflare",
+                      "href": "https://www.cloudflare.com/privacypolicy/"
+                  },
+                  {
+                      "label": "Groq",
+                      "href": "https://groq.com/privacy-policy"
+                  },
+                  {
+                      "label": "Google",
+                      "href": "https://policies.google.com/privacy"
+                  }
+              ]
+          },
+          {
+              "title": "6. AI assistant",
+              "items": [
+                  "The chat in the bottom right corner is an AI assistant, not Tomek. Replies are generated automatically by a language model (Groq or Google Gemini), so they may be incomplete or contain mistakes.",
+                  "The assistant's replies are not an offer or a binding quote. Tomek agrees the scope and price personally after a conversation.",
+                  "When AI services are unavailable, the chat replies with pre-written messages.",
+                  "Do not enter sensitive data in the chat, e.g. health information, passwords or document numbers.",
+                  "The \"Find your solution\" qualifier does not use AI - its questions and suggestions are written in advance."
+              ]
+          },
+          {
+              "title": "7. Cookies and browser storage",
+              "items": [
+                  "The site does not use analytics or advertising cookies.",
+                  "Browser storage keeps the selected site language and information needed for the qualifier and chat, e.g. whether the chat tip has already been shown.",
+                  "Cloudflare Turnstile may store data in the browser needed to tell humans from bots."
+              ]
+          },
+          {
+              "title": "8. Your rights",
+              "paragraphs": [
+                  "In connection with the processing of your personal data, you have the following rights:"
+              ],
+              "items": [
+                  "Right of access - you can ask what data I hold about you.",
+                  "Right to rectification - you can ask me to correct inaccurate data.",
+                  "Right to erasure - you can ask me to delete your data (the right to be forgotten).",
+                  "Right to restriction - you can ask me to suspend the processing of your data.",
+                  "Right to object - you can object to processing based on legitimate interest.",
+                  "Right to withdraw consent - at any time, without affecting the lawfulness of processing before withdrawal.",
+                  "Right to lodge a complaint - if you believe I process your data unlawfully, you can complain to the President of the Personal Data Protection Office (UODO), ul. Stawki 2, 00-193 Warsaw, www.uodo.gov.pl."
+              ],
+              "contact": "To exercise these rights, contact me at:"
+          }
+      ]
+  },
+    "qualifier": {
+        "launcher": {
+            "label": "Find your solution · 60 s",
+            "saved": "Your answers are saved - you can come back any time."
+        },
+        "close": "Close",
+        "back": "Back",
+        "next": "Next",
+        "newTab": "(opens in a new tab)",
+        "stepOf": "Step {{current}} of {{total}}",
+        "ownWords": "I'd rather describe it in my own words",
+        "rail": {
+            "name": "Tomek",
+            "status": "replies within 24 hours",
+            "quote": "Reliable, punctual and effective.",
+            "quoteSource": "Jan, Google review 5/5",
+            "notesAria": "Your answers"
+        },
+        "plan": {
+            "title": "Finding your solution",
+            "ready": "Solution matched",
+            "readyHint": "We'll settle the details in a call.",
+            "left_one": "{{count}} more question",
+            "left_other": "{{count}} more questions"
+        },
+        "maxHint": "You can pick up to {{count}}.",
+        "siteUrl": {
+            "label": "Your current website (optional) - I'll take a look and tell you what can be improved",
+            "placeholder": "e.g. mycompany.com"
+        },
+        "steps": {
+            "service": {
+                "prompt": "Where shall we start?",
+                "summary": "Service",
+                "options": {
+                    "website": {
+                        "label": "A new website",
+                        "reaction": "Good call. Your website is where customers judge your business first - usually before they ever call."
+                    },
+                    "app": {
+                        "label": "An app for your business",
+                        "reaction": "Great. A well-fitted app can take hours of repetitive work off your plate every week."
+                    },
+                    "fixes": {
+                        "label": "Fixes and improvements",
+                        "reaction": "Understood. Often there's no need to rebuild everything - fixing and extending what you have is enough."
+                    },
+                    "it": {
+                        "label": "IT support",
+                        "reaction": "Good thinking. You only notice IT when it stops working, and then the whole business stops too."
+                    },
+                    "unsure": {
+                        "label": "Not sure - advise me",
+                        "reaction": "No problem, that's what I'm here for. The best solution usually comes from talking about goals, not technology."
+                    },
+                    "emergency": {
+                        "label": "Outage - I need help now",
+                        "reaction": "Understood, every minute of downtime costs. I'll skip the remaining questions."
+                    }
+                }
+            },
+            "goal": {
+                "prompt": "What do you want to achieve in the coming months?",
+                "summary": "Goal",
+                "options": {
+                    "more_clients": {
+                        "label": "More customers from the internet",
+                        "reaction": "More customers online usually comes down to two things: a website that convinces and being easy to find."
+                    },
+                    "save_time": {
+                        "label": "Saving time in my business",
+                        "reaction": "Time is the most valuable resource in a small business. Automating what you do by hand today usually wins a lot of it back."
+                    },
+                    "broken": {
+                        "label": "Something doesn't work",
+                        "reaction": "Don't worry. I'll find the cause first and then propose the simplest lasting fix."
+                    },
+                    "it_infra": {
+                        "label": "Computers, network, server",
+                        "reaction": "Computers, networks and servers are my area - I've worked with them professionally for years."
+                    },
+                    "talk": {
+                        "label": "I'd rather just talk"
+                    }
+                }
+            },
+            "industry": {
+                "prompt": "What does your business do?",
+                "summary": "Industry",
+                "options": {
+                    "gastro": {
+                        "label": "Food service, hotels, tourism",
+                        "reaction": "In food service it matters whether guests find the menu and book a table in seconds - ideally from their phone, without calling."
+                    },
+                    "local": {
+                        "label": "Local services, beauty, health",
+                        "reaction": "In local services people search Google for \"near me\" and choose whoever is easiest to book."
+                    },
+                    "construction": {
+                        "label": "Construction, crafts, manufacturing",
+                        "reaction": "In construction customers buy with their eyes - photos of finished projects and reviews sell better than any description."
+                    },
+                    "retail": {
+                        "label": "Retail, shop",
+                        "reaction": "In retail every extra step at checkout is a lost customer, so simplicity and mobile convenience matter most."
+                    },
+                    "b2b": {
+                        "label": "Office, business services (B2B)",
+                        "reaction": "Business clients expect substance and professionalism, and inside the company quotes and documents usually eat up the most time."
+                    },
+                    "solo": {
+                        "label": "Solo / just starting out",
+                        "reaction": "At the start what counts is a strong first impression and a solution that grows with your business, without building things in advance."
+                    },
+                    "other": {
+                        "label": "Other industry",
+                        "reaction": "Every industry has its specifics - I'll ask about the details on the call, for now let's focus on your goal."
+                    }
+                }
+            },
+            "hasSite": {
+                "prompt": "Do you already have a website?",
+                "summary": "Current website",
+                "options": {
+                    "no": {
+                        "label": "No, this is my first",
+                        "reaction": "Great, we're starting with a clean slate - I'll design everything around your customers from day one."
+                    },
+                    "yes_new": {
+                        "label": "Yes, but I want a new one",
+                        "reaction": "Okay. Before I design a new one, I want to know what isn't working now, so we don't repeat the same mistakes."
+                    },
+                    "yes_fix": {
+                        "label": "Yes, I want to improve it",
+                        "reaction": "Then let's focus on what you already have - a few well-chosen changes often do more than a new website."
+                    }
+                }
+            },
+            "sitePains": {
+                "prompt": "What bothers you most about your current website?",
+                "summary": "Main issues",
+                "options": {
+                    "no_clients": {
+                        "label": "It doesn't bring customers",
+                        "reaction": "That's the most common problem I see: the site looks fine but doesn't lead to contact. It can be fixed and measured."
+                    },
+                    "outdated": {
+                        "label": "It looks outdated",
+                        "reaction": "An outdated look costs credibility - customers subconsciously apply that impression to the whole business."
+                    },
+                    "cant_edit": {
+                        "label": "I can't change anything myself",
+                        "reaction": "A site you can't update yourself ages quickly. You'll get a simple panel for changes."
+                    },
+                    "slow": {
+                        "label": "It's slow",
+                        "reaction": "A slow site loses customers before it loads, and Google notices too."
+                    },
+                    "bad_mobile": {
+                        "label": "It looks bad on phones",
+                        "reaction": "Most visitors will reach you from a phone, so this is a priority."
+                    }
+                }
+            },
+            "siteGoals": {
+                "prompt": "What should the new website do for you above all?",
+                "summary": "Website goals",
+                "options": {
+                    "more_leads": {
+                        "label": "More enquiries from customers",
+                        "reaction": "Okay, then I'll design it for enquiries: every section should lead customers to contact you."
+                    },
+                    "google": {
+                        "label": "Better visibility in Google",
+                        "reaction": "Visibility in Google starts with a fast site and well-structured content - I'll take care of that from the start."
+                    },
+                    "self_edit": {
+                        "label": "Editing content myself",
+                        "reaction": "Understood. You'll get a simple panel to change texts and photos yourself."
+                    },
+                    "booking": {
+                        "label": "Online bookings or orders",
+                        "reaction": "Online bookings work for you around the clock - customers book when it suits them, not when you can answer the phone."
+                    },
+                    "ai": {
+                        "label": "An AI assistant on the website",
+                        "reaction": "Great direction. An AI assistant on your site can advise customers and answer their questions before they even write to you."
+                    },
+                    "image": {
+                        "label": "A professional image",
+                        "reaction": "First impressions are hard to change, so I'll make sure the look is consistent and professional from the first screen."
+                    }
+                }
+            },
+            "appPain": {
+                "prompt": "What takes up most of your or your team's time today?",
+                "summary": "Biggest problem",
+                "options": {
+                    "excel": {
+                        "label": "Retyping data and Excel spreadsheets",
+                        "reaction": "Spreadsheets and retyping are a perfect candidate for improvement - data in one place means fewer mistakes and more time."
+                    },
+                    "offers": {
+                        "label": "Quotes, orders, customer service",
+                        "reaction": "Quotes and customer service are the heart of sales. A faster, polished quote often decides who wins the deal."
+                    },
+                    "invoices": {
+                        "label": "Invoices and documents (e.g. KSeF)",
+                        "reaction": "KSeF matters to every Polish business today - I've already built it into my own e-invoicing system."
+                    },
+                    "automation": {
+                        "label": "Repetitive tasks that could be automated",
+                        "reaction": "If you do something by the same pattern every time, it can almost certainly be automated."
+                    },
+                    "ai": {
+                        "label": "I want to add AI to my business",
+                        "reaction": "Great direction. Well-implemented AI is not a gimmick: it advises customers, prepares content and takes load off the team."
+                    },
+                    "mobile": {
+                        "label": "I need a mobile app / PWA",
+                        "reaction": "A mobile app makes sense when you or your customers need access on the go, not just at a desk."
+                    }
+                }
+            },
+            "appStage": {
+                "prompt": "What stage is your idea at?",
+                "summary": "Stage",
+                "options": {
+                    "idea": {
+                        "label": "I only have an idea",
+                        "reaction": "That's a good moment - at the idea stage it's easiest to plan a solution that truly fits the business."
+                    },
+                    "spec": {
+                        "label": "I have a description or specification",
+                        "reaction": "Great, a description speeds things up a lot. I'll review it and suggest what to simplify and what's worth adding."
+                    },
+                    "existing": {
+                        "label": "I have a system to extend",
+                        "reaction": "Understood. I'll get to know the current system first, so the extension doesn't disturb what already works."
+                    }
+                }
+            },
+            "fixTarget": {
+                "prompt": "What does the website or app that needs fixing run on?",
+                "summary": "Concerns",
+                "options": {
+                    "wordpress": {
+                        "label": "A WordPress website",
+                        "reaction": "I know WordPress inside out - I write my own themes, so I can handle unusual cases too."
+                    },
+                    "other_cms": {
+                        "label": "Another website or CMS",
+                        "reaction": "Okay. I'll start with a quick review to find the simplest way to the goal."
+                    },
+                    "webapp": {
+                        "label": "A web application",
+                        "reaction": "Web applications are my everyday work, so I'll find my way around the code quickly."
+                    },
+                    "unknown": {
+                        "label": "I don't know what it runs on",
+                        "reaction": "No problem, I'll check it - I just need the website address."
+                    }
+                }
+            },
+            "fixTask": {
+                "prompt": "What exactly needs to be done?",
+                "summary": "Task",
+                "options": {
+                    "broken": {
+                        "label": "Something stopped working",
+                        "reaction": "Understood. I'll find the cause first, so the fix lasts instead of being a quick patch."
+                    },
+                    "feature": {
+                        "label": "Add a new feature",
+                        "reaction": "I'll add new features to what you already have, without rebuilding everything."
+                    },
+                    "speed": {
+                        "label": "Speed up the website",
+                        "reaction": "Speed affects results: every second of loading means some customers give up."
+                    },
+                    "finish": {
+                        "label": "Finish an abandoned project",
+                        "reaction": "Abandoned projects are common. I'll assess what can be reused and see the project through."
+                    },
+                    "script": {
+                        "label": "A script or automation",
+                        "reaction": "A script or automation is often the fastest way to win back a few hours a week."
+                    }
+                }
+            },
+            "itNeed": {
+                "prompt": "What kind of IT support do you need?",
+                "summary": "Need",
+                "options": {
+                    "oneoff": {
+                        "label": "One-off help or setup",
+                        "reaction": "Okay. I'll do it properly and leave documentation, so it's clear what is set up and how."
+                    },
+                    "ongoing": {
+                        "label": "Ongoing IT care (external IT department)",
+                        "reaction": "Ongoing care means peace of mind: I catch problems before they stop your business."
+                    },
+                    "server": {
+                        "label": "Server, hosting, business email",
+                        "reaction": "Server, hosting and email are the foundation - I'll set them up to run reliably and securely."
+                    },
+                    "network": {
+                        "label": "Network, devices, backups",
+                        "reaction": "A reliable network and backups are things you stop thinking about once they're done right."
+                    }
+                }
+            },
+            "itPains": {
+                "prompt": "What makes work hardest today?",
+                "summary": "Main issues",
+                "options": {
+                    "outages": {
+                        "label": "Frequent outages and downtime",
+                        "reaction": "Every outage is lost time for the whole team - I'll start by finding the cause."
+                    },
+                    "no_backup": {
+                        "label": "No backups",
+                        "reaction": "No backups is a risk worth removing as soon as possible - one disk failure can stop a business."
+                    },
+                    "no_admin": {
+                        "label": "Nobody looks after IT day to day",
+                        "reaction": "Understood. IT handled \"on the side\" usually ends in firefighting. Ongoing care changes that."
+                    },
+                    "slow": {
+                        "label": "Slow network or hardware",
+                        "reaction": "A slow network or hardware is a hidden cost the business pays every day in waiting."
+                    },
+                    "security": {
+                        "label": "Concerns about data security",
+                        "reaction": "Data security is also a GDPR requirement - I'll review it and point out specific gaps."
+                    }
+                }
+            },
+            "timeline": {
+                "prompt": "Last question: when do you want to start?",
+                "summary": "Timeline",
+                "options": {
+                    "asap": {
+                        "label": "As soon as possible",
+                        "reaction": "Understood, it's urgent - I'll treat it as a priority."
+                    },
+                    "month": {
+                        "label": "Within a month",
+                        "reaction": "A month is a realistic timeframe to prepare and launch everything properly."
+                    },
+                    "quarter": {
+                        "label": "Within 1-3 months",
+                        "reaction": "Good, there's time to plan every stage calmly."
+                    },
+                    "browsing": {
+                        "label": "Just looking around",
+                        "reaction": "Sure, it's good to explore the options first - no obligation at all."
+                    }
+                }
+            }
+        },
+        "benefits": {
+            "industryGastro": "A website where guests book a table and check the menu without calling",
+            "industryLocal": "A business card site that helps local customers find you and book a visit",
+            "industryConstruction": "A gallery of completed projects that sells your services for you",
+            "industryRetail": "Online sales that keep working even when your shop is closed",
+            "industryB2b": "A clear presentation of your offer that makes the decision easier for business clients",
+            "industrySolo": "A starter business card site or portfolio that shows you at your best",
+            "moreLeads": "A website designed to turn visitors into enquiries: clear calls to action and a simple form",
+            "google": "A fast website with basic SEO, plus trusted SEO specialists if needed",
+            "selfEdit": "A CMS panel where you change texts and photos yourself, no coding needed",
+            "booking": "A booking or ordering system that works for you even at night",
+            "modern": "A modern, consistent look that builds trust from the first visit",
+            "fast": "A fast, fully responsive website that is comfortable on any phone",
+            "allInOne": "I'll take care of everything: domain, hosting, setup and launch",
+            "excel": "Data in one place instead of spreadsheets - no more retyping and mistakes",
+            "offers": "Quotes, orders and customer service in one system, with nothing slipping through",
+            "invoices": "Integration with KSeF and e-invoices - I've already built it into my own system",
+            "automation": "Automation that gives you back hours every week",
+            "ai": "An AI assistant or automated content preparation tailored to your industry and your customers",
+            "mobile": "An app for phones, also as a PWA, without publishing in an app store",
+            "tailored": "A solution made to measure for your business that can grow with it",
+            "diagnosisFirst": "First I'll check what your website or app runs on and tell you plainly what is worth doing",
+            "repair": "Quick diagnosis and repair so everything works again",
+            "feature": "New features added to what you already have, without starting from scratch",
+            "speed": "A faster website that doesn't put customers off with waiting",
+            "finish": "I'll finish an abandoned project and get it launched",
+            "itOneOff": "One-off help or setup done properly and documented, so you know what you have",
+            "itCare": "Ongoing remote IT care: backups, monitoring, quick response - without the cost of an in-house IT person",
+            "itServer": "Server, hosting and business email set up so they simply work",
+            "itNetwork": "A reliable network, devices and backups you don't have to worry about",
+            "itSecurity": "A security review, backups and configuration that follows good practice",
+            "aiSite": "An AI assistant on your website that answers customer questions and advises them even outside business hours"
+        },
+        "diagnosis": {
+            "benefitsTitle": "What I'll do for you",
+            "projectTitle": "See what it looks like in practice",
+            "projectLink": "See the {{project}} project",
+            "whyTitle": "Why me",
+            "why": [
+                "A developer and an IT specialist in one - I'll build the website or app and look after the server, email and hardware",
+                "Direct contact with no middlemen - you talk to the person who does the work"
+            ],
+            "processTitle": "What happens next",
+            "process": [
+                "A free conversation about your needs",
+                "A proposed solution and a quote",
+                "Delivery with regular updates",
+                "Support after launch"
+            ],
+            "consentQuestion": "Shall I prepare a proposal for your business?",
+            "yes": "Yes, please",
+            "question": "I have another question",
+            "softText": "Leave your email and I'll send you a proposed solution. No obligation, no spam.",
+            "softCta": "Send me a proposal"
+        },
+        "contact": {
+            "channelAria": "Contact method",
+            "channels": {
+                "phone": "Call me",
+                "email": "Email me"
+            },
+            "fields": {
+                "name": "First name (optional)",
+                "phone": "Phone",
+                "email": "Email",
+                "emailPlaceholder": "your@email.com",
+                "callTime": "When is the best time to call? (optional)",
+                "description": "What happened? One sentence is enough (optional)",
+                "message": "Your message to Tomek (optional)"
+            },
+            "callTimes": {
+                "morning": "Morning",
+                "afternoon": "Afternoon",
+                "evening": "Evening"
+            },
+            "consent": "I agree to be contacted about my request and to the processing of the data I provide in accordance with the",
+            "privacyLink": "Privacy Policy",
+            "noObligation": "No obligation. Your number is used only for this conversation, no spam.",
+            "responseTime": "I reply within 24 hours.",
+            "sending": "Sending...",
+            "errors": {
+                "name": "Enter your first name.",
+                "phone": "Enter a 9-digit Polish phone number.",
+                "email": "Enter a valid email address.",
+                "consent": "Tick the consent box so I can contact you.",
+                "invalid": "Check the details you entered and try again.",
+                "rateLimited": "Too many attempts in a short time. Try again shortly or email kontakt@shellty.pl.",
+                "network": "Sending failed. Try again or email kontakt@shellty.pl."
+            },
+            "contact": {
+                "title": "How should I contact you?",
+                "lead": "I'll prepare a proposal for your business and get back to you personally.",
+                "submit": "Get a free proposal"
+            },
+            "soft": {
+                "title": "Where should I send the proposal?",
+                "lead": "I'll send you a proposed solution whenever you're ready.",
+                "submit": "Send the proposal"
+            },
+            "emergency": {
+                "title": "Leave your number and I'll call back as soon as possible",
+                "lead": "Just your name and phone. Questions can wait for the call.",
+                "submit": "Call me back"
+            },
+            "chat": {
+                "submit": "Send to Tomek"
+            }
+        },
+        "thanks": {
+            "title": "Thanks, {{name}}!",
+            "title_anonymous": "Thanks!",
+            "text": {
+                "contact": "I'll get back to you within 24 hours.",
+                "soft": "I'll send the proposal to the email address you provided.",
+                "emergency": "I'll call you back as soon as possible.",
+                "noted": "I've added these answers to your request - Tomek has the full picture and will be in touch soon."
+            },
+            "followUp": {
+                "assets": "What do you already have? (logo, texts, photos, domain) - optional",
+                "other": "Anything else I should know before we talk? - optional"
+            },
+            "sendNote": "Add to my request",
+            "noteSent": "Thanks, I've added it to your request.",
+            "portfolio": "See my work",
+            "close": "Close"
+        },
+        "chat": {
+            "title": "Find your solution",
+            "intro": "Hi! A few short questions, and at the end I'll show you a plan for your business.",
+            "typing": "Typing a message",
+            "you": "You",
+            "diagnosisIntro": "I have the full picture. Here's how I see your situation and what I can do for you:",
+            "contactSent": "I'm leaving my contact details.",
+            "change": "Change answer"
+        },
+        "projectReasons": {
+            "aiAgent": "Here an AI agent advises customers while they order and suggests the best combinations. A similar assistant can work for your customers.",
+            "booking": "See online bookings in action - customers pick a time themselves, without calling or waiting for a reply.",
+            "ksef": "An e-invoicing platform integrated with KSeF - I know how the system works from the inside.",
+            "offers": "A CRM where AI fills professional quote templates with content tailored to the client and the scope of work.",
+            "mobile": "A mobile app with lessons tailored to the user and conversations with AI.",
+            "wordpress": "My own WordPress theme for construction: a project gallery and full content editing without heavy plugins.",
+            "cms": "A lightweight content management system where you change texts and photos yourself, no coding needed.",
+            "fallback": "A web app with online bookings and an AI assistant - a good example of a website that works for results."
+        },
+        "noteIntro": "Answers from the qualifier:"
     },
-    "s2": {
-      "title": "2. What data do I collect and for what purpose?",
-      "intro": "Through the contact form available on this website, I collect exclusively:",
-      "items": ["first name", "email address"],
-      "purpose": "This data is collected solely for the purpose of establishing contact and responding to the message submitted via the form."
-    },
-    "s3": {
-      "title": "3. Legal basis for processing",
-      "p": "Your data is processed on the basis of Article 6(1)(f) of the GDPR, i.e. the legitimate interest of the Controller, which is responding to your contact inquiry."
-    },
-    "s4": {
-      "title": "4. How long do I store your data?",
-      "p": "Your data is stored for the time necessary to handle your inquiry. After the correspondence is concluded, the data is not processed for any other purpose."
-    },
-    "s5": {
-      "title": "5. Data recipients - Formspree",
-      "p1": "To handle the contact form, I use the Formspree service (Formspree, Inc.), which acts as a data processor on my behalf. This means that messages submitted through the form are transmitted via Formspree servers.",
-      "p2": "Formspree is a company based in the United States, which means your data may be transferred outside the European Economic Area (EEA). Formspree ensures an adequate level of data protection in accordance with applicable regulations.",
-      "linkLabel": "More information can be found in Formspree's privacy policy:",
-      "p3": "Apart from that, your data is not shared with any other third parties."
-    },
-    "s6": {
-      "title": "6. Cookies and analytics tools",
-      "ga": "This website uses Google Analytics (Google LLC), which uses cookies to analyze website traffic. Data collected by Google Analytics is anonymous and does not allow direct identification of the user. Google LLC is based in the USA - more information:"
-    },
-    "s7": {
-      "title": "7. Your rights",
-      "intro": "In connection with the processing of your personal data, you have the following rights:",
-      "rights": [
-        "Right of access - you may ask what data I hold about you.",
-        "Right to rectification - you may request correction of inaccurate data.",
-        "Right to erasure - you may request deletion of your data (right to be forgotten).",
-        "Right to restriction of processing - you may request that processing of your data be suspended.",
-        "Right to object - you may object to processing based on legitimate interest.",
-        "Right to lodge a complaint - if you believe I am processing your data unlawfully, you may lodge a complaint with the relevant supervisory authority in your country."
-      ],
-      "contact": "To exercise the above rights, please contact me at:"
+    "chat": {
+        "launcherAria": "Open chat with Tomek's assistant",
+        "closeAria": "Close chat",
+        "closeTeaser": "Close tip",
+        "title": "Tomek's assistant",
+        "badge": "AI",
+        "subtitle": "Tomek replies within 24 hours",
+        "inputLabel": "Write a message",
+        "placeholder": "Tell me what you need...",
+        "send": "Send",
+        "teasers": {
+            "home": "Want the internet to bring your business customers? I'll suggest where to start.",
+            "services": "Not sure which service fits your situation? I'll help you choose in a minute.",
+            "portfolio": "Like one of the projects? Tomek can build something similar for your business.",
+            "default": "Have a question about working together? Happy to help."
+        },
+        "greetings": {
+            "home": "Hi! I'm Tomek's assistant. I'll help you see how a website, an app or IT support can bring your business more customers or save you time.",
+            "services": "Hi! I'm Tomek's assistant. In a minute I'll help you find the service that best fits your situation.",
+            "portfolio": "Hi! I'm Tomek's assistant. If you liked one of the projects, Tomek can build something similar, tailored to your business.",
+            "default": "Hi! I'm Tomek's assistant. I'm happy to help you find the right solution for your business."
+        },
+        "replies": {
+            "website": "I need a website",
+            "app": "I want to streamline my business",
+            "it": "I have an IT problem",
+            "portfolio": "Show me your work",
+            "websiteNew": "I'm starting from scratch",
+            "websiteRedo": "I have a site to improve",
+            "appOffers": "Quotes and customer service",
+            "appInvoices": "Invoices and KSeF",
+            "appAi": "AI in my business",
+            "appOther": "Something else",
+            "itEmergency": "Outage, I need help now",
+            "itCare": "Ongoing IT care",
+            "itOneOff": "One-off help",
+            "process": "How does working together look?",
+            "qualifier": "Find your solution in 60 s",
+            "contact": "Let's talk",
+            "writeToTomek": "I'd rather write to Tomek"
+        },
+        "nodes": {
+            "start": {
+                "messages": [
+                    "What brings you here? Pick a topic or write in your own words."
+                ]
+            },
+            "website": {
+                "messages": [
+                    "Good call - your website is where customers judge a business first, usually before they ever call.",
+                    "Do you already have a website, or are we starting from scratch?"
+                ]
+            },
+            "websiteNew": {
+                "messages": [
+                    "A clean slate gives full freedom. Tomek will design a site around your customers: fast, comfortable on phones and leading straight to contact.",
+                    "This is what it can look like in practice:"
+                ],
+                "after": "Let's tailor the solution to your industry - it takes about a minute."
+            },
+            "websiteRedo": {
+                "messages": [
+                    "Understood. A few well-chosen changes often do more than a new site: faster loading, clearer calls to action, comfort on phones.",
+                    "Tomek will gladly review your current site and point out what to improve first."
+                ]
+            },
+            "app": {
+                "messages": [
+                    "Great. A well-fitted app can take hours of repetitive work off your business every week.",
+                    "What takes up most of your time today?"
+                ]
+            },
+            "appOffers": {
+                "messages": [
+                    "Quotes and customer service are the heart of sales - a faster, polished quote often decides who wins the deal.",
+                    "Tomek built a CRM where AI prepares quotes tailored to the client:"
+                ],
+                "after": "A similar solution can be adapted to the way your business sells."
+            },
+            "appInvoices": {
+                "messages": [
+                    "KSeF matters to every Polish business today. Tomek has already built it into his own e-invoicing platform:"
+                ],
+                "after": "The integration can be adapted to the system you already use."
+            },
+            "appAi": {
+                "messages": [
+                    "Well-implemented AI is not a gimmick - it advises customers, prepares content and takes load off the team.",
+                    "See an AI agent in action:"
+                ],
+                "after": "In SmartQuote, AI also prepares quotes for the salesperson. A similar assistant can work in your business."
+            },
+            "appOther": {
+                "messages": [
+                    "Describe in a sentence or two what you want to improve. I'll pass it on to Tomek and he'll prepare a concrete proposal."
+                ]
+            },
+            "it": {
+                "messages": [
+                    "You only notice IT when it stops working - and then the whole business stops. Tomek has worked professionally with servers, networks and databases for years.",
+                    "What do you need?"
+                ]
+            },
+            "itEmergency": {
+                "messages": [
+                    "Understood, every minute of downtime costs. Leave your number - Tomek will call back as soon as possible."
+                ]
+            },
+            "itCare": {
+                "messages": [
+                    "Ongoing IT care means peace of mind: backups, monitoring and a quick response before a problem stops work - without the cost of an in-house IT person.",
+                    "Tomek will tailor the scope to your number of workstations and what matters most to you."
+                ]
+            },
+            "itOneOff": {
+                "messages": [
+                    "One-off help makes sense too: server, email, network or backup setup - done properly and documented, so it's clear what works and how."
+                ]
+            },
+            "portfolio": {
+                "messages": [
+                    "Here are projects that show well what Tomek can do for your business:"
+                ]
+            },
+            "process": {
+                "messages": [
+                    "Working together is simple and transparent:"
+                ],
+                "after": "At every stage you talk directly to Tomek, with no middlemen."
+            },
+            "pricing": {
+                "messages": [
+                    "The cost depends on what the solution should achieve for your business - so before naming a figure, it's worth agreeing on the goal. Then the quote is accurate, not a guess.",
+                    "Tomek will prepare an exact quote after a short, free call - usually within 24 hours."
+                ]
+            },
+            "contact": {
+                "messages": [
+                    "Great. Leave your contact details and Tomek will prepare a proposal and get back to you personally."
+                ]
+            },
+            "unknown": {
+                "messages": [
+                    "Thanks for your message. To answer it properly, I'll pass it on to Tomek - leave your contact details and he'll get back to you personally."
+                ]
+            },
+            "thanks": {
+                "messages": [
+                    "Thanks! Tomek will get back to you within 24 hours.",
+                    "In the meantime you can browse the projects or find your solution step by step."
+                ]
+            },
+            "noted": {
+                "messages": [
+                    "Thanks, I've passed it on to Tomek together with your request."
+                ]
+            },
+            "noteFailed": {
+                "messages": [
+                    "This message couldn't be sent. Try again or email kontakt@shellty.pl."
+                ]
+            },
+            "fromQualifier": {
+                "messages": [
+                    "I already have your answers from the qualifier:"
+                ],
+                "after": "No need to repeat anything. What else would you like to ask? Write in your own words or pick a topic."
+            }
+        },
+        "aiNotice": "You are talking to an AI assistant that can make mistakes. Tomek will confirm any arrangements personally. Do not enter sensitive data here.",
+        "privacyLink": "How data is processed"
     }
-  }
 }

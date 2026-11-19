@@ -300,6 +300,17 @@
     transform: translate(12px, 12px);
 }
 
+@media (hover: none) and (pointer: coarse) and (max-width: 560px),
+       (hover: none) and (pointer: coarse) and (max-height: 480px) {
+    .btn-cta .btn-cta__icon-base {
+        opacity: 0;
+    }
+
+    .btn-cta__icon-lit {
+        opacity: 1;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .btn-cta--reveal .btn-cta__bg::before {
         transition: none;

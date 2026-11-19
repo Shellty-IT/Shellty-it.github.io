@@ -27,3 +27,8 @@ yarn-error.log*
 
 .claude
 .codex-tmp/
+
+worker/.dev.vars
+worker/.deploy.env
+worker/.wrangler/
+worker/node_modules/

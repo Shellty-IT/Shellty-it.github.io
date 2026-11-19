@@ -615,7 +615,7 @@
     }
   },
   "contact": {
-    "sub": "Odpowiadam zwykle tego samego dnia",
+    "sub": "Odpowiadam w ciągu 24 godzin",
     "title": "Formularz kontaktowy",
     "subtitle": "Masz pytanie lub propozycję współpracy? Wypełnij formularz lub napisz do mnie bezpośrednio.",
     "fields": {
@@ -677,52 +677,799 @@
     "cta": "Wróć na stronę główną"
   },
   "privacyPolicy": {
-    "title": "Polityka Prywatności",
-    "updated": "Data ostatniej aktualizacji: 31 maja 2026",
-    "closeAria": "Zamknij politykę prywatności",
-    "closeBtn": "Zamknij",
-    "s1": {
-      "title": "1. Administrator danych osobowych",
-      "p1": "Administratorem Twoich danych osobowych jest Tomasz Skorupski (dalej: Administrator), właściciel niniejszej strony internetowej.",
-      "contactLabel": "Kontakt:"
+      "email": "kontakt@shellty.pl",
+      "title": "Polityka Prywatności",
+      "updated": "Data ostatniej aktualizacji: 16 listopada 2026",
+      "closeAria": "Zamknij politykę prywatności",
+      "closeBtn": "Zamknij",
+      "sections": [
+          {
+              "title": "1. Administrator danych osobowych",
+              "paragraphs": [
+                  "Administratorem Twoich danych osobowych jest Tomasz Skorupski (Shellty), właściciel niniejszej strony internetowej."
+              ],
+              "contact": "Kontakt:"
+          },
+          {
+              "title": "2. Jakie dane zbieram i w jakim celu?",
+              "paragraphs": [
+                  "Zbieram tylko te dane, które przekażesz mi samodzielnie:"
+              ],
+              "items": [
+                  "Formularz kontaktowy: imię, adres e-mail i treść wiadomości - żeby odpowiedzieć na Twoje pytanie.",
+                  "Kwalifikator „Dobierz rozwiązanie” i czat z asystentem: imię, numer telefonu lub adres e-mail, odpowiedzi na pytania, dobrowolne dodatkowe informacje oraz przebieg rozmowy z asystentem - żeby przygotować propozycję rozwiązania i skontaktować się z Tobą w sprawie zgłoszenia.",
+                  "Przy każdym zgłoszeniu zapisuję też treść i datę wyrażonej zgody, podstronę, z której wysłano zgłoszenie, oraz język strony."
+              ],
+              "after": [
+                  "Treść rozmowy z asystentem jest przetwarzana także po to, żeby wygenerować odpowiedzi (szczegóły w punkcie 6). Numery telefonów i adresy e-mail nie są przekazywane do usług AI."
+              ]
+          },
+          {
+              "title": "3. Podstawa prawna przetwarzania",
+              "items": [
+                  "Zgłoszenia z kwalifikatora i czatu - Twoja zgoda (art. 6 ust. 1 lit. a RODO) oraz podjęcie działań na Twoje żądanie przed zawarciem umowy (art. 6 ust. 1 lit. b RODO).",
+                  "Formularz kontaktowy - prawnie uzasadniony interes Administratora, czyli odpowiedź na Twoje zapytanie (art. 6 ust. 1 lit. f RODO).",
+                  "Ochrona strony przed spamem i nadużyciami - prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO)."
+              ]
+          },
+          {
+              "title": "4. Jak długo przechowuję Twoje dane?",
+              "items": [
+                  "Zgłoszenia z kwalifikatora i czatu - do 12 miesięcy od wysłania, chyba że wcześniej poprosisz o ich usunięcie lub wycofasz zgodę. Jeśli podejmiemy współpracę, dane potrzebne do jej realizacji przechowuję przez czas wymagany przepisami.",
+                  "Wiadomości z formularza kontaktowego - przez czas potrzebny do obsługi zapytania.",
+                  "Dane techniczne chroniące stronę przed nadużyciami (zaszyfrowany skrót adresu IP, który nie pozwala odczytać samego adresu, oraz liczniki zapytań) - nie dłużej niż 12 miesięcy.",
+                  "Postęp w kwalifikatorze i historia czatu są zapisywane tylko w pamięci sesji Twojej przeglądarki i znikają po zamknięciu karty. Na serwer trafiają dopiero wtedy, gdy wyślesz zgłoszenie."
+              ]
+          },
+          {
+              "title": "5. Odbiorcy danych",
+              "paragraphs": [
+                  "Korzystam z usług dostawców, którzy przetwarzają dane w moim imieniu:"
+              ],
+              "items": [
+                  "Formspree, Inc. (USA) - obsługa formularza kontaktowego.",
+                  "Cloudflare, Inc. (USA) - serwer obsługujący kwalifikator i czat, baza zgłoszeń oraz ochrona przed botami (Cloudflare Turnstile), która może analizować informacje o przeglądarce i adres IP.",
+                  "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści rozmowy, po usunięciu z niej numerów telefonów i adresów e-mail."
+              ],
+              "after": [
+                  "Ci dostawcy mają siedzibę poza Europejskim Obszarem Gospodarczym. Dane są przekazywane z zastosowaniem mechanizmów przewidzianych w RODO, takich jak standardowe klauzule umowne lub decyzja Komisji Europejskiej w sprawie ram EU-U.S. Data Privacy Framework.",
+                  "Poza tym Twoje dane nie są przekazywane innym podmiotom. Polityki prywatności dostawców:"
+              ],
+              "links": [
+                  {
+                      "label": "Formspree",
+                      "href": "https://formspree.io/legal/privacy-policy"
+                  },
+                  {
+                      "label": "Cloudflare",
+                      "href": "https://www.cloudflare.com/privacypolicy/"
+                  },
+                  {
+                      "label": "Groq",
+                      "href": "https://groq.com/privacy-policy"
+                  },
+                  {
+                      "label": "Google",
+                      "href": "https://policies.google.com/privacy"
+                  }
+              ]
+          },
+          {
+              "title": "6. Asystent AI",
+              "items": [
+                  "Czat w prawym dolnym rogu to asystent AI, a nie Tomek. Odpowiedzi tworzy automatycznie model językowy (Groq lub Google Gemini), dlatego mogą być niepełne lub zawierać błędy.",
+                  "Odpowiedzi asystenta nie są ofertą ani wiążącą wyceną. Zakres i cenę ustala Tomek osobiście po rozmowie.",
+                  "Gdy usługi AI są niedostępne, czat odpowiada wcześniej przygotowanymi wiadomościami.",
+                  "Nie wpisuj w czacie danych wrażliwych, np. informacji o zdrowiu, haseł czy numerów dokumentów.",
+                  "Kwalifikator „Dobierz rozwiązanie” nie korzysta z AI - jego pytania i podpowiedzi są przygotowane wcześniej."
+              ]
+          },
+          {
+              "title": "7. Pliki cookies i pamięć przeglądarki",
+              "items": [
+                  "Strona nie używa plików cookies analitycznych ani reklamowych.",
+                  "W pamięci przeglądarki zapisuję wybrany język strony oraz informacje potrzebne do działania kwalifikatora i czatu, np. czy podpowiedź czatu była już wyświetlona.",
+                  "Usługa Cloudflare Turnstile może zapisywać w przeglądarce dane niezbędne do odróżnienia ludzi od botów."
+              ]
+          },
+          {
+              "title": "8. Twoje prawa",
+              "paragraphs": [
+                  "W związku z przetwarzaniem Twoich danych osobowych przysługują Ci następujące prawa:"
+              ],
+              "items": [
+                  "Prawo dostępu - możesz zapytać, jakie dane na Twój temat posiadam.",
+                  "Prawo do sprostowania - możesz poprosić o poprawienie nieprawidłowych danych.",
+                  "Prawo do usunięcia - możesz poprosić o usunięcie swoich danych (prawo do bycia zapomnianym).",
+                  "Prawo do ograniczenia przetwarzania - możesz poprosić o wstrzymanie przetwarzania Twoich danych.",
+                  "Prawo do sprzeciwu - możesz wnieść sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu.",
+                  "Prawo do wycofania zgody - w dowolnym momencie, bez wpływu na zgodność z prawem przetwarzania przed jej wycofaniem.",
+                  "Prawo do skargi - jeśli uważasz, że przetwarzam Twoje dane niezgodnie z prawem, możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl."
+              ],
+              "contact": "Aby skorzystać z powyższych praw, skontaktuj się ze mną pod adresem:"
+          }
+      ]
+  },
+    "qualifier": {
+        "launcher": {
+            "label": "Dobierz rozwiązanie · 60 s",
+            "saved": "Zapisałem Twoje odpowiedzi, możesz wrócić w każdej chwili."
+        },
+        "close": "Zamknij",
+        "back": "Wstecz",
+        "next": "Dalej",
+        "newTab": "(otwiera się w nowej karcie)",
+        "stepOf": "Krok {{current}} z {{total}}",
+        "ownWords": "Wolę opisać własnymi słowami",
+        "rail": {
+            "name": "Tomek",
+            "status": "odpisuje w ciągu 24 godzin",
+            "quote": "Solidny, terminowy i skuteczny.",
+            "quoteSource": "Jan, opinia Google 5/5",
+            "notesAria": "Twoje odpowiedzi"
+        },
+        "plan": {
+            "title": "Dobieramy rozwiązanie",
+            "ready": "Rozwiązanie dobrane",
+            "readyHint": "Szczegóły ustalimy w rozmowie.",
+            "left_one": "Jeszcze {{count}} pytanie",
+            "left_few": "Jeszcze {{count}} pytania",
+            "left_many": "Jeszcze {{count}} pytań",
+            "left_other": "Jeszcze {{count}} pytania"
+        },
+        "maxHint": "Możesz wybrać maksymalnie {{count}}.",
+        "siteUrl": {
+            "label": "Adres obecnej strony (opcjonalnie) - rzucę okiem i powiem, co da się poprawić",
+            "placeholder": "np. mojafirma.pl"
+        },
+        "steps": {
+            "service": {
+                "prompt": "Od czego zaczynamy?",
+                "summary": "Usługa",
+                "options": {
+                    "website": {
+                        "label": "Nowa strona internetowa",
+                        "reaction": "Dobra decyzja. Strona to dziś pierwsze miejsce, w którym klient ocenia Twoją firmę - zwykle zanim w ogóle zadzwoni."
+                    },
+                    "app": {
+                        "label": "Aplikacja dla firmy",
+                        "reaction": "Świetnie. Dobrze dopasowana aplikacja potrafi zdjąć z firmy godziny powtarzalnej pracy każdego tygodnia."
+                    },
+                    "fixes": {
+                        "label": "Poprawki i rozbudowa",
+                        "reaction": "Rozumiem. Często nie trzeba budować wszystkiego od nowa - wystarczy naprawić i rozbudować to, co już masz."
+                    },
+                    "it": {
+                        "label": "Wsparcie IT",
+                        "reaction": "Słusznie. Sprawne IT zauważa się dopiero wtedy, gdy przestaje działać, a wtedy stoi cała firma."
+                    },
+                    "unsure": {
+                        "label": "Nie wiem - doradź mi",
+                        "reaction": "Nie ma problemu, od tego jestem. Najlepsze rozwiązanie zwykle wychodzi z rozmowy o celu, a nie o technologii."
+                    },
+                    "emergency": {
+                        "label": "Awaria - potrzebuję pomocy teraz",
+                        "reaction": "Rozumiem, każda minuta przestoju kosztuje. Pomijam pozostałe pytania."
+                    }
+                }
+            },
+            "goal": {
+                "prompt": "Co chcesz osiągnąć w najbliższych miesiącach?",
+                "summary": "Cel",
+                "options": {
+                    "more_clients": {
+                        "label": "Więcej klientów z internetu",
+                        "reaction": "Więcej klientów z internetu to zwykle dwie rzeczy: strona, która przekonuje, i to, żeby łatwo było ją znaleźć."
+                    },
+                    "save_time": {
+                        "label": "Oszczędność czasu w firmie",
+                        "reaction": "Czas to najcenniejszy zasób małej firmy. Zwykle da się odzyskać sporą jego część, automatyzując to, co dziś robisz ręcznie."
+                    },
+                    "broken": {
+                        "label": "Coś nie działa",
+                        "reaction": "Spokojnie. Najpierw ustalę przyczynę, a potem zaproponuję najprostszą, trwałą naprawę."
+                    },
+                    "it_infra": {
+                        "label": "Komputery, sieć, serwer",
+                        "reaction": "Komputery, sieć i serwery to moja działka - przez lata zajmowałem się nimi zawodowo."
+                    },
+                    "talk": {
+                        "label": "Wolę po prostu porozmawiać"
+                    }
+                }
+            },
+            "industry": {
+                "prompt": "Czym zajmuje się Twoja firma?",
+                "summary": "Branża",
+                "options": {
+                    "gastro": {
+                        "label": "Gastronomia, hotel, turystyka",
+                        "reaction": "W gastronomii liczy się, czy gość w kilka sekund znajdzie menu i zarezerwuje stolik - najlepiej z telefonu, bez dzwonienia."
+                    },
+                    "local": {
+                        "label": "Usługi lokalne, beauty, zdrowie",
+                        "reaction": "W usługach lokalnych klienci szukają w Google „w okolicy” i wybierają tego, u kogo najłatwiej umówić termin."
+                    },
+                    "construction": {
+                        "label": "Budowlanka, rzemiosło, produkcja",
+                        "reaction": "W budowlance klient kupuje oczami - zdjęcia realizacji i opinie sprzedają lepiej niż najdłuższy opis."
+                    },
+                    "retail": {
+                        "label": "Handel, sklep",
+                        "reaction": "W handlu każdy dodatkowy krok przy zakupie to utracony klient, dlatego liczy się prostota i wygoda na telefonie."
+                    },
+                    "b2b": {
+                        "label": "Biuro, usługi dla firm (B2B)",
+                        "reaction": "Klienci biznesowi oczekują konkretu i profesjonalizmu, a w środku firmy najwięcej czasu zjadają zwykle oferty i dokumenty."
+                    },
+                    "solo": {
+                        "label": "Działam sam / dopiero zaczynam",
+                        "reaction": "Na starcie liczy się mocny pierwszy wizerunek i rozwiązanie, które rośnie razem z firmą, bez budowania rzeczy na zapas."
+                    },
+                    "other": {
+                        "label": "Inna branża",
+                        "reaction": "Każda branża ma swoją specyfikę - o szczegóły dopytam w rozmowie, a teraz skupmy się na Twoim celu."
+                    }
+                }
+            },
+            "hasSite": {
+                "prompt": "Masz już stronę internetową?",
+                "summary": "Obecna strona",
+                "options": {
+                    "no": {
+                        "label": "Nie, to pierwsza",
+                        "reaction": "Świetnie, zaczynamy od czystej karty - zaprojektuję wszystko pod Twoich klientów od pierwszego dnia."
+                    },
+                    "yes_new": {
+                        "label": "Tak, ale chcę nową",
+                        "reaction": "Dobrze. Zanim zaprojektuję nową, chcę wiedzieć, co w obecnej nie działa, żeby nie powtórzyć tych samych błędów."
+                    },
+                    "yes_fix": {
+                        "label": "Tak, chcę ją poprawić",
+                        "reaction": "W takim razie skupmy się na tym, co już masz - często kilka trafnych zmian daje więcej niż nowa strona."
+                    }
+                }
+            },
+            "sitePains": {
+                "prompt": "Co dziś najbardziej przeszkadza Ci w obecnej stronie?",
+                "summary": "Co przeszkadza",
+                "options": {
+                    "no_clients": {
+                        "label": "Nie przynosi klientów",
+                        "reaction": "To najczęstszy problem, jaki widzę: strona wygląda poprawnie, ale nie prowadzi do kontaktu. To da się poprawić i zmierzyć."
+                    },
+                    "outdated": {
+                        "label": "Wygląda przestarzale",
+                        "reaction": "Przestarzały wygląd odbiera wiarygodność - klient podświadomie przenosi to wrażenie na całą firmę."
+                    },
+                    "cant_edit": {
+                        "label": "Nie mogę sam nic zmienić",
+                        "reaction": "Strona, której nie można samodzielnie aktualizować, szybko się starzeje. Dostaniesz prosty panel do zmian."
+                    },
+                    "slow": {
+                        "label": "Działa wolno",
+                        "reaction": "Wolna strona traci klientów, zanim się załaduje, a Google też to zauważa."
+                    },
+                    "bad_mobile": {
+                        "label": "Źle wygląda na telefonie",
+                        "reaction": "Większość odwiedzających trafi do Ciebie z telefonu, więc to sprawa priorytetowa."
+                    }
+                }
+            },
+            "siteGoals": {
+                "prompt": "Co nowa strona ma Ci przede wszystkim dać?",
+                "summary": "Cel strony",
+                "options": {
+                    "more_leads": {
+                        "label": "Więcej zapytań od klientów",
+                        "reaction": "Dobrze, w takim razie projektuję ją pod zapytania: każda sekcja ma prowadzić klienta do kontaktu."
+                    },
+                    "google": {
+                        "label": "Lepsza widoczność w Google",
+                        "reaction": "Widoczność w Google zaczyna się od szybkiej strony i dobrze ułożonej treści - zadbam o to od początku."
+                    },
+                    "self_edit": {
+                        "label": "Samodzielna edycja treści",
+                        "reaction": "Rozumiem. Dostaniesz prosty panel, w którym samodzielnie zmienisz treści i zdjęcia."
+                    },
+                    "booking": {
+                        "label": "Rezerwacje lub zamówienia online",
+                        "reaction": "Rezerwacje online pracują za Ciebie całą dobę - klient umawia się wtedy, kiedy ma czas, a nie wtedy, gdy odbierasz telefon."
+                    },
+                    "ai": {
+                        "label": "Asystent AI na stronie",
+                        "reaction": "Świetny kierunek. Asystent AI na stronie potrafi doradzić klientowi i odpowiedzieć na pytania, zanim ten w ogóle do Ciebie napisze."
+                    },
+                    "image": {
+                        "label": "Profesjonalny wizerunek",
+                        "reaction": "Pierwsze wrażenie trudno zmienić, dlatego zadbam o spójny, profesjonalny wygląd od pierwszego ekranu."
+                    }
+                }
+            },
+            "appPain": {
+                "prompt": "Co dziś zabiera Tobie lub Twojemu zespołowi najwięcej czasu?",
+                "summary": "Największy problem",
+                "options": {
+                    "excel": {
+                        "label": "Ręczne przepisywanie danych i arkusze Excela",
+                        "reaction": "Arkusze i ręczne przepisywanie to idealny kandydat do usprawnienia - dane w jednym miejscu to mniej błędów i więcej czasu."
+                    },
+                    "offers": {
+                        "label": "Oferty, zamówienia, obsługa klientów",
+                        "reaction": "Oferty i obsługa klientów to serce sprzedaży. Szybciej wysłana, dopracowana oferta często decyduje o wygranej."
+                    },
+                    "invoices": {
+                        "label": "Faktury i dokumenty (np. KSeF)",
+                        "reaction": "KSeF to dziś temat dla każdej firmy - mam go przećwiczonego we własnym systemie do e-faktur."
+                    },
+                    "automation": {
+                        "label": "Powtarzalne zadania, które da się zautomatyzować",
+                        "reaction": "Jeśli coś robicie według tego samego schematu, prawie na pewno da się to zautomatyzować."
+                    },
+                    "ai": {
+                        "label": "Chcę dodać AI do swojej firmy",
+                        "reaction": "Świetny kierunek. Dobrze wdrożone AI to nie gadżet: doradza klientom, przygotowuje treści i odciąża zespół."
+                    },
+                    "mobile": {
+                        "label": "Potrzebuję aplikacji mobilnej / PWA",
+                        "reaction": "Aplikacja na telefon sprawdza się, gdy Ty lub Twoi klienci potrzebujecie dostępu w terenie, a nie tylko przy biurku."
+                    }
+                }
+            },
+            "appStage": {
+                "prompt": "Na jakim etapie jest Twój pomysł?",
+                "summary": "Etap",
+                "options": {
+                    "idea": {
+                        "label": "Mam tylko pomysł",
+                        "reaction": "To dobry moment - na etapie pomysłu najłatwiej zaplanować rozwiązanie, które naprawdę odpowiada na potrzeby firmy."
+                    },
+                    "spec": {
+                        "label": "Mam opis lub specyfikację",
+                        "reaction": "Świetnie, opis bardzo przyspiesza pracę. Przejrzę go i podpowiem, co uprościć, a co warto dodać."
+                    },
+                    "existing": {
+                        "label": "Mam system do rozbudowy",
+                        "reaction": "Rozumiem. Najpierw poznam obecny system, żeby rozbudowa nie zaburzyła tego, co już działa."
+                    }
+                }
+            },
+            "fixTarget": {
+                "prompt": "Na czym działa strona lub aplikacja, którą trzeba poprawić?",
+                "summary": "Czego dotyczy",
+                "options": {
+                    "wordpress": {
+                        "label": "Strona na WordPressie",
+                        "reaction": "WordPressa znam od podszewki - piszę własne motywy, więc poradzę sobie też z nietypowymi przypadkami."
+                    },
+                    "other_cms": {
+                        "label": "Inna strona lub CMS",
+                        "reaction": "Dobrze. Zacznę od krótkiego przeglądu, żeby ustalić najprostszą drogę do celu."
+                    },
+                    "webapp": {
+                        "label": "Aplikacja webowa",
+                        "reaction": "Aplikacjami webowymi zajmuję się na co dzień, więc szybko odnajdę się w kodzie."
+                    },
+                    "unknown": {
+                        "label": "Nie wiem, na czym działa",
+                        "reaction": "Nie szkodzi, sprawdzę to - wystarczy mi adres strony."
+                    }
+                }
+            },
+            "fixTask": {
+                "prompt": "Co dokładnie trzeba zrobić?",
+                "summary": "Zadanie",
+                "options": {
+                    "broken": {
+                        "label": "Coś przestało działać",
+                        "reaction": "Rozumiem. Najpierw ustalę przyczynę, żeby naprawa była trwała, a nie tylko doraźna."
+                    },
+                    "feature": {
+                        "label": "Dodać nową funkcję",
+                        "reaction": "Nowe funkcje dopiszę do tego, co już masz, bez przebudowy całości."
+                    },
+                    "speed": {
+                        "label": "Przyspieszyć stronę",
+                        "reaction": "Szybkość przekłada się na wyniki: każda sekunda ładowania to część klientów, którzy rezygnują."
+                    },
+                    "finish": {
+                        "label": "Dokończyć porzucony projekt",
+                        "reaction": "Porzucone projekty to częsta sytuacja. Ocenię, co da się wykorzystać, i doprowadzę projekt do końca."
+                    },
+                    "script": {
+                        "label": "Skrypt lub automatyzacja",
+                        "reaction": "Skrypt lub automatyzacja to często najszybszy sposób, żeby odzyskać kilka godzin w tygodniu."
+                    }
+                }
+            },
+            "itNeed": {
+                "prompt": "Jakiego wsparcia IT potrzebujesz?",
+                "summary": "Potrzeba",
+                "options": {
+                    "oneoff": {
+                        "label": "Jednorazowa pomoc lub konfiguracja",
+                        "reaction": "Dobrze. Zrobię to porządnie i zostawię opis, żeby było jasne, co i jak jest skonfigurowane."
+                    },
+                    "ongoing": {
+                        "label": "Stała opieka IT (zewnętrzny dział IT)",
+                        "reaction": "Stała opieka to spokój: problemy wyłapuję, zanim zatrzymają pracę firmy."
+                    },
+                    "server": {
+                        "label": "Serwer, hosting, poczta firmowa",
+                        "reaction": "Serwer, hosting i poczta to fundament - ustawię je tak, żeby działały stabilnie i bezpiecznie."
+                    },
+                    "network": {
+                        "label": "Sieć, urządzenia, kopie zapasowe",
+                        "reaction": "Sprawna sieć i kopie zapasowe to coś, o czym przestaje się myśleć, gdy są dobrze zrobione."
+                    }
+                }
+            },
+            "itPains": {
+                "prompt": "Co dziś najbardziej utrudnia pracę?",
+                "summary": "Co uciążliwe",
+                "options": {
+                    "outages": {
+                        "label": "Częste awarie i przestoje",
+                        "reaction": "Każdy przestój to stracony czas całego zespołu - zacznę od znalezienia przyczyny."
+                    },
+                    "no_backup": {
+                        "label": "Brak kopii zapasowych",
+                        "reaction": "Brak kopii zapasowych to ryzyko, które warto usunąć jak najszybciej - jedna awaria dysku potrafi zatrzymać firmę."
+                    },
+                    "no_admin": {
+                        "label": "Nikt nie ogarnia IT na bieżąco",
+                        "reaction": "Rozumiem. IT obsługiwane „przy okazji” zwykle kończy się gaszeniem pożarów. Stała opieka to zmienia."
+                    },
+                    "slow": {
+                        "label": "Wolna sieć lub sprzęt",
+                        "reaction": "Wolna sieć lub sprzęt to ukryty koszt, który firma płaci codziennie czekaniem."
+                    },
+                    "security": {
+                        "label": "Obawy o bezpieczeństwo danych",
+                        "reaction": "Bezpieczeństwo danych to także wymóg RODO - zrobię przegląd i wskażę konkretne luki."
+                    }
+                }
+            },
+            "timeline": {
+                "prompt": "Ostatnie pytanie: kiedy chcesz zacząć?",
+                "summary": "Termin",
+                "options": {
+                    "asap": {
+                        "label": "Jak najszybciej",
+                        "reaction": "Rozumiem, że sprawa jest pilna - potraktuję ją priorytetowo."
+                    },
+                    "month": {
+                        "label": "W ciągu miesiąca",
+                        "reaction": "Miesiąc to realny termin, żeby wszystko dobrze przygotować i uruchomić."
+                    },
+                    "quarter": {
+                        "label": "W ciągu 1-3 miesięcy",
+                        "reaction": "Dobrze, jest czas, żeby spokojnie zaplanować każdy etap."
+                    },
+                    "browsing": {
+                        "label": "Tylko się rozglądam",
+                        "reaction": "Jasne, dobrze najpierw poznać możliwości - bez żadnych zobowiązań."
+                    }
+                }
+            }
+        },
+        "benefits": {
+            "industryGastro": "Strona, przez którą goście zarezerwują stolik i sprawdzą menu bez dzwonienia",
+            "industryLocal": "Wizytówka, dzięki której klienci z okolicy łatwo Cię znajdą i umówią wizytę",
+            "industryConstruction": "Galeria realizacji, która sprzedaje Twoje usługi za Ciebie",
+            "industryRetail": "Sprzedaż online, która działa także wtedy, gdy sklep jest zamknięty",
+            "industryB2b": "Przejrzysta prezentacja oferty, która ułatwia klientom biznesowym decyzję",
+            "industrySolo": "Wizytówka lub portfolio na start, które pokaże Cię z najlepszej strony",
+            "moreLeads": "Strona zaprojektowana tak, żeby odwiedzający zostawiali zapytania: wyraźne wezwania do kontaktu i prosty formularz",
+            "google": "Szybka strona z podstawową optymalizacją SEO, a w razie potrzeby wsparcie sprawdzonych specjalistów SEO",
+            "selfEdit": "Panel CMS, w którym sam zmienisz treści i zdjęcia, bez znajomości kodu",
+            "booking": "System rezerwacji lub zamówień, który pracuje za Ciebie także w nocy",
+            "modern": "Nowoczesny, spójny wygląd, który buduje zaufanie od pierwszego wejścia",
+            "fast": "Szybka, w pełni responsywna strona, wygodna na każdym telefonie",
+            "allInOne": "Zajmę się wszystkim: domeną, hostingiem, konfiguracją i uruchomieniem",
+            "excel": "Dane w jednym miejscu zamiast arkuszy - koniec z ręcznym przepisywaniem i błędami",
+            "offers": "Oferty, zamówienia i obsługa klientów w jednym systemie, bez gubienia wątków",
+            "invoices": "Integracja z KSeF i e-fakturami - mam to przećwiczone we własnym systemie",
+            "automation": "Automatyzacja, która oddaje Ci godziny w tygodniu",
+            "ai": "Asystent AI lub automatyczne przygotowywanie treści, dopasowane do Twojej branży i Twoich klientów",
+            "mobile": "Aplikacja na telefon, także jako PWA, bez publikowania w sklepie z aplikacjami",
+            "tailored": "Rozwiązanie szyte na miarę Twojej firmy, które można rozwijać razem z nią",
+            "diagnosisFirst": "Najpierw sprawdzę, na czym działa Twoja strona lub aplikacja, i powiem wprost, co warto zrobić",
+            "repair": "Szybka diagnoza i naprawa, żeby wszystko znów działało",
+            "feature": "Nowe funkcje dopisane do tego, co już masz, bez budowania od zera",
+            "speed": "Szybsza strona, która nie zniechęca klientów czekaniem",
+            "finish": "Dokończę porzucony projekt i doprowadzę go do uruchomienia",
+            "itOneOff": "Jednorazowa pomoc lub konfiguracja wykonana porządnie i opisana, żeby było jasne, co masz",
+            "itCare": "Stała opieka IT zdalnie: kopie zapasowe, monitoring, szybka reakcja - bez kosztu informatyka na etacie",
+            "itServer": "Serwer, hosting i poczta firmowa skonfigurowane tak, żeby po prostu działały",
+            "itNetwork": "Sprawna sieć, urządzenia i kopie zapasowe, o które nie musisz się martwić",
+            "itSecurity": "Przegląd zabezpieczeń, kopie zapasowe i konfiguracja zgodna z dobrymi praktykami",
+            "aiSite": "Asystent AI na stronie, który odpowiada na pytania klientów i doradza im także poza godzinami pracy"
+        },
+        "diagnosis": {
+            "benefitsTitle": "Co dla Ciebie zrobię",
+            "projectTitle": "Zobacz, jak to wygląda w praktyce",
+            "projectLink": "Zobacz realizację {{project}}",
+            "whyTitle": "Dlaczego ja",
+            "why": [
+                "Programista i informatyk w jednym - zrobię stronę lub aplikację i zadbam o serwer, pocztę i sprzęt",
+                "Bezpośredni kontakt bez pośredników - rozmawiasz z osobą, która wykonuje pracę"
+            ],
+            "processTitle": "Jak to dalej wygląda",
+            "process": [
+                "Bezpłatna rozmowa o Twoich potrzebach",
+                "Propozycja rozwiązania i wycena",
+                "Realizacja z bieżącym kontaktem",
+                "Wsparcie po wdrożeniu"
+            ],
+            "consentQuestion": "Przygotować propozycję rozwiązania dla Twojej firmy?",
+            "yes": "Tak, chętnie",
+            "question": "Mam jeszcze pytanie",
+            "softText": "Zostaw e-mail, a prześlę Ci propozycję rozwiązania. Bez zobowiązań i bez spamu.",
+            "softCta": "Prześlij mi propozycję"
+        },
+        "contact": {
+            "channelAria": "Sposób kontaktu",
+            "channels": {
+                "phone": "Zadzwoń do mnie",
+                "email": "Napisz na e-mail"
+            },
+            "fields": {
+                "name": "Imię (opcjonalnie)",
+                "phone": "Telefon",
+                "email": "E-mail",
+                "emailPlaceholder": "twoj@email.pl",
+                "callTime": "Kiedy najlepiej dzwonić? (opcjonalnie)",
+                "description": "Co się stało? Jedno zdanie wystarczy (opcjonalnie)",
+                "message": "Twoja wiadomość do Tomka (opcjonalnie)"
+            },
+            "callTimes": {
+                "morning": "Rano",
+                "afternoon": "Po południu",
+                "evening": "Wieczorem"
+            },
+            "consent": "Wyrażam zgodę na kontakt w sprawie mojego zgłoszenia i przetwarzanie podanych danych zgodnie z",
+            "privacyLink": "Polityką prywatności",
+            "noObligation": "Bez zobowiązań. Numer tylko do tej rozmowy, bez spamu.",
+            "responseTime": "Odpowiadam w ciągu 24 godzin.",
+            "sending": "Wysyłam...",
+            "errors": {
+                "name": "Podaj imię.",
+                "phone": "Podaj 9-cyfrowy numer telefonu.",
+                "email": "Podaj poprawny adres e-mail.",
+                "consent": "Zaznacz zgodę, żebym mógł się z Tobą skontaktować.",
+                "invalid": "Sprawdź wpisane dane i spróbuj ponownie.",
+                "rateLimited": "Za dużo prób w krótkim czasie. Spróbuj za chwilę albo napisz na kontakt@shellty.pl.",
+                "network": "Nie udało się wysłać. Spróbuj ponownie albo napisz na kontakt@shellty.pl."
+            },
+            "contact": {
+                "title": "Gdzie mam się z Tobą skontaktować?",
+                "lead": "Przygotuję propozycję dla Twojej firmy i odezwę się osobiście.",
+                "submit": "Chcę bezpłatną propozycję"
+            },
+            "soft": {
+                "title": "Gdzie wysłać propozycję?",
+                "lead": "Prześlę Ci propozycję rozwiązania, a Ty zdecydujesz, kiedy wrócić do tematu.",
+                "submit": "Prześlij propozycję"
+            },
+            "emergency": {
+                "title": "Zostaw numer, oddzwonię najszybciej, jak to możliwe",
+                "lead": "Tylko imię i telefon. Pytania zostawmy na rozmowę.",
+                "submit": "Oddzwoń do mnie"
+            },
+            "chat": {
+                "submit": "Wyślij do Tomka"
+            }
+        },
+        "thanks": {
+            "title": "Dzięki, {{name}}!",
+            "title_anonymous": "Dzięki!",
+            "text": {
+                "contact": "Odezwę się w ciągu 24 godzin.",
+                "soft": "Prześlę Ci propozycję na podany adres e-mail.",
+                "emergency": "Oddzwonię najszybciej, jak to możliwe.",
+                "noted": "Dopisałem te odpowiedzi do Twojego zgłoszenia - Tomek ma pełny obraz i wkrótce się odezwie."
+            },
+            "followUp": {
+                "assets": "Co już masz? (logo, teksty, zdjęcia, domena) - opcjonalnie",
+                "other": "Coś jeszcze, co powinienem wiedzieć przed rozmową? - opcjonalnie"
+            },
+            "sendNote": "Dopisz do zgłoszenia",
+            "noteSent": "Dzięki, dopisałem to do Twojego zgłoszenia.",
+            "portfolio": "Zobacz moje realizacje",
+            "close": "Zamknij"
+        },
+        "chat": {
+            "title": "Dobierz rozwiązanie",
+            "intro": "Cześć! Kilka krótkich pytań, a na końcu pokażę plan dla Twojej firmy.",
+            "typing": "Pisze wiadomość",
+            "you": "Ty",
+            "diagnosisIntro": "Mam pełny obraz. Oto jak widzę Twoją sytuację i co mogę dla Ciebie zrobić:",
+            "contactSent": "Zostawiam swoje dane kontaktowe.",
+            "change": "Zmień odpowiedź"
+        },
+        "projectReasons": {
+            "aiAgent": "Tu agent AI doradza klientom przy składaniu zamówienia i podpowiada najlepsze połączenia. Podobny asystent może pracować dla Twoich klientów.",
+            "booking": "Zobacz rezerwacje online w działaniu - klient sam wybiera termin, bez dzwonienia i czekania na odpowiedź.",
+            "ksef": "Platforma do e-faktur zintegrowana z KSeF - wiem, jak ten system działa od środka.",
+            "offers": "CRM, w którym AI wypełnia profesjonalne szablony ofert treścią dopasowaną do klienta i zakresu usługi.",
+            "mobile": "Aplikacja mobilna z lekcjami dopasowanymi do użytkownika i rozmowami z AI.",
+            "wordpress": "Mój autorski motyw WordPress dla budownictwa: galeria realizacji i pełna edycja treści bez ciężkich wtyczek.",
+            "cms": "Lekki system zarządzania treścią, w którym samodzielnie zmieniasz teksty i zdjęcia, bez znajomości kodu.",
+            "fallback": "Aplikacja webowa z rezerwacjami online i asystentem AI - dobry przykład tego, jak strona może pracować na wynik."
+        },
+        "noteIntro": "Odpowiedzi z kwalifikatora:"
     },
-    "s2": {
-      "title": "2. Jakie dane zbieram i w jakim celu?",
-      "intro": "Za pośrednictwem formularza kontaktowego dostępnego na stronie zbieram wyłącznie:",
-      "items": ["imię", "adres e-mail"],
-      "purpose": "Dane te są zbierane wyłącznie w celu nawiązania kontaktu i udzielenia odpowiedzi na wiadomość przesłaną przez formularz."
-    },
-    "s3": {
-      "title": "3. Podstawa prawna przetwarzania",
-      "p": "Twoje dane przetwarzam na podstawie art. 6 ust. 1 lit. f) RODO, czyli prawnie uzasadnionego interesu Administratora, którym jest odpowiedź na skierowane do mnie zapytanie kontaktowe."
-    },
-    "s4": {
-      "title": "4. Jak długo przechowuję Twoje dane?",
-      "p": "Twoje dane przechowuję przez czas niezbędny do obsługi Twojego zapytania. Po zakończeniu korespondencji dane nie są dalej przetwarzane w żadnym innym celu."
-    },
-    "s5": {
-      "title": "5. Odbiorcy danych - Formspree",
-      "p1": "Do obsługi formularza kontaktowego korzystam z usługi Formspree (Formspree, Inc.), która pełni rolę podmiotu przetwarzającego dane w moim imieniu. Oznacza to, że wiadomości przesłane przez formularz są przekazywane za pośrednictwem serwerów Formspree.",
-      "p2": "Formspree jest firmą z siedzibą w Stanach Zjednoczonych, co oznacza, że Twoje dane mogą być przekazywane poza Europejski Obszar Gospodarczy (EOG). Formspree zapewnia odpowiedni poziom ochrony danych zgodnie z obowiązującymi przepisami.",
-      "linkLabel": "Więcej informacji znajdziesz w polityce prywatności Formspree:",
-      "p3": "Poza tym Twoje dane nie są przekazywane żadnym innym podmiotom trzecim."
-    },
-    "s6": {
-      "title": "6. Pliki cookies i narzędzia analityczne",
-      "ga": "Strona korzysta z usługi Google Analytics (Google LLC), która wykorzystuje pliki cookies do analizy ruchu na stronie. Dane zbierane przez Google Analytics są anonimowe i nie pozwalają na bezpośrednią identyfikację użytkownika. Google LLC ma siedzibę w USA - więcej informacji:"
-    },
-    "s7": {
-      "title": "7. Twoje prawa",
-      "intro": "W związku z przetwarzaniem Twoich danych osobowych przysługują Ci następujące prawa:",
-      "rights": [
-        "Prawo dostępu - możesz zapytać, jakie dane na Twój temat posiadam.",
-        "Prawo do sprostowania - możesz poprosić o poprawienie nieprawidłowych danych.",
-        "Prawo do usunięcia - możesz poprosić o usunięcie swoich danych (prawo do bycia zapomnianym).",
-        "Prawo do ograniczenia przetwarzania - możesz poprosić o wstrzymanie przetwarzania Twoich danych.",
-        "Prawo do sprzeciwu - możesz wnieść sprzeciw wobec przetwarzania danych na podstawie uzasadnionego interesu.",
-        "Prawo do skargi - jeśli uważasz, że przetwarzam Twoje dane niezgodnie z prawem, możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl."
-      ],
-      "contact": "Aby skorzystać z powyższych praw, skontaktuj się ze mną pod adresem:"
+    "chat": {
+        "launcherAria": "Otwórz czat z asystentem Tomka",
+        "closeAria": "Zamknij czat",
+        "closeTeaser": "Zamknij podpowiedź",
+        "title": "Asystent Tomka",
+        "badge": "AI",
+        "subtitle": "Tomek odpowiada w ciągu 24 godzin",
+        "inputLabel": "Napisz wiadomość",
+        "placeholder": "Napisz, czego potrzebujesz...",
+        "send": "Wyślij",
+        "teasers": {
+            "home": "Chcesz, żeby internet przynosił Twojej firmie klientów? Podpowiem, od czego zacząć.",
+            "services": "Nie wiesz, która usługa pasuje do Twojej sytuacji? Pomogę wybrać w minutę.",
+            "portfolio": "Podoba Ci się któryś projekt? Tomek może przygotować coś podobnego dla Twojej firmy.",
+            "default": "Masz pytanie o współpracę? Chętnie podpowiem."
+        },
+        "greetings": {
+            "home": "Cześć! Jestem asystentem Tomka. Pomogę Ci sprawdzić, jak strona, aplikacja albo wsparcie IT mogą przynieść Twojej firmie więcej klientów lub oszczędzić czas.",
+            "services": "Cześć! Jestem asystentem Tomka. Pomogę Ci w minutę ustalić, która usługa najlepiej pasuje do Twojej sytuacji.",
+            "portfolio": "Cześć! Jestem asystentem Tomka. Jeśli któryś projekt Ci się spodobał, Tomek może przygotować coś podobnego, dopasowanego do Twojej firmy.",
+            "default": "Cześć! Jestem asystentem Tomka. Chętnie pomogę dobrać rozwiązanie dla Twojej firmy."
+        },
+        "replies": {
+            "website": "Potrzebuję strony",
+            "app": "Chcę usprawnić firmę",
+            "it": "Mam problem z IT",
+            "portfolio": "Pokaż realizacje",
+            "websiteNew": "Zaczynam od zera",
+            "websiteRedo": "Mam stronę do poprawy",
+            "appOffers": "Oferty i obsługa klientów",
+            "appInvoices": "Faktury i KSeF",
+            "appAi": "AI w mojej firmie",
+            "appOther": "Coś innego",
+            "itEmergency": "Awaria, potrzebuję pomocy teraz",
+            "itCare": "Stała opieka IT",
+            "itOneOff": "Jednorazowa pomoc",
+            "process": "Jak wygląda współpraca?",
+            "qualifier": "Dobierz rozwiązanie w 60 s",
+            "contact": "Umówmy rozmowę",
+            "writeToTomek": "Wolę napisać do Tomka"
+        },
+        "nodes": {
+            "start": {
+                "messages": [
+                    "Z czym przychodzisz? Wybierz temat albo napisz własnymi słowami."
+                ]
+            },
+            "website": {
+                "messages": [
+                    "Dobra decyzja - strona to dziś pierwsze miejsce, w którym klient ocenia firmę, zwykle zanim w ogóle zadzwoni.",
+                    "Masz już stronę, czy zaczynamy od zera?"
+                ]
+            },
+            "websiteNew": {
+                "messages": [
+                    "Czysta karta to pełna swoboda. Tomek zaprojektuje stronę pod Twoich klientów: szybką, wygodną na telefonie i prowadzącą prosto do kontaktu.",
+                    "Tak to może wyglądać w praktyce:"
+                ],
+                "after": "Dopasujmy rozwiązanie do Twojej branży - to zajmie około minuty."
+            },
+            "websiteRedo": {
+                "messages": [
+                    "Rozumiem. Często kilka trafnych zmian daje więcej niż nowa strona: szybsze ładowanie, wyraźniejsze wezwania do kontaktu, wygoda na telefonie.",
+                    "Tomek chętnie przejrzy Twoją obecną stronę i wskaże, co poprawić w pierwszej kolejności."
+                ]
+            },
+            "app": {
+                "messages": [
+                    "Świetnie. Dobrze dopasowana aplikacja potrafi zdjąć z firmy godziny powtarzalnej pracy każdego tygodnia.",
+                    "Co dziś zabiera Ci najwięcej czasu?"
+                ]
+            },
+            "appOffers": {
+                "messages": [
+                    "Oferty i obsługa klientów to serce sprzedaży - szybciej wysłana, dopracowana oferta często decyduje o wygranej.",
+                    "Tomek zbudował CRM, w którym AI przygotowuje oferty dopasowane do klienta:"
+                ],
+                "after": "Podobne rozwiązanie można dopasować do tego, jak sprzedaje Twoja firma."
+            },
+            "appInvoices": {
+                "messages": [
+                    "KSeF to dziś temat dla każdej firmy. Tomek ma go przećwiczonego we własnej platformie do e-faktur:"
+                ],
+                "after": "Integrację można dopasować do systemu, z którego już korzystasz."
+            },
+            "appAi": {
+                "messages": [
+                    "Dobrze wdrożone AI to nie gadżet - doradza klientom, przygotowuje treści i odciąża zespół.",
+                    "Zobacz agenta AI w działaniu:"
+                ],
+                "after": "W SmartQuote AI przygotowuje też oferty za handlowca. Podobny asystent może pracować w Twojej firmie."
+            },
+            "appOther": {
+                "messages": [
+                    "Opisz w jednym, dwóch zdaniach, co chcesz usprawnić. Przekażę to Tomkowi, a on przygotuje konkretną propozycję."
+                ]
+            },
+            "it": {
+                "messages": [
+                    "Sprawne IT zauważa się dopiero wtedy, gdy przestaje działać - a wtedy stoi cała firma. Tomek przez lata zawodowo zajmował się serwerami, sieciami i bazami danych.",
+                    "Czego potrzebujesz?"
+                ]
+            },
+            "itEmergency": {
+                "messages": [
+                    "Rozumiem, każda minuta przestoju kosztuje. Zostaw numer - Tomek oddzwoni najszybciej, jak to możliwe."
+                ]
+            },
+            "itCare": {
+                "messages": [
+                    "Stała opieka IT to spokój: kopie zapasowe, monitoring i szybka reakcja, zanim problem zatrzyma pracę - bez kosztu informatyka na etacie.",
+                    "Tomek dopasuje zakres do liczby stanowisk i tego, co jest dla Ciebie najważniejsze."
+                ]
+            },
+            "itOneOff": {
+                "messages": [
+                    "Jednorazowa pomoc też ma sens: konfiguracja serwera, poczty, sieci albo kopii zapasowych - zrobiona porządnie i opisana, żeby było jasne, co i jak działa."
+                ]
+            },
+            "portfolio": {
+                "messages": [
+                    "Oto realizacje, które dobrze pokazują, co Tomek może zrobić dla Twojej firmy:"
+                ]
+            },
+            "process": {
+                "messages": [
+                    "Współpraca jest prosta i przejrzysta:"
+                ],
+                "after": "Na każdym etapie rozmawiasz bezpośrednio z Tomkiem, bez pośredników."
+            },
+            "pricing": {
+                "messages": [
+                    "Koszt zależy od tego, co rozwiązanie ma dać Twojej firmie - dlatego zanim padnie kwota, warto ustalić cel. Wtedy wycena jest trafiona, a nie „na oko”.",
+                    "Dokładną wycenę Tomek przygotuje po krótkiej, bezpłatnej rozmowie - zwykle w ciągu 24 godzin."
+                ]
+            },
+            "contact": {
+                "messages": [
+                    "Świetnie. Zostaw kontakt, a Tomek przygotuje propozycję i odezwie się osobiście."
+                ]
+            },
+            "unknown": {
+                "messages": [
+                    "Dziękuję za wiadomość. Żeby odpowiedzieć konkretnie, przekażę ją Tomkowi - zostaw kontakt, a odezwie się osobiście."
+                ]
+            },
+            "thanks": {
+                "messages": [
+                    "Dzięki! Tomek odezwie się w ciągu 24 godzin.",
+                    "W międzyczasie możesz obejrzeć realizacje albo dobrać rozwiązanie krok po kroku."
+                ]
+            },
+            "noted": {
+                "messages": [
+                    "Dziękuję, przekazałem to Tomkowi razem z Twoim zgłoszeniem."
+                ]
+            },
+            "noteFailed": {
+                "messages": [
+                    "Nie udało się wysłać tej wiadomości. Spróbuj ponownie albo napisz na kontakt@shellty.pl."
+                ]
+            },
+            "fromQualifier": {
+                "messages": [
+                    "Mam już Twoje odpowiedzi z kwalifikatora:"
+                ],
+                "after": "Nie musisz niczego powtarzać. O co chcesz jeszcze zapytać? Napisz własnymi słowami albo wybierz temat."
+            }
+        },
+        "aiNotice": "Rozmawiasz z asystentem AI, który może się mylić. Wiążące ustalenia przekaże Tomek osobiście. Nie wpisuj tu danych wrażliwych.",
+        "privacyLink": "Jak przetwarzane są dane"
     }
-  }
 }

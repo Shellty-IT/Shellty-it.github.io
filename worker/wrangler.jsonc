@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shellty-leads",
+  "account_id": "1f142e3e63f3c07cdd8f447f0340be82",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shellty-leads",
+      "database_id": "54734fcc-b412-48af-9bb2-a9c1158e167a",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "triggers": { "crons": ["* * * * *"] },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://shellty.pl,https://www.shellty.pl,http://localhost:3000",
+    "DEV_MODE": "false",
+    "SESSION_TTL_SECONDS": "7200",
+    "RATE_LIMIT_PER_SESSION": "60",
+    "RATE_LIMIT_PER_IP_PER_DAY": "300",
+    "EVENT_LIMIT_PER_SESSION": "200",
+    "EVENT_LIMIT_PER_IP_PER_DAY": "1000",
+    "CHAT_LIMIT_PER_SESSION": "20",
+    "CHAT_LIMIT_PER_IP_PER_DAY": "60",
+    "PROVIDERS": "groq,gemini",
+    "GROQ_MODEL": "openai/gpt-oss-120b",
+    "GROQ_REASONING_EFFORT": "low",
+    "GEMINI_MODEL": "gemini-3.5-flash-lite",
+    "GEMINI_REASONING_EFFORT": "minimal",
+    "AI_TIMEOUT_MS": "8000",
+    "AI_MAX_TOKENS": "800"
+  }
+}

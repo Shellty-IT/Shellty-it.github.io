@@ -1,0 +1,17 @@
+{
+  "name": "shellty-leads-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "db:migrate": "wrangler d1 migrations apply DB --local",
+    "test": "vitest run",
+    "knowledge": "node scripts/build-knowledge.mjs",
+    "models": "node scripts/list-models.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.8.0",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.160.1"
+  }
+}

@@ -36,6 +36,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_LEAD_API_URL: ${{ vars.REACT_APP_LEAD_API_URL }}
+          REACT_APP_TURNSTILE_SITEKEY: ${{ vars.REACT_APP_TURNSTILE_SITEKEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

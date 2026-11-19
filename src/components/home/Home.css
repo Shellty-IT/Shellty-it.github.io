@@ -296,6 +296,13 @@
     height: 40.8px;
 }
 
+@media (hover: none) and (pointer: coarse) and (max-width: 560px),
+       (hover: none) and (pointer: coarse) and (max-height: 480px) {
+    .hero__services-link.btn-cta .btn-cta__icon-base {
+        opacity: 0.2;
+    }
+}
+
 .hero__services-link .btn-cta__text {
     flex: 1;
 }

@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
 import CloudBackground from "./background/CloudBackground";
 import SeoManager from "./seo/SeoManager";
+import useBrowserIdle from "./hooks/useBrowserIdle";
 
 import './App.css';
 
@@ -16,8 +17,13 @@ const Portfolio   = lazy(() => import(/* webpackPrefetch: true */ "./components/
 const Contact     = lazy(() => import(/* webpackPrefetch: true */ "./components/contact/Contact"));
 const NotFound    = lazy(() => import("./components/notFound/NotFound"));
 const CustomCursor = lazy(() => import("./components/customCursor"));
+const LeadFunnel = lazy(() => import("./components/leadFunnel/LeadFunnel"));
+
+const LEAD_FUNNEL_ENABLED = Boolean(process.env.REACT_APP_LEAD_API_URL);
 
 function App() {
+    const browserIdle = useBrowserIdle();
+
     return (
         <Router>
             <SeoManager />
@@ -26,6 +32,12 @@ function App() {
             <Suspense fallback={null}>
                 <CustomCursor />
             </Suspense>
+
+            {LEAD_FUNNEL_ENABLED && browserIdle && (
+                <Suspense fallback={null}>
+                    <LeadFunnel />
+                </Suspense>
+            )}
 
             <Navbar />
 

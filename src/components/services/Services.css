@@ -921,6 +921,17 @@
     opacity: 1;
 }
 
+@media (hover: none) and (pointer: coarse) and (max-width: 560px),
+       (hover: none) and (pointer: coarse) and (max-height: 480px) {
+    .svc .btn-icon__base {
+        opacity: 0;
+    }
+
+    .svc .btn-icon__lit {
+        opacity: 1;
+    }
+}
+
 #services {
     scroll-margin-top: 80px;
 }
