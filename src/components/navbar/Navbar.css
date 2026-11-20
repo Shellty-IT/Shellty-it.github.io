@@ -133,23 +133,86 @@
     color: #0cc0ff;
 }
 
-.nav__link--accent:not(.is-active) .nav__label {
-    background-image: linear-gradient(100deg, #e6f6ff 0%, #e6f6ff 32%, #0cc0ff 44%, #fff 50%, #0cc0ff 56%, #e6f6ff 68%, #e6f6ff 100%);
-    background-size: 260% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
+.nav__link--accent:not(.is-active) .nav__shimmer {
+    position: relative;
     color: transparent;
-    animation: navShimmer 2.2s linear infinite;
     filter: drop-shadow(0 0 6px rgba(12, 192, 255, .35));
 }
 
-@keyframes navShimmer {
-    from { background-position: 100% 0; }
-    to   { background-position: 0% 0; }
+.nav__shimmer-layers {
+    display: none;
+}
+
+.nav__link--accent:not(.is-active) .nav__shimmer-layers {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
+    pointer-events: none;
+    user-select: none;
+}
+
+.nav__shimmer-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260%;
+    height: 100%;
+    animation: navShimmerWindow 2.2s linear infinite;
+}
+
+.nav__shimmer-window--base {
+    --shimmer-tone: #e6f6ff;
+    -webkit-mask-image: linear-gradient(100deg, #000 32%, transparent 44%, transparent 56%, #000 68%);
+    mask-image: linear-gradient(100deg, #000 32%, transparent 44%, transparent 56%, #000 68%);
+}
+
+.nav__shimmer-window--accent {
+    --shimmer-tone: #0cc0ff;
+    mix-blend-mode: plus-lighter;
+    -webkit-mask-image: linear-gradient(100deg, transparent 32%, #000 44%, transparent 50%, #000 56%, transparent 68%);
+    mask-image: linear-gradient(100deg, transparent 32%, #000 44%, transparent 50%, #000 56%, transparent 68%);
+}
+
+.nav__shimmer-window--peak {
+    --shimmer-tone: #fff;
+    mix-blend-mode: plus-lighter;
+    -webkit-mask-image: linear-gradient(100deg, transparent 44%, #000 50%, transparent 56%);
+    mask-image: linear-gradient(100deg, transparent 44%, #000 50%, transparent 56%);
+}
+
+.nav__shimmer-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% / 2.6);
+    height: 100%;
+    animation: navShimmerText 2.2s linear infinite;
+}
+
+.nav__shimmer-text::before {
+    content: attr(data-text);
+    display: block;
+    color: transparent;
+    background-color: var(--shimmer-tone);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes navShimmerWindow {
+    from { transform: translateX(calc(-160% / 2.6)); }
+    to   { transform: translateX(0); }
+}
+
+@keyframes navShimmerText {
+    from { transform: translateX(160%); }
+    to   { transform: translateX(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .nav__link--accent:not(.is-active) .nav__label { animation: none; }
+    .nav__shimmer-window,
+    .nav__shimmer-text { animation: none; }
 }
 
 /* ─── Language switcher (prawa krawędź) ─── */

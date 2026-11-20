@@ -24,6 +24,21 @@ const LanguageSwitcher = ({ className, language, onChange }) => (
     </div>
 );
 
+const SHIMMER_TONES = ['base', 'accent', 'peak'];
+
+const ShimmerLabel = ({ text }) => (
+    <span className="nav__label nav__shimmer">
+        {text}
+        <span className="nav__shimmer-layers" aria-hidden="true">
+            {SHIMMER_TONES.map((tone) => (
+                <span key={tone} className={`nav__shimmer-window nav__shimmer-window--${tone}`}>
+                    <span className="nav__shimmer-text" data-text={text} />
+                </span>
+            ))}
+        </span>
+    </span>
+);
+
 const Navbar = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -122,7 +137,9 @@ const Navbar = () => {
                             onClick={closeMenu}
                         >
                             <span className="num">{item.num}</span>
-                            <span className="nav__label">{t(item.labelKey)}</span>
+                            {item.accent
+                                ? <ShimmerLabel text={t(item.labelKey)} />
+                                : <span className="nav__label">{t(item.labelKey)}</span>}
                         </NavLink>
                     ))}
 

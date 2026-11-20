@@ -15,6 +15,7 @@ import portfolioGlow from '../../assets/icons/portfolio/portfolio_glow.webp';
 
 import SectionIcon from '../sectionIcon/SectionIcon';
 import SectionTitle from '../sectionTitle/SectionTitle';
+import PulseGlow from '../pulseGlow/PulseGlow';
 
 const ICON_NODES = [
     { id: 0, x: "15%", y: "15%" },
@@ -235,8 +236,8 @@ const Portfolio = () => {
                             i18nKey="portfolio.subtitleHtml"
                             components={{
                                 link: <a href="https://github.com/shellty-it" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />,
-                                pulseLink: <a href="https://shellty-pulse.duckdns.org" target="_blank" rel="noopener noreferrer" className="warning-glow" aria-label="Shellty Pulse" />,
-                                warning: <span className="warning-glow" />
+                                pulseLink: <PulseGlow as="a" href="https://shellty-pulse.duckdns.org" target="_blank" rel="noopener noreferrer" className="warning-glow" aria-label="Shellty Pulse" />,
+                                warning: <PulseGlow className="warning-glow" />
                             }}
                         />
                     </p>

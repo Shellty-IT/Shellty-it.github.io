@@ -288,13 +288,12 @@
 .exp__card::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 16px;
-    bottom: 16px;
-    width: 2px;
-    background: linear-gradient(180deg, #0cc0ff, transparent 80%);
+    left: -1px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: var(--accent-edge);
     opacity: 0.55;
-    border-radius: 999px;
 }
 
 /* ─── Nagłówek karty ─── */

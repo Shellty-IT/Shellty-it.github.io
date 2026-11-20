@@ -1,5 +1,5 @@
 // src/components/services/Services.js
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useIconPhase } from '../../hooks/useIconPhase';
 import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +15,7 @@ import {
 import './Services.css';
 import VideoModal from '../video/VideoModal';
 import SectionTitle from '../sectionTitle/SectionTitle';
+import { withPulseGlow } from '../pulseGlow/PulseGlow';
 
 import servicesIcon from '../../assets/icons/services/services.webp';
 import servicesRotating from '../../assets/icons/services/services_rotating.webp';
@@ -86,6 +87,8 @@ const Services = () => {
     const iconKickTimeoutRef = useRef(null);
     const iconKickRafRef = useRef(null);
     const { iconRef, iconPhase } = useIconPhase('svc-icon-wrap--pulse');
+    const intro = t('services.intro');
+    const introHtml = useMemo(() => withPulseGlow(intro), [intro]);
 
     useEffect(() => {
         return () => {
@@ -251,7 +254,7 @@ const Services = () => {
 
                 <ServicesShowreel t={t} onPlay={() => setVideoOpen(true)} />
 
-                <p className="svc-intro" dangerouslySetInnerHTML={{ __html: t('services.intro') }} />
+                <p className="svc-intro" dangerouslySetInnerHTML={{ __html: introHtml }} />
 
                 <div className="svc-grid">
                     {cards.map((card) => (

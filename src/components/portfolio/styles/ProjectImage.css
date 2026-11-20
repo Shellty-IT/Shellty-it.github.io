@@ -29,6 +29,14 @@
 
 .project-img-placeholder__scanline {
     position: absolute;
+    inset: 0;
+    animation: scanDown 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.project-img-placeholder__scanline::before {
+    content: "";
+    position: absolute;
+    top: 0;
     left: 0;
     right: 0;
     height: 2px;
@@ -41,8 +49,6 @@
             transparent
     );
     box-shadow: 0 0 8px rgba(12, 192, 255, 0.8), 0 0 20px rgba(12, 192, 255, 0.4);
-    animation: scanDown 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    top: 0;
 }
 
 .project-img-placeholder__label {
@@ -120,10 +126,16 @@
     pointer-events: none;
 }
 
+[data-phase="done"] .project-img-placeholder__scanline,
+[data-phase="done"] .project-img-placeholder__label {
+    animation: none;
+}
+
 [data-phase="done"] .project-image {
     opacity: 1;
     filter: none;
     transform: scale(1);
+    will-change: auto;
     transition:
             filter 0.4s ease,
             transform 0.4s ease;
@@ -131,6 +143,7 @@
 
 [data-phase="done"] .project-img-glitch {
     opacity: 0;
+    will-change: auto;
 }
 
 .project-card:hover .project-img-reveal[data-phase="done"] .project-image {
