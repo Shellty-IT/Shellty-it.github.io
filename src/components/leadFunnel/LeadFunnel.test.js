@@ -53,13 +53,13 @@ describe('LeadFunnel', () => {
         expect(screen.getByRole('button', { name: pl.chat.launcherAria })).toBeVisible();
     });
 
-    it('opens the contact form with the service selected in the chat', async () => {
+    it('continues the qualifier after the service selected in the chat', async () => {
         renderFunnel();
         fireEvent.click(screen.getByRole('button', { name: pl.chat.launcherAria }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.website }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.websiteNew }));
         fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.qualifier }));
-        expect(await screen.findByLabelText(pl.qualifier.contact.topics.website)).toBeVisible();
+        expect(await screen.findByText(pl.qualifier.steps.hasSite.prompt)).toBeVisible();
         expect(screen.queryByRole('log', { name: /Asystent Tomka/ })).not.toBeInTheDocument();
         expect(loadLeadSession().engaged).toBe(true);
     });

@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
-import { MemoryRouter, useLocation } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import pl from '../../locales/pl/translation.json';
 import QualifierModal from './QualifierModal';
 import { submitLead, submitLeadNote } from '../../leads/leadApi';
@@ -29,21 +29,23 @@ i18n.use(initReactI18next).init({
 });
 
 const { qualifier } = pl;
+const { steps } = qualifier;
 
-function LocationProbe() {
-    return <span data-testid="location">{useLocation().pathname}</span>;
-}
-
-function renderModal(onClose = jest.fn(), onAskQuestion = jest.fn()) {
+function renderModal(onClose = jest.fn()) {
     render(
         <I18nextProvider i18n={i18n}>
             <MemoryRouter initialEntries={['/services']}>
-                <QualifierModal onClose={onClose} onAskQuestion={onAskQuestion} />
-                <LocationProbe />
+                <QualifierModal onClose={onClose} />
             </MemoryRouter>
         </I18nextProvider>
     );
 }
+
+async function choose(stepId, option) {
+    fireEvent.click(await screen.findByRole('button', { name: steps[stepId].options[option].label }));
+}
+
+const submit = () => fireEvent.click(screen.getByRole('button', { name: qualifier.phone.submit }));
 
 beforeEach(() => {
     window.matchMedia = jest.fn().mockReturnValue({ matches: true });
@@ -53,65 +55,103 @@ beforeEach(() => {
 });
 
 describe('QualifierModal', () => {
-    const choose = (topic) => fireEvent.click(screen.getByRole('button', { name: qualifier.steps.service.options[topic].label }));
-    const submit = () => fireEvent.click(screen.getByRole('button', { name: qualifier.contact.contact.submit }));
-
-    it.each(Object.keys(qualifier.contact.topics))('opens contact immediately for %s', (topic) => {
-        renderModal();
-        expect(screen.getByRole('dialog')).toHaveAccessibleName(qualifier.steps.service.prompt);
-        choose(topic);
-        expect(screen.getByLabelText(qualifier.contact.topics[topic])).toBeVisible();
-        expect(screen.getByLabelText('Telefon')).toBeVisible();
-        expect(screen.queryByRole('button', { name: qualifier.contact.channels.email }) !== null).toBe(topic !== 'emergency');
-    });
-
-    it('validates contact and sends the topic with the edited description', async () => {
-        renderModal();
-        choose('website');
-        submit();
-        expect(screen.getByLabelText('Telefon')).toHaveFocus();
-        expect(submitLead).not.toHaveBeenCalled();
-        fireEvent.click(screen.getByRole('button', { name: qualifier.contact.channels.email }));
-        fireEvent.change(screen.getByLabelText('E-mail'), { target: { value: 'jan@example.org' } });
-        fireEvent.change(screen.getByLabelText(qualifier.contact.topics.website), { target: { value: 'Rezerwacje online' } });
-        fireEvent.click(screen.getByRole('checkbox'));
-        submit();
-        expect(await screen.findByText(qualifier.thanks.title_anonymous)).toBeVisible();
-        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
-            source: 'qualifier', email: 'jan@example.org', consent: true,
-            answers: { service: 'website', message: 'Rezerwacje online' },
-        }));
-        fireEvent.change(screen.getByLabelText(/Co już masz/), { target: { value: 'Mam domenę' } });
-        fireEvent.click(screen.getByRole('button', { name: qualifier.thanks.sendNote }));
-        expect(await screen.findByText(qualifier.thanks.noteSent)).toBeVisible();
-    });
-
-    it('resumes a saved topic and lets the visitor change it', () => {
+    it('leads from three clicks to a phone number only', async () => {
         const close = jest.fn();
         renderModal(close);
-        choose('app');
+        expect(screen.getByText(steps.service.prompt)).toBeVisible();
+        expect(screen.queryByRole('textbox')).toBeNull();
+
+        await choose('service', 'website');
+        expect(await screen.findByText(steps.service.options.website.reaction)).toBeVisible();
+        await choose('hasSite', 'no');
+        await choose('timeline', 'asap');
+
+        expect(await screen.findByText(qualifier.phone.prompt.contact)).toBeVisible();
+        const phone = screen.getByLabelText(qualifier.contact.fields.phone);
+        expect(phone).toHaveFocus();
+        expect(screen.queryByRole('checkbox')).toBeNull();
+        expect(screen.getAllByRole('textbox')).toHaveLength(1);
+
+        submit();
+        expect(screen.getByText(qualifier.contact.errors.phone)).toBeVisible();
+        expect(submitLead).not.toHaveBeenCalled();
+
+        fireEvent.change(phone, { target: { value: '600 700 800' } });
+        submit();
+        expect(await screen.findByText(qualifier.thanks.text.contact)).toBeVisible();
+        expect(submitLead).toHaveBeenCalledWith({
+            phone: '600700800',
+            email: '',
+            name: '',
+            consent: true,
+            consentText: `${qualifier.phone.notice} ${qualifier.contact.privacyLink}.`,
+            fax: '',
+            source: 'qualifier',
+            page: '/services',
+            lang: 'pl',
+            answers: { service: 'website', hasSite: 'no', timeline: 'asap' },
+        });
+        expect(screen.getByText('+48 600 700 800')).toBeVisible();
+
+        fireEvent.click(screen.getAllByRole('button', { name: qualifier.thanks.close }).at(-1));
+        expect(close).toHaveBeenCalledWith({ savedMidway: false });
+    });
+
+    it('skips the questions and the email option for an emergency', async () => {
+        renderModal();
+        await choose('service', 'emergency');
+        expect(await screen.findByText(qualifier.phone.prompt.emergency)).toBeVisible();
+        expect(screen.queryByRole('button', { name: qualifier.phone.useEmail })).toBeNull();
+    });
+
+    it('lets the visitor leave an email instead and shows send errors', async () => {
+        submitLead.mockRejectedValueOnce(new Error('offline'));
+        renderModal();
+        await choose('service', 'unsure');
+        await choose('timeline', 'browsing');
+        fireEvent.click(await screen.findByRole('button', { name: qualifier.phone.useEmail }));
+        const email = screen.getByLabelText(qualifier.contact.fields.email);
+        fireEvent.change(email, { target: { value: 'jan@example.org' } });
+        submit();
+        expect(await screen.findByText(qualifier.contact.errors.network)).toBeVisible();
+        submit();
+        expect(await screen.findByText(qualifier.thanks.text.contact)).toBeVisible();
+        expect(submitLead).toHaveBeenLastCalledWith(expect.objectContaining({
+            phone: '',
+            email: 'jan@example.org',
+            answers: { service: 'unsure', timeline: 'browsing' },
+        }));
+    });
+
+    it('resumes saved answers and lets the visitor go back', async () => {
+        const close = jest.fn();
+        renderModal(close);
+        await choose('service', 'app');
+        await screen.findByText(steps.appStage.prompt);
         fireEvent.keyDown(document, { key: 'Escape' });
         expect(close).toHaveBeenCalledWith({ savedMidway: true });
         cleanup();
+
         renderModal();
-        expect(screen.getByLabelText(qualifier.contact.topics.app)).toBeVisible();
+        expect(screen.getByText(steps.appStage.prompt)).toBeVisible();
         fireEvent.click(screen.getByRole('button', { name: qualifier.back }));
-        choose('fixes');
+        await choose('service', 'fixes');
+        await screen.findByText(steps.fixTarget.prompt);
         expect(loadLeadSession().qualifierAnswers).toEqual({ service: 'fixes' });
     });
 
-    it('reuses the contact for a previously submitted lead and supports retry', async () => {
-        updateLeadSession({ leadSent: { name: 'Ola' } });
+    it('adds the answers to a lead sent earlier instead of asking for the number again', async () => {
+        updateLeadSession({ leadSent: { name: '' } });
         submitLeadNote.mockRejectedValueOnce(new Error('offline'));
         renderModal();
-        choose('it');
-        expect(screen.queryByLabelText('Telefon')).toBeNull();
-        fireEvent.change(screen.getByLabelText(qualifier.contact.topics.it), { target: { value: 'Serwer' } });
+        await choose('service', 'emergency');
+        expect(await screen.findByText(qualifier.phone.prompt.noted)).toBeVisible();
+        expect(screen.queryByLabelText(qualifier.contact.fields.phone)).toBeNull();
         fireEvent.click(screen.getByRole('button', { name: qualifier.thanks.sendNote }));
         expect(await screen.findByText(qualifier.contact.errors.network)).toBeVisible();
         fireEvent.click(screen.getByRole('button', { name: qualifier.thanks.sendNote }));
-        expect(await screen.findByText('Dzięki, Ola!')).toBeVisible();
-        expect(submitLeadNote).toHaveBeenLastCalledWith('Wsparcie IT: Serwer');
+        expect(await screen.findByText(qualifier.thanks.text.noted)).toBeVisible();
+        expect(submitLeadNote).toHaveBeenLastCalledWith(`${qualifier.noteIntro} Usługa: ${steps.service.options.emergency.label}`);
         expect(submitLead).not.toHaveBeenCalled();
     });
 });

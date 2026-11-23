@@ -797,403 +797,139 @@
         },
         "close": "Zamknij",
         "back": "Wstecz",
-        "next": "Dalej",
-        "newTab": "(otwiera się w nowej karcie)",
-        "stepOf": "Krok {{current}} z {{total}}",
-        "ownWords": "Wolę opisać własnymi słowami",
         "rail": {
             "name": "Tomek",
-            "status": "odpisuje w ciągu 24 godzin",
-            "quote": "Solidny, terminowy i skuteczny.",
-            "quoteSource": "Jan, opinia Google 5/5",
-            "notesAria": "Twoje odpowiedzi"
+            "status": "odpisuje w ciągu 24 godzin"
         },
-        "plan": {
-            "title": "Dobieramy rozwiązanie",
-            "ready": "Rozwiązanie dobrane",
-            "readyHint": "Szczegóły ustalimy w rozmowie.",
-            "left_one": "Jeszcze {{count}} pytanie",
-            "left_few": "Jeszcze {{count}} pytania",
-            "left_many": "Jeszcze {{count}} pytań",
-            "left_other": "Jeszcze {{count}} pytania"
-        },
-        "maxHint": "Możesz wybrać maksymalnie {{count}}.",
-        "siteUrl": {
-            "label": "Adres obecnej strony (opcjonalnie) - rzucę okiem i powiem, co da się poprawić",
-            "placeholder": "np. mojafirma.pl"
+        "chat": {
+            "title": "Dobierz rozwiązanie",
+            "intro": "Cześć! Kilka kliknięć i odezwę się z konkretną propozycją.",
+            "typing": "Pisze wiadomość",
+            "you": "Ty",
+            "contactSent": "Zostawiam swoje dane kontaktowe."
         },
         "steps": {
             "service": {
-                "prompt": "W czym mogę Ci pomóc?",
+                "prompt": "W czym mogę pomóc?",
                 "summary": "Usługa",
                 "options": {
                     "website": {
-                        "label": "Nowa strona internetowa",
-                        "reaction": "Dobra decyzja. Strona to dziś pierwsze miejsce, w którym klient ocenia Twoją firmę - zwykle zanim w ogóle zadzwoni."
+                        "label": "Nowa strona",
+                        "reaction": "Super, strony to moja specjalność."
                     },
                     "app": {
                         "label": "Aplikacja dla firmy",
-                        "reaction": "Świetnie. Dobrze dopasowana aplikacja potrafi zdjąć z firmy godziny powtarzalnej pracy każdego tygodnia."
+                        "reaction": "Świetnie, aplikacje dla firm robię na co dzień."
                     },
                     "fixes": {
                         "label": "Poprawki i rozbudowa",
-                        "reaction": "Rozumiem. Często nie trzeba budować wszystkiego od nowa - wystarczy naprawić i rozbudować to, co już masz."
+                        "reaction": "Jasne, często wystarczy dobrze poprawić to, co już działa."
                     },
                     "it": {
                         "label": "Wsparcie IT",
-                        "reaction": "Słusznie. Sprawne IT zauważa się dopiero wtedy, gdy przestaje działać, a wtedy stoi cała firma."
+                        "reaction": "Jasne, pomogę."
                     },
                     "unsure": {
-                        "label": "Opiszę własnymi słowami",
-                        "reaction": "Nie ma problemu, od tego jestem. Najlepsze rozwiązanie zwykle wychodzi z rozmowy o celu, a nie o technologii."
+                        "label": "Nie wiem, doradź",
+                        "reaction": "Nie ma problemu, doradzę w rozmowie."
                     },
                     "emergency": {
-                        "label": "Awaria - potrzebuję pomocy teraz",
-                        "reaction": "Rozumiem, każda minuta przestoju kosztuje. Pomijam pozostałe pytania."
-                    }
-                }
-            },
-            "goal": {
-                "prompt": "Co chcesz osiągnąć w najbliższych miesiącach?",
-                "summary": "Cel",
-                "options": {
-                    "more_clients": {
-                        "label": "Więcej klientów z internetu",
-                        "reaction": "Więcej klientów z internetu to zwykle dwie rzeczy: strona, która przekonuje, i to, żeby łatwo było ją znaleźć."
-                    },
-                    "save_time": {
-                        "label": "Oszczędność czasu w firmie",
-                        "reaction": "Czas to najcenniejszy zasób małej firmy. Zwykle da się odzyskać sporą jego część, automatyzując to, co dziś robisz ręcznie."
-                    },
-                    "broken": {
-                        "label": "Coś nie działa",
-                        "reaction": "Spokojnie. Najpierw ustalę przyczynę, a potem zaproponuję najprostszą, trwałą naprawę."
-                    },
-                    "it_infra": {
-                        "label": "Komputery, sieć, serwer",
-                        "reaction": "Komputery, sieć i serwery to moja działka - przez lata zajmowałem się nimi zawodowo."
-                    },
-                    "talk": {
-                        "label": "Wolę po prostu porozmawiać"
-                    }
-                }
-            },
-            "industry": {
-                "prompt": "Czym zajmuje się Twoja firma?",
-                "summary": "Branża",
-                "options": {
-                    "gastro": {
-                        "label": "Gastronomia, hotel, turystyka",
-                        "reaction": "W gastronomii liczy się, czy gość w kilka sekund znajdzie menu i zarezerwuje stolik - najlepiej z telefonu, bez dzwonienia."
-                    },
-                    "local": {
-                        "label": "Usługi lokalne, beauty, zdrowie",
-                        "reaction": "W usługach lokalnych klienci szukają w Google „w okolicy” i wybierają tego, u kogo najłatwiej umówić termin."
-                    },
-                    "construction": {
-                        "label": "Budowlanka, rzemiosło, produkcja",
-                        "reaction": "W budowlance klient kupuje oczami - zdjęcia realizacji i opinie sprzedają lepiej niż najdłuższy opis."
-                    },
-                    "retail": {
-                        "label": "Handel, sklep",
-                        "reaction": "W handlu każdy dodatkowy krok przy zakupie to utracony klient, dlatego liczy się prostota i wygoda na telefonie."
-                    },
-                    "b2b": {
-                        "label": "Biuro, usługi dla firm (B2B)",
-                        "reaction": "Klienci biznesowi oczekują konkretu i profesjonalizmu, a w środku firmy najwięcej czasu zjadają zwykle oferty i dokumenty."
-                    },
-                    "solo": {
-                        "label": "Działam sam / dopiero zaczynam",
-                        "reaction": "Na starcie liczy się mocny pierwszy wizerunek i rozwiązanie, które rośnie razem z firmą, bez budowania rzeczy na zapas."
-                    },
-                    "other": {
-                        "label": "Inna branża",
-                        "reaction": "Każda branża ma swoją specyfikę - o szczegóły dopytam w rozmowie, a teraz skupmy się na Twoim celu."
+                        "label": "Awaria, pilna pomoc",
+                        "reaction": "Rozumiem, pomijam pytania."
                     }
                 }
             },
             "hasSite": {
-                "prompt": "Masz już stronę internetową?",
+                "prompt": "Masz już stronę?",
                 "summary": "Obecna strona",
                 "options": {
                     "no": {
-                        "label": "Nie, to pierwsza",
-                        "reaction": "Świetnie, zaczynamy od czystej karty - zaprojektuję wszystko pod Twoich klientów od pierwszego dnia."
+                        "label": "Nie, zaczynam od zera"
                     },
                     "yes_new": {
-                        "label": "Tak, ale chcę nową",
-                        "reaction": "Dobrze. Zanim zaprojektuję nową, chcę wiedzieć, co w obecnej nie działa, żeby nie powtórzyć tych samych błędów."
+                        "label": "Tak, chcę nową"
                     },
                     "yes_fix": {
-                        "label": "Tak, chcę ją poprawić",
-                        "reaction": "W takim razie skupmy się na tym, co już masz - często kilka trafnych zmian daje więcej niż nowa strona."
-                    }
-                }
-            },
-            "sitePains": {
-                "prompt": "Co dziś najbardziej przeszkadza Ci w obecnej stronie?",
-                "summary": "Co przeszkadza",
-                "options": {
-                    "no_clients": {
-                        "label": "Nie przynosi klientów",
-                        "reaction": "To najczęstszy problem, jaki widzę: strona wygląda poprawnie, ale nie prowadzi do kontaktu. To da się poprawić i zmierzyć."
-                    },
-                    "outdated": {
-                        "label": "Wygląda przestarzale",
-                        "reaction": "Przestarzały wygląd odbiera wiarygodność - klient podświadomie przenosi to wrażenie na całą firmę."
-                    },
-                    "cant_edit": {
-                        "label": "Nie mogę sam nic zmienić",
-                        "reaction": "Strona, której nie można samodzielnie aktualizować, szybko się starzeje. Dostaniesz prosty panel do zmian."
-                    },
-                    "slow": {
-                        "label": "Działa wolno",
-                        "reaction": "Wolna strona traci klientów, zanim się załaduje, a Google też to zauważa."
-                    },
-                    "bad_mobile": {
-                        "label": "Źle wygląda na telefonie",
-                        "reaction": "Większość odwiedzających trafi do Ciebie z telefonu, więc to sprawa priorytetowa."
-                    }
-                }
-            },
-            "siteGoals": {
-                "prompt": "Co nowa strona ma Ci przede wszystkim dać?",
-                "summary": "Cel strony",
-                "options": {
-                    "more_leads": {
-                        "label": "Więcej zapytań od klientów",
-                        "reaction": "Dobrze, w takim razie projektuję ją pod zapytania: każda sekcja ma prowadzić klienta do kontaktu."
-                    },
-                    "google": {
-                        "label": "Lepsza widoczność w Google",
-                        "reaction": "Widoczność w Google zaczyna się od szybkiej strony i dobrze ułożonej treści - zadbam o to od początku."
-                    },
-                    "self_edit": {
-                        "label": "Samodzielna edycja treści",
-                        "reaction": "Rozumiem. Dostaniesz prosty panel, w którym samodzielnie zmienisz treści i zdjęcia."
-                    },
-                    "booking": {
-                        "label": "Rezerwacje lub zamówienia online",
-                        "reaction": "Rezerwacje online pracują za Ciebie całą dobę - klient umawia się wtedy, kiedy ma czas, a nie wtedy, gdy odbierasz telefon."
-                    },
-                    "ai": {
-                        "label": "Asystent AI na stronie",
-                        "reaction": "Świetny kierunek. Asystent AI na stronie potrafi doradzić klientowi i odpowiedzieć na pytania, zanim ten w ogóle do Ciebie napisze."
-                    },
-                    "image": {
-                        "label": "Profesjonalny wizerunek",
-                        "reaction": "Pierwsze wrażenie trudno zmienić, dlatego zadbam o spójny, profesjonalny wygląd od pierwszego ekranu."
-                    }
-                }
-            },
-            "appPain": {
-                "prompt": "Co dziś zabiera Tobie lub Twojemu zespołowi najwięcej czasu?",
-                "summary": "Największy problem",
-                "options": {
-                    "excel": {
-                        "label": "Ręczne przepisywanie danych i arkusze Excela",
-                        "reaction": "Arkusze i ręczne przepisywanie to idealny kandydat do usprawnienia - dane w jednym miejscu to mniej błędów i więcej czasu."
-                    },
-                    "offers": {
-                        "label": "Oferty, zamówienia, obsługa klientów",
-                        "reaction": "Oferty i obsługa klientów to serce sprzedaży. Szybciej wysłana, dopracowana oferta często decyduje o wygranej."
-                    },
-                    "invoices": {
-                        "label": "Faktury i dokumenty (np. KSeF)",
-                        "reaction": "KSeF to dziś temat dla każdej firmy - mam go przećwiczonego we własnym systemie do e-faktur."
-                    },
-                    "automation": {
-                        "label": "Powtarzalne zadania, które da się zautomatyzować",
-                        "reaction": "Jeśli coś robicie według tego samego schematu, prawie na pewno da się to zautomatyzować."
-                    },
-                    "ai": {
-                        "label": "Chcę dodać AI do swojej firmy",
-                        "reaction": "Świetny kierunek. Dobrze wdrożone AI to nie gadżet: doradza klientom, przygotowuje treści i odciąża zespół."
-                    },
-                    "mobile": {
-                        "label": "Potrzebuję aplikacji mobilnej / PWA",
-                        "reaction": "Aplikacja na telefon sprawdza się, gdy Ty lub Twoi klienci potrzebujecie dostępu w terenie, a nie tylko przy biurku."
+                        "label": "Tak, chcę ją poprawić"
                     }
                 }
             },
             "appStage": {
-                "prompt": "Na jakim etapie jest Twój pomysł?",
+                "prompt": "Na jakim etapie jest pomysł?",
                 "summary": "Etap",
                 "options": {
                     "idea": {
-                        "label": "Mam tylko pomysł",
-                        "reaction": "To dobry moment - na etapie pomysłu najłatwiej zaplanować rozwiązanie, które naprawdę odpowiada na potrzeby firmy."
+                        "label": "Mam tylko pomysł"
                     },
                     "spec": {
-                        "label": "Mam opis lub specyfikację",
-                        "reaction": "Świetnie, opis bardzo przyspiesza pracę. Przejrzę go i podpowiem, co uprościć, a co warto dodać."
+                        "label": "Mam opis wymagań"
                     },
                     "existing": {
-                        "label": "Mam system do rozbudowy",
-                        "reaction": "Rozumiem. Najpierw poznam obecny system, żeby rozbudowa nie zaburzyła tego, co już działa."
+                        "label": "Mam system do rozbudowy"
                     }
                 }
             },
             "fixTarget": {
-                "prompt": "Na czym działa strona lub aplikacja, którą trzeba poprawić?",
+                "prompt": "Na czym działa strona lub aplikacja?",
                 "summary": "Czego dotyczy",
                 "options": {
                     "wordpress": {
-                        "label": "Strona na WordPressie",
-                        "reaction": "WordPressa znam od podszewki - piszę własne motywy, więc poradzę sobie też z nietypowymi przypadkami."
-                    },
-                    "other_cms": {
-                        "label": "Inna strona lub CMS",
-                        "reaction": "Dobrze. Zacznę od krótkiego przeglądu, żeby ustalić najprostszą drogę do celu."
+                        "label": "WordPress"
                     },
                     "webapp": {
-                        "label": "Aplikacja webowa",
-                        "reaction": "Aplikacjami webowymi zajmuję się na co dzień, więc szybko odnajdę się w kodzie."
+                        "label": "Aplikacja webowa"
                     },
                     "unknown": {
-                        "label": "Nie wiem, na czym działa",
-                        "reaction": "Nie szkodzi, sprawdzę to - wystarczy mi adres strony."
-                    }
-                }
-            },
-            "fixTask": {
-                "prompt": "Co dokładnie trzeba zrobić?",
-                "summary": "Zadanie",
-                "options": {
-                    "broken": {
-                        "label": "Coś przestało działać",
-                        "reaction": "Rozumiem. Najpierw ustalę przyczynę, żeby naprawa była trwała, a nie tylko doraźna."
-                    },
-                    "feature": {
-                        "label": "Dodać nową funkcję",
-                        "reaction": "Nowe funkcje dopiszę do tego, co już masz, bez przebudowy całości."
-                    },
-                    "speed": {
-                        "label": "Przyspieszyć stronę",
-                        "reaction": "Szybkość przekłada się na wyniki: każda sekunda ładowania to część klientów, którzy rezygnują."
-                    },
-                    "finish": {
-                        "label": "Dokończyć porzucony projekt",
-                        "reaction": "Porzucone projekty to częsta sytuacja. Ocenię, co da się wykorzystać, i doprowadzę projekt do końca."
-                    },
-                    "script": {
-                        "label": "Skrypt lub automatyzacja",
-                        "reaction": "Skrypt lub automatyzacja to często najszybszy sposób, żeby odzyskać kilka godzin w tygodniu."
+                        "label": "Nie wiem"
                     }
                 }
             },
             "itNeed": {
-                "prompt": "Jakiego wsparcia IT potrzebujesz?",
+                "prompt": "Czego potrzebujesz?",
                 "summary": "Potrzeba",
                 "options": {
                     "oneoff": {
-                        "label": "Jednorazowa pomoc lub konfiguracja",
-                        "reaction": "Dobrze. Zrobię to porządnie i zostawię opis, żeby było jasne, co i jak jest skonfigurowane."
+                        "label": "Jednorazowa pomoc"
                     },
                     "ongoing": {
-                        "label": "Stała opieka IT (zewnętrzny dział IT)",
-                        "reaction": "Stała opieka to spokój: problemy wyłapuję, zanim zatrzymają pracę firmy."
+                        "label": "Stała opieka IT"
                     },
                     "server": {
-                        "label": "Serwer, hosting, poczta firmowa",
-                        "reaction": "Serwer, hosting i poczta to fundament - ustawię je tak, żeby działały stabilnie i bezpiecznie."
+                        "label": "Serwer i poczta"
                     },
                     "network": {
-                        "label": "Sieć, urządzenia, kopie zapasowe",
-                        "reaction": "Sprawna sieć i kopie zapasowe to coś, o czym przestaje się myśleć, gdy są dobrze zrobione."
-                    }
-                }
-            },
-            "itPains": {
-                "prompt": "Co dziś najbardziej utrudnia pracę?",
-                "summary": "Co uciążliwe",
-                "options": {
-                    "outages": {
-                        "label": "Częste awarie i przestoje",
-                        "reaction": "Każdy przestój to stracony czas całego zespołu - zacznę od znalezienia przyczyny."
-                    },
-                    "no_backup": {
-                        "label": "Brak kopii zapasowych",
-                        "reaction": "Brak kopii zapasowych to ryzyko, które warto usunąć jak najszybciej - jedna awaria dysku potrafi zatrzymać firmę."
-                    },
-                    "no_admin": {
-                        "label": "Nikt nie ogarnia IT na bieżąco",
-                        "reaction": "Rozumiem. IT obsługiwane „przy okazji” zwykle kończy się gaszeniem pożarów. Stała opieka to zmienia."
-                    },
-                    "slow": {
-                        "label": "Wolna sieć lub sprzęt",
-                        "reaction": "Wolna sieć lub sprzęt to ukryty koszt, który firma płaci codziennie czekaniem."
-                    },
-                    "security": {
-                        "label": "Obawy o bezpieczeństwo danych",
-                        "reaction": "Bezpieczeństwo danych to także wymóg RODO - zrobię przegląd i wskażę konkretne luki."
+                        "label": "Sieć i kopie zapasowe"
                     }
                 }
             },
             "timeline": {
-                "prompt": "Ostatnie pytanie: kiedy chcesz zacząć?",
+                "prompt": "Kiedy chcesz zacząć?",
                 "summary": "Termin",
                 "options": {
                     "asap": {
                         "label": "Jak najszybciej",
-                        "reaction": "Rozumiem, że sprawa jest pilna - potraktuję ją priorytetowo."
+                        "reaction": "Dobrze, potraktuję to priorytetowo."
                     },
                     "month": {
-                        "label": "W ciągu miesiąca",
-                        "reaction": "Miesiąc to realny termin, żeby wszystko dobrze przygotować i uruchomić."
-                    },
-                    "quarter": {
-                        "label": "W ciągu 1-3 miesięcy",
-                        "reaction": "Dobrze, jest czas, żeby spokojnie zaplanować każdy etap."
+                        "label": "W ciągu miesiąca"
                     },
                     "browsing": {
-                        "label": "Tylko się rozglądam",
-                        "reaction": "Jasne, dobrze najpierw poznać możliwości - bez żadnych zobowiązań."
+                        "label": "Na razie sprawdzam",
+                        "reaction": "Jasne, rozmowa do niczego nie zobowiązuje."
                     }
                 }
             }
         },
-        "benefits": {
-            "industryGastro": "Rezerwacja stolika i menu online, bez dzwonienia",
-            "industryLocal": "Wizytówka, dzięki której klienci z okolicy łatwo Cię znajdą",
-            "industryConstruction": "Galeria realizacji, która sprzedaje Twoje usługi",
-            "industryRetail": "Sklep online, który sprzedaje także po godzinach",
-            "industryB2b": "Przejrzysta oferta, która ułatwia klientom decyzję",
-            "industrySolo": "Wizytówka lub portfolio, które dobrze Cię pokaże",
-            "moreLeads": "Strona, z której klienci wysyłają zapytania",
-            "google": "Szybka strona, dobrze widoczna w Google",
-            "selfEdit": "Panel, w którym sam zmienisz teksty i zdjęcia",
-            "booking": "Rezerwacje i zamówienia online, także w nocy",
-            "modern": "Nowoczesny wygląd, który buduje zaufanie",
-            "fast": "Szybka strona, wygodna na każdym telefonie",
-            "allInOne": "Domenę, hosting i uruchomienie biorę na siebie",
-            "excel": "Dane w jednym miejscu zamiast arkuszy",
-            "offers": "Oferty, zamówienia i klienci w jednym systemie",
-            "invoices": "Integracja z KSeF i e-fakturami",
-            "automation": "Automatyzacja, która oszczędza Ci godziny w tygodniu",
-            "ai": "Asystent AI dopasowany do Twojej branży",
-            "mobile": "Aplikacja na telefon, bez sklepu z aplikacjami",
-            "tailored": "Rozwiązanie szyte na miarę Twojej firmy",
-            "diagnosisFirst": "Najpierw sprawdzę, co masz, i powiem wprost, co warto zrobić",
-            "repair": "Szybka diagnoza i naprawa",
-            "feature": "Nowe funkcje dopisane do tego, co już masz",
-            "speed": "Szybsza strona, na którą klienci nie czekają",
-            "finish": "Dokończę porzucony projekt i go uruchomię",
-            "itOneOff": "Jednorazowa pomoc, zrobiona porządnie",
-            "itCare": "Stała opieka IT zdalnie, bez informatyka na etacie",
-            "itServer": "Serwer, hosting i poczta firmowa, które po prostu działają",
-            "itNetwork": "Sprawna sieć, sprzęt i kopie zapasowe",
-            "itSecurity": "Przegląd zabezpieczeń i kopie zapasowe",
-            "aiSite": "Asystent AI na stronie, który odpowiada klientom całą dobę"
-        },
-        "diagnosis": {
-            "benefitsTitle": "Co dla Ciebie zrobię",
-            "projectLink": "Zobacz realizację {{project}}",
-            "note": "Bezpłatna rozmowa i wycena, bez zobowiązań.",
-            "yes": "Tak, chętnie",
-            "question": "Mam pytanie",
-            "softText": "Prześlę Ci propozycję na e-mail. Bez zobowiązań i bez spamu.",
-            "softCta": "Prześlij mi propozycję"
+        "phone": {
+            "prompt": {
+                "contact": "Zostaw numer, oddzwonię i powiem, jak to zrobić i ile to potrwa.",
+                "emergency": "Zostaw numer, oddzwonię najszybciej, jak to możliwe.",
+                "noted": "Masz już u mnie zgłoszenie. Dopiszę te odpowiedzi do niego."
+            },
+            "submit": "Oddzwoń do mnie",
+            "notice": "Wysyłając, zgadzasz się na kontakt w sprawie zgłoszenia i przetwarzanie danych zgodnie z",
+            "useEmail": "Wolę kontakt mailowy",
+            "usePhone": "Wolę telefon"
         },
         "contact": {
             "channelAria": "Sposób kontaktu",
@@ -1228,16 +964,6 @@
                 "rateLimited": "Za dużo prób w krótkim czasie. Spróbuj za chwilę albo napisz na kontakt@shellty.pl.",
                 "network": "Nie udało się wysłać. Spróbuj ponownie albo napisz na kontakt@shellty.pl."
             },
-            "contact": {
-                "title": "Gdzie mam się z Tobą skontaktować?",
-                "lead": "Przygotuję propozycję dla Twojej firmy i odezwę się osobiście.",
-                "submit": "Wyślij zgłoszenie"
-            },
-            "soft": {
-                "title": "Gdzie wysłać propozycję?",
-                "lead": "Prześlę Ci propozycję rozwiązania, a Ty zdecydujesz, kiedy wrócić do tematu.",
-                "submit": "Prześlij propozycję"
-            },
             "emergency": {
                 "title": "Zostaw numer, oddzwonię najszybciej, jak to możliwe",
                 "lead": "Zostaw numer, oddzwonię najszybciej, jak to możliwe.",
@@ -1245,48 +971,17 @@
             },
             "chat": {
                 "submit": "Wyślij do Tomka"
-            },
-            "topics": {
-                "website": "Co klient ma móc zrobić na Twojej stronie?",
-                "fixes": "Co chcesz zmienić? Możesz wkleić adres strony.",
-                "app": "Co robisz teraz ręcznie?",
-                "it": "W czym potrzebujesz pomocy?",
-                "unsure": "Opisz sprawę jednym zdaniem.",
-                "emergency": "Co przestało działać?"
             }
         },
         "thanks": {
-            "title": "Dzięki, {{name}}!",
-            "title_anonymous": "Dzięki!",
+            "title": "Dzięki!",
             "text": {
-                "contact": "Odezwę się w ciągu 24 godzin.",
-                "soft": "Prześlę Ci propozycję na podany adres e-mail.",
-                "emergency": "Oddzwonię najszybciej, jak to możliwe.",
-                "noted": "Dopisałem te odpowiedzi do Twojego zgłoszenia - Tomek ma pełny obraz i wkrótce się odezwie."
-            },
-            "followUp": {
-                "assets": "Co już masz? (logo, teksty, zdjęcia, domena) - opcjonalnie",
-                "other": "Coś jeszcze, co powinienem wiedzieć przed rozmową? - opcjonalnie"
+                "contact": "Mam Twoje zgłoszenie. Odezwę się w ciągu 24 godzin.",
+                "emergency": "Mam Twoje zgłoszenie. Oddzwonię najszybciej, jak to możliwe.",
+                "noted": "Dopisałem te odpowiedzi do Twojego zgłoszenia."
             },
             "sendNote": "Dopisz do zgłoszenia",
-            "noteSent": "Dzięki, dopisałem to do Twojego zgłoszenia.",
-            "portfolio": "Zobacz moje realizacje",
             "close": "Zamknij"
-        },
-        "chat": {
-            "title": "Dobierz rozwiązanie",
-            "intro": "Cześć! Kilka krótkich pytań, a na końcu pokażę plan dla Twojej firmy.",
-            "typing": "Pisze wiadomość",
-            "you": "Ty",
-            "contactSent": "Zostawiam swoje dane kontaktowe.",
-            "change": "Zmień odpowiedź"
-        },
-        "projectReasons": {
-            "aiAgent": "Tu agent AI doradza klientom przy składaniu zamówienia i podpowiada najlepsze połączenia. Podobny asystent może pracować dla Twoich klientów.",
-            "ksef": "Platforma do e-faktur zintegrowana z KSeF - wiem, jak ten system działa od środka.",
-            "offers": "CRM, w którym AI wypełnia profesjonalne szablony ofert treścią dopasowaną do klienta i zakresu usługi.",
-            "wordpress": "Mój autorski motyw WordPress dla budownictwa: galeria realizacji i pełna edycja treści bez ciężkich wtyczek.",
-            "fallback": "Aplikacja webowa z rezerwacjami online i asystentem AI - dobry przykład tego, jak strona może pracować na wynik."
         },
         "noteIntro": "Odpowiedzi z kwalifikatora:"
     },

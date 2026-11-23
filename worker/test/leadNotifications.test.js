@@ -46,7 +46,7 @@ it("emails all three sources and subsequent notes, and queues only accepted lead
     "Nowe zgłoszenie Shellty · Formularz kontaktowy",
   ]);
   expect(emails[0].text).toContain("qualifier@example.test");
-  expect(emails[0].text).toContain("Nowa strona internetowa");
+  expect(emails[0].text).toContain("Usługa: Nowa strona");
   expect(emails[1].text).toContain("Potrzebuję rezerwacji online.");
   expect(emails[2].text).toContain("Najlepiej po południu.");
   expect(emails[3].text).toContain("Pytanie z formularza");

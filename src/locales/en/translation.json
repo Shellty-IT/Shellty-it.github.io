@@ -794,28 +794,16 @@
         },
         "close": "Close",
         "back": "Back",
-        "next": "Next",
-        "newTab": "(opens in a new tab)",
-        "stepOf": "Step {{current}} of {{total}}",
-        "ownWords": "I'd rather describe it in my own words",
         "rail": {
             "name": "Tomek",
-            "status": "replies within 24 hours",
-            "quote": "Reliable, punctual and effective.",
-            "quoteSource": "Jan, Google review 5/5",
-            "notesAria": "Your answers"
+            "status": "replies within 24 hours"
         },
-        "plan": {
-            "title": "Finding your solution",
-            "ready": "Solution matched",
-            "readyHint": "We'll settle the details in a call.",
-            "left_one": "{{count}} more question",
-            "left_other": "{{count}} more questions"
-        },
-        "maxHint": "You can pick up to {{count}}.",
-        "siteUrl": {
-            "label": "Your current website (optional) - I'll take a look and tell you what can be improved",
-            "placeholder": "e.g. mycompany.com"
+        "chat": {
+            "title": "Find your solution",
+            "intro": "Hi! A few clicks and I'll get back to you with a concrete proposal.",
+            "typing": "Typing a message",
+            "you": "You",
+            "contactSent": "I'm leaving my contact details."
         },
         "steps": {
             "service": {
@@ -824,86 +812,27 @@
                 "options": {
                     "website": {
                         "label": "A new website",
-                        "reaction": "Good call. Your website is where customers judge your business first - usually before they ever call."
+                        "reaction": "Great, websites are my speciality."
                     },
                     "app": {
                         "label": "An app for your business",
-                        "reaction": "Great. A well-fitted app can take hours of repetitive work off your plate every week."
+                        "reaction": "Great, I build business apps every day."
                     },
                     "fixes": {
                         "label": "Fixes and improvements",
-                        "reaction": "Understood. Often there's no need to rebuild everything - fixing and extending what you have is enough."
+                        "reaction": "Sure, often it is enough to improve what already works."
                     },
                     "it": {
                         "label": "IT support",
-                        "reaction": "Good thinking. You only notice IT when it stops working, and then the whole business stops too."
+                        "reaction": "Sure, I'll help."
                     },
                     "unsure": {
-                        "label": "Describe it in my own words",
-                        "reaction": "No problem, that's what I'm here for. The best solution usually comes from talking about goals, not technology."
+                        "label": "Not sure, advise me",
+                        "reaction": "No problem, I'll advise you on a call."
                     },
                     "emergency": {
-                        "label": "Outage - I need help now",
-                        "reaction": "Understood, every minute of downtime costs. I'll skip the remaining questions."
-                    }
-                }
-            },
-            "goal": {
-                "prompt": "What do you want to achieve in the coming months?",
-                "summary": "Goal",
-                "options": {
-                    "more_clients": {
-                        "label": "More customers from the internet",
-                        "reaction": "More customers online usually comes down to two things: a website that convinces and being easy to find."
-                    },
-                    "save_time": {
-                        "label": "Saving time in my business",
-                        "reaction": "Time is the most valuable resource in a small business. Automating what you do by hand today usually wins a lot of it back."
-                    },
-                    "broken": {
-                        "label": "Something doesn't work",
-                        "reaction": "Don't worry. I'll find the cause first and then propose the simplest lasting fix."
-                    },
-                    "it_infra": {
-                        "label": "Computers, network, server",
-                        "reaction": "Computers, networks and servers are my area - I've worked with them professionally for years."
-                    },
-                    "talk": {
-                        "label": "I'd rather just talk"
-                    }
-                }
-            },
-            "industry": {
-                "prompt": "What does your business do?",
-                "summary": "Industry",
-                "options": {
-                    "gastro": {
-                        "label": "Food service, hotels, tourism",
-                        "reaction": "In food service it matters whether guests find the menu and book a table in seconds - ideally from their phone, without calling."
-                    },
-                    "local": {
-                        "label": "Local services, beauty, health",
-                        "reaction": "In local services people search Google for \"near me\" and choose whoever is easiest to book."
-                    },
-                    "construction": {
-                        "label": "Construction, crafts, manufacturing",
-                        "reaction": "In construction customers buy with their eyes - photos of finished projects and reviews sell better than any description."
-                    },
-                    "retail": {
-                        "label": "Retail, shop",
-                        "reaction": "In retail every extra step at checkout is a lost customer, so simplicity and mobile convenience matter most."
-                    },
-                    "b2b": {
-                        "label": "Office, business services (B2B)",
-                        "reaction": "Business clients expect substance and professionalism, and inside the company quotes and documents usually eat up the most time."
-                    },
-                    "solo": {
-                        "label": "Solo / just starting out",
-                        "reaction": "At the start what counts is a strong first impression and a solution that grows with your business, without building things in advance."
-                    },
-                    "other": {
-                        "label": "Other industry",
-                        "reaction": "Every industry has its specifics - I'll ask about the details on the call, for now let's focus on your goal."
+                        "label": "Outage, urgent help",
+                        "reaction": "Understood, I'll skip the questions."
                     }
                 }
             },
@@ -912,102 +841,13 @@
                 "summary": "Current website",
                 "options": {
                     "no": {
-                        "label": "No, this is my first",
-                        "reaction": "Great, we're starting with a clean slate - I'll design everything around your customers from day one."
+                        "label": "No, starting from scratch"
                     },
                     "yes_new": {
-                        "label": "Yes, but I want a new one",
-                        "reaction": "Okay. Before I design a new one, I want to know what isn't working now, so we don't repeat the same mistakes."
+                        "label": "Yes, I want a new one"
                     },
                     "yes_fix": {
-                        "label": "Yes, I want to improve it",
-                        "reaction": "Then let's focus on what you already have - a few well-chosen changes often do more than a new website."
-                    }
-                }
-            },
-            "sitePains": {
-                "prompt": "What bothers you most about your current website?",
-                "summary": "Main issues",
-                "options": {
-                    "no_clients": {
-                        "label": "It doesn't bring customers",
-                        "reaction": "That's the most common problem I see: the site looks fine but doesn't lead to contact. It can be fixed and measured."
-                    },
-                    "outdated": {
-                        "label": "It looks outdated",
-                        "reaction": "An outdated look costs credibility - customers subconsciously apply that impression to the whole business."
-                    },
-                    "cant_edit": {
-                        "label": "I can't change anything myself",
-                        "reaction": "A site you can't update yourself ages quickly. You'll get a simple panel for changes."
-                    },
-                    "slow": {
-                        "label": "It's slow",
-                        "reaction": "A slow site loses customers before it loads, and Google notices too."
-                    },
-                    "bad_mobile": {
-                        "label": "It looks bad on phones",
-                        "reaction": "Most visitors will reach you from a phone, so this is a priority."
-                    }
-                }
-            },
-            "siteGoals": {
-                "prompt": "What should the new website do for you above all?",
-                "summary": "Website goals",
-                "options": {
-                    "more_leads": {
-                        "label": "More enquiries from customers",
-                        "reaction": "Okay, then I'll design it for enquiries: every section should lead customers to contact you."
-                    },
-                    "google": {
-                        "label": "Better visibility in Google",
-                        "reaction": "Visibility in Google starts with a fast site and well-structured content - I'll take care of that from the start."
-                    },
-                    "self_edit": {
-                        "label": "Editing content myself",
-                        "reaction": "Understood. You'll get a simple panel to change texts and photos yourself."
-                    },
-                    "booking": {
-                        "label": "Online bookings or orders",
-                        "reaction": "Online bookings work for you around the clock - customers book when it suits them, not when you can answer the phone."
-                    },
-                    "ai": {
-                        "label": "An AI assistant on the website",
-                        "reaction": "Great direction. An AI assistant on your site can advise customers and answer their questions before they even write to you."
-                    },
-                    "image": {
-                        "label": "A professional image",
-                        "reaction": "First impressions are hard to change, so I'll make sure the look is consistent and professional from the first screen."
-                    }
-                }
-            },
-            "appPain": {
-                "prompt": "What takes up most of your or your team's time today?",
-                "summary": "Biggest problem",
-                "options": {
-                    "excel": {
-                        "label": "Retyping data and Excel spreadsheets",
-                        "reaction": "Spreadsheets and retyping are a perfect candidate for improvement - data in one place means fewer mistakes and more time."
-                    },
-                    "offers": {
-                        "label": "Quotes, orders, customer service",
-                        "reaction": "Quotes and customer service are the heart of sales. A faster, polished quote often decides who wins the deal."
-                    },
-                    "invoices": {
-                        "label": "Invoices and documents (e.g. KSeF)",
-                        "reaction": "KSeF matters to every Polish business today - I've already built it into my own e-invoicing system."
-                    },
-                    "automation": {
-                        "label": "Repetitive tasks that could be automated",
-                        "reaction": "If you do something by the same pattern every time, it can almost certainly be automated."
-                    },
-                    "ai": {
-                        "label": "I want to add AI to my business",
-                        "reaction": "Great direction. Well-implemented AI is not a gimmick: it advises customers, prepares content and takes load off the team."
-                    },
-                    "mobile": {
-                        "label": "I need a mobile app / PWA",
-                        "reaction": "A mobile app makes sense when you or your customers need access on the go, not just at a desk."
+                        "label": "Yes, I want to improve it"
                     }
                 }
             },
@@ -1016,179 +856,77 @@
                 "summary": "Stage",
                 "options": {
                     "idea": {
-                        "label": "I only have an idea",
-                        "reaction": "That's a good moment - at the idea stage it's easiest to plan a solution that truly fits the business."
+                        "label": "I only have an idea"
                     },
                     "spec": {
-                        "label": "I have a description or specification",
-                        "reaction": "Great, a description speeds things up a lot. I'll review it and suggest what to simplify and what's worth adding."
+                        "label": "I have requirements"
                     },
                     "existing": {
-                        "label": "I have a system to extend",
-                        "reaction": "Understood. I'll get to know the current system first, so the extension doesn't disturb what already works."
+                        "label": "I have a system to extend"
                     }
                 }
             },
             "fixTarget": {
-                "prompt": "What does the website or app that needs fixing run on?",
+                "prompt": "What does the website or app run on?",
                 "summary": "Concerns",
                 "options": {
                     "wordpress": {
-                        "label": "A WordPress website",
-                        "reaction": "I know WordPress inside out - I write my own themes, so I can handle unusual cases too."
-                    },
-                    "other_cms": {
-                        "label": "Another website or CMS",
-                        "reaction": "Okay. I'll start with a quick review to find the simplest way to the goal."
+                        "label": "WordPress"
                     },
                     "webapp": {
-                        "label": "A web application",
-                        "reaction": "Web applications are my everyday work, so I'll find my way around the code quickly."
+                        "label": "A web app"
                     },
                     "unknown": {
-                        "label": "I don't know what it runs on",
-                        "reaction": "No problem, I'll check it - I just need the website address."
-                    }
-                }
-            },
-            "fixTask": {
-                "prompt": "What exactly needs to be done?",
-                "summary": "Task",
-                "options": {
-                    "broken": {
-                        "label": "Something stopped working",
-                        "reaction": "Understood. I'll find the cause first, so the fix lasts instead of being a quick patch."
-                    },
-                    "feature": {
-                        "label": "Add a new feature",
-                        "reaction": "I'll add new features to what you already have, without rebuilding everything."
-                    },
-                    "speed": {
-                        "label": "Speed up the website",
-                        "reaction": "Speed affects results: every second of loading means some customers give up."
-                    },
-                    "finish": {
-                        "label": "Finish an abandoned project",
-                        "reaction": "Abandoned projects are common. I'll assess what can be reused and see the project through."
-                    },
-                    "script": {
-                        "label": "A script or automation",
-                        "reaction": "A script or automation is often the fastest way to win back a few hours a week."
+                        "label": "I don't know"
                     }
                 }
             },
             "itNeed": {
-                "prompt": "What kind of IT support do you need?",
+                "prompt": "What do you need?",
                 "summary": "Need",
                 "options": {
                     "oneoff": {
-                        "label": "One-off help or setup",
-                        "reaction": "Okay. I'll do it properly and leave documentation, so it's clear what is set up and how."
+                        "label": "One-off help"
                     },
                     "ongoing": {
-                        "label": "Ongoing IT care (external IT department)",
-                        "reaction": "Ongoing care means peace of mind: I catch problems before they stop your business."
+                        "label": "Ongoing IT care"
                     },
                     "server": {
-                        "label": "Server, hosting, business email",
-                        "reaction": "Server, hosting and email are the foundation - I'll set them up to run reliably and securely."
+                        "label": "Server and email"
                     },
                     "network": {
-                        "label": "Network, devices, backups",
-                        "reaction": "A reliable network and backups are things you stop thinking about once they're done right."
-                    }
-                }
-            },
-            "itPains": {
-                "prompt": "What makes work hardest today?",
-                "summary": "Main issues",
-                "options": {
-                    "outages": {
-                        "label": "Frequent outages and downtime",
-                        "reaction": "Every outage is lost time for the whole team - I'll start by finding the cause."
-                    },
-                    "no_backup": {
-                        "label": "No backups",
-                        "reaction": "No backups is a risk worth removing as soon as possible - one disk failure can stop a business."
-                    },
-                    "no_admin": {
-                        "label": "Nobody looks after IT day to day",
-                        "reaction": "Understood. IT handled \"on the side\" usually ends in firefighting. Ongoing care changes that."
-                    },
-                    "slow": {
-                        "label": "Slow network or hardware",
-                        "reaction": "A slow network or hardware is a hidden cost the business pays every day in waiting."
-                    },
-                    "security": {
-                        "label": "Concerns about data security",
-                        "reaction": "Data security is also a GDPR requirement - I'll review it and point out specific gaps."
+                        "label": "Network and backups"
                     }
                 }
             },
             "timeline": {
-                "prompt": "Last question: when do you want to start?",
+                "prompt": "When do you want to start?",
                 "summary": "Timeline",
                 "options": {
                     "asap": {
                         "label": "As soon as possible",
-                        "reaction": "Understood, it's urgent - I'll treat it as a priority."
+                        "reaction": "Got it, I'll treat it as a priority."
                     },
                     "month": {
-                        "label": "Within a month",
-                        "reaction": "A month is a realistic timeframe to prepare and launch everything properly."
-                    },
-                    "quarter": {
-                        "label": "Within 1-3 months",
-                        "reaction": "Good, there's time to plan every stage calmly."
+                        "label": "Within a month"
                     },
                     "browsing": {
-                        "label": "Just looking around",
-                        "reaction": "Sure, it's good to explore the options first - no obligation at all."
+                        "label": "Just checking for now",
+                        "reaction": "Sure, a call comes with no obligation."
                     }
                 }
             }
         },
-        "benefits": {
-            "industryGastro": "Table booking and menu online, no phone calls",
-            "industryLocal": "A business card site that helps local customers find you",
-            "industryConstruction": "A project gallery that sells your services",
-            "industryRetail": "An online shop that sells after hours too",
-            "industryB2b": "A clear offer that makes clients' decision easier",
-            "industrySolo": "A business card site or portfolio that shows you well",
-            "moreLeads": "A website that turns visitors into enquiries",
-            "google": "A fast website that is easy to find on Google",
-            "selfEdit": "A panel where you change texts and photos yourself",
-            "booking": "Online bookings and orders, even at night",
-            "modern": "A modern look that builds trust",
-            "fast": "A fast website that works well on any phone",
-            "allInOne": "I take care of the domain, hosting and launch",
-            "excel": "Data in one place instead of spreadsheets",
-            "offers": "Quotes, orders and clients in one system",
-            "invoices": "Integration with KSeF and e-invoices",
-            "automation": "Automation that saves you hours every week",
-            "ai": "An AI assistant tailored to your industry",
-            "mobile": "A phone app, no app store needed",
-            "tailored": "A solution made to measure for your business",
-            "diagnosisFirst": "First I'll check what you have and tell you plainly what is worth doing",
-            "repair": "Quick diagnosis and repair",
-            "feature": "New features added to what you already have",
-            "speed": "A faster website customers don't wait for",
-            "finish": "I'll finish an abandoned project and launch it",
-            "itOneOff": "One-off help, done properly",
-            "itCare": "Ongoing remote IT care, no in-house IT person needed",
-            "itServer": "Server, hosting and business email that simply work",
-            "itNetwork": "A reliable network, devices and backups",
-            "itSecurity": "A security review and backups",
-            "aiSite": "An AI assistant on your website that answers customers 24/7"
-        },
-        "diagnosis": {
-            "benefitsTitle": "What I'll do for you",
-            "projectLink": "See the {{project}} project",
-            "note": "Free call and quote, no obligation.",
-            "yes": "Yes, please",
-            "question": "I have a question",
-            "softText": "I'll email you a proposal. No obligation, no spam.",
-            "softCta": "Send me a proposal"
+        "phone": {
+            "prompt": {
+                "contact": "Leave your number and I'll call you back to explain how to do it and how long it will take.",
+                "emergency": "Leave your number and I'll call you back as soon as possible.",
+                "noted": "You've already sent me a request. I'll add these answers to it."
+            },
+            "submit": "Call me back",
+            "notice": "By sending, you agree to be contacted about your request and to the processing of your data in accordance with the",
+            "useEmail": "I prefer email",
+            "usePhone": "I prefer a phone call"
         },
         "contact": {
             "channelAria": "Contact method",
@@ -1223,16 +961,6 @@
                 "rateLimited": "Too many attempts in a short time. Try again shortly or email kontakt@shellty.pl.",
                 "network": "Sending failed. Try again or email kontakt@shellty.pl."
             },
-            "contact": {
-                "title": "How should I contact you?",
-                "lead": "I'll prepare a proposal for your business and get back to you personally.",
-                "submit": "Send request"
-            },
-            "soft": {
-                "title": "Where should I send the proposal?",
-                "lead": "I'll send you a proposed solution whenever you're ready.",
-                "submit": "Send the proposal"
-            },
             "emergency": {
                 "title": "Leave your number and I'll call back as soon as possible",
                 "lead": "Leave your number and I’ll call back as soon as I can.",
@@ -1240,48 +968,17 @@
             },
             "chat": {
                 "submit": "Send to Tomek"
-            },
-            "topics": {
-                "website": "What should visitors be able to do on your website?",
-                "fixes": "What would you like to change? You can paste a link.",
-                "app": "What do you do manually today?",
-                "it": "What do you need help with?",
-                "unsure": "Describe your request in one sentence.",
-                "emergency": "What stopped working?"
             }
         },
         "thanks": {
-            "title": "Thanks, {{name}}!",
-            "title_anonymous": "Thanks!",
+            "title": "Thanks!",
             "text": {
-                "contact": "I'll get back to you within 24 hours.",
-                "soft": "I'll send the proposal to the email address you provided.",
-                "emergency": "I'll call you back as soon as possible.",
-                "noted": "I've added these answers to your request - Tomek has the full picture and will be in touch soon."
-            },
-            "followUp": {
-                "assets": "What do you already have? (logo, texts, photos, domain) - optional",
-                "other": "Anything else I should know before we talk? - optional"
+                "contact": "I've got your request. I'll get back to you within 24 hours.",
+                "emergency": "I've got your request. I'll call you back as soon as possible.",
+                "noted": "I've added these answers to your request."
             },
             "sendNote": "Add to my request",
-            "noteSent": "Thanks, I've added it to your request.",
-            "portfolio": "See my work",
             "close": "Close"
-        },
-        "chat": {
-            "title": "Find your solution",
-            "intro": "Hi! A few short questions, and at the end I'll show you a plan for your business.",
-            "typing": "Typing a message",
-            "you": "You",
-            "contactSent": "I'm leaving my contact details.",
-            "change": "Change answer"
-        },
-        "projectReasons": {
-            "aiAgent": "Here an AI agent advises customers while they order and suggests the best combinations. A similar assistant can work for your customers.",
-            "ksef": "An e-invoicing platform integrated with KSeF - I know how the system works from the inside.",
-            "offers": "A CRM where AI fills professional quote templates with content tailored to the client and the scope of work.",
-            "wordpress": "My own WordPress theme for construction: a project gallery and full content editing without heavy plugins.",
-            "fallback": "A web app with online bookings and an AI assistant - a good example of a website that works for results."
         },
         "noteIntro": "Answers from the qualifier:"
     },
