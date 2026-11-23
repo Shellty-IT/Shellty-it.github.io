@@ -844,10 +844,10 @@
                         "label": "No, starting from scratch"
                     },
                     "yes_new": {
-                        "label": "Yes, I want a new one"
+                        "label": "Yes, but I want a new one"
                     },
                     "yes_fix": {
-                        "label": "Yes, I want to improve it"
+                        "label": "Yes, but I want to improve it"
                     }
                 }
             },

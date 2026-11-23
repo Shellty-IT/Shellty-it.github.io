@@ -292,14 +292,14 @@ describe('ChatWindow with the AI assistant', () => {
 
 describe('ChatWindow after the qualifier', () => {
     const qualifierAnswers = { service: 'website', hasSite: 'yes_fix', timeline: 'asap' };
-    const summary = 'Usługa: Nowa strona; Obecna strona: Tak, chcę ją poprawić; Termin: Jak najszybciej';
+    const summary = 'Usługa: Nowa strona; Obecna strona: Tak, ale chcę ją poprawić; Termin: Jak najszybciej';
 
     it('shows the qualifier answers instead of asking again', async () => {
         updateLeadSession({ qualifierAnswers });
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
         expect(await screen.findByText(chat.nodes.fromQualifier.messages[0])).toBeInTheDocument();
         expect(screen.getByText('Obecna strona')).toBeInTheDocument();
-        expect(screen.getByText('Tak, chcę ją poprawić')).toBeInTheDocument();
+        expect(screen.getByText('Tak, ale chcę ją poprawić')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: chat.replies.contact })).toBeInTheDocument();
         expect(screen.queryByRole('button', { name: chat.replies.process })).not.toBeInTheDocument();
     });
@@ -311,7 +311,7 @@ describe('ChatWindow after the qualifier', () => {
         unmount();
         renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
         await screen.findByText(chat.nodes.fromQualifier.messages[0]);
-        expect(screen.getAllByText('Tak, chcę ją poprawić')).toHaveLength(1);
+        expect(screen.getAllByText('Tak, ale chcę ją poprawić')).toHaveLength(1);
     });
 
     it('gives the assistant the qualifier answers as context', async () => {

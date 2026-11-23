@@ -847,10 +847,10 @@
                         "label": "Nie, zaczynam od zera"
                     },
                     "yes_new": {
-                        "label": "Tak, chcę nową"
+                        "label": "Tak, ale chcę nową"
                     },
                     "yes_fix": {
-                        "label": "Tak, chcę ją poprawić"
+                        "label": "Tak, ale chcę ją poprawić"
                     }
                 }
             },

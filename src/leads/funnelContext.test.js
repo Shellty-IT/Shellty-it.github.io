@@ -19,7 +19,7 @@ beforeEach(() => sessionStorage.clear());
 describe('funnelContext', () => {
     it('describes qualifier answers in plain words', () => {
         const rows = qualifierSummary(t, { service: 'website', hasSite: 'yes_fix', timeline: 'asap' });
-        expect(summaryText(rows)).toBe('Usługa: Nowa strona; Obecna strona: Tak, chcę ją poprawić; Termin: Jak najszybciej');
+        expect(summaryText(rows)).toBe('Usługa: Nowa strona; Obecna strona: Tak, ale chcę ją poprawić; Termin: Jak najszybciej');
     });
 
     it('keeps the last non-empty qualifier answers', () => {
