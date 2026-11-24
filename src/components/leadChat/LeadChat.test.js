@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
@@ -40,8 +40,7 @@ function renderWithProviders(ui, path = '/') {
     );
 }
 
-const log = () => within(screen.getByRole('log'));
-const reply = async (name) => {
+const click = async (name) => {
     fireEvent.click(await screen.findByRole('button', { name }));
 };
 const send = (text) => {
@@ -58,294 +57,146 @@ beforeEach(() => {
     sendChatMessage.mockReset().mockResolvedValue({ fallback: true, reason: 'providers' });
 });
 
+const { steps } = pl.qualifier;
+const typePhone = (value) => fireEvent.change(screen.getByLabelText(pl.qualifier.contact.fields.phone), { target: { value } });
+const submitPhone = () => fireEvent.click(screen.getByRole('button', { name: pl.qualifier.phone.submit }));
+
 describe('ChatWindow', () => {
-    it('identifies the AI assistant on opening and provides access to the privacy policy', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        expect(screen.getByRole('heading', { name: 'Asystent Tomka' })).toBeVisible();
-        expect(screen.getByText(/^Rozmawiasz z AI\./)).toBeVisible();
+    it('identifies the AI assistant without focusing the message field', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        expect(screen.getByRole('heading', { name: chat.title })).toBeVisible();
         expect(screen.getByRole('dialog')).toHaveAccessibleDescription(chat.subtitle);
+        expect(await screen.findByText(chat.nodes.start)).toBeVisible();
+        expect(screen.getByLabelText(chat.inputLabel)).not.toHaveFocus();
         fireEvent.click(screen.getByRole('button', { name: chat.privacyLink }));
         expect(await screen.findByRole('heading', { name: pl.privacyPolicy.title })).toBeInTheDocument();
     });
 
-    it('greets according to the page and offers the main topics', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/portfolio');
-        expect(screen.getByRole('dialog')).toHaveAccessibleName(chat.title);
-        expect(await screen.findByText(chat.nodes.start.messages[0])).toBeInTheDocument();
-        for (const topic of ['website', 'app', 'it', 'writeToTomek']) {
-            expect(screen.getByRole('button', { name: chat.replies[topic] })).toBeInTheDocument();
-        }
-        expect(screen.queryByRole('button', { name: 'Pokaż realizacje' })).not.toBeInTheDocument();
-    });
+    it('leads from the service tiles to a phone number only', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />, '/services');
+        await click(steps.service.options.website.label);
+        await click(steps.hasSite.options.yes_fix.label);
+        await click(steps.timeline.options.asap.label);
 
-    it('keeps the conversation and answers quick replies with the next step', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await reply(chat.replies.app);
-        await reply(chat.replies.appAi);
-        expect(await screen.findByText(chat.nodes.appAi.messages[0])).toBeInTheDocument();
-        expect(log().getByText(chat.replies.app, { selector: '.lq-bubble--user' })).toBeInTheDocument();
-        expect(log().getByText(chat.replies.appAi, { selector: '.lq-bubble--user' })).toBeInTheDocument();
-        expect(log().queryByRole('link')).not.toBeInTheDocument();
-        expect(screen.getByRole('button', { name: chat.replies.contact })).toBeInTheDocument();
-    });
+        expect(await screen.findByText(chat.nodes.contact)).toBeVisible();
+        expect(screen.queryByLabelText(chat.inputLabel)).toBeNull();
+        expect(screen.queryByRole('checkbox')).toBeNull();
+        typePhone('512 345 678');
+        submitPhone();
 
-    it('points to the Portfolio tab when explicitly asked for previous work', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Pokażesz jakieś realizacje?');
-        expect(await screen.findByText(chat.nodes.portfolio.messages[0])).toBeInTheDocument();
-        expect(log().queryByRole('link')).not.toBeInTheDocument();
-    });
-
-    it('answers a typed price question with value first and no amount', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Ile kosztuje strona?');
-        expect(await screen.findByText(chat.nodes.pricing.messages[0])).toBeInTheDocument();
-        expect(screen.getByRole('dialog').textContent).not.toMatch(/\d+\s*zł/);
-    });
-
-    it('shows the cooperation steps when the user asks about them', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send(chat.replies.process);
-
-        expect(await screen.findByText('Propozycja rozwiązania i wycena')).toBeInTheDocument();
-        expect(screen.getByLabelText(chat.inputLabel)).toBeEnabled();
-    });
-
-    it('restores a saved conversation about the cooperation process', async () => {
-        updateLeadSession({ chat: { turns: [{ from: 'bot', node: 'process' }] } });
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-
-        expect(await screen.findByText('Wsparcie po wdrożeniu')).toBeInTheDocument();
-        expect(screen.getByLabelText(chat.inputLabel)).toBeEnabled();
-    });
-
-    it('passes an unrecognised message to Tomek and sends it with the lead', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/services');
-        await reply(chat.replies.website);
-        await screen.findByText(chat.nodes.website.messages[0]);
-        send('Dzień dobry, mam nietypową sprawę');
-        expect(await screen.findByText(chat.nodes.unknown.messages[0])).toBeInTheDocument();
-        expect(screen.getByLabelText(pl.qualifier.contact.fields.message)).toHaveValue(`${chat.replies.website} → Dzień dobry, mam nietypową sprawę`);
-
-        fireEvent.change(screen.getByLabelText('Imię (opcjonalnie)'), { target: { value: 'Ola' } });
-        fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '600100200' } });
-        fireEvent.click(screen.getByRole('checkbox'));
-        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
-
-        expect(await screen.findByText(pl.chat.nodes.thanks.messages[0])).toBeInTheDocument();
-        expect(submitLead).toHaveBeenCalledWith({
-            name: 'Ola',
-            phone: '600100200',
-            email: '',
-            consent: true,
-            consentText: 'Wyrażam zgodę na kontakt w sprawie mojego zgłoszenia i przetwarzanie podanych danych zgodnie z Polityką prywatności.',
-            fax: '',
+        expect(await screen.findByText(chat.nodes.thanks)).toBeVisible();
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
+            phone: '512345678',
+            name: '',
             source: 'chat',
             page: '/services',
-            lang: 'pl',
-            answers: { service: 'website' },
-            chatSummary: `${chat.replies.website} → Dzień dobry, mam nietypową sprawę`,
-        });
-    });
-
-    it('adds later messages to the submitted lead', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        fireEvent.change(screen.getByLabelText(chat.inputLabel), { target: { value: 'Chcę zapytać o nową stronę' } });
-        await reply(chat.replies.writeToTomek);
-        expect(await screen.findByLabelText(pl.qualifier.contact.fields.message)).toHaveValue('Chcę zapytać o nową stronę');
-        expect(sendChatMessage).not.toHaveBeenCalled();
-        fireEvent.change(await screen.findByLabelText('Imię (opcjonalnie)'), { target: { value: 'Jan' } });
-        fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '512345678' } });
-        fireEvent.click(screen.getByRole('checkbox'));
-        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
-        await screen.findByText(pl.chat.nodes.thanks.messages[0]);
-        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
-            source: 'chat',
-            chatSummary: 'Chcę zapytać o nową stronę',
+            answers: { service: 'website', hasSite: 'yes_fix', timeline: 'asap' },
+            chatSummary: '',
         }));
-
-        send('Najlepiej po 16');
-        expect(await screen.findByText(chat.nodes.noted.messages[0])).toBeInTheDocument();
-        expect(submitLeadNote).toHaveBeenCalledWith('Najlepiej po 16');
+        expect(loadLeadSession().leadSent).toEqual({ name: '' });
+        expect(loadLeadSession().qualifier).toBeNull();
     });
 
-    it('asks only for a phone number during an IT emergency', async () => {
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await reply(chat.replies.it);
-        await reply(chat.replies.itEmergency);
-        expect(await screen.findByLabelText('Telefon')).toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: /Napisz na e-mail/ })).not.toBeInTheDocument();
+    it('asks only for a phone number during an emergency', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await click(steps.service.options.emergency.label);
+        expect(await screen.findByText(chat.nodes.contactEmergency)).toBeVisible();
+        expect(screen.queryByRole('button', { name: pl.qualifier.phone.useEmail })).toBeNull();
     });
 
-    it('opens the qualifier and closes with Escape', async () => {
-        const onOpenQualifier = jest.fn();
-        const onClose = jest.fn();
-        renderWithProviders(<ChatWindow onClose={onClose} onOpenQualifier={onOpenQualifier} />);
-        await reply(chat.replies.website);
-        await reply(chat.replies.websiteNew);
-        await reply(chat.replies.qualifier);
-        expect(onOpenQualifier).toHaveBeenCalled();
-        fireEvent.keyDown(screen.getByLabelText(chat.inputLabel), { key: 'Escape' });
-        expect(onClose).toHaveBeenCalled();
+    it('closes with Escape', async () => {
+        const close = jest.fn();
+        renderWithProviders(<ChatWindow onClose={close} />);
+        await screen.findByText(chat.nodes.start);
+        fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
+        expect(close).toHaveBeenCalled();
     });
 });
 
 describe('ChatWindow with the AI assistant', () => {
     const aiAnswer = (overrides = {}) => ({
-        reply: 'Rozumiem. Czym zajmuje się Twoja restauracja?',
+        reply: 'Tak, zrobię stronę z rezerwacjami online.',
         quickReplies: ['Pizzeria', 'Kawiarnia'],
         action: 'none',
         signals: { service: 'website' },
         ...overrides,
     });
 
-    it('sends a typed question with the conversation and shows the answer', async () => {
+    it('answers a typed question briefly and offers a call', async () => {
         sendChatMessage.mockResolvedValueOnce(aiAnswer());
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />, '/services');
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Potrzebuję strony dla restauracji');
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />, '/services');
+        await screen.findByText(chat.nodes.start);
+        send('Czy zrobisz stronę z rezerwacjami?');
 
-        expect(await screen.findByText('Rozumiem. Czym zajmuje się Twoja restauracja?')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Pizzeria' })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: chat.replies.writeToTomek })).toBeInTheDocument();
+        expect(await screen.findByText('Tak, zrobię stronę z rezerwacjami online.')).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'Pizzeria' })).toBeNull();
         const { messages, lang, page } = sendChatMessage.mock.calls[0][0];
         expect({ lang, page }).toEqual({ lang: 'pl', page: '/services' });
-        expect(messages[0]).toEqual({
-            role: 'assistant',
-            content: chat.nodes.start.messages[0],
-        });
-        expect(messages[messages.length - 1]).toEqual({ role: 'user', content: 'Potrzebuję strony dla restauracji' });
-    });
-
-    it('continues the AI conversation without displaying legacy project cards or their suggestions', async () => {
-        sendChatMessage
-            .mockResolvedValueOnce(aiAnswer())
-            .mockResolvedValueOnce(aiAnswer({
-                reply: 'Czy klienci mają móc rezerwować stoliki przez stronę?',
-                quickReplies: ['Chcę zobaczyć przykład'],
-                action: 'show_project:tomiForno',
-            }));
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Chcę stronę');
-        await reply('Pizzeria');
-
-        expect(await screen.findByText('Czy klienci mają móc rezerwować stoliki przez stronę?')).toBeInTheDocument();
-        expect(log().queryByRole('link')).not.toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: 'Chcę zobaczyć przykład' })).not.toBeInTheDocument();
-        const history = sendChatMessage.mock.calls[1][0].messages;
-        expect(history.slice(-3)).toEqual([
-            { role: 'user', content: 'Chcę stronę' },
-            { role: 'assistant', content: 'Rozumiem. Czym zajmuje się Twoja restauracja?' },
-            { role: 'user', content: 'Pizzeria' },
+        expect(messages).toEqual([
+            { role: 'assistant', content: chat.nodes.start },
+            { role: 'user', content: 'Czy zrobisz stronę z rezerwacjami?' },
         ]);
-    });
 
-    it('shows the contact card when the assistant asks for it and sends the lead with the AI context', async () => {
-        sendChatMessage.mockResolvedValueOnce(aiAnswer({
-            reply: 'Tomek przygotuje propozycję - jak najlepiej się z Tobą skontaktować?',
-            quickReplies: [],
-            action: 'show_contact_card',
-            signals: { service: 'app' },
-        }));
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Chcę zacząć jak najszybciej');
-
-        const preview = await screen.findByLabelText(pl.qualifier.contact.fields.message);
-        expect(preview).toHaveValue('Chcę zacząć jak najszybciej');
-        fireEvent.change(preview, { target: { value: 'Potrzebuję aplikacji do faktur' } });
-        fireEvent.change(screen.getByLabelText('Imię (opcjonalnie)'), { target: { value: 'Ewa' } });
-        fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '512345678' } });
-        fireEvent.click(screen.getByRole('checkbox'));
-        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
-
-        expect(await screen.findByText(pl.chat.nodes.thanks.messages[0])).toBeInTheDocument();
+        await click(chat.callMe);
+        expect(await screen.findByText(chat.nodes.contact)).toBeVisible();
+        typePhone('512345678');
+        submitPhone();
+        await screen.findByText(chat.nodes.thanks);
         expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
             source: 'chat',
-            answers: { service: 'app' },
-            chatSummary: 'Potrzebuję aplikacji do faktur',
+            chatSummary: 'Czy zrobisz stronę z rezerwacjami?',
         }));
     });
 
-    it('offers the qualifier when the assistant suggests it', async () => {
-        const onOpenQualifier = jest.fn();
-        sendChatMessage.mockResolvedValueOnce(aiAnswer({ quickReplies: [], action: 'open_qualifier' }));
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={onOpenQualifier} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
-        send('Nie wiem, czego potrzebuję');
-        await reply(chat.replies.qualifier);
-        expect(onOpenQualifier).toHaveBeenCalled();
+    it('shows the phone field at once when the assistant asks for contact', async () => {
+        sendChatMessage.mockResolvedValueOnce(aiAnswer({ reply: 'Tomek przygotuje propozycję.', action: 'show_contact_card' }));
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(chat.nodes.start);
+        send('Chcę zacząć jak najszybciej');
+        expect(await screen.findByLabelText(pl.qualifier.contact.fields.phone)).toBeVisible();
+        expect(screen.getByRole('button', { name: pl.qualifier.phone.useEmail })).toBeVisible();
     });
 
-    it('falls back to the scripted answers when the assistant is unavailable', async () => {
+    it('shows the topic tiles when the assistant suggests choosing a topic', async () => {
+        sendChatMessage.mockResolvedValueOnce(aiAnswer({ reply: 'Wybierz temat.', action: 'open_qualifier' }));
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(chat.nodes.start);
+        send('Nie wiem, czego potrzebuję');
+        await screen.findByText('Wybierz temat.');
+        expect(screen.getAllByRole('button', { name: steps.service.options.app.label })).toHaveLength(1);
+    });
+
+    it('asks for a phone number when the assistant is unavailable', async () => {
         sendChatMessage.mockRejectedValueOnce(new TypeError('Failed to fetch'));
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.start.messages[0]);
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(chat.nodes.start);
         send('Ile kosztuje strona?');
-        expect(await screen.findByText(chat.nodes.pricing.messages[0])).toBeInTheDocument();
+        expect(await screen.findByText(chat.nodes.fallback)).toBeInTheDocument();
+        expect(screen.getByLabelText(pl.qualifier.contact.fields.phone)).toBeVisible();
     });
 });
 
-describe('ChatWindow after the qualifier', () => {
-    const qualifierAnswers = { service: 'website', hasSite: 'yes_fix', timeline: 'asap' };
-    const summary = 'Usługa: Nowa strona; Obecna strona: Tak, ale chcę ją poprawić; Termin: Jak najszybciej';
-
-    it('shows the qualifier answers instead of asking again', async () => {
-        updateLeadSession({ qualifierAnswers });
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        expect(await screen.findByText(chat.nodes.fromQualifier.messages[0])).toBeInTheDocument();
-        expect(screen.getByText('Obecna strona')).toBeInTheDocument();
-        expect(screen.getByText('Tak, ale chcę ją poprawić')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: chat.replies.contact })).toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: chat.replies.process })).not.toBeInTheDocument();
-    });
-
-    it('shows the answers only once per set of answers', async () => {
-        updateLeadSession({ qualifierAnswers });
-        const { unmount } = renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.fromQualifier.messages[0]);
-        unmount();
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.fromQualifier.messages[0]);
-        expect(screen.getAllByText('Tak, ale chcę ją poprawić')).toHaveLength(1);
-    });
-
-    it('gives the assistant the qualifier answers as context', async () => {
-        updateLeadSession({ qualifierAnswers });
-        sendChatMessage.mockResolvedValueOnce({ reply: 'Jasne, rezerwacje online to dobry kierunek.', quickReplies: [], action: 'none' });
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.fromQualifier.messages[0]);
+describe('ChatWindow and the qualifier', () => {
+    it('continues where the visitor stopped instead of repeating the answers', async () => {
+        updateLeadSession({ qualifier: { answers: { service: 'website', hasSite: 'no' } } });
+        sendChatMessage.mockResolvedValueOnce({ reply: 'Jasne.', quickReplies: [], action: 'none' });
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        expect(await screen.findByText(steps.timeline.prompt)).toBeVisible();
+        expect(screen.queryByText(chat.nodes.start)).toBeNull();
         send('Czy da się podpiąć płatności?');
-        await screen.findByText('Jasne, rezerwacje online to dobry kierunek.');
-        expect(sendChatMessage).toHaveBeenCalledWith(expect.objectContaining({ context: summary }));
+        await screen.findByText('Jasne.');
+        expect(sendChatMessage).toHaveBeenCalledWith(expect.objectContaining({
+            context: 'Usługa: Nowa strona; Obecna strona: Nie, zaczynam od zera',
+        }));
     });
 
-    it('sends the qualifier answers with a chat lead and remembers the lead', async () => {
-        updateLeadSession({ qualifierAnswers });
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await reply(chat.replies.contact);
-        fireEvent.change(await screen.findByLabelText('Imię (opcjonalnie)'), { target: { value: 'Jan' } });
-        fireEvent.change(screen.getByLabelText('Telefon'), { target: { value: '512345678' } });
-        fireEvent.click(screen.getByRole('checkbox'));
-        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.contact.chat.submit }));
-        await screen.findByText(pl.chat.nodes.thanks.messages[0]);
-        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({ answers: qualifierAnswers }));
-        expect(loadLeadSession().leadSent).toEqual({ name: 'Jan' });
-    });
-
-    it('does not ask for contact again after a lead from the qualifier', async () => {
-        updateLeadSession({ qualifierAnswers, leadSent: { name: 'Ola' } });
-        renderWithProviders(<ChatWindow onClose={jest.fn()} onOpenQualifier={jest.fn()} />);
-        await screen.findByText(chat.nodes.fromQualifier.after);
-        expect(screen.queryByRole('button', { name: chat.replies.writeToTomek })).not.toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: chat.replies.contact })).not.toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: chat.replies.process })).not.toBeInTheDocument();
+    it('does not ask for contact again after a lead was sent', async () => {
+        updateLeadSession({ leadSent: { name: '' } });
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        expect(await screen.findByText(chat.nodes.sent)).toBeVisible();
+        expect(screen.queryByRole('button', { name: steps.service.options.website.label })).toBeNull();
         send('Najlepiej dzwonić po 16');
-        expect(await screen.findByText(chat.nodes.noted.messages[0])).toBeInTheDocument();
+        expect(await screen.findByText(chat.nodes.noted)).toBeInTheDocument();
         expect(submitLeadNote).toHaveBeenCalledWith('Najlepiej dzwonić po 16');
         expect(sendChatMessage).not.toHaveBeenCalled();
     });
@@ -356,7 +207,7 @@ describe('LeadChat teaser', () => {
     afterEach(() => jest.useRealTimers());
 
     const renderLauncher = (path) => renderWithProviders(
-        <LeadChat open={false} onOpen={jest.fn()} onClose={jest.fn()} onOpenQualifier={jest.fn()} />,
+        <LeadChat open={false} onOpen={jest.fn()} onClose={jest.fn()} />,
         path
     );
     const waitForTeaser = () => act(() => jest.advanceTimersByTime(TEASER_DELAY_MS));

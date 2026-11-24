@@ -1,15 +1,18 @@
-import { summaryRows } from './qualifierEngine';
+import { relevantAnswers, summaryRows } from './qualifierEngine';
 import { loadLeadSession, updateLeadSession } from './leadSession';
 
-export const SHARED_SERVICES = ['website', 'app', 'fixes', 'it'];
 const MAX_CONTEXT = 1000;
 
 export function qualifierAnswers() {
-    return loadLeadSession().qualifierAnswers ?? {};
+    return relevantAnswers(loadLeadSession().qualifier?.answers ?? {});
 }
 
 export function saveQualifierAnswers(answers) {
-    if (Object.keys(answers).length > 0) updateLeadSession({ qualifierAnswers: answers });
+    updateLeadSession({ qualifier: { answers } });
+}
+
+export function clearQualifierAnswers() {
+    updateLeadSession({ qualifier: null });
 }
 
 export function sentLead() {
@@ -18,11 +21,6 @@ export function sentLead() {
 
 export function markLeadSent(name) {
     updateLeadSession({ leadSent: { name } });
-}
-
-export function chatService() {
-    const service = loadLeadSession().chat?.service;
-    return SHARED_SERVICES.includes(service) ? service : null;
 }
 
 export function qualifierSummary(t, answers) {

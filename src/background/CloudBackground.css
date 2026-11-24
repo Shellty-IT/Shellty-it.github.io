@@ -90,6 +90,12 @@ body.is-node-drag * {
     animation: nebulaFloat2 55s ease-in-out infinite alternate;
 }
 
+.cloud-bg-wrapper.is-paused::before,
+.cloud-bg-wrapper.is-paused::after,
+.cloud-bg-wrapper.is-paused .cloud-bg-grid {
+    animation-play-state: paused;
+}
+
 /* Dostępność: użytkownicy z prefers-reduced-motion dostają statyczne tło */
 @media (prefers-reduced-motion: reduce) {
     .cloud-bg-wrapper::before,

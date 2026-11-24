@@ -35,7 +35,7 @@ function teaserAllowed(pathname) {
     return !NO_TEASER_PAGES.includes(pathname) && !session.engaged && !session.chatTeaserShown;
 }
 
-export default function LeadChat({ open, onOpen, onClose, onOpenQualifier }) {
+export default function LeadChat({ open, onOpen, onClose }) {
     const { t } = useTranslation();
     const { pathname } = useLocation();
     const [teaser, setTeaser] = useState(false);
@@ -132,7 +132,7 @@ export default function LeadChat({ open, onOpen, onClose, onOpenQualifier }) {
             </div>
             {(open || hasOpened) && (
                 <Suspense fallback={null}>
-                    <ChatWindow open={open} onClose={closeChat} onOpenQualifier={onOpenQualifier} />
+                    <ChatWindow open={open} onClose={closeChat} />
                 </Suspense>
             )}
         </>

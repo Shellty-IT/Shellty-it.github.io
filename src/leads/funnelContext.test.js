@@ -1,6 +1,5 @@
 import pl from '../locales/pl/translation.json';
 import {
-    chatService,
     markLeadSent,
     qualifierAnswers,
     qualifierSummary,
@@ -8,7 +7,6 @@ import {
     sentLead,
     summaryText,
 } from './funnelContext';
-import { updateLeadSession } from './leadSession';
 
 function t(key) {
     return key.split('.').reduce((node, part) => node?.[part], pl) ?? key;
@@ -22,22 +20,14 @@ describe('funnelContext', () => {
         expect(summaryText(rows)).toBe('Usługa: Nowa strona; Obecna strona: Tak, ale chcę ją poprawić; Termin: Jak najszybciej');
     });
 
-    it('keeps the last non-empty qualifier answers', () => {
-        saveQualifierAnswers({ service: 'it' });
-        saveQualifierAnswers({});
-        expect(qualifierAnswers()).toEqual({ service: 'it' });
+    it('shares only answers that still fit the conversation', () => {
+        saveQualifierAnswers({ service: 'it', hasSite: 'no', itNeed: 'server' });
+        expect(qualifierAnswers()).toEqual({ service: 'it', itNeed: 'server' });
     });
 
     it('remembers that a lead was already sent', () => {
         expect(sentLead()).toBeNull();
         markLeadSent('Ola');
         expect(sentLead()).toEqual({ name: 'Ola' });
-    });
-
-    it('shares only services the qualifier understands', () => {
-        updateLeadSession({ chat: { service: 'app' } });
-        expect(chatService()).toBe('app');
-        updateLeadSession({ chat: { service: 'emergency' } });
-        expect(chatService()).toBeNull();
     });
 });

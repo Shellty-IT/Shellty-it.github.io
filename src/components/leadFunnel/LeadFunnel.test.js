@@ -53,14 +53,15 @@ describe('LeadFunnel', () => {
         expect(screen.getByRole('button', { name: pl.chat.launcherAria })).toBeVisible();
     });
 
-    it('continues the qualifier after the service selected in the chat', async () => {
+    it('shares the answers between the chat and the qualifier', async () => {
+        const { steps } = pl.qualifier;
         renderFunnel();
         fireEvent.click(screen.getByRole('button', { name: pl.chat.launcherAria }));
-        fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.website }));
-        fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.websiteNew }));
-        fireEvent.click(await screen.findByRole('button', { name: pl.chat.replies.qualifier }));
-        expect(await screen.findByText(pl.qualifier.steps.hasSite.prompt)).toBeVisible();
-        expect(screen.queryByRole('log', { name: /Asystent Tomka/ })).not.toBeInTheDocument();
+        fireEvent.click(await screen.findByRole('button', { name: steps.service.options.website.label }));
+        expect(await screen.findByText(steps.hasSite.prompt)).toBeVisible();
+        fireEvent.click(screen.getByRole('button', { name: pl.qualifier.launcher.label }));
+        expect(await screen.findByRole('dialog', { name: pl.qualifier.rail.name })).toBeVisible();
+        expect(screen.getByText(steps.hasSite.prompt)).toBeVisible();
         expect(loadLeadSession().engaged).toBe(true);
     });
 
@@ -73,7 +74,7 @@ describe('LeadFunnel', () => {
         const answer = 'Mogę pomóc dobrać stronę do Twojej firmy.';
 
         openChat();
-        await screen.findByText(pl.chat.nodes.start.messages[0]);
+        await screen.findByText(pl.chat.nodes.start);
         fireEvent.change(input(), { target: { value: 'Potrzebuję strony' } });
         fireEvent.submit(input().form);
         expect(sendChatMessage).toHaveBeenCalledTimes(1);

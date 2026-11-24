@@ -1,9 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatPhone, submitErrorMessage } from './ContactStep';
+import { LeadApiError } from '../../leads/leadApi';
 
 const MAX_EMAIL = 254;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+export function formatPhone(input) {
+    const digits = input.replace(/\D/g, '').replace(/^(?:48|0048)(?=\d{9})/, '').slice(0, 9);
+    return digits.replace(/(\d{3})(?=\d)/g, '$1 ');
+}
+
+export function submitErrorMessage(error, t) {
+    if (error instanceof LeadApiError && error.status === 429) return t('qualifier.contact.errors.rateLimited');
+    if (error instanceof LeadApiError && error.status === 400) return t('qualifier.contact.errors.invalid');
+    return t('qualifier.contact.errors.network');
+}
 
 export default function PhoneStep({ allowEmail, onSubmit, onShowPrivacy }) {
     const { t } = useTranslation();

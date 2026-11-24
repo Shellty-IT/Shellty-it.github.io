@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { createMeshHost } from './meshEngine';
+import { BACKGROUND_PAUSE_EVENT } from './backgroundPause';
 import './CloudBackground.css';
 
 const INTERACTIVE = 'a,button,input,textarea,select,[role="button"]';
@@ -24,6 +25,7 @@ const CloudBackground = () => {
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let visible = true;
+        let paused = false;
         let canGrab = false;
         let started = false;
         let send = () => {};
@@ -47,7 +49,7 @@ const CloudBackground = () => {
         };
 
         const initMessage = (target) => ({
-            type: 'init', canvas: target, reduced, visible, hidden: document.hidden, ...viewport(),
+            type: 'init', canvas: target, reduced, visible: visible && !paused, hidden: document.hidden, ...viewport(),
         });
 
         const startLocal = () => {
@@ -93,9 +95,16 @@ const CloudBackground = () => {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[entries.length - 1];
             visible = entry.isIntersecting || entry.rootBounds === null;
-            send({ type: 'visible', value: visible });
+            send({ type: 'visible', value: visible && !paused });
         }, { root: null, threshold: 0 });
         observer.observe(document.body);
+
+        const onPause = ({ detail }) => {
+            paused = detail;
+            wrapper.classList.toggle('is-paused', paused);
+            send({ type: 'visible', value: visible && !paused });
+        };
+        window.addEventListener(BACKGROUND_PAUSE_EVENT, onPause);
 
         // Bez throttlingu: zapis pozycji to dwie liczby, a każde pominięte
         // zdarzenie widać wprost jako szarpanie węzłów pod kursorem.
@@ -128,6 +137,7 @@ const CloudBackground = () => {
         return () => {
             clearTimeout(resizeTimer);
             observer.disconnect();
+            window.removeEventListener(BACKGROUND_PAUSE_EVENT, onPause);
             window.removeEventListener('resize', onResize);
             document.removeEventListener('visibilitychange', onVisibility);
             window.removeEventListener('pointermove', onPointerMove);

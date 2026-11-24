@@ -4,16 +4,23 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import avatar from '../../assets/avatar/tomek_small.webp';
+import { setBackgroundPaused } from '../../background/backgroundPause';
 import { CONTACT_STEP } from '../../leads/qualifierConfig';
 import { conversationSteps, isQuestionStep, relevantAnswers } from '../../leads/qualifierEngine';
-import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
 import { submitLead, submitLeadNote } from '../../leads/leadApi';
-import { chatService, markLeadSent, qualifierSummary, sentLead, summaryText } from '../../leads/funnelContext';
+import {
+    clearQualifierAnswers,
+    markLeadSent,
+    qualifierAnswers,
+    qualifierSummary,
+    saveQualifierAnswers,
+    sentLead,
+    summaryText,
+} from '../../leads/funnelContext';
 import { trackEvent } from '../../leads/funnelEvents';
 import PrivacyPolicyModal from '../contact/PrivacyPolicyModal';
 import { BotTurn, TypingIndicator, UserMessage, scrollToTurn } from './Chat';
-import { submitErrorMessage } from './ContactStep';
-import PhoneStep from './PhoneStep';
+import PhoneStep, { submitErrorMessage } from './PhoneStep';
 import TileStep from './TileStep';
 import './QualifierModal.css';
 
@@ -24,13 +31,6 @@ const THANKS_STEP = 'thanks';
 
 function prefersReducedMotion() {
     return Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
-}
-
-function loadAnswers() {
-    const saved = loadLeadSession().qualifier?.answers;
-    if (saved) return relevantAnswers(saved);
-    const service = chatService();
-    return service ? { service } : {};
 }
 
 function useDialog(dialogRef, onEscape, active) {
@@ -93,7 +93,7 @@ export default function QualifierModal({ onClose }) {
     const dialogRef = useRef(null);
     const chatRef = useRef(null);
     const promptRef = useRef(null);
-    const [answers, setAnswers] = useState(loadAnswers);
+    const [answers, setAnswers] = useState(qualifierAnswers);
     const [submitted, setSubmitted] = useState(null);
     const [showPrivacy, setShowPrivacy] = useState(false);
     const [noteOnly] = useState(() => Boolean(sentLead()));
@@ -116,7 +116,13 @@ export default function QualifierModal({ onClose }) {
     useDialog(dialogRef, close, !showPrivacy);
 
     useEffect(() => {
-        updateLeadSession({ qualifier: submitted ? null : { answers }, qualifierAnswers: answers });
+        setBackgroundPaused(true);
+        return () => setBackgroundPaused(false);
+    }, []);
+
+    useEffect(() => {
+        if (submitted) clearQualifierAnswers();
+        else saveQualifierAnswers(answers);
     }, [answers, submitted]);
 
     useEffect(() => {

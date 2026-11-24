@@ -137,7 +137,7 @@ describe('QualifierModal', () => {
         fireEvent.click(screen.getByRole('button', { name: qualifier.back }));
         await choose('service', 'fixes');
         await screen.findByText(steps.fixTarget.prompt);
-        expect(loadLeadSession().qualifierAnswers).toEqual({ service: 'fixes' });
+        expect(loadLeadSession().qualifier).toEqual({ answers: { service: 'fixes' } });
     });
 
     it('adds the answers to a lead sent earlier instead of asking for the number again', async () => {
