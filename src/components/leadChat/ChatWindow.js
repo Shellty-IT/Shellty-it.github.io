@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { FaPaperPlane, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { CONTACT_STEP, QUESTION_STEPS } from '../../leads/qualifierConfig';
 import { conversationSteps, relevantAnswers } from '../../leads/qualifierEngine';
 import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
@@ -80,7 +80,6 @@ export default function ChatWindow({ open = true, onClose }) {
     const current = turns[lastIndex];
     const lang = i18n.language === 'en' ? 'en' : 'pl';
     const emergency = answers.service === 'emergency';
-    const pending = pendingStep(answers);
     const [revealedIndex, setRevealedIndex] = useState(lastIndex - 1);
     const typing = revealedIndex < lastIndex;
     const showingPhone = !submitted && (
@@ -146,14 +145,26 @@ export default function ChatWindow({ open = true, onClose }) {
             answers: { ...relevantAnswers(previous.answers), [stepId]: value },
             turns: [
                 ...previous.turns,
-                { from: 'user', text: t(`qualifier.steps.${stepId}.options.${value}.label`) },
+                { from: 'user', text: t(`qualifier.steps.${stepId}.options.${value}.label`), choice: stepId },
                 { from: 'bot', step: QUESTION_STEPS[stepId].next(value) },
             ],
         }));
+        trackEvent('chat_step', { step: stepId, answer: value });
     };
 
     const askForCall = () => {
-        addTurns({ from: 'user', text: t('chat.callMe') }, { from: 'bot', step: CONTACT_STEP });
+        addTurns({ from: 'user', text: t('chat.callMe'), choice: 'callMe' }, { from: 'bot', step: CONTACT_STEP });
+    };
+
+    const canGoBack = !submitted && Boolean(current.step) && Boolean(turns[lastIndex - 1]?.choice);
+
+    const goBack = () => {
+        setState((previous) => {
+            const { choice } = previous.turns.at(-2);
+            const { [choice]: removed, ...answersLeft } = previous.answers;
+            return { ...previous, answers: answersLeft, turns: previous.turns.slice(0, -2) };
+        });
+        setRevealedIndex(lastIndex - 2);
     };
 
     const askAssistant = async (text) => {
@@ -173,9 +184,25 @@ export default function ChatWindow({ open = true, onClose }) {
             if (!result.fallback) answer = result;
         } catch {}
         setWaiting(false);
-        addTurns(answer
-            ? { from: 'bot', ai: { reply: answer.reply, action: answer.action ?? 'none' } }
-            : { from: 'bot', node: 'fallback' });
+        if (!answer) {
+            addTurns({ from: 'bot', node: 'fallback' });
+            return;
+        }
+        const action = answer.action ?? 'none';
+        setState((previous) => {
+            const recognized = action === 'none' && !previous.answers.service && answer.signals?.service;
+            const nextAnswers = recognized ? relevantAnswers({ ...previous.answers, service: recognized }) : previous.answers;
+            const followUp = action === 'open_qualifier' || nextAnswers.service !== previous.answers.service;
+            return {
+                ...previous,
+                answers: nextAnswers,
+                turns: [
+                    ...previous.turns,
+                    { from: 'bot', ai: { reply: answer.reply, action } },
+                    ...(followUp ? [{ from: 'bot', step: pendingStep(nextAnswers) }] : []),
+                ],
+            };
+        });
     };
 
     const sendMessage = async (event) => {
@@ -223,20 +250,12 @@ export default function ChatWindow({ open = true, onClose }) {
         }));
     };
 
-    const phoneStep = () => (
-        <PhoneStep
-            onSubmit={sendLead}
-            onShowPrivacy={() => setShowPrivacy(true)}
-        />
-    );
-
     const renderActions = () => {
         if (submitted) return null;
-        if (showingPhone) return phoneStep();
-        if (current.step) return <TileStep stepId={current.step} onAnswer={(value) => answerStep(current.step, value)} />;
-        if (current.ai?.action === 'open_qualifier' && pending !== CONTACT_STEP) {
-            return <TileStep stepId={pending} onAnswer={(value) => answerStep(pending, value)} />;
+        if (showingPhone) {
+            return <PhoneStep source="chat" onSubmit={sendLead} onShowPrivacy={() => setShowPrivacy(true)} />;
         }
+        if (current.step) return <TileStep stepId={current.step} onAnswer={(value) => answerStep(current.step, value)} />;
         if (current.ai) {
             return (
                 <div className="lc-replies">
@@ -291,6 +310,11 @@ export default function ChatWindow({ open = true, onClose }) {
                                 messages={botMessages(turn)}
                             >
                                 {isCurrent && !waiting && renderActions()}
+                                {isCurrent && canGoBack && (
+                                    <button type="button" className="lq-back" onClick={goBack}>
+                                        <FaArrowLeft aria-hidden="true" /> {t('qualifier.back')}
+                                    </button>
+                                )}
                             </BotTurn>
                         </div>
                     );

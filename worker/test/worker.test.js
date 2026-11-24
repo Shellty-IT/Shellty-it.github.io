@@ -249,7 +249,6 @@ describe("POST /chat", () => {
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
       reply: "Odpowiedź z groq. Czym zajmuje się Twoja firma?",
-      quickReplies: ["Gastronomia", "Usługi lokalne"],
       action: "none",
       signals: { service: "website" },
     });
@@ -415,15 +414,13 @@ describe("rate limits", () => {
 describe("GET /stats", () => {
   it("summarises the funnel for the dev token", async () => {
     const token = await startSession();
-    for (const name of ["qualifier_open", "qualifier_value_view", "qualifier_yes"]) {
-      await call("/event", { method: "POST", token, body: { name } });
-    }
+    await call("/event", { method: "POST", token, body: { name: "qualifier_open" } });
+    await call("/event", { method: "POST", token, body: { name: "chat_step", data: { step: "service", answer: "website" } } });
     const response = await call("/stats", { token: env.DEV_LEADS_TOKEN });
     expect(response.status).toBe(200);
     const stats = await response.json();
     expect(stats.funnel.qualifierOpened).toBeGreaterThanOrEqual(1);
-    expect(stats.funnel.diagnosisViewed).toBeGreaterThanOrEqual(1);
-    expect(stats.funnel.proposalAccepted).toBeGreaterThanOrEqual(1);
+    expect(stats.steps).toContainEqual({ name: "chat_step", step: "service", sessions: 1 });
     expect(Array.isArray(stats.leads)).toBe(true);
   });
 
@@ -444,7 +441,7 @@ describe("GET /leads", () => {
     const { leads } = await response.json();
     expect(leads.find((lead) => lead.name === "Ola")).toMatchObject({
       email: "ola@example.com",
-      score: "warm",
+      score: "hot",
       answers: { timeline: "asap" },
     });
   });

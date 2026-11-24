@@ -694,17 +694,17 @@
               ],
               "items": [
                   "Contact form: first name, email address and message - to answer your question.",
-                  "The \"Find your solution\" qualifier and the assistant chat: first name, phone number or email address, your answers, optional additional information and the course of the conversation with the assistant - to prepare a proposal and contact you about your request.",
+                  "The \"Send a request\" module and the assistant chat: phone number or email address (or both), the answers you pick along the way, optional notes and questions typed in the chat - to contact you about your request.",
                   "With every request I also store the text and date of your consent, the page it was sent from and the site language."
               ],
               "after": [
-                  "When you send a message to the assistant, the server receives it along with part of the conversation and a summary of your answers so far if you used the qualifier. This information helps generate a reply even before you submit an enquiry. The server automatically masks phone numbers and email addresses it detects before passing the content to the AI service."
+                  "When you type a question for the assistant, the server receives it along with part of the conversation and a summary of the answers you picked earlier in the conversation. This information helps generate a reply even before you submit an enquiry. The server automatically masks phone numbers and email addresses it detects before passing the content to the AI service."
               ]
           },
           {
               "title": "3. Legal basis",
               "items": [
-                  "Requests from the qualifier and chat - your consent (Art. 6(1)(a) GDPR) and steps taken at your request before entering into a contract (Art. 6(1)(b) GDPR).",
+                  "Requests from the \"Send a request\" module and chat - your consent (Art. 6(1)(a) GDPR) and steps taken at your request before entering into a contract (Art. 6(1)(b) GDPR).",
                   "Contact form - the legitimate interest of the controller, i.e. replying to your enquiry (Art. 6(1)(f) GDPR).",
                   "Protecting the site against spam and abuse - the legitimate interest of the controller (Art. 6(1)(f) GDPR)."
               ]
@@ -712,10 +712,10 @@
           {
               "title": "4. How long I keep your data",
               "items": [
-                  "Requests from the qualifier and chat - up to 12 months after sending, unless you ask for deletion or withdraw your consent earlier. If we start working together, data needed for the work is kept for as long as the law requires.",
+                  "Requests from the \"Send a request\" module and chat - up to 12 months after sending, unless you ask for deletion or withdraw your consent earlier. If we start working together, data needed for the work is kept for as long as the law requires.",
                   "Contact form messages - for as long as needed to handle the enquiry.",
                   "Technical data protecting the site against abuse (an encrypted hash of the IP address that does not reveal the address itself, and request counters) - no longer than 12 months.",
-                  "A copy of your chat history and your progress in the qualifier stay in your browser session until you close the tab. When you submit an enquiry from the chat, I receive a shortened record of your messages with the enquiry. You can also send follow-up notes."
+                  "A copy of your chat history and your progress in the \"Send a request\" module stay in your browser session until you close the tab. When you submit an enquiry from the chat, I receive a shortened record of the questions you typed. You can also send follow-up notes."
               ]
           },
           {
@@ -724,7 +724,7 @@
                   "I use providers who process data on my behalf:"
               ],
               "items": [
-                  "Resend, Inc. (USA) - email notifications about enquiries from the contact form, qualifier and chat.",
+                  "Resend, Inc. (USA) - email notifications about enquiries from the contact form, the \"Send a request\" module and chat.",
                   "Cloudflare, Inc. (USA) - the chat server and database for enquiries handled by the server. Cloudflare Turnstile may ask for verification when starting an assistant session.",
                   "Groq, Inc. (USA) and Google LLC (USA, Gemini API) - generating the AI assistant's replies from the information described in section 2."
               ],
@@ -756,16 +756,16 @@
               "items": [
                   "The chat in the bottom right corner is an AI assistant, not Tomek. Replies are generated automatically by a language model (Groq or Google Gemini), so they may be incomplete or contain mistakes.",
                   "The assistant's replies are not an offer or a binding quote. Tomek agrees the scope and price personally after a conversation.",
-                  "When AI services are unavailable, the chat replies with pre-written messages.",
+                  "When AI services are unavailable, the chat shows a prepared message asking you to leave your contact details.",
                   "Do not enter sensitive data in the chat, e.g. health information, passwords or document numbers.",
-                  "The \"Find your solution\" qualifier guides you through prepared questions. You can switch to the AI assistant during the questionnaire, and it can use your answers as context."
+                  "The \"Send a request\" module guides you through a few prepared questions and does not use AI. In the chat you can click the same answers or type your own question - the AI assistant then replies and can use the answers you picked earlier."
               ]
           },
           {
               "title": "7. Cookies and browser storage",
               "items": [
                   "The site does not use analytics or advertising cookies.",
-                  "Browser storage keeps the selected site language and information needed for the qualifier and chat, e.g. whether the chat tip has already been shown.",
+                  "Browser storage keeps the selected site language and information needed for the \"Send a request\" module and chat, e.g. whether the chat tip has already been shown.",
                   "Cloudflare Turnstile may store data needed to verify the assistant session."
               ]
           },

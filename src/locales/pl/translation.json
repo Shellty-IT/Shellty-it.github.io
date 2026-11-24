@@ -697,17 +697,17 @@
               ],
               "items": [
                   "Formularz kontaktowy: imię, adres e-mail i treść wiadomości - żeby odpowiedzieć na Twoje pytanie.",
-                  "Kwalifikator „Dobierz rozwiązanie” i czat z asystentem: imię, numer telefonu lub adres e-mail, odpowiedzi na pytania, dobrowolne dodatkowe informacje oraz przebieg rozmowy z asystentem - żeby przygotować propozycję rozwiązania i skontaktować się z Tobą w sprawie zgłoszenia.",
+                  "Moduł „Zgłoś sprawę” i czat z asystentem: numer telefonu lub adres e-mail (albo oba), odpowiedzi wybrane w kolejnych krokach, dobrowolne dopiski oraz pytania wpisane w czacie - żeby skontaktować się z Tobą w sprawie zgłoszenia.",
                   "Przy każdym zgłoszeniu zapisuję też treść i datę wyrażonej zgody, podstronę, z której wysłano zgłoszenie, oraz język strony."
               ],
               "after": [
-                  "Gdy wysyłasz wiadomość do asystenta, serwer otrzymuje ją wraz z fragmentem rozmowy i podsumowaniem dotychczasowych odpowiedzi z kwalifikatora, jeśli z niego korzystasz. Te informacje pomagają wygenerować odpowiedź także przed wysłaniem zgłoszenia. Przed przekazaniem treści do usługi AI serwer automatycznie maskuje rozpoznane numery telefonów i adresy e-mail."
+                  "Gdy wpisujesz pytanie do asystenta, serwer otrzymuje je wraz z fragmentem rozmowy i podsumowaniem odpowiedzi wybranych wcześniej w rozmowie. Te informacje pomagają wygenerować odpowiedź także przed wysłaniem zgłoszenia. Przed przekazaniem treści do usługi AI serwer automatycznie maskuje rozpoznane numery telefonów i adresy e-mail."
               ]
           },
           {
               "title": "3. Podstawa prawna przetwarzania",
               "items": [
-                  "Zgłoszenia z kwalifikatora i czatu - Twoja zgoda (art. 6 ust. 1 lit. a RODO) oraz podjęcie działań na Twoje żądanie przed zawarciem umowy (art. 6 ust. 1 lit. b RODO).",
+                  "Zgłoszenia z modułu „Zgłoś sprawę” i czatu - Twoja zgoda (art. 6 ust. 1 lit. a RODO) oraz podjęcie działań na Twoje żądanie przed zawarciem umowy (art. 6 ust. 1 lit. b RODO).",
                   "Formularz kontaktowy - prawnie uzasadniony interes Administratora, czyli odpowiedź na Twoje zapytanie (art. 6 ust. 1 lit. f RODO).",
                   "Ochrona strony przed spamem i nadużyciami - prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO)."
               ]
@@ -715,10 +715,10 @@
           {
               "title": "4. Jak długo przechowuję Twoje dane?",
               "items": [
-                  "Zgłoszenia z kwalifikatora i czatu - do 12 miesięcy od wysłania, chyba że wcześniej poprosisz o ich usunięcie lub wycofasz zgodę. Jeśli podejmiemy współpracę, dane potrzebne do jej realizacji przechowuję przez czas wymagany przepisami.",
+                  "Zgłoszenia z modułu „Zgłoś sprawę” i czatu - do 12 miesięcy od wysłania, chyba że wcześniej poprosisz o ich usunięcie lub wycofasz zgodę. Jeśli podejmiemy współpracę, dane potrzebne do jej realizacji przechowuję przez czas wymagany przepisami.",
                   "Wiadomości z formularza kontaktowego - przez czas potrzebny do obsługi zapytania.",
                   "Dane techniczne chroniące stronę przed nadużyciami (zaszyfrowany skrót adresu IP, który nie pozwala odczytać samego adresu, oraz liczniki zapytań) - nie dłużej niż 12 miesięcy.",
-                  "Kopia historii czatu i postęp w kwalifikatorze pozostają w pamięci sesji przeglądarki do zamknięcia karty. Ze zgłoszeniem z czatu otrzymuję skrócony zapis Twoich wiadomości. Możesz też przesłać późniejsze dopiski."
+                  "Kopia historii czatu i postęp w module „Zgłoś sprawę” pozostają w pamięci sesji przeglądarki do zamknięcia karty. Ze zgłoszeniem z czatu otrzymuję skrócony zapis pytań wpisanych w czacie. Możesz też przesłać późniejsze dopiski."
               ]
           },
           {
@@ -727,7 +727,7 @@
                   "Korzystam z usług dostawców, którzy przetwarzają dane w moim imieniu:"
               ],
               "items": [
-                  "Resend, Inc. (USA) - wysyłka powiadomień o zgłoszeniach z formularza kontaktowego, kwalifikatora i czatu.",
+                  "Resend, Inc. (USA) - wysyłka powiadomień o zgłoszeniach z formularza kontaktowego, modułu „Zgłoś sprawę” i czatu.",
                   "Cloudflare, Inc. (USA) - serwer czatu i baza zgłoszeń obsługiwanych przez serwer. Przy rozpoczynaniu sesji asystenta Cloudflare Turnstile może poprosić o weryfikację.",
                   "Groq, Inc. (USA) oraz Google LLC (USA, usługa Gemini API) - generowanie odpowiedzi asystenta AI na podstawie treści opisanych w punkcie 2."
               ],
@@ -759,16 +759,16 @@
               "items": [
                   "Czat w prawym dolnym rogu to asystent AI, a nie Tomek. Odpowiedzi tworzy automatycznie model językowy (Groq lub Google Gemini), dlatego mogą być niepełne lub zawierać błędy.",
                   "Odpowiedzi asystenta nie są ofertą ani wiążącą wyceną. Zakres i cenę ustala Tomek osobiście po rozmowie.",
-                  "Gdy usługi AI są niedostępne, czat odpowiada wcześniej przygotowanymi wiadomościami.",
+                  "Gdy usługi AI są niedostępne, czat wyświetla przygotowaną wiadomość z prośbą o pozostawienie kontaktu.",
                   "Nie wpisuj w czacie danych wrażliwych, np. informacji o zdrowiu, haseł czy numerów dokumentów.",
-                  "Kwalifikator „Dobierz rozwiązanie” prowadzi przez przygotowane pytania. W trakcie możesz przejść do asystenta AI, który może uwzględnić udzielone odpowiedzi."
+                  "Moduł „Zgłoś sprawę” prowadzi przez kilka przygotowanych pytań i nie korzysta z AI. W czacie możesz klikać te same odpowiedzi albo wpisać własne pytanie - odpowiada wtedy asystent AI, który może uwzględnić wybrane wcześniej odpowiedzi."
               ]
           },
           {
               "title": "7. Pliki cookies i pamięć przeglądarki",
               "items": [
                   "Strona nie używa plików cookies analitycznych ani reklamowych.",
-                  "W pamięci przeglądarki zapisuję wybrany język strony oraz informacje potrzebne do działania kwalifikatora i czatu, np. czy podpowiedź czatu była już wyświetlona.",
+                  "W pamięci przeglądarki zapisuję wybrany język strony oraz informacje potrzebne do działania modułu „Zgłoś sprawę” i czatu, np. czy podpowiedź czatu była już wyświetlona.",
                   "Cloudflare Turnstile może zapisać dane potrzebne do weryfikacji sesji asystenta."
               ]
           },

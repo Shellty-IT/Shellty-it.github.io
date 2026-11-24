@@ -5,13 +5,11 @@ import { requireSession } from "./session.js";
 const PAGE_EVENTS = new Set([
   "qualifier_open",
   "qualifier_step",
-  "qualifier_value_view",
-  "qualifier_yes",
-  "qualifier_audit",
   "qualifier_closed_midway",
   "chat_open",
   "chat_teaser_shown",
   "chat_message",
+  "chat_step",
   "contact_card_shown",
   "lead_submitted",
 ]);

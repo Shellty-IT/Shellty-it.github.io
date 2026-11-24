@@ -22,8 +22,6 @@ const DEFAULT_TIMEOUT_MS = 8000;
 const DEFAULT_MAX_TOKENS = 800;
 const CIRCUIT_OPEN_MS = 60 * 1000;
 const MAX_REPLY = 600;
-const MAX_QUICK_REPLIES = 3;
-const MAX_QUICK_REPLY = 40;
 
 const PRICE_PATTERN = /\d[\d\s.,]*\s*(zł|zl\b|pln|złotych|eur\b|euro|usd|dolar)|[$€£]\s*\d/i;
 const EMAIL_PATTERN = /[^\s@]+@[^\s@]+\.[^\s@]+/g;
@@ -99,21 +97,12 @@ export function parseAssistantReply(content) {
     if (!reply || reply.length > MAX_REPLY) throw new ProviderError('bad_response', 'reply missing or too long');
     if (PRICE_PATTERN.test(reply)) throw new ProviderError('bad_response', 'reply mentions a price');
 
-    const quickReplies = Array.isArray(data.quickReplies)
-        ? data.quickReplies
-            .filter((item) => typeof item === 'string' && item.trim() && item.length <= MAX_QUICK_REPLY)
-            .filter((item) => !PRICE_PATTERN.test(item))
-            .map((item) => normalizeReplyText(item.trim()))
-            .slice(0, MAX_QUICK_REPLIES)
-        : [];
-
     const { action = 'none' } = data;
     if (!ACTIONS.includes(action)) throw new ProviderError('bad_response', 'action not allowed');
 
     const service = data.signals?.service;
     return {
         reply: normalizeReplyText(reply),
-        quickReplies,
         action,
         signals: SERVICES.includes(service) ? { service } : {},
     };

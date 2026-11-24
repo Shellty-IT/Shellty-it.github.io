@@ -213,6 +213,7 @@ export default function QualifierModal({ onClose }) {
         if (noteOnly) return <NoteStep onSubmit={sendNote} />;
         return (
             <PhoneStep
+                source="qualifier"
                 onSubmit={sendLead}
                 onShowPrivacy={() => setShowPrivacy(true)}
             />

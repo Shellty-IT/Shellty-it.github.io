@@ -24,7 +24,7 @@ const LanguageSwitcher = ({ className, language, onChange }) => (
     </div>
 );
 
-const SHIMMER_TONES = ['base', 'accent', 'peak'];
+const SHIMMER_TONES = ['accent', 'peak'];
 
 const ShimmerLabel = ({ text }) => (
     <span className="nav__label nav__shimmer">

@@ -26,7 +26,7 @@ function completion(content) {
 }
 
 function reply(text = "Rozumiem. Czym dokładnie zajmuje się Twoja restauracja?", extra = {}) {
-  return completion(JSON.stringify({ reply: text, quickReplies: ["Pizzeria", "Kawiarnia"], action: "none", ...extra }));
+  return completion(JSON.stringify({ reply: text, action: "none", ...extra }));
 }
 
 function fakeFetch(handlers) {
@@ -61,7 +61,7 @@ describe("maskContactData", () => {
 });
 
 describe("parseAssistantReply", () => {
-  it("accepts a valid answer and limits quick replies", () => {
+  it("accepts a valid answer and keeps only known signals", () => {
     const parsed = parseAssistantReply(
       JSON.stringify({
         reply: "Świetnie - pokażę przykład.",
@@ -72,7 +72,6 @@ describe("parseAssistantReply", () => {
     );
     expect(parsed).toEqual({
       reply: "Świetnie - pokażę przykład.",
-      quickReplies: ["Tak", "Nie", "Może"],
       action: "show_contact_card",
       signals: { service: "website" },
     });
@@ -81,7 +80,6 @@ describe("parseAssistantReply", () => {
   it("reads JSON wrapped in a code block and replaces long dashes", () => {
     const parsed = parseAssistantReply('```json\n{"reply":"Dobrze \u2014 zacznijmy \u2013 teraz.","action":"none"}\n```');
     expect(parsed.reply).toBe("Dobrze - zacznijmy - teraz.");
-    expect(parsed.quickReplies).toEqual([]);
   });
 
   it.each([
@@ -94,11 +92,6 @@ describe("parseAssistantReply", () => {
     ["a project promotion", JSON.stringify({ reply: "Ok", action: "show_project:shelltyCMS" })],
   ])("rejects %s", (_label, content) => {
     expect(() => parseAssistantReply(content)).toThrow();
-  });
-
-  it("drops quick replies that mention a price", () => {
-    const parsed = parseAssistantReply(JSON.stringify({ reply: "Ok", quickReplies: ["Pakiet za 999 zł", "Umówmy rozmowę"] }));
-    expect(parsed.quickReplies).toEqual(["Umówmy rozmowę"]);
   });
 });
 
@@ -127,7 +120,7 @@ describe("runAssistant", () => {
   it("answers with the first provider", async () => {
     const { fetchImpl, calls } = fakeFetch({ groq: () => reply() });
     const result = await runAssistant(ENV, { history: HISTORY, lang: "pl", page: "/" }, { fetchImpl });
-    expect(result).toMatchObject({ provider: "groq", action: "none", quickReplies: ["Pizzeria", "Kawiarnia"] });
+    expect(result).toMatchObject({ provider: "groq", action: "none" });
     expect(calls).toHaveLength(1);
     expect(calls[0].headers.Authorization).toBe("Bearer groq-key");
     expect(calls[0].body).toMatchObject({ model: "groq-model", response_format: { type: "json_object" } });

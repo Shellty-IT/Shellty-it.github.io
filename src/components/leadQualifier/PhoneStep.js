@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LeadApiError } from '../../leads/leadApi';
+import { trackEvent } from '../../leads/funnelEvents';
 
+const FINE_POINTER_QUERY = '(pointer: fine)';
 const MAX_EMAIL = 254;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_PATTERN = /^[1-9]\d{8}$/;
@@ -24,7 +26,7 @@ function validate(phone, email) {
     return null;
 }
 
-export default function PhoneStep({ onSubmit, onShowPrivacy }) {
+export default function PhoneStep({ source, onSubmit, onShowPrivacy }) {
     const { t } = useTranslation();
     const [values, setValues] = useState({ phone: '', email: '' });
     const [fax, setFax] = useState('');
@@ -34,7 +36,11 @@ export default function PhoneStep({ onSubmit, onShowPrivacy }) {
     const emailRef = useRef(null);
 
     useEffect(() => {
-        phoneRef.current?.focus({ preventScroll: true });
+        trackEvent('contact_card_shown', { source });
+    }, [source]);
+
+    useEffect(() => {
+        if (window.matchMedia?.(FINE_POINTER_QUERY).matches) phoneRef.current?.focus({ preventScroll: true });
     }, []);
 
     const handleChange = (field) => (event) => {

@@ -71,6 +71,6 @@ export async function handleChat(request, env) {
     page,
     data: { provider: result.provider, ms: used?.ms ?? 0, attempts: result.attempts.length },
   });
-  const { reply, quickReplies, action, signals } = result;
-  return json({ reply, quickReplies, action, signals });
+  const { reply, action, signals } = result;
+  return json({ reply, action, signals });
 }

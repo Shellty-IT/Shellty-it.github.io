@@ -112,7 +112,7 @@ describe("scoreLead", () => {
     ["IT emergency with email only", { service: "emergency" }, null, "hot"],
     ["asap with phone", { timeline: "asap" }, "+48512345678", "hot"],
     ["within a month with phone", { timeline: "month" }, "+48512345678", "hot"],
-    ["asap with email only", { timeline: "asap" }, null, "warm"],
+    ["asap with email only", { timeline: "asap" }, null, "hot"],
     ["1-3 months with phone", { timeline: "quarter" }, "+48512345678", "warm"],
     ["mini audit request", { timeline: "quarter", audit: true }, null, "warm"],
     ["chat lead without a timeline", {}, "+48512345678", "warm"],

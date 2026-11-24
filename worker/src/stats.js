@@ -3,8 +3,6 @@ import { json } from "./http.js";
 
 const FUNNEL = [
   ["qualifierOpened", "qualifier_open"],
-  ["diagnosisViewed", "qualifier_value_view"],
-  ["proposalAccepted", "qualifier_yes"],
   ["leftMidway", "qualifier_closed_midway"],
   ["chatOpened", "chat_open"],
   ["contactCardShown", "contact_card_shown"],
@@ -19,8 +17,8 @@ export async function handleStats(request, env) {
       "SELECT name, COUNT(*) AS total, COUNT(DISTINCT session_id) AS sessions FROM events GROUP BY name",
     ),
     env.DB.prepare(
-      `SELECT json_extract(data, '$.step') AS step, COUNT(DISTINCT session_id) AS sessions
-       FROM events WHERE name = 'qualifier_step' GROUP BY step ORDER BY sessions DESC`,
+      `SELECT name, json_extract(data, '$.step') AS step, COUNT(DISTINCT session_id) AS sessions
+       FROM events WHERE name IN ('qualifier_step', 'chat_step') GROUP BY name, step ORDER BY sessions DESC`,
     ),
     env.DB.prepare(
       `SELECT name, COALESCE(json_extract(data, '$.provider'), json_extract(data, '$.reason')) AS detail,
@@ -35,7 +33,7 @@ export async function handleStats(request, env) {
   return json({
     funnel,
     events: byName,
-    qualifierSteps: steps.results,
+    steps: steps.results,
     ai: providers.results,
     leads: leads.results,
   });

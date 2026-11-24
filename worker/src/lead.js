@@ -111,10 +111,10 @@ export function validateLead(body) {
   };
 }
 
-export function scoreLead({ answers, phone }) {
+export function scoreLead({ answers }) {
   if (answers.service === "emergency") return "hot";
   if (answers.timeline === "browsing") return "cold";
-  if (SHORT_TIMELINES.includes(answers.timeline) && phone) return "hot";
+  if (SHORT_TIMELINES.includes(answers.timeline)) return "hot";
   return "warm";
 }
 

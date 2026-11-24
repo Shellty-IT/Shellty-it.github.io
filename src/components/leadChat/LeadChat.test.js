@@ -108,6 +108,26 @@ describe('ChatWindow', () => {
         expect(screen.getByLabelText(pl.qualifier.contact.fields.phone)).toBeVisible();
     });
 
+    it('lets the visitor go back to change a clicked answer', async () => {
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        expect(screen.queryByRole('button', { name: pl.qualifier.back })).toBeNull();
+        await click(steps.service.options.website.label);
+        await screen.findByText(steps.hasSite.prompt);
+        await click(pl.qualifier.back);
+        expect(screen.queryByText(steps.hasSite.prompt)).toBeNull();
+        await click(steps.service.options.app.label);
+        expect(await screen.findByText(steps.appStage.prompt)).toBeVisible();
+        await click(steps.appStage.options.idea.label);
+        await click(steps.timeline.options.asap.label);
+        await screen.findByText(chat.nodes.contact);
+        typePhone('512345678');
+        submitPhone();
+        await screen.findByText(chat.nodes.thanks);
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
+            answers: { service: 'app', appStage: 'idea', timeline: 'asap' },
+        }));
+    });
+
     it('closes with Escape', async () => {
         const close = jest.fn();
         renderWithProviders(<ChatWindow onClose={close} />);
@@ -119,10 +139,9 @@ describe('ChatWindow', () => {
 
 describe('ChatWindow with the AI assistant', () => {
     const aiAnswer = (overrides = {}) => ({
-        reply: 'Tak, zrobię stronę z rezerwacjami online.',
-        quickReplies: ['Pizzeria', 'Kawiarnia'],
+        reply: 'Tomek robi strony z rezerwacjami online.',
         action: 'none',
-        signals: { service: 'website' },
+        signals: {},
         ...overrides,
     });
 
@@ -132,8 +151,7 @@ describe('ChatWindow with the AI assistant', () => {
         await screen.findByText(chat.nodes.start);
         send('Czy zrobisz stronę z rezerwacjami?');
 
-        expect(await screen.findByText('Tak, zrobię stronę z rezerwacjami online.')).toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: 'Pizzeria' })).toBeNull();
+        expect(await screen.findByText('Tomek robi strony z rezerwacjami online.')).toBeInTheDocument();
         const { messages, lang, page } = sendChatMessage.mock.calls[0][0];
         expect({ lang, page }).toEqual({ lang: 'pl', page: '/services' });
         expect(messages).toEqual([
@@ -152,6 +170,34 @@ describe('ChatWindow with the AI assistant', () => {
         }));
     });
 
+    it('continues with the next question when the assistant recognises the service', async () => {
+        sendChatMessage.mockResolvedValueOnce(aiAnswer({ signals: { service: 'website' } }));
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(chat.nodes.start);
+        send('Potrzebuję strony dla restauracji');
+        expect(await screen.findByText(steps.hasSite.prompt)).toBeVisible();
+        await click(steps.hasSite.options.no.label);
+        await click(steps.timeline.options.month.label);
+        await screen.findByText(chat.nodes.contact);
+        typePhone('512345678');
+        submitPhone();
+        await screen.findByText(chat.nodes.thanks);
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({
+            answers: { service: 'website', hasSite: 'no', timeline: 'month' },
+        }));
+    });
+
+    it('ignores a recognised service the visitor already chose', async () => {
+        updateLeadSession({ qualifier: { answers: { service: 'it' } } });
+        sendChatMessage.mockResolvedValueOnce(aiAnswer({ signals: { service: 'website' } }));
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(steps.itNeed.prompt);
+        send('A strony też robisz?');
+        await screen.findByText('Tomek robi strony z rezerwacjami online.');
+        expect(screen.queryByText(steps.hasSite.prompt)).toBeNull();
+        expect(screen.getByRole('button', { name: chat.callMe })).toBeVisible();
+    });
+
     it('shows the phone field at once when the assistant asks for contact', async () => {
         sendChatMessage.mockResolvedValueOnce(aiAnswer({ reply: 'Tomek przygotuje propozycję.', action: 'show_contact_card' }));
         renderWithProviders(<ChatWindow onClose={jest.fn()} />);
@@ -167,7 +213,7 @@ describe('ChatWindow with the AI assistant', () => {
         await screen.findByText(chat.nodes.start);
         send('Nie wiem, czego potrzebuję');
         await screen.findByText('Wybierz temat.');
-        expect(screen.getAllByRole('button', { name: steps.service.options.app.label })).toHaveLength(1);
+        expect(await screen.findAllByRole('button', { name: steps.service.options.app.label })).toHaveLength(1);
     });
 
     it('asks for a phone number when the assistant is unavailable', async () => {
@@ -183,7 +229,7 @@ describe('ChatWindow with the AI assistant', () => {
 describe('ChatWindow and the qualifier', () => {
     it('continues where the visitor stopped instead of repeating the answers', async () => {
         updateLeadSession({ qualifier: { answers: { service: 'website', hasSite: 'no' } } });
-        sendChatMessage.mockResolvedValueOnce({ reply: 'Jasne.', quickReplies: [], action: 'none' });
+        sendChatMessage.mockResolvedValueOnce({ reply: 'Jasne.', action: 'none' });
         renderWithProviders(<ChatWindow onClose={jest.fn()} />);
         expect(await screen.findByText(steps.timeline.prompt)).toBeVisible();
         expect(screen.queryByText(chat.nodes.start)).toBeNull();

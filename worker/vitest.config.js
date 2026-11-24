@@ -16,7 +16,6 @@ function fakeCompletion(request) {
   const provider = new URL(request.url).hostname.split(".")[0];
   const content = JSON.stringify({
     reply: `Odpowiedź z ${provider}. Czym zajmuje się Twoja firma?`,
-    quickReplies: ["Gastronomia", "Usługi lokalne"],
     signals: { service: "website" },
     action: "none",
   });

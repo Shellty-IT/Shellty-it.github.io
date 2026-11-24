@@ -135,7 +135,6 @@
 
 .nav__link--accent:not(.is-active) .nav__shimmer {
     position: relative;
-    color: transparent;
     filter: drop-shadow(0 0 6px rgba(12, 192, 255, .35));
 }
 
@@ -148,7 +147,6 @@
     position: absolute;
     inset: 0;
     overflow: hidden;
-    isolation: isolate;
     pointer-events: none;
     user-select: none;
 }
@@ -162,22 +160,14 @@
     animation: navShimmerWindow 2.2s linear infinite;
 }
 
-.nav__shimmer-window--base {
-    --shimmer-tone: #e6f6ff;
-    -webkit-mask-image: linear-gradient(100deg, #000 32%, transparent 44%, transparent 56%, #000 68%);
-    mask-image: linear-gradient(100deg, #000 32%, transparent 44%, transparent 56%, #000 68%);
-}
-
 .nav__shimmer-window--accent {
-    --shimmer-tone: #0cc0ff;
-    mix-blend-mode: plus-lighter;
-    -webkit-mask-image: linear-gradient(100deg, transparent 32%, #000 44%, transparent 50%, #000 56%, transparent 68%);
-    mask-image: linear-gradient(100deg, transparent 32%, #000 44%, transparent 50%, #000 56%, transparent 68%);
+    color: #0cc0ff;
+    -webkit-mask-image: linear-gradient(100deg, transparent 32%, #000 44%, #000 56%, transparent 68%);
+    mask-image: linear-gradient(100deg, transparent 32%, #000 44%, #000 56%, transparent 68%);
 }
 
 .nav__shimmer-window--peak {
-    --shimmer-tone: #fff;
-    mix-blend-mode: plus-lighter;
+    color: #fff;
     -webkit-mask-image: linear-gradient(100deg, transparent 44%, #000 50%, transparent 56%);
     mask-image: linear-gradient(100deg, transparent 44%, #000 50%, transparent 56%);
 }
@@ -194,10 +184,6 @@
 .nav__shimmer-text::before {
     content: attr(data-text);
     display: block;
-    color: transparent;
-    background-color: var(--shimmer-tone);
-    -webkit-background-clip: text;
-    background-clip: text;
 }
 
 @keyframes navShimmerWindow {
