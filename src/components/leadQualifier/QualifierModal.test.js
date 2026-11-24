@@ -6,7 +6,7 @@ import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import pl from '../../locales/pl/translation.json';
 import QualifierModal from './QualifierModal';
-import { submitLead, submitLeadNote } from '../../leads/leadApi';
+import { LeadApiError, submitLead, submitLeadNote } from '../../leads/leadApi';
 import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
 
 jest.mock('react-router-dom', () => {
@@ -46,6 +46,10 @@ async function choose(stepId, option) {
 }
 
 const submit = () => fireEvent.click(screen.getByRole('button', { name: qualifier.phone.submit }));
+const submissionSession = (minutesLeft) => ({
+    token: 'lead-token',
+    expiresAt: new Date(Date.now() + minutesLeft * 60 * 1000).toISOString(),
+});
 
 beforeEach(() => {
     window.matchMedia = jest.fn().mockReturnValue({ matches: true });
@@ -141,7 +145,7 @@ describe('QualifierModal', () => {
     });
 
     it('adds the answers to a lead sent earlier instead of asking for the number again', async () => {
-        updateLeadSession({ leadSent: { name: '' } });
+        updateLeadSession({ leadSent: { name: '' }, submissionSession: submissionSession(60) });
         submitLeadNote.mockRejectedValueOnce(new Error('offline'));
         renderModal();
         await choose('service', 'emergency');
@@ -153,5 +157,24 @@ describe('QualifierModal', () => {
         expect(await screen.findByText(qualifier.thanks.text.noted)).toBeVisible();
         expect(submitLeadNote).toHaveBeenLastCalledWith(`${qualifier.noteIntro} Usługa: ${steps.service.options.emergency.label}`);
         expect(submitLead).not.toHaveBeenCalled();
+    });
+
+    it('asks for the number again when the earlier lead session has expired', async () => {
+        updateLeadSession({ leadSent: { name: '' }, submissionSession: submissionSession(-1) });
+        renderModal();
+        await choose('service', 'emergency');
+        expect(await screen.findByText(qualifier.phone.prompt.emergency)).toBeVisible();
+        expect(screen.getByLabelText(qualifier.contact.fields.phone)).toBeVisible();
+        expect(screen.queryByRole('button', { name: qualifier.thanks.sendNote })).toBeNull();
+    });
+
+    it('switches to the phone number when the earlier lead can no longer take a note', async () => {
+        updateLeadSession({ leadSent: { name: '' }, submissionSession: submissionSession(60) });
+        submitLeadNote.mockRejectedValueOnce(new LeadApiError(404, 'lead_not_found'));
+        renderModal();
+        await choose('service', 'emergency');
+        fireEvent.click(await screen.findByRole('button', { name: qualifier.thanks.sendNote }));
+        expect(await screen.findByLabelText(qualifier.contact.fields.phone)).toBeVisible();
+        expect(screen.queryByText(qualifier.contact.errors.network)).toBeNull();
     });
 });

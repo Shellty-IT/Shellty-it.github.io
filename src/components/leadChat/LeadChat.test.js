@@ -7,7 +7,7 @@ import { MemoryRouter } from 'react-router-dom';
 import pl from '../../locales/pl/translation.json';
 import LeadChat, { TEASER_DELAY_MS } from './LeadChat';
 import ChatWindow from './ChatWindow';
-import { sendChatMessage, submitLead, submitLeadNote } from '../../leads/leadApi';
+import { LeadApiError, sendChatMessage, submitLead, submitLeadNote } from '../../leads/leadApi';
 import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
 
 jest.mock('react-router-dom', () => {
@@ -58,6 +58,10 @@ beforeEach(() => {
 });
 
 const { steps } = pl.qualifier;
+const submissionSession = (minutesLeft) => ({
+    token: 'lead-token',
+    expiresAt: new Date(Date.now() + minutesLeft * 60 * 1000).toISOString(),
+});
 const typePhone = (value) => fireEvent.change(screen.getByLabelText(pl.qualifier.contact.fields.phone), { target: { value } });
 const submitPhone = () => fireEvent.click(screen.getByRole('button', { name: pl.qualifier.phone.submit }));
 
@@ -191,7 +195,7 @@ describe('ChatWindow and the qualifier', () => {
     });
 
     it('does not ask for contact again after a lead was sent', async () => {
-        updateLeadSession({ leadSent: { name: '' } });
+        updateLeadSession({ leadSent: { name: '' }, submissionSession: submissionSession(60) });
         renderWithProviders(<ChatWindow onClose={jest.fn()} />);
         expect(await screen.findByText(chat.nodes.sent)).toBeVisible();
         expect(screen.queryByRole('button', { name: steps.service.options.website.label })).toBeNull();
@@ -199,6 +203,19 @@ describe('ChatWindow and the qualifier', () => {
         expect(await screen.findByText(chat.nodes.noted)).toBeInTheDocument();
         expect(submitLeadNote).toHaveBeenCalledWith('Najlepiej dzwonić po 16');
         expect(sendChatMessage).not.toHaveBeenCalled();
+    });
+
+    it('asks for the number again when a note can no longer reach the earlier lead', async () => {
+        updateLeadSession({ leadSent: { name: '' }, submissionSession: submissionSession(60) });
+        submitLeadNote.mockRejectedValueOnce(new LeadApiError(401, 'invalid_session'));
+        renderWithProviders(<ChatWindow onClose={jest.fn()} />);
+        await screen.findByText(chat.nodes.sent);
+        send('Najlepiej dzwonić po 16');
+        expect(await screen.findByText(chat.nodes.contact)).toBeVisible();
+        typePhone('512345678');
+        submitPhone();
+        await screen.findByText(chat.nodes.thanks);
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({ chatSummary: 'Najlepiej dzwonić po 16' }));
     });
 });
 

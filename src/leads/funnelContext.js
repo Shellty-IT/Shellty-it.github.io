@@ -1,5 +1,6 @@
 import { relevantAnswers, summaryRows } from './qualifierEngine';
 import { loadLeadSession, updateLeadSession } from './leadSession';
+import { canAddLeadNote } from './leadApi';
 
 const MAX_CONTEXT = 1000;
 
@@ -16,7 +17,8 @@ export function clearQualifierAnswers() {
 }
 
 export function sentLead() {
-    return loadLeadSession().leadSent ?? null;
+    const lead = loadLeadSession().leadSent;
+    return lead && canAddLeadNote() ? lead : null;
 }
 
 export function markLeadSent(name) {

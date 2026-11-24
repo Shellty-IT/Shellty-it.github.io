@@ -7,7 +7,7 @@ import avatar from '../../assets/avatar/tomek_small.webp';
 import { setBackgroundPaused } from '../../background/backgroundPause';
 import { CONTACT_STEP } from '../../leads/qualifierConfig';
 import { conversationSteps, isQuestionStep, relevantAnswers } from '../../leads/qualifierEngine';
-import { submitLead, submitLeadNote } from '../../leads/leadApi';
+import { isLeadNoteUnavailable, submitLead, submitLeadNote } from '../../leads/leadApi';
 import {
     clearQualifierAnswers,
     markLeadSent,
@@ -96,7 +96,7 @@ export default function QualifierModal({ onClose }) {
     const [answers, setAnswers] = useState(qualifierAnswers);
     const [submitted, setSubmitted] = useState(null);
     const [showPrivacy, setShowPrivacy] = useState(false);
-    const [noteOnly] = useState(() => Boolean(sentLead()));
+    const [noteOnly, setNoteOnly] = useState(() => Boolean(sentLead()));
 
     const steps = conversationSteps(answers);
     const turns = submitted ? [...steps, THANKS_STEP] : steps;
@@ -172,7 +172,13 @@ export default function QualifierModal({ onClose }) {
     };
 
     const sendNote = async () => {
-        await submitLeadNote(`${t('qualifier.noteIntro')} ${summaryText(qualifierSummary(t, answers))}`);
+        try {
+            await submitLeadNote(`${t('qualifier.noteIntro')} ${summaryText(qualifierSummary(t, answers))}`);
+        } catch (error) {
+            if (!isLeadNoteUnavailable(error)) throw error;
+            setNoteOnly(false);
+            return;
+        }
         setSubmitted({ variant: 'noted', reply: t('qualifier.thanks.sendNote') });
     };
 

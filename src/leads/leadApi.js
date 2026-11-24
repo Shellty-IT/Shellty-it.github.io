@@ -84,11 +84,16 @@ export async function submitLead(lead) {
     }
 }
 
+export function canAddLeadNote() {
+    return Boolean(savedSessionToken('submissionSession'));
+}
+
+export function isLeadNoteUnavailable(error) {
+    return error instanceof LeadApiError && (error.status === 401 || error.status === 404);
+}
+
 export function submitLeadNote(note) {
-    if (loadLeadSession().leadSent?.emailReceipt) {
-        return Promise.reject(new LeadApiError(404, 'lead_not_found'));
-    }
-    const token = savedSessionToken('submissionSession') ?? savedSessionToken();
+    const token = savedSessionToken('submissionSession');
     if (!token) return Promise.reject(new LeadApiError(401, 'invalid_session'));
     return post('/lead/note', { note }, token);
 }

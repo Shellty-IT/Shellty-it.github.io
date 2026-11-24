@@ -5,7 +5,7 @@ import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { CONTACT_STEP, QUESTION_STEPS } from '../../leads/qualifierConfig';
 import { conversationSteps, relevantAnswers } from '../../leads/qualifierEngine';
 import { loadLeadSession, updateLeadSession } from '../../leads/leadSession';
-import { sendChatMessage, submitLead, submitLeadNote } from '../../leads/leadApi';
+import { isLeadNoteUnavailable, sendChatMessage, submitLead, submitLeadNote } from '../../leads/leadApi';
 import {
     clearQualifierAnswers,
     markLeadSent,
@@ -190,8 +190,16 @@ export default function ChatWindow({ open = true, onClose }) {
         try {
             await submitLeadNote(text);
             addTurns({ from: 'user', text }, { from: 'bot', node: 'noted' });
-        } catch {
-            addTurns({ from: 'user', text }, { from: 'bot', node: 'noteFailed' });
+        } catch (error) {
+            if (!isLeadNoteUnavailable(error)) {
+                addTurns({ from: 'user', text }, { from: 'bot', node: 'noteFailed' });
+                return;
+            }
+            setState((previous) => ({
+                ...previous,
+                submitted: false,
+                turns: [...previous.turns, { from: 'user', text, typed: true }, { from: 'bot', step: CONTACT_STEP }],
+            }));
         }
     };
 
