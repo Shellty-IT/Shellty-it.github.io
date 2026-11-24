@@ -59,7 +59,7 @@ beforeEach(() => {
 });
 
 describe('QualifierModal', () => {
-    it('leads from three clicks to a phone number only', async () => {
+    it('leads from three clicks to a phone number or an email only', async () => {
         const close = jest.fn();
         renderModal(close);
         expect(screen.getByText(steps.service.prompt)).toBeVisible();
@@ -74,10 +74,10 @@ describe('QualifierModal', () => {
         const phone = screen.getByLabelText(qualifier.contact.fields.phone);
         expect(phone).toHaveFocus();
         expect(screen.queryByRole('checkbox')).toBeNull();
-        expect(screen.getAllByRole('textbox')).toHaveLength(1);
+        expect(screen.getAllByRole('textbox')).toHaveLength(2);
 
         submit();
-        expect(screen.getByText(qualifier.contact.errors.phone)).toBeVisible();
+        expect(screen.getByText(qualifier.contact.errors.contact)).toBeVisible();
         expect(submitLead).not.toHaveBeenCalled();
 
         fireEvent.change(phone, { target: { value: '600 700 800' } });
@@ -101,20 +101,37 @@ describe('QualifierModal', () => {
         expect(close).toHaveBeenCalledWith({ savedMidway: false });
     });
 
-    it('skips the questions and the email option for an emergency', async () => {
+    it('skips the questions for an emergency', async () => {
         renderModal();
         await choose('service', 'emergency');
         expect(await screen.findByText(qualifier.phone.prompt.emergency)).toBeVisible();
-        expect(screen.queryByRole('button', { name: qualifier.phone.useEmail })).toBeNull();
+        expect(screen.getByLabelText(qualifier.contact.fields.phone)).toBeVisible();
     });
 
-    it('lets the visitor leave an email instead and shows send errors', async () => {
+    it('sends both the phone number and the email when the visitor gives both', async () => {
+        renderModal();
+        await choose('service', 'unsure');
+        await choose('timeline', 'asap');
+        const phone = await screen.findByLabelText(qualifier.contact.fields.phone);
+        const email = screen.getByLabelText(qualifier.contact.fields.email);
+        fireEvent.change(phone, { target: { value: '600700800' } });
+        fireEvent.change(email, { target: { value: 'zle' } });
+        submit();
+        expect(screen.getByText(qualifier.contact.errors.email)).toBeVisible();
+        expect(email).toHaveFocus();
+        expect(submitLead).not.toHaveBeenCalled();
+        fireEvent.change(email, { target: { value: 'jan@example.org' } });
+        submit();
+        expect(await screen.findByText('+48 600 700 800 · jan@example.org')).toBeVisible();
+        expect(submitLead).toHaveBeenCalledWith(expect.objectContaining({ phone: '600700800', email: 'jan@example.org' }));
+    });
+
+    it('accepts an email alone and shows send errors', async () => {
         submitLead.mockRejectedValueOnce(new Error('offline'));
         renderModal();
         await choose('service', 'unsure');
         await choose('timeline', 'browsing');
-        fireEvent.click(await screen.findByRole('button', { name: qualifier.phone.useEmail }));
-        const email = screen.getByLabelText(qualifier.contact.fields.email);
+        const email = await screen.findByLabelText(qualifier.contact.fields.email);
         fireEvent.change(email, { target: { value: 'jan@example.org' } });
         submit();
         expect(await screen.findByText(qualifier.contact.errors.network)).toBeVisible();

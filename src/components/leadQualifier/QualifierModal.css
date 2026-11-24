@@ -232,14 +232,16 @@
     gap: 10px;
 }
 
-.lq-phone-form__row {
+.lq-phone-form__field {
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    gap: 6px;
 }
 
-.lq-phone-form__row > :first-child {
-    flex: 1;
-    min-width: 0;
+.lq-phone-form__label {
+    color: var(--color-text-secondary);
+    font-size: .85rem;
+    font-weight: 600;
 }
 
 .lq-notice {
@@ -488,10 +490,6 @@
 
     .lq-options {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .lq-phone-form__row {
-        flex-direction: column;
     }
 }
 

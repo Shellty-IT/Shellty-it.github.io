@@ -225,7 +225,6 @@ export default function ChatWindow({ open = true, onClose }) {
 
     const phoneStep = () => (
         <PhoneStep
-            allowEmail={!emergency || current.step !== CONTACT_STEP}
             onSubmit={sendLead}
             onShowPrivacy={() => setShowPrivacy(true)}
         />

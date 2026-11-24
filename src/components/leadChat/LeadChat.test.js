@@ -101,11 +101,11 @@ describe('ChatWindow', () => {
         expect(loadLeadSession().qualifier).toBeNull();
     });
 
-    it('asks only for a phone number during an emergency', async () => {
+    it('asks at once for contact during an emergency', async () => {
         renderWithProviders(<ChatWindow onClose={jest.fn()} />);
         await click(steps.service.options.emergency.label);
         expect(await screen.findByText(chat.nodes.contactEmergency)).toBeVisible();
-        expect(screen.queryByRole('button', { name: pl.qualifier.phone.useEmail })).toBeNull();
+        expect(screen.getByLabelText(pl.qualifier.contact.fields.phone)).toBeVisible();
     });
 
     it('closes with Escape', async () => {
@@ -158,7 +158,7 @@ describe('ChatWindow with the AI assistant', () => {
         await screen.findByText(chat.nodes.start);
         send('Chcę zacząć jak najszybciej');
         expect(await screen.findByLabelText(pl.qualifier.contact.fields.phone)).toBeVisible();
-        expect(screen.getByRole('button', { name: pl.qualifier.phone.useEmail })).toBeVisible();
+        expect(screen.getByLabelText(pl.qualifier.contact.fields.email)).toBeVisible();
     });
 
     it('shows the topic tiles when the assistant suggests choosing a topic', async () => {

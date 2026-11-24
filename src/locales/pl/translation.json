@@ -921,14 +921,13 @@
         },
         "phone": {
             "prompt": {
-                "contact": "Zostaw numer, oddzwonię i powiem, jak to zrobić i ile to potrwa.",
-                "emergency": "Zostaw numer, oddzwonię najszybciej, jak to możliwe.",
+                "contact": "Zostaw telefon lub e-mail, skontaktuję się z Tobą i powiem, jak to zrobić i ile to potrwa.",
+                "emergency": "Zostaw telefon lub e-mail, skontaktuję się z Tobą najszybciej, jak to możliwe.",
                 "noted": "Masz już u mnie zgłoszenie. Dopiszę te odpowiedzi do niego."
             },
-            "submit": "Oddzwoń do mnie",
+            "submit": "Wyślij zgłoszenie",
             "notice": "Wysyłając, zgadzasz się na kontakt w sprawie zgłoszenia i przetwarzanie danych zgodnie z",
-            "useEmail": "Wolę kontakt mailowy",
-            "usePhone": "Wolę telefon"
+            "hint": "Wystarczy jedno z dwóch."
         },
         "contact": {
             "fields": {
@@ -954,14 +953,15 @@
                 "consent": "Zaznacz zgodę, żebym mógł się z Tobą skontaktować.",
                 "invalid": "Sprawdź wpisane dane i spróbuj ponownie.",
                 "rateLimited": "Za dużo prób w krótkim czasie. Spróbuj za chwilę albo napisz na kontakt@shellty.pl.",
-                "network": "Nie udało się wysłać. Spróbuj ponownie albo napisz na kontakt@shellty.pl."
+                "network": "Nie udało się wysłać. Spróbuj ponownie albo napisz na kontakt@shellty.pl.",
+                "contact": "Podaj telefon albo e-mail."
             }
         },
         "thanks": {
             "title": "Dzięki!",
             "text": {
                 "contact": "Mam Twoje zgłoszenie. Odezwę się w ciągu 24 godzin.",
-                "emergency": "Mam Twoje zgłoszenie. Oddzwonię najszybciej, jak to możliwe.",
+                "emergency": "Mam Twoje zgłoszenie. Skontaktuję się z Tobą najszybciej, jak to możliwe.",
                 "noted": "Dopisałem te odpowiedzi do Twojego zgłoszenia."
             },
             "sendNote": "Dopisz do zgłoszenia",
@@ -986,12 +986,12 @@
             "default": "Masz pytanie do Tomka?"
         },
         "privacyLink": "Jak przetwarzane są dane",
-        "callMe": "Poproś o telefon",
+        "callMe": "Poproś o kontakt",
         "nodes": {
             "start": "W czym mogę pomóc? Wybierz temat albo zadaj pytanie poniżej.",
-            "contact": "Zostaw numer, a Tomek oddzwoni i powie, jak to zrobić i ile to potrwa.",
-            "contactEmergency": "Zostaw numer, a Tomek oddzwoni najszybciej, jak to możliwe.",
-            "fallback": "Nie mogę teraz odpowiedzieć. Zostaw numer, a Tomek oddzwoni i odpowie na Twoje pytanie.",
+            "contact": "Zostaw telefon lub e-mail, a Tomek skontaktuje się z Tobą i powie, jak to zrobić i ile to potrwa.",
+            "contactEmergency": "Zostaw telefon lub e-mail, a Tomek skontaktuje się z Tobą najszybciej, jak to możliwe.",
+            "fallback": "Nie mogę teraz odpowiedzieć. Zostaw telefon lub e-mail, a Tomek skontaktuje się z Tobą i odpowie na Twoje pytanie.",
             "thanks": "Dzięki! Tomek odezwie się w ciągu 24 godzin.",
             "sent": "Masz już zgłoszenie u Tomka. Odezwie się w ciągu 24 godzin. Chcesz coś dopisać? Napisz poniżej.",
             "noted": "Dziękuję, przekazałem to Tomkowi razem z Twoim zgłoszeniem.",
